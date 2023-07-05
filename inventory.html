@@ -1,0 +1,43 @@
+<div class="inventory-page">
+    <header class="header">
+        <link rel="stylesheet" href="template.css" />
+        <div class="logo"><img src="/path/to/logo.png" alt="Dealership Logo" /></div>
+        <nav class="nav">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="inventory.html">Inventory</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main-content">
+        <section class="filter-section">
+            <h2>Filter Inventory</h2>
+            <div class="filters">
+                <div class="filter"><label for="make">Make:</label><input type="text" id="make" name="make" /></div>
+                <div class="filter"><label for="model">Model:</label><input type="text" id="model" name="model" /></div>
+                <div class="filter"><label for="year">Year:</label><input type="number" id="year" name="year" /></div>
+                <div class="filter"><label for="price">Max Price:</label><input type="number" id="price" name="price" />
+                </div><button class="filter-button" type="button">Apply Filters</button>
+            </div>
+        </section>
+        <section class="vehicle-list">
+            <h2>Available Vehicles</h2>
+            <div class="vehicle-grid" id="vehicle-list">
+                <div class="vehicle-card"><img src="#" alt="Vehicle" class="vehicle-image" />
+                    <h3 class="vehicle-title">Vehicle Title</h3>
+                    <p class="vehicle-description">Vehicle Description</p>
+                    <p class="price">Price: $5000</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer class="footer">
+        <div class="footer-nav"><a href="/">Home</a> |<a href="inventory.html">Inventory</a> |<a href="about.html">About
+                Us</a> |<a href="contact.html">Contact Us</a></div>
+        <p>© <!-- -->2023<!-- --> Your Dealership Name. All rights reserved.</p>
+        <p>Website by Dealership Name</p>
+    </footer>
+    <script src="fetchVehicles.js"></script>
+</div>
