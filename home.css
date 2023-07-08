@@ -1,0 +1,585 @@
+body {
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
+  color: #999999 !important;
+  letter-spacing: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* -------------------------------------------------------
+-                     TOPBAR                             -
+---------------------------------------------------------- */
+
+.top-bar {
+  background-color: black;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 0;
+}
+
+/* -------------------------------------------------------
+-                    NAVBAR                              -
+---------------------------------------------------------- */
+
+.nav-bar {
+  background-color: black;
+  color: white;
+  font-size: 13px;
+}
+
+.navbar-toggler-icon {
+  color: white;
+}
+
+.nav-link {
+  color: inherit !important;
+  text-transform: uppercase;
+  font-size: inherit !important;
+}
+
+.nav-link.active {
+  color: red !important;
+}
+
+.nav-item:hover {
+  color: red;
+}
+
+/* -------------------------------------------------------
+-                    SECTION A MAIN                      -
+---------------------------------------------------------- */
+.section-a {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('/images/bg.jpg') center center no-repeat;
+  background-size: cover;
+}
+
+.text {
+  position: absolute;
+  text-align: center;
+  top: 20%;
+  width: 100%;
+}
+.text > .sub-heading {
+  font-size: 29px;
+  text-transform: uppercase;
+  color: white;
+}
+.text > .heading {
+  font-size: 68px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: white;
+}
+.cars {
+  position: absolute;
+  top: 43%;
+  width: 100%;
+}
+
+.car-a {
+  margin-right: -8rem;
+  z-index: 1;
+}
+
+.btn-wrapper {
+  position: absolute;
+  bottom: 12%;
+  width: 100%;
+  text-align: center;
+}
+
+.section-a .custom-btn {
+  background-color: red;
+  color: white;
+  line-height: 17px;
+  letter-spacing: 0px;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 12px 19px;
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+}
+
+@media (min-width: 768px) {
+  .section-a {
+    min-height: 660px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-a {
+    min-height: 860px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .car-a {
+    margin-right: -4rem;
+  }
+  .text > .sub-heading {
+    font-size: 16px;
+  }
+  .text > .heading {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .car-a {
+    margin-right: -2rem;
+  }
+  .text > .sub-heading {
+    font-size: 11px;
+  }
+  .text > .heading {
+    font-size: 16px;
+  }
+}
+
+/* -------------------------------------------------------
+-                    SECTION B FORM                      -
+---------------------------------------------------------- */
+.form {
+  max-width: 1140px;
+  margin: auto;
+  margin-top: 40px;
+  padding: 30px 8px;
+}
+
+.label {
+  margin-bottom: 10px;
+  display: block;
+  font-size: 13px;
+  color: #999999;
+}
+
+select {
+  line-height: 14px;
+  max-width: 100%;
+  min-width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border-radius: 0;
+  border-color: #e3e3e3;
+  display: inline-block;
+  width: 100%;
+  color: #323232;
+}
+
+select:focus {
+  line-height: 14px;
+  max-width: 100%;
+  min-width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border-radius: 0;
+  border-color: #e3e3e3 !important;
+  display: inline-block;
+  width: 100%;
+  color: #323232;
+  outline: none !important;
+}
+
+select:focus-visible {
+  line-height: 14px;
+  max-width: 100%;
+  min-width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border-radius: 0;
+  border-color: #e3e3e3 !important;
+  display: inline-block;
+  width: 100%;
+  color: #323232;
+  outline: none !important;
+}
+
+.price-label {
+  color: #999999;
+}
+
+.dealer-slider-amount {
+  color: #999999;
+  border: none;
+  background: 0 0;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+.range-slider {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  border-radius: 3px;
+  background: #eee no-repeat padding-box;
+  margin-top: -28px;
+}
+.range-slider .progress {
+  position: absolute;
+  left: 25%;
+  right: 0%;
+  height: 100%;
+  border-radius: 15px;
+  background: #db2e2d no-repeat padding-box;
+}
+.range-slider input[type='range'] {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  pointer-events: none;
+  background: none;
+  outline: none;
+}
+.range-slider .range-min::-webkit-slider-thumb {
+  pointer-events: auto;
+  -webkit-appearance: none;
+  width: 7px;
+  height: 16px;
+  background: #db2d2e;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.range-slider .range-max::-webkit-slider-thumb {
+  pointer-events: auto;
+  -webkit-appearance: none;
+  width: 7px;
+  height: 16px;
+  background: #db2d2e;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.cfb-submit-btn {
+  font-family: 'Open Sans', sans-serif;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  border: 0 solid transparent;
+  background: #db2d2e;
+  color: #fff;
+  text-transform: capitalize;
+  vertical-align: middle;
+  padding: 10px 20px;
+  overflow: hidden;
+  text-decoration: none !important;
+  -ms-transform: perspective(1px) translateZ(0);
+  -o-transform: perspective(1px) translateZ(0);
+  -moz-transform: perspective(1px) translateZ(0);
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  transition-duration: 0.5s;
+  margin-top: 20px;
+}
+
+.cfb-submit-btn:hover {
+  background-color: #323232;
+  text-decoration: none !important;
+}
+
+.cfb-submit-btn:active:before,
+.cfb-submit-btn:focus:before,
+.cfb-submit-btn:hover:before {
+  -webkit-transform: scaleY(1);
+  -moz-transform: scaleY(1);
+  transform: scaleY(1);
+  -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.5);
+  -moz-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.5);
+  transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.5);
+}
+
+@media (min-width: 768px) {
+  .form {
+    margin-top: -80px;
+  }
+}
+
+/* -------------------------------------------------------
+-                       SECTION C                        -
+---------------------------------------------------------- */
+.section-c .wrap {
+  max-width: 1140px;
+  margin: auto;
+  margin-top: 80px;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.section-c .heading {
+  font-family: 'Roboto', sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  color: #363636;
+}
+
+.separator {
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  display: block;
+  margin: auto;
+  left: 50%;
+  height: 1px;
+  width: 50px;
+  bottom: -15px;
+  background: #db2d2e;
+  transition: width 0.8s ease, background-color 0.8s ease;
+  -webkit-transition: width 0.8s ease, background-color 0.8s ease;
+  -o-transition: width 0.8s ease, background-color 0.8s ease;
+  -ms-transition: width 0.8s ease, background-color 0.8s ease;
+  -moz-transition: width 0.8s ease, background-color 0.8s ease;
+  margin-bottom: 7px;
+}
+.separator:after {
+  width: 100px;
+  background: #db2d2e;
+  bottom: 0;
+}
+
+.wrap p {
+  line-height: 24px;
+}
+
+@media (min-width: 1024px) {
+  .section-c .wrap p {
+    padding: 0 106px;
+  }
+}
+
+/* -------------------------------------------------------
+-                       SECTION D                        -
+---------------------------------------------------------- */
+.section-d {
+  margin-top: 54px;
+}
+.section-d .icon-round {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+.section-d .heading {
+  margin-top: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  font-size: 16px;
+  color: #363636;
+  text-transform: uppercase;
+}
+
+.section-d .heading::after {
+  display: block;
+  content: '';
+  margin: 10px auto;
+  width: 20px;
+  height: 2px;
+  background-color: #db2d2e;
+}
+
+.section-d p {
+  line-height: 22px;
+}
+
+/* -------------------------------------------------------
+-                       SECTION E                        -
+---------------------------------------------------------- */
+.section-e {
+  margin-top: 54px;
+}
+
+.section-e .car-flip {
+  transform: scaleX(-1);
+}
+
+.section-e .avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: url('/images/avatar.png') center center no-repeat;
+  background-size: cover;
+  margin: auto;
+  margin-bottom: 12px;
+}
+
+.section-e .phone {
+  font-size: 36px;
+  color: #db2e2d;
+  font-weight: 500;
+  line-height: 46px;
+  margin-top: 10px;
+}
+
+/* -------------------------------------------------------
+-                       SECTION F                        -
+---------------------------------------------------------- */
+
+/* -------------------------------------------------------
+-                       SECTION G                        -
+---------------------------------------------------------- */
+.section-g {
+  background-color: #f6f6f6;
+}
+.section-g .bg-car {
+  background: url('/images/car7.jpeg') center center no-repeat;
+  background-size: cover;
+  height: 480px;
+}
+.section-g .title {
+  font-size: 90px;
+  font-weight: 700;
+  line-height: 90px;
+  color: #363636;
+}
+.section-g .cta {
+  font-size: 20px;
+  line-height: 22px;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 15px;
+  font-style: italic;
+}
+
+.section-g .price {
+  font-size: 40px;
+  line-height: 22px;
+  font-weight: 700;
+  color: #db2e2d;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 15px;
+}
+
+.section-g .link-btn {
+  font-size: 15px;
+  line-height: 22px;
+  color: #db2e2d;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  text-decoration: none;
+}
+.section-g .link-btn:hover {
+  color: #323232;
+}
+
+@media (max-width: 1024px) {
+  .section-g .title {
+    font-size: 68px;
+    line-height: 68px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-g .title {
+    font-size: 56px;
+    line-height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-g .title {
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+
+/* -------------------------------------------------------
+-                       SECTION H                        -
+---------------------------------------------------------- */
+.section-h {
+  margin-top: 54px;
+}
+.section-h .title {
+  font-size: 40px;
+  line-height: 50px;
+  color: #363636;
+  font-weight: 500;
+}
+.section-h .heading {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+  color: #363636;
+  text-transform: uppercase;
+}
+
+.section-h .heading:hover {
+  color: #db2e2d;
+}
+
+.section-h .heading::after {
+  display: block;
+  content: '';
+  margin: 10px 0;
+  width: 20px;
+  height: 2px;
+  background-color: #db2d2e;
+}
+
+.section-h .author {
+  line-height: 22px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.section-h p {
+  margin-top: 22px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.section-h .button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  background: transparent;
+  text-transform: capitalize;
+  vertical-align: middle;
+  padding: 10px 20px;
+  overflow: hidden;
+  -ms-transform: perspective(1px) translateZ(0);
+  -o-transform: perspective(1px) translateZ(0);
+  -moz-transform: perspective(1px) translateZ(0);
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  background: 0 0;
+  border: 1px solid #e3e3e3;
+  color: #323232;
+}
+
+.section-h .button:hover {
+  background-color: #db2e2d;
+  border-color: #db2e2d;
+  color: #fff;
+}

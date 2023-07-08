@@ -1,1 +1,535 @@
-<div class="homepage"><header class="header"><link rel="stylesheet" href="template.css"/> <div class="logo"><img src="/path/to/logo.png" alt="Dealership Logo"/></div><nav class="nav"><ul><li><a href="/">Home</a></li><li><a href="inventory.html">Inventory</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact Us</a></li> </ul></nav></header><section class="banner"><h1>Welcome to Our Dealership</h1><p>We specialize in selling the best pre-owned vehicles.</p></section><section class="services"><h2>Our Services</h2><div class="service-list"><div class="service-item"><h3>Great Selection</h3><p>We have a variety of vehicles to suit your needs and budget.</p></div><div class="service-item"><h3>Financing</h3><p>We offer easy and flexible financing options.</p></div><div class="service-item"><h3>Quality</h3><p>All our vehicles are thoroughly inspected and serviced.</p></div></div></section><section class="featured-vehicles"><h2>Featured Vehicles</h2><div class="vehicle-list"></div></section><footer class="footer"><div class="footer-nav"><a href="/">Home</a> |<a href="inventory.html">Inventory</a> |<a href="about.html">About Us</a> |<a href="contact.html">Contact Us</a></div><p>© <!-- -->2023<!-- --> Your Dealership Name. All rights reserved.</p><p>Website by Dealership Name</p></footer></div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+
+    <!-- FontAwesom -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Google Font Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap Script -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom CSS -->
+    <link href="/home.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container text-center">
+        <div class="row justify-content-between">
+          <div class="col-auto container ms-0">
+            <div class="row align-items-center">
+              <div class="col-auto d-flex align-items-center">
+                <i class="fa-solid fa-location-dot"></i>
+                <div class="ms-2 d-none d-lg-block">
+                  1703 Capital Ave, Plano, TX 75074.
+                </div>
+              </div>
+
+              <div class="col-auto d-flex align-items-center">
+                <i class="fa-regular fa-clock"></i>
+                <div class="ms-2 d-none d-lg-block">9:00 AM To 6:00 PM</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-auto container me-0">
+            <div class="row">
+              <div class="col-auto d-flex align-items-center">
+                <i class="fa-solid fa-phone"></i>
+                <div class="ms-2 d-none d-lg-block">(469) 286-6875</div>
+              </div>
+
+              <div class="col-auto d-flex align-items-center">
+                <i class="fa-regular fa-envelope"></i>
+                <div class="ms-2 d-none d-lg-block">info@lctautollc.com</div>
+              </div>
+
+              <div class="col-auto d-flex align-items-center">
+                <div class="mx-2">
+                  <i class="fa-brands fa-facebook-f"></i>
+                </div>
+                <div class="mx-2">
+                  <i class="fa-brands fa-twitter"></i>
+                </div>
+                <div class="mx-2">
+                  <i class="fa-brands fa-instagram"></i>
+                </div>
+                <div class="mx-2">
+                  <i class="fa-brands fa-youtube"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav Bar -->
+    <div class="nav-bar">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <div class="d-flex">
+              <img
+                src="/images/car_logo.png"
+                style="padding: 33px 0"
+                width="80%"
+                class="d-block d-lg-none"
+              />
+              <button
+                class="navbar-toggler ms-auto"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarTogglerDemo01"
+                aria-controls="navbarTogglerDemo01"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <i class="fa-solid fa-bars navbar-toggler-icon"></i>
+              </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+              <a class="navbar-brand d-none d-lg-block" href="#">
+                <img
+                  src="/images/car_logo.png"
+                  style="padding: 33px 0; max-width: 345px"
+                  width="100%"
+                />
+              </a>
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item px-1">
+                  <a class="nav-link active" aria-current="page" href="#"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">Inventroy</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">Who we are</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">Our team</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">Contact us</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">FAQ</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">Blog</a>
+                </li>
+              </ul>
+
+              <div class="dropdown ms-2">
+                <div
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  data-bs-auto-close="outside"
+                  data-bs-offset="10,20"
+                >
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <form
+                  class="dropdown-menu rounded-0 dropdown-menu-end p-3"
+                  style="min-width: 200px"
+                >
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Search"
+                      required
+                    />
+                    <span class="input-group-text bg-white border-start-0">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Section A Cover -->
+    <div class="section-a">
+      <div class="text">
+        <div class="sub-heading">Find the best car deals at</div>
+        <div class="heading">LCT Auto LLC</div>
+      </div>
+      <div class="cars">
+        <div class="d-flex justify-content-center">
+          <div class="car-a">
+            <img width="100%" src="/images/carA1.png" />
+          </div>
+          <div class="car-b">
+            <img width="100%" src="/images/carA2.png" />
+          </div>
+        </div>
+      </div>
+      <div class="btn-wrapper">
+        <div>
+          <button class="btn btn-danger border-0 rounded-0 custom-btn">
+            Learn More
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section B Form -->
+    <div class="section-b">
+      <div class="container">
+        <div class="form card rounded-0">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="container">
+                  <divc class="row">
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <div class="label">Select Year</div>
+                        <select aria-placeholder="--select--">
+                          <option value="1991">1991</option>
+                          <option value="1992">1992</option>
+                          <option value="1993">1993</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <div class="label">Select Condition</div>
+                        <select aria-placeholder="--select--">
+                          <option value="Used">Used</option>
+                          <option value="Certified">Certified</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <div class="label">Select Make</div>
+                        <select aria-placeholder="--select--">
+                          <option value="Audi">Audi</option>
+                          <option value="Toyota">Toyota</option>
+                          <option value="Nissan">Nissan</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <div class="label">Select Mileage</div>
+                        <select aria-placeholder="--select--">
+                          <option value="10000">10000</option>
+                          <option value="20000">20000</option>
+                          <option value="30000">30000</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <div class="label">Select Model</div>
+                        <select aria-placeholder="--select--">
+                          <option value="A8">A8</option>
+                          <option value="Accord">Accord</option>
+                          <option value="Corolla">Corolla</option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <div class="label">Select Transmission</div>
+                        <select aria-placeholder="--select--">
+                          <option value="1-speed Automatic">
+                            1-speed Automatic
+                          </option>
+                          <option value="4-speed Automatic">
+                            4-speed Automatic
+                          </option>
+                          <option value="5-speed Manual">5-speed Manual</option>
+                        </select>
+                      </div>
+                    </div>
+                  </divc>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div>
+                  <div class="price-range">
+                    <label for="dealer-slider-amount-1" class="price-label"
+                      >Price:</label
+                    >
+                    <input
+                      type="text"
+                      id="dealer-slider-amount-1"
+                      class="dealer-slider-amount"
+                      readonly=""
+                      value="$25 - $100"
+                    />
+                  </div>
+                  <div class="min-value numberVal">
+                    <input
+                      type="number"
+                      class=""
+                      min="0"
+                      max="100"
+                      value="25"
+                      disabled
+                      hidden
+                    />
+                  </div>
+                  &nbsp;
+                  <div class="max-value numberVal">
+                    <input
+                      type="number"
+                      class="border text-center"
+                      min="0"
+                      max="100"
+                      value="75"
+                      disabled
+                      hidden
+                    />
+                  </div>
+                  &nbsp;
+
+                  <div class="range-slider">
+                    <div class="progress"></div>
+                    <span class="range-min-wrapper">
+                      <input
+                        class="range-min"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="25"
+                      />
+                      <!-- <span class="range-min-value">0</span> -->
+                    </span>
+                    <span class="range-max-wrapper">
+                      <input
+                        class="range-max"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="100"
+                      />
+                      <!-- <span class="range-max-value">100</span> -->
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <a class="cfb-submit-btn" href="javascript:void(0);"
+                    >Search Inventory</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section C -->
+    <div class="section-c">
+      <div class="container">
+        <div class="wrap">
+          <div>
+            Providing the Best Dealership Experience in Dallas Metroplex
+          </div>
+          <div class="heading">CAR DEALERSHIP IN PLANO, TX</div>
+          <div class="separator"></div>
+          <p>
+            LCT Auto LLC is a family-owned and operated dealership that provides
+            the best car-buying experience in Dallas Fort Worth. We pride
+            ourselves on our low prices, quality customer service, and wide
+            selection of vehicles. Stop by today and let us help you find your
+            perfect ride!
+          </p>
+          <p>Stop by today and let us help you find your perfect ride!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section D -->
+    <div class="section-d">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 text-center">
+            <div class="icon-round">
+              <i class="fa-solid fa-tag fs-2"></i>
+            </div>
+            <div class="heading">LOW PRICES</div>
+            <p>
+              We offer the best prices in Dallas Fort Worth, so you can get a
+              great car without breaking the bank.
+            </p>
+          </div>
+          <div class="col-md-3 text-center">
+            <div class="icon-round">
+              <i class="fa-regular fa-comments fs-2"></i>
+            </div>
+            <div class="heading">QUALITY CUSTOMER SERVICE</div>
+            <p>
+              Our friendly and knowledgeable staff will go above and beyond to
+              make sure you have a great car-buying experience.
+            </p>
+          </div>
+          <div class="col-md-3 text-center">
+            <div class="icon-round">
+              <i class="fa-solid fa-car fs-2"></i>
+            </div>
+            <div class="heading">WIDE SELECTION OF VEHICLES</div>
+            <p>
+              We have something for everyone, from sedans to SUVs. Enjoy an
+              easy, hassle-free car buying experience.
+            </p>
+          </div>
+          <div class="col-md-3 text-center">
+            <div class="icon-round">
+              <i class="fa-solid fa-location-dot fs-2"></i>
+            </div>
+            <div class="heading">CONVENIENT LOCATION</div>
+            <p>
+              LCT Auto LLC is conveniently located in Plano, TX. We're easy to
+              find and our hours are flexible to meet your needs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section E -->
+    <div class="section-e">
+      <div class="container-fluid">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-md-4 d-none d-md-block">
+            <img src="/images/car6.png" width="100%" />
+          </div>
+          <div class="col-md-4 text-center">
+            <div class="avatar"></div>
+            <div>Have a question ?</div>
+            <div class="phone">(469) 286-6875</div>
+          </div>
+          <div class="col-md-4 d-none d-md-block">
+            <img class="car-flip" src="/images/car6.png" width="100%" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section F -->
+    <!-- remaining -->
+
+    <!-- Section G -->
+    <div class="section-g">
+      <div class="container-fluid">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-md-6 bg-car d-none d-md-block"></div>
+          <div class="col-md-6 text-center py-5">
+            <div class="title">X5 PREMIUM SPORT</div>
+            <div class="cta">Get the BMW You always Wanted</div>
+            <div class="price">$450</div>
+            <div class="cta">per month</div>
+            <div class="cta text-uppercase fst-normal">LIMITED TIME OFFER!</div>
+            <div class="mt-4"><a href="#" class="link-btn">Read more</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section H -->
+    <div class="section-h">
+      <div class="text-center">
+        <div>Read our latest news</div>
+        <div class="title mb-2 mt-1">LATEST NEWS</div>
+        <div class="separator"></div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="/images/car8.png" width="100%" />
+          </div>
+          <div class="col-md-5 ms-md-5">
+            <div class="heading">
+              <a href="#">BUY YOUR DREAM CAR</a>
+            </div>
+            <div class="mt-4 author">
+              JANUARY 17, 2022 |
+              <span style="color: #db2e2d; font-weight: 700"
+                >POST BY LCTADMIN</span
+              >
+            </div>
+            <p>
+              Everyone has a dream car. Maybe it’s a luxurious sports car, or
+              maybe it’s an SUV that can handle any terrain. No
+            </p>
+            <a
+              class="button border"
+              href="https://lctautollc.com/2022/01/17/hello-world-2/"
+              >Read more</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Range Slider Script -->
+    <script>
+      const range = document.querySelectorAll('.range-slider span input')
+      progress = document.querySelector('.range-slider .progress')
+      let gap = 0.1
+      const inputValue = document.querySelectorAll('.numberVal input')
+      const priceValue = document.getElementById('dealer-slider-amount-1')
+
+      range.forEach((input) => {
+        input.addEventListener('input', (e) => {
+          let minRange = parseInt(range[0].value)
+          let maxRange = parseInt(range[1].value)
+
+          if (maxRange - minRange < gap) {
+            if (e.target.className === 'range-min') {
+              range[0].value = maxRange - gap
+            } else {
+              range[1].value = minRange + gap
+            }
+          } else {
+            progress.style.left = (minRange / range[0].max) * 100 + '%'
+            progress.style.right = 100 - (maxRange / range[1].max) * 100 + '%'
+            inputValue[0].value = minRange
+            inputValue[1].value = maxRange
+            priceValue.value = `$${minRange} - $${maxRange}`
+          }
+        })
+      })
+    </script>
+  </body>
+</html>
