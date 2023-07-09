@@ -1,0 +1,31 @@
+/* -------------------------------------------------------
+-                       SECTION A                        -
+---------------------------------------------------------- */
+.section-a {
+  background: url('/images/footer_car.jpg') center center no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 250px;
+}
+.section-a::before {
+  content: '';
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+.section-a .wrap {
+  position: absolute;
+  bottom: 10%;
+}
+.section-a .main-heading {
+  font-size: 40px;
+  line-height: 50px;
+  color: white;
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+}

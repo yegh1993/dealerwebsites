@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+
+    <!-- FontAwesom -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Roboto -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Open Sans -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap Script -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom CSS -->
+    <link href="/index.css" rel="stylesheet" />
+    <link href="/inventory.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container text-center">
+        <div class="row justify-content-between">
+          <div class="col-auto container ms-0">
+            <div class="row align-items-center">
+              <div class="col-auto d-flex align-items-center">
+                <i class="fa-solid fa-location-dot"></i>
+                <div class="ms-2 d-none d-lg-block">
+                  1703 Capital Ave, Plano, TX 75074.
+                </div>
+              </div>
+
+              <div class="col-auto d-flex align-items-center">
+                <i class="fa-regular fa-clock"></i>
+                <div class="ms-2 d-none d-lg-block">9:00 AM To 6:00 PM</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-auto container me-0">
+            <div class="row">
+              <div class="col-auto d-flex align-items-center">
+                <i class="fa-solid fa-phone"></i>
+                <div class="ms-2 d-none d-lg-block">(469) 286-6875</div>
+              </div>
+
+              <div class="col-auto d-flex align-items-center">
+                <i class="fa-regular fa-envelope"></i>
+                <div class="ms-2 d-none d-lg-block">info@lctautollc.com</div>
+              </div>
+
+              <div class="col-auto d-flex align-items-center">
+                <div class="mx-2">
+                  <i class="fa-brands fa-facebook-f"></i>
+                </div>
+                <div class="mx-2">
+                  <i class="fa-brands fa-twitter"></i>
+                </div>
+                <div class="mx-2">
+                  <i class="fa-brands fa-instagram"></i>
+                </div>
+                <div class="mx-2">
+                  <i class="fa-brands fa-youtube"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav Bar -->
+    <div class="nav-bar">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <div class="d-flex">
+              <img
+                src="/images/car_logo.png"
+                style="padding: 33px 0"
+                width="80%"
+                class="d-block d-lg-none"
+              />
+              <button
+                class="navbar-toggler ms-auto"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarTogglerDemo01"
+                aria-controls="navbarTogglerDemo01"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <i class="fa-solid fa-bars navbar-toggler-icon"></i>
+              </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+              <a class="navbar-brand d-none d-lg-block" href="#">
+                <img
+                  src="/images/car_logo.png"
+                  style="padding: 33px 0; max-width: 345px"
+                  width="100%"
+                />
+              </a>
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item px-1">
+                  <a class="nav-link" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link active" href="#">Inventory</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">Who we are</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">Our team</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">Contact us</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">FAQ</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">Blog</a>
+                </li>
+              </ul>
+
+              <div class="dropdown ms-2">
+                <div
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  data-bs-auto-close="outside"
+                  data-bs-offset="10,20"
+                >
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <form
+                  class="dropdown-menu rounded-0 dropdown-menu-end p-3"
+                  style="min-width: 200px"
+                >
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Search"
+                      required
+                    />
+                    <span class="input-group-text bg-white border-start-0">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Section A Cover -->
+    <div class="section-a">
+      <div class="container">
+        <div class="wrap">
+          <div class="main-heading">Inventory</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section B -->
+    <div class="section-b">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div>Filter By Price</div>
+          </div>
+          <div class="col-md-8"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section M Footer -->
+    <footer class="section-m footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <a href="#" class="social-link">
+              <div
+                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap fb"
+              >
+                <div class="d-none d-md-block social-app">Facebook</div>
+                <i class="fa-brands fa-facebook social-app-icon"></i>
+              </div>
+            </a>
+          </div>
+          <div class="col-3">
+            <a href="#" class="social-link">
+              <div
+                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap insta"
+              >
+                <div class="d-none d-md-block social-app">Instagram</div>
+                <i class="fa-brands fa-instagram social-app-icon"></i>
+              </div>
+            </a>
+          </div>
+          <div class="col-3">
+            <a href="#" class="social-link">
+              <div
+                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap youtube"
+              >
+                <div class="d-none d-md-block social-app">Youtube</div>
+                <i class="fa-brands fa-youtube social-app-icon"></i>
+              </div>
+            </a>
+          </div>
+          <div class="col-3">
+            <a href="#" class="social-link">
+              <div
+                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap twitter"
+              >
+                <div class="d-none d-md-block social-app">twitter</div>
+                <i class="fa-brands fa-twitter social-app-icon"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-md-3">
+            <p>
+              LCT auto LLC offers multiple options to get you behind the wheel
+              of your dream car. We work with a variety of vehicles to get you
+              the best one possible. So come on down and drive off in your new
+              car today!
+            </p>
+            <div class="d-flex align-items-center my-4">
+              <i class="fa-solid fa-location-dot contact-icon"></i>
+              <p class="m-0 ms-2">1703 Capital Ave, Plano, TX 75074</p>
+            </div>
+            <div class="d-flex align-items-center my-4">
+              <i class="fa-solid fa-phone-flip contact-icon"></i>
+              <p class="m-0 ms-2">(469) 286 - 6875</p>
+            </div>
+            <div class="d-flex align-items-center my-4">
+              <i class="fa-solid fa-envelope contact-icon"></i>
+              <p class="m-0 ms-2">info@lctautollc.com</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="heading">Usefull links</div>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Change Oil and Filter</p>
+              </div>
+            </a>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Brake Pads Replacement</p>
+              </div>
+            </a>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Timing Belt Replacement</p>
+              </div>
+            </a>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Pre-purchase Car Inspection</p>
+              </div>
+            </a>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Starter Replacement</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-3">
+            <div class="heading">Recent Posts</div>
+            <div class="d-flex align-items-center">
+              <img src="/images/footer_car_post.png" class="me-4" />
+              <div>
+                <p class="m-0 mb-1">Buy your dream car</p>
+                <p class="m-0">
+                  <i class="fa-solid fa-calendar-days" style="color: red"></i>
+                  January 17, 2022
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="heading">SUBSCRIBE OUR NEWS LETTER</div>
+            <form>
+              <p>
+                Keep up on our always evolving products features and technology.
+                Enter your e-mail and subscribe to our newsletter.
+              </p>
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Your Email"
+                  required
+                />
+              </div>
+              <button class="btn btn-danger border-0 rounded-0 custom-btn mt-3">
+                Subscriber
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="row question-row pb-5">
+          <div class="col-md-6">
+            <div class="container">
+              <div
+                class="question row justify-content-between align-items-center"
+              >
+                <div class="col-md-8">
+                  <div class="heading">ARE YOU LOOKING FOR A CAR?</div>
+                  <p>
+                    Search Our Inventory With Thousands Of Cars And More Cars
+                    Are Adding On Daily Basis
+                  </p>
+                </div>
+                <div class="col-md-4">
+                  <button
+                    class="btn btn-danger border-0 rounded-0 custom-btn ms-md-5"
+                  >
+                    Read More
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="container">
+              <div
+                class="question row justify-content-between align-items-center"
+              >
+                <div class="col-md-8">
+                  <div class="heading">DO YOU WANT TO SELL A CAR?</div>
+                  <p>
+                    Search Our Inventory With Thousands Of Cars And More Cars
+                    Are Adding On Daily Basis
+                  </p>
+                </div>
+                <div class="col-md-4">
+                  <button
+                    class="btn btn-danger border-0 rounded-0 custom-btn ms-md-5"
+                  >
+                    Read More
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="mb-4" />
+      <div class="container">
+        <div class="pb-4">©Copyright 2023 LCT Auto LLC</div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,192 @@
+body {
+  font-size: 14px;
+  overflow-x: hidden;
+  color: #999999 !important;
+  letter-spacing: 0px;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 22px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* -------------------------------------------------------
+-                     TOPBAR                             -
+---------------------------------------------------------- */
+
+.top-bar {
+  background-color: black;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* -------------------------------------------------------
+-                    NAVBAR                              -
+---------------------------------------------------------- */
+
+.nav-bar {
+  background-color: black;
+  color: white;
+  font-size: 13px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar-toggler-icon {
+  color: white;
+}
+
+.nav-link {
+  color: inherit !important;
+  text-transform: uppercase;
+  font-size: inherit !important;
+}
+
+.nav-link.active {
+  color: red !important;
+}
+
+.nav-item:hover {
+  color: red;
+}
+
+/* -------------------------------------------------------
+-                       SECTION M (FOOTER)               -
+---------------------------------------------------------- */
+.section-m.footer {
+  background: url('/images/footer_car.jpg') center center no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.section-m.footer::before {
+  content: '';
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+}
+.section-m .container {
+  position: relative;
+}
+.section-m .social-app {
+  font-size: 12px;
+  line-height: 60px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.section-m .social-app-icon {
+  font-size: 30px;
+}
+
+.section-m .social-link-wrap {
+  transition: all ease 0.5s;
+  padding: 0 12px;
+}
+
+.section-m .social-link:hover .social-link-wrap.fb {
+  background-color: #3b5998;
+}
+
+.section-m .social-link:hover .social-link-wrap.insta {
+  background-color: #405de6;
+}
+
+.section-m .social-link:hover .social-link-wrap.youtube {
+  background-color: #ff0000;
+}
+
+.section-m .social-link:hover .social-link-wrap.twitter {
+  background-color: #1d9bf0;
+}
+
+.section-m .social-link:hover .social-app,
+.section-m .social-link:hover .social-app-icon {
+  color: white;
+}
+
+.section-m .contact-icon {
+  color: red;
+}
+
+.section-m .heading {
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+  font-family: 'Roboto' sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+}
+
+.section-m .heading::after {
+  display: block;
+  content: '';
+  margin: 6px 0;
+  width: 20px;
+  height: 2px;
+  background-color: #db2d2e;
+}
+
+.section-m .usefull-link:hover p {
+  color: red;
+}
+
+.section-m input {
+  background: rgba(102, 102, 102, 0.1);
+  border-radius: 0;
+  border: 0.5px solid rgba(255, 255, 255, 0.11);
+  color: white;
+  padding: 12px;
+  transition: all ease-in-out 0.5s;
+}
+
+.section-m input::placeholder {
+  color: #909090;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 400;
+}
+
+.section-m input:focus {
+  background: rgba(102, 102, 102, 0.1);
+  border: 0.5px solid #db2e2d;
+  outline: none;
+  box-shadow: none;
+  color: white;
+}
+
+.section-m .custom-btn {
+  background-color: red;
+  color: white;
+  line-height: 17px;
+  letter-spacing: 0px;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 12px 19px;
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.section-m .question-row {
+  margin-top: 40px;
+}
+
+.section-m .question {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 30px;
+}
+
+@media (max-width: 426px) {
+  .section-m .social-app-icon {
+    font-size: 22px;
+  }
+  .section-m .social-link-wrap {
+    padding: 12px 0;
+  }
+}
