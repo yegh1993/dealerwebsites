@@ -1009,6 +1009,15 @@ input[type='number']::-webkit-outer-spin-button {
   font-family: 'Open Sans', sans-serif;
 }
 
+.section-m .question-row {
+  margin-top: 40px;
+}
+
+.section-m .question {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 30px;
+}
+
 @media (max-width: 426px) {
   .section-m .social-app-icon {
     font-size: 22px;
