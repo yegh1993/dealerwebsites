@@ -1,9 +1,10 @@
 body {
   font-size: 14px;
-  font-family: 'Roboto', sans-serif;
   overflow-x: hidden;
   color: #999999 !important;
   letter-spacing: 0px;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 22px;
 }
 
 a {
@@ -20,6 +21,7 @@ a {
   color: white;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding: 10px 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* -------------------------------------------------------
@@ -30,6 +32,7 @@ a {
   background-color: black;
   color: white;
   font-size: 13px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .navbar-toggler-icon {
@@ -59,6 +62,7 @@ a {
   height: 100vh;
   background: url('/images/bg.jpg') center center no-repeat;
   background-size: cover;
+  font-family: 'Roboto', sans-serif;
 }
 
 .text {
@@ -74,9 +78,11 @@ a {
 }
 .text > .heading {
   font-size: 68px;
+  line-height: 70px;
   font-weight: 700;
   text-transform: uppercase;
   color: white;
+  margin-top: 30px;
 }
 .cars {
   position: absolute;
@@ -329,6 +335,7 @@ input[type='number']::-webkit-outer-spin-button {
   font-family: 'Roboto', sans-serif;
   font-size: 40px;
   font-weight: 500;
+  line-height: 50px;
   color: #363636;
 }
 
@@ -442,6 +449,102 @@ input[type='number']::-webkit-outer-spin-button {
 /* -------------------------------------------------------
 -                       SECTION F                        -
 ---------------------------------------------------------- */
+.section-f {
+  background: url('/images/bg-car.png') center center no-repeat;
+  background-size: cover;
+  padding: 80px 0;
+  position: relative;
+}
+.section-f .overlay {
+  background-color: black;
+  opacity: 0.6;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+.section-f .main-title {
+  font-size: 40px;
+  line-height: 50px;
+  color: white;
+  font-weight: 500;
+}
+.section-f .container {
+  position: relative;
+}
+
+.section-f .car-item {
+  background-color: white;
+  width: 270px;
+  height: 472px;
+}
+
+.section-f .car-image-wrap {
+  position: relative;
+}
+
+.section-f .car-image {
+  width: 270px;
+  max-height: 202px;
+}
+
+.used-tag {
+  background-color: #ef1313;
+  font-weight: 600;
+  padding: 8px 10px;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+  color: white;
+  font-size: 11px;
+  font-family: 'Open Sans', sans-serif;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+.sold-tag {
+  background: url('/images/sold-img.png') center center no-repeat;
+  background-size: contain;
+  width: 88px;
+  height: 58px;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+}
+
+.section-f .title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #db2e2d;
+  font-family: 'Open Sans', sans-serif;
+}
+.section-f .title:hover {
+  color: #363636;
+}
+.section-f .content-wrap {
+  padding: 20px;
+}
+
+.section-f .actual-amount {
+  font-size: 13px;
+  text-decoration: line-through;
+}
+.section-f .after-discount {
+  font-size: 16px;
+  color: #363636;
+  font-weight: 700;
+  margin-left: 6px;
+}
+
+.section-f .swiper {
+  width: 100%;
+  height: 520px;
+}
+.section-f .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* -------------------------------------------------------
 -                       SECTION G                        -
@@ -516,7 +619,7 @@ input[type='number']::-webkit-outer-spin-button {
 -                       SECTION H                        -
 ---------------------------------------------------------- */
 .section-h {
-  margin-top: 54px;
+  margin-top: 84px;
 }
 .section-h .title {
   font-size: 40px;
@@ -582,4 +685,335 @@ input[type='number']::-webkit-outer-spin-button {
   background-color: #db2e2d;
   border-color: #db2e2d;
   color: #fff;
+}
+
+/* -------------------------------------------------------
+-                       SECTION I                        -
+---------------------------------------------------------- */
+.section-i {
+  margin-top: 84px;
+  width: 100%;
+  height: 540px;
+  background-color: #000000;
+  opacity: 0.7;
+  text-align: center;
+  padding-top: 140px;
+}
+
+.section-i .title {
+  font-size: 28px;
+  line-height: 42px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  max-width: 750px;
+  text-align: center;
+  margin: auto;
+}
+
+/* -------------------------------------------------------
+-                       SECTION J                        -
+---------------------------------------------------------- */
+.section-j {
+  margin-top: -220px;
+}
+
+.section-j .video-wrap {
+  max-width: 970px;
+  padding: 0 15px;
+  margin: auto;
+}
+.image-cover-wrap {
+  width: 100%;
+  position: relative;
+}
+
+.section-j .overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(219, 46, 45, 0.8);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-j .fa-circle-play {
+  font-size: 74px;
+  color: white;
+  cursor: pointer;
+  border: 0.5px solid white;
+  padding: 10px;
+  border-radius: 50%;
+  transition: all ease 0.3s;
+}
+
+.section-j .fa-circle-play:hover {
+  color: #363636;
+}
+
+.section-j .heading {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #363636;
+  text-transform: uppercase;
+  font-family: 'Roboto' sans-serif;
+  margin-top: 10px;
+}
+
+.section-j .heading::after {
+  display: block;
+  content: '';
+  margin: 10px auto;
+  width: 20px;
+  height: 2px;
+  background-color: #db2d2e;
+}
+
+.section-j .row-content {
+  color: #363636;
+}
+
+@media (max-width: 426px) {
+  .section-j {
+    margin: 0;
+    margin-top: 40px;
+  }
+}
+
+/* -------------------------------------------------------
+-                       SECTION K                        -
+---------------------------------------------------------- */
+.section-k {
+  margin-top: 54px;
+}
+
+.section-k .title {
+  font-size: 40px;
+  line-height: 50px;
+  font-weight: 500;
+  font-family: 'Roboto' sans-serif;
+  color: #363636;
+}
+
+.section-k .client-review-wrap {
+  width: 368px;
+  height: 418px;
+  position: relative;
+}
+
+.section-k .client-car-wrap {
+  overflow: hidden;
+  width: 100%;
+}
+
+.section-k .client-car {
+  width: 100%;
+  transition: all ease 0.5s;
+}
+
+.section-k .client-review-wrap:hover .client-car {
+  transform: scale(1.1);
+}
+
+.section-k .client-review-wrap:hover .fa-quote-right {
+  color: #db2e2d;
+}
+
+.section-k .client-avatar {
+  width: 80px;
+  height: 80px;
+  border: 5px solid white;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 8%;
+  transform: translateX(-50%);
+}
+
+.section-k .card-details {
+  background: #f6f6f6;
+  padding: 20px;
+}
+
+.section-k .client-name {
+  font-size: 16px;
+  line-height: 24px;
+  color: #db2e2d;
+  font-weight: 400;
+  font-family: 'Roboto' sans-serif;
+  margin-top: 20px;
+}
+
+.section-k p {
+  margin-top: 15px;
+}
+
+.section-k .fa-quote-right {
+  font-size: 28px;
+  line-height: 28px;
+}
+
+.section-k .swiper-review {
+  width: 100%;
+  height: 520px;
+}
+.section-k .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-k .swiper-pagination {
+  bottom: 0;
+}
+
+.section-k .swiper-pagination-bullet-active {
+  background-color: #db2e2d;
+}
+
+/* -------------------------------------------------------
+-                       SECTION L                        -
+---------------------------------------------------------- */
+.section-l {
+  margin-top: 124px;
+}
+
+.section-l .title {
+  font-size: 36px;
+  line-height: 46px;
+  font-weight: 500;
+  color: #363636;
+  font-family: 'Roboto' sans-serif;
+}
+
+/* -------------------------------------------------------
+-                       SECTION M (FOOTER)               -
+---------------------------------------------------------- */
+.section-m.footer {
+  background: url('/images/footer_car.jpg') center center no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.section-m.footer::before {
+  content: '';
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+}
+.section-m .container {
+  position: relative;
+}
+.section-m .social-app {
+  font-size: 12px;
+  line-height: 60px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.section-m .social-app-icon {
+  font-size: 30px;
+}
+
+.section-m .social-link-wrap {
+  transition: all ease 0.5s;
+  padding: 0 12px;
+}
+
+.section-m .social-link:hover .social-link-wrap.fb {
+  background-color: #3b5998;
+}
+
+.section-m .social-link:hover .social-link-wrap.insta {
+  background-color: #405de6;
+}
+
+.section-m .social-link:hover .social-link-wrap.youtube {
+  background-color: #ff0000;
+}
+
+.section-m .social-link:hover .social-link-wrap.twitter {
+  background-color: #1d9bf0;
+}
+
+.section-m .social-link:hover .social-app,
+.section-m .social-link:hover .social-app-icon {
+  color: white;
+}
+
+.section-m .contact-icon {
+  color: red;
+}
+
+.section-m .heading {
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+  font-family: 'Roboto' sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+}
+
+.section-m .heading::after {
+  display: block;
+  content: '';
+  margin: 6px 0;
+  width: 20px;
+  height: 2px;
+  background-color: #db2d2e;
+}
+
+.section-m .usefull-link:hover p {
+  color: red;
+}
+
+.section-m input {
+  background: rgba(102, 102, 102, 0.1);
+  border-radius: 0;
+  border: 0.5px solid rgba(255, 255, 255, 0.11);
+  color: white;
+  padding: 12px;
+  transition: all ease-in-out 0.5s;
+}
+
+.section-m input::placeholder {
+  color: #909090;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 400;
+}
+
+.section-m input:focus {
+  background: rgba(102, 102, 102, 0.1);
+  border: 0.5px solid #db2e2d;
+  outline: none;
+  box-shadow: none;
+  color: white;
+}
+
+.section-m .custom-btn {
+  background-color: red;
+  color: white;
+  line-height: 17px;
+  letter-spacing: 0px;
+  font-weight: 400;
+  font-size: 14px;
+  padding: 12px 19px;
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+}
+
+@media (max-width: 426px) {
+  .section-m .social-app-icon {
+    font-size: 22px;
+  }
+  .section-m .social-link-wrap {
+    padding: 12px 0;
+  }
 }
