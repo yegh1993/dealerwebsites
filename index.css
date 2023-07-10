@@ -161,18 +161,6 @@ a {
   color: white;
 }
 
-.section-m .custom-btn {
-  background-color: red;
-  color: white;
-  line-height: 17px;
-  letter-spacing: 0px;
-  font-weight: 400;
-  font-size: 14px;
-  padding: 12px 19px;
-  text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
-}
-
 .section-m .question-row {
   margin-top: 40px;
 }
@@ -256,4 +244,227 @@ input[type='number']::-webkit-outer-spin-button {
   border: none;
   border-radius: 3px;
   cursor: pointer;
+}
+
+/* -------------------------------------------------------
+-                     Custom Button                       -
+---------------------------------------------------------- */
+
+.custom-btn-secondary {
+  background: none;
+  color: rgb(150, 140, 140);
+  border: 0.6px solid #e3e3e3;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: color 0.4s linear;
+  position: relative;
+}
+.custom-btn-secondary:hover {
+  color: white;
+}
+.custom-btn-secondary::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  /* top: 0; */
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(219, 46, 45);
+  z-index: -1;
+  transition: transform 0.5s;
+  transform-origin: 100% 100%;
+  transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+}
+.custom-btn-secondary-1::before {
+  transform: scaley(0);
+}
+.custom-btn-secondary-1:hover::before {
+  transform: scaley(1);
+}
+
+.custom-btn-primary {
+  background: rgb(219, 46, 45);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: color 0.4s linear;
+  position: relative;
+  transform: perspective(1px) translateZ(0);
+}
+.custom-btn-primary:hover {
+  color: white;
+}
+
+.custom-btn-primary::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  /* top: 0; */
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #323232;
+  z-index: -1;
+  transition: transform 0.5s;
+  transform-origin: 100% 100%;
+  transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+}
+.custom-btn-primary-2::before {
+  transform: scaley(0);
+}
+.custom-btn-primary-2:hover::before {
+  transform: scaley(1);
+}
+
+.custom-btn-light {
+  background: none;
+  color: rgb(0, 0, 0);
+  /* border: 0.6px solid #e3e3e3; */
+  background: #f5f5f5;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: color 0.4s linear;
+  position: relative;
+  box-sizing: border-box;
+  transition: all 0.6s ease-in-out;
+}
+.custom-btn-light:hover {
+  background-color: rgb(219, 46, 45);
+  color: white;
+}
+
+/* -------------------------------------------------------
+-                     Custom Input                       -
+---------------------------------------------------------- */
+.custom-input {
+  width: 100px;
+  padding: 12px 20px;
+  border: 0.5px solid transparent;
+  background: rgb(246, 246, 246);
+  transition: 0.5s ease-in-out;
+  display: block;
+  width: 100%;
+}
+.custom-input:focus {
+  border-color: rgb(150, 140, 140);
+  background: white;
+}
+
+.custom-input:hover {
+  border-color: #999;
+}
+
+.custom-input:focus-visible {
+  outline: none;
+}
+
+/* -------------------------------------------------------
+-                     Custom Select                      -
+---------------------------------------------------------- */
+
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  padding-right: 30px !important;
+}
+
+.select-selected::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 30px;
+  height: 100%;
+  background: #fff;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  border-bottom: 2px solid #999;
+  border-right: 2px solid #999;
+  content: '';
+  display: block;
+  height: 5px;
+  margin-top: -4px;
+  pointer-events: none;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  -webkit-transform-origin: 66% 66%;
+  -ms-transform-origin: 66% 66%;
+  transform-origin: 66% 66%;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  width: 5px;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  transform: rotate(-135deg);
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,
+.select-selected {
+  color: rgb(182, 182, 182);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: 1px solid #e8e8e8;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.5s ease;
+}
+.select-items div {
+  border: none;
+}
+.select-items {
+  border: 1px solid #e8e8e8;
+  border-top: none;
+  max-height: 200px;
+  overflow: auto;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover,
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.034);
+  transition: all 0.5s ease;
+}
+
+.select-selected:hover {
+  border-color: #dbdbdb;
+}
+.select-selected.select-arrow-active {
+  border-color: #999;
 }

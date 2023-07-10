@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+
+    <!-- FontAwesom -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Roboto -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Open Sans -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap Script -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom CSS -->
+    <link href="/index.css" rel="stylesheet" />
+    <link href="/vdp.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container text-center">
+        <div class="row justify-content-between">
+          <div class="col-auto container ms-0">
+            <div class="row align-items-center">
+              <div class="col-auto d-flex align-items-center">
+                <i class="fa-solid fa-location-dot"></i>
+                <div class="ms-2 d-none d-lg-block">
+                  1703 Capital Ave, Plano, TX 75074.
+                </div>
+              </div>
+
+              <div class="col-auto d-flex align-items-center">
+                <i class="fa-regular fa-clock"></i>
+                <div class="ms-2 d-none d-lg-block">9:00 AM To 6:00 PM</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-auto container me-0">
+            <div class="row">
+              <div class="col-auto d-flex align-items-center">
+                <i class="fa-solid fa-phone"></i>
+                <div class="ms-2 d-none d-lg-block">(469) 286-6875</div>
+              </div>
+
+              <div class="col-auto d-flex align-items-center">
+                <i class="fa-regular fa-envelope"></i>
+                <div class="ms-2 d-none d-lg-block">info@lctautollc.com</div>
+              </div>
+
+              <div class="col-auto d-flex align-items-center">
+                <div class="mx-2">
+                  <i class="fa-brands fa-facebook-f"></i>
+                </div>
+                <div class="mx-2">
+                  <i class="fa-brands fa-twitter"></i>
+                </div>
+                <div class="mx-2">
+                  <i class="fa-brands fa-instagram"></i>
+                </div>
+                <div class="mx-2">
+                  <i class="fa-brands fa-youtube"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav Bar -->
+    <div class="nav-bar">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <div class="d-flex">
+              <img
+                src="/images/car_logo.png"
+                style="padding: 33px 0"
+                width="80%"
+                class="d-block d-lg-none"
+              />
+              <button
+                class="navbar-toggler ms-auto"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarTogglerDemo01"
+                aria-controls="navbarTogglerDemo01"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <i class="fa-solid fa-bars navbar-toggler-icon"></i>
+              </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+              <a class="navbar-brand d-none d-lg-block" href="#">
+                <img
+                  src="/images/car_logo.png"
+                  style="padding: 33px 0; max-width: 345px"
+                  width="100%"
+                />
+              </a>
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item px-1">
+                  <a class="nav-link" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link active" href="#">Inventory</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">Who we are</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">Our team</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">Contact us</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">FAQ</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link" href="#">Blog</a>
+                </li>
+              </ul>
+
+              <div class="dropdown ms-2">
+                <div
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  data-bs-auto-close="outside"
+                  data-bs-offset="10,20"
+                >
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <form
+                  class="dropdown-menu rounded-0 dropdown-menu-end p-3"
+                  style="min-width: 200px"
+                >
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Search"
+                      required
+                    />
+                    <span class="input-group-text bg-white border-start-0">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- Section A -->
+    <div class="section-a my-4">
+      <div class="hero-banner-u my-4">
+        <div class="certified-text">LCT AUTO LLC CERTIFIED</div>
+        <div class="car-main-body">
+          <div class="car-fixed-title">
+            <div class="car-title-left">
+              <div>
+                <h2 class="car-title-new">2004 Isuzu Rodeo</h2>
+                <div class="car-term-miles">
+                  <span class="block m:inline">3.5L S 2WD</span>
+                  <span class="">•</span>
+                  <span data-qa="mileage">148,000 miles</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="car-fixed-price">
+            <div class="flex">
+              <div class="car-title-col">
+                <div class="price car-price hero-bar">
+                  <span class="old-price"> $5,200.00</span
+                  ><span class="new-price"> $3,770.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="car-fixed-btn hide-in-mobile">
+            <a
+              href="https://lctautollc.com/wp/cars/?car_body_style=suv"
+              class="view-more-btn"
+              type="button"
+              >View More Cars</a
+            >
+            <button
+              data-toggle="modal"
+              data-target="#shedule_test_drive"
+              type="button"
+            >
+              Get Started
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="car-gallery-images">
+        <div class="gallery-preview-images">
+          <div class="grid-view row-gap">
+            <div class="relative">
+              <div class="sc-cbf9113b-5 cjnLvy grid-view">
+                <div class="relative">
+                  <div role="button" class="h-full">
+                    <img
+                      class="gallery-image click-to-slick"
+                      data-slic="0"
+                      src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357003490_6523870024325215_675159101683142563_n1.jpg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div role="button">
+                  <img
+                    class="gallery-image click-to-slick"
+                    data-slic="1"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356639906_6523870050991879_117871088701058492_n1.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="relative">
+                  <div role="button" tabindex="0" class="h-full">
+                    <img
+                      class="gallery-image click-to-slick"
+                      data-slic="2"
+                      src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356877536_6523870040991880_3342133675289544404_n1.jpg"
+                      alt=""
+                    />
+                    <div class="total-car-images-btn">
+                      +16 <span class="elementor-hidden-mobile">Photos</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- car -->
+        <div class="car-gallery-slick" style="display: none">
+          <div class="slider-slick">
+            <div class="my-gallery cars-image-gallery">
+              <div
+                class="slider slider-for detail-big-car-gallery slick-initialized slick-slider"
+              >
+                <button
+                  type="button"
+                  data-role="none"
+                  class="slick-prev slick-arrow"
+                  aria-label="Previous"
+                  role="button"
+                  style="display: inline-block"
+                >
+                  Previous
+                </button>
+                <div
+                  aria-live="polite"
+                  class="slick-list draggable"
+                  style="height: 0px"
+                >
+                  <div
+                    class="slick-track"
+                    style="
+                      opacity: 1;
+                      width: 0px;
+                      transform: translate3d(0px, 0px, 0px);
+                    "
+                    role="listbox"
+                  >
+                    <figure
+                      class="slick-slide slick-cloned"
+                      data-slick-index="-1"
+                      id=""
+                      aria-hidden="true"
+                      tabindex="-1"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357679322_6523876324324585_8569039734513463062_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id=""
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357679322_6523876324324585_8569039734513463062_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide slick-current slick-active"
+                      data-slick-index="0"
+                      aria-hidden="false"
+                      style="width: 0px"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide30"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357003490_6523870024325215_675159101683142563_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-0"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357003490_6523870024325215_675159101683142563_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="1"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide31"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356639906_6523870050991879_117871088701058492_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-1"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356639906_6523870050991879_117871088701058492_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="2"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide32"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356877536_6523870040991880_3342133675289544404_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-2"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356877536_6523870040991880_3342133675289544404_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="3"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide33"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356832197_6523870000991884_5039199378885537492_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-3"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356832197_6523870000991884_5039199378885537492_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="4"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide34"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356893621_6523869920991892_7164238605537551816_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-4"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356893621_6523869920991892_7164238605537551816_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="5"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide35"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357038333_6523870017658549_9046621583851690733_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-5"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357038333_6523870017658549_9046621583851690733_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="6"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide36"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357033905_6523870020991882_6793793041194322491_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-6"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357033905_6523870020991882_6793793041194322491_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="7"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide37"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357207763_6523870047658546_2490891491445336669_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-7"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357207763_6523870047658546_2490891491445336669_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="8"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide38"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356854807_6523869917658559_5328272172552656870_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-8"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356854807_6523869917658559_5328272172552656870_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="9"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide39"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356904273_6523869927658558_9200586525620709_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-9"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356904273_6523869927658558_9200586525620709_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="10"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide310"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356393339_6523870057658545_2343413583216725563_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-10"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356393339_6523870057658545_2343413583216725563_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="11"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide311"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356678409_6523869810991903_4486719996266456437_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-11"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356678409_6523869810991903_4486719996266456437_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="12"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide312"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357021698_6523870007658550_3613707248090464599_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-12"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357021698_6523870007658550_3613707248090464599_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="13"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide313"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357032869_6523869934325224_4180085773875916060_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-13"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357032869_6523869934325224_4180085773875916060_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="14"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide314"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357045951_6523869937658557_2340634905843636400_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-14"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357045951_6523869937658557_2340634905843636400_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="15"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide315"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357076438_6523870027658548_1783577258416393883_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-15"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357076438_6523870027658548_1783577258416393883_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="16"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide316"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357096150_6523869980991886_7446619111140439218_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-16"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357096150_6523869980991886_7446619111140439218_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="17"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide317"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357137987_6523870037658547_5712659274519324443_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-17"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357137987_6523870037658547_5712659274519324443_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide"
+                      data-slick-index="18"
+                      aria-hidden="true"
+                      tabindex="-1"
+                      role="option"
+                      aria-describedby="slick-slide318"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357679322_6523876324324585_8569039734513463062_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id="pscar-18"
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357679322_6523876324324585_8569039734513463062_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                    <figure
+                      class="slick-slide slick-cloned"
+                      data-slick-index="19"
+                      id=""
+                      aria-hidden="true"
+                      tabindex="-1"
+                      style="width: 0px"
+                    >
+                      <img
+                        src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357003490_6523870024325215_675159101683142563_n1-876x535.jpg"
+                        class="img-responsive ps-car-listing"
+                        id=""
+                        alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                        data-src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357003490_6523870024325215_675159101683142563_n1.jpg"
+                        data-width="1200"
+                        data-height="900"
+                      />
+                    </figure>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  data-role="none"
+                  class="slick-next slick-arrow"
+                  aria-label="Next"
+                  role="button"
+                  style="display: inline-block"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+            <div class="slider slider-nav slick-initialized slick-slider">
+              <button
+                type="button"
+                data-role="none"
+                class="slick-prev slick-arrow"
+                aria-label="Previous"
+                role="button"
+                style="display: inline-block"
+              >
+                Previous
+              </button>
+              <div aria-live="polite" class="slick-list draggable">
+                <div
+                  class="slick-track"
+                  style="
+                    opacity: 1;
+                    width: 0px;
+                    transform: translate3d(0px, 0px, 0px);
+                  "
+                  role="listbox"
+                >
+                  <img
+                    class="img-responsive slick-slide slick-cloned"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357045951_6523869937658557_2340634905843636400_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="-5"
+                    id=""
+                    aria-hidden="true"
+                    tabindex="-1"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide slick-cloned"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357076438_6523870027658548_1783577258416393883_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="-4"
+                    id=""
+                    aria-hidden="true"
+                    tabindex="-1"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide slick-cloned"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357096150_6523869980991886_7446619111140439218_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="-3"
+                    id=""
+                    aria-hidden="true"
+                    tabindex="-1"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide slick-cloned"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357137987_6523870037658547_5712659274519324443_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="-2"
+                    id=""
+                    aria-hidden="true"
+                    tabindex="-1"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide slick-cloned"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357679322_6523876324324585_8569039734513463062_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="-1"
+                    id=""
+                    aria-hidden="true"
+                    tabindex="-1"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide slick-current slick-active"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357003490_6523870024325215_675159101683142563_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="0"
+                    aria-hidden="false"
+                    style="width: 0px"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide40"
+                  /><img
+                    class="img-responsive slick-slide slick-active"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356639906_6523870050991879_117871088701058492_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="1"
+                    aria-hidden="false"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide41"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide slick-active"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356877536_6523870040991880_3342133675289544404_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="2"
+                    aria-hidden="false"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide42"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide slick-active"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356832197_6523870000991884_5039199378885537492_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="3"
+                    aria-hidden="false"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide43"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide slick-active"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356893621_6523869920991892_7164238605537551816_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="4"
+                    aria-hidden="false"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide44"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357038333_6523870017658549_9046621583851690733_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="5"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide45"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357033905_6523870020991882_6793793041194322491_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="6"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide46"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357207763_6523870047658546_2490891491445336669_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="7"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide47"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356854807_6523869917658559_5328272172552656870_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="8"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide48"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356904273_6523869927658558_9200586525620709_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="9"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide49"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356393339_6523870057658545_2343413583216725563_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="10"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide410"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356678409_6523869810991903_4486719996266456437_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="11"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide411"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357021698_6523870007658550_3613707248090464599_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="12"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide412"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357032869_6523869934325224_4180085773875916060_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="13"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide413"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357045951_6523869937658557_2340634905843636400_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="14"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide414"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357076438_6523870027658548_1783577258416393883_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="15"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide415"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357096150_6523869980991886_7446619111140439218_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="16"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide416"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357137987_6523870037658547_5712659274519324443_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="17"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide417"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357679322_6523876324324585_8569039734513463062_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="18"
+                    aria-hidden="true"
+                    tabindex="-1"
+                    role="option"
+                    aria-describedby="slick-slide418"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide slick-cloned"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/357003490_6523870024325215_675159101683142563_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="19"
+                    id=""
+                    aria-hidden="true"
+                    tabindex="-1"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide slick-cloned"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356639906_6523870050991879_117871088701058492_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="20"
+                    id=""
+                    aria-hidden="true"
+                    tabindex="-1"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide slick-cloned"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356877536_6523870040991880_3342133675289544404_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="21"
+                    id=""
+                    aria-hidden="true"
+                    tabindex="-1"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide slick-cloned"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356832197_6523870000991884_5039199378885537492_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="22"
+                    id=""
+                    aria-hidden="true"
+                    tabindex="-1"
+                    style="width: 0px"
+                  /><img
+                    class="img-responsive slick-slide slick-cloned"
+                    src="https://lctautollc.com/wp/wp-content/uploads/2023/07/356893621_6523869920991892_7164238605537551816_n1-190x138.jpg"
+                    alt="2004 Isuzu Rodeo 3.5L S 2WD"
+                    data-slick-index="23"
+                    id=""
+                    aria-hidden="true"
+                    tabindex="-1"
+                    style="width: 0px"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="button"
+                data-role="none"
+                class="slick-next slick-arrow"
+                aria-label="Next"
+                role="button"
+                style="display: inline-block"
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section B -->
+    <div class="section-b div-container related-vehicles-sec">
+      <div class="cd-related-vehicles">
+        <div class="i-car-heading">
+          <h3 class="element-title">RECOMMENDED FOR YOU</h3>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="car-item">
+                <div class="position-relative">
+                  <img src="/images/car7.jpeg" width="100%" height="260px" />
+                  <div class="overlay1">
+                    <!-- <div class="text">Hello World</div> -->
+                  </div>
+                </div>
+                <span class="label car-condition used">Used</span>
+                <div class="car-item-content">
+                  <div class="car-name">
+                    2012 Mercedes-Benz GLK-Class GLK350
+                  </div>
+                  <div class="car-price">
+                    <span class="old-price">$14,000.00</span>
+                    <span class="new-price">$10,700.00</span>
+                  </div>
+                  <div class="d-flex justify-content-between mt-3 car-props">
+                    <div class="col-6 car-prop">Mileage</div>
+                    <div class="col-6 car-prop-value">148000</div>
+                  </div>
+                  <div class="d-flex justify-content-between mb-3 car-props">
+                    <div class="col-6 car-prop">Availablity</div>
+                    <div class="col-6 car-prop-value">In Store</div>
+                  </div>
+                  <div class="button d-flex justify-content-between">
+                    <div class="detail">
+                      <i class="fa-solid fa-link me-2"></i>
+                      Details
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="car-item">
+                <div class="position-relative">
+                  <img src="/images/car7.jpeg" width="100%" height="260px" />
+                  <div class="overlay2">
+                    <!-- <div class="text">Hello World</div> -->
+                  </div>
+                </div>
+                <span class="label car-condition used">Used</span>
+                <div class="car-item-content">
+                  <div class="car-name">
+                    2011 Mitsubishi Outlander Sport SE 4WD
+                  </div>
+                  <div class="car-price">
+                    <span class="old-price">$6,849.00</span>
+                    <span class="new-price"> $5,995.00</span>
+                  </div>
+                  <div class="d-flex justify-content-between mt-3 car-props">
+                    <div class="col-6 car-prop">Mileage</div>
+                    <div class="col-6 car-prop-value">141000</div>
+                  </div>
+                  <div class="d-flex justify-content-between mb-3 car-props">
+                    <div class="col-6 car-prop">Availablity</div>
+                    <div class="col-6 car-prop-value">In Store</div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <div class="detail">
+                      <i class="fa-solid fa-link me-2"></i>
+                      Details
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="car-item">
+                <div class="position-relative">
+                  <img src="/images/car7.jpeg" width="100%" height="260px" />
+                  <div class="overlay3">
+                    <!-- <div class="text">Hello World</div> -->
+                  </div>
+                </div>
+                <span class="label car-condition used">Used</span>
+                <div class="car-item-content">
+                  <div class="car-name">2012 GMC Acadia Denali FWD</div>
+                  <div class="car-price">
+                    <span class="old-price">$10,300.00</span>
+                    <span class="new-price">$9,750.00</span>
+                  </div>
+                  <div class="d-flex justify-content-between mt-3 car-props">
+                    <div class="col-6 car-prop">Mileage</div>
+                    <div class="col-6 car-prop-value">132000</div>
+                  </div>
+                  <div class="d-flex justify-content-between mb-3 car-props">
+                    <div class="col-6 car-prop">Availablity</div>
+                    <div class="col-6 car-prop-value">In Store</div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <div class="detail">
+                      <i class="fa-solid fa-link me-2"></i>
+                      Details
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center my-5">
+              <button class="custom-btn-primary custom-btn-primary-2">
+                Load More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Section C -->
+    <!-- TABS -->
+    <div class="container tab-width">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active"
+            id="vehicle-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#vehicle"
+            type="button"
+            role="tab"
+            aria-controls="vehicle"
+            aria-selected="true"
+          >
+            <i class="fa fa-exclamation-circle me-1"></i>
+            VEHICLE DETAILS
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="profile-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#profile"
+            type="button"
+            role="tab"
+            aria-controls="profile"
+            aria-selected="false"
+          >
+            <i class="fa-solid fa-list me-1"></i>
+            FEATURES & OPTIONS
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="contact-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#contact"
+            type="button"
+            role="tab"
+            aria-controls="contact"
+            aria-selected="false"
+          >
+            <i class="fa fa-cogs me-1" aria-hidden="true"></i>
+            TECHNICAL SPECIFICATIONS
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link"
+            id="contact-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#contact"
+            type="button"
+            role="tab"
+            aria-controls="contact"
+            aria-selected="false"
+          >
+            <i class="fa fa-map-marker me-1" aria-hidden="true"></i>
+            LOCATION
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="vehicle"
+          role="tabpanel"
+          aria-labelledby="vehicle-tab"
+        >
+          <div
+            role="tabpanel"
+            class="tab-pane active"
+            id="tab-description"
+            active=""
+          >
+            <ul class="car-attributes">
+              <li class="car_year">
+                <span>Year</span>
+                <strong class="text-right">2004</strong>
+              </li>
+              <li class="car_make">
+                <span>Make</span> <strong class="text-right">Isuzu</strong>
+              </li>
+              <li class="car_model">
+                <span>Model</span> <strong class="text-right">Rodeo</strong>
+              </li>
+              <li class="car_trim">
+                <span>Trim</span> <strong class="text-right">3.5L S 2WD</strong>
+              </li>
+              <li class="car_availability">
+                <span>Availability</span>
+                <strong class="text-right">In Store</strong>
+              </li>
+              <li class="car_vin_number">
+                <span>VIN Number</span>
+                <strong class="text-right">4S2CK58YX44313428</strong>
+              </li>
+              <li class="car_stock_number">
+                <span>Stock Number</span>
+                <strong class="text-right">27183</strong>
+              </li>
+              <li class="car_body_style">
+                <span>Body Style</span> <strong class="text-right">SUV</strong>
+              </li>
+              <li class="car_condition">
+                <span>Condition</span> <strong class="text-right">Used</strong>
+              </li>
+              <li class="car_drivetrain">
+                <span>Drivetrain</span> <strong class="text-right">RWD</strong>
+              </li>
+              <li class="car_engine">
+                <span>Engine</span> <strong class="text-right">3.5L V6</strong>
+              </li>
+              <li class="car_transmission">
+                <span>Transmission</span>
+                <strong class="text-right">4-Speed Automatic</strong>
+              </li>
+              <li class="car_exterior_color">
+                <span>Exterior Color</span>
+                <strong class="text-right">Grey</strong>
+              </li>
+              <li class="car_interior_color">
+                <span>Interior Color</span>
+                <strong class="text-right">Grey</strong>
+              </li>
+              <li class="car_fuel_type">
+                <span>Fuel Type</span>
+                <strong class="text-right">Gasoline</strong>
+              </li>
+            </ul>
+            <div class="row fuel-effeincy">
+              <div class="colo-lg-6 col-md-6 border-right-1">
+                <div id="" class="cd-vehicle-fuel-efficiency">
+                  <div class="details-form contact-2 details-weight">
+                    <div class="fuel-efficiency-detail fuel-efficiency2">
+                      <div class="heading">
+                        <h6>Fuel Economy Rating</h6>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-4">
+                          <label>City</label>
+                          <span class="city_mpg">18</span>
+                        </div>
+                        <div class="col-xs-4">
+                          <i class="glyph-icon flaticon-gas-station fa-3x"></i>
+                        </div>
+                        <div class="col-xs-4">
+                          <label>Highway</label>
+                          <span class="highway_mpg">23</span>
+                        </div>
+                        <div class="col-sm-12">
+                          Actual rating will vary with options, driving
+                          conditions, driving habits and vehicle condition
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="colo-lg-6 col-md-6">
+                <div id="" class="cd-vehicle-fuel-efficiency">
+                  <div class="details-form contact-2 details-weight">
+                    <div class="fuel-efficiency-detail fuel-efficiency2">
+                      <div class="heading">
+                        <h6>Vehicle History Report</h6>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-4">
+                          <div class="carvax-logo">
+                            <img
+                              src="/wp/wp-content/uploads/2023/03/Carfax_logo.png"
+                              alt="Carfax Logo"
+                              width="70"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-xs-8">
+                          <h5>Get a Free Vehicle History Report</h5>
+                          <p>Backed by Federal Vehicle Title Data</p>
+                        </div>
+
+                        <div class="col-xs-12 mt-0">
+                          <div class="get-report-btn">
+                            <a
+                              target="_blank"
+                              href="http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&amp;vin=4S2CK58YX44313428"
+                              type="button"
+                              >Get My Free Report</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="profile"
+          role="tabpanel"
+          aria-labelledby="profile-tab"
+        >
+          ...
+        </div>
+        <div
+          class="tab-pane fade"
+          id="contact"
+          role="tabpanel"
+          aria-labelledby="contact-tab"
+        >
+          ...
+        </div>
+      </div>
+    </div>
+    <!-- Section D -->
+    <div class="div-container vehicles-price-details">
+      <div class="vehicles-price-inner">
+        <div class="i-car-heading">
+          <h3 class="element-title">PRICE DETAILS</h3>
+        </div>
+        <div class="col-outside">
+          <div class="vehicles-price-first">
+            <h3 class="price-detail-heading">Pay Once</h3>
+            <div class="table-outer">
+              <div class="table-price">
+                <p class="table-price-p">$4,147.00</p>
+                <p class="t-body-m">&nbsp;</p>
+              </div>
+              <ul class="price-list-table">
+                <li class="taxable-list">
+                  <span>Vehicle Price</span><span>$3,770.00</span>
+                </li>
+                <li class="taxable-list">
+                  <span>Tax, Title, Registration</span><span>$377.00</span>
+                </li>
+              </ul>
+              <ul class="price-list-total">
+                <li class="taxable-list">
+                  <span>Total Cash Price</span>
+                  <span>$4,147.00</span>
+                </li>
+              </ul>
+              <div class="price-button price-first-btn">
+                <button
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#shedule_test_drive"
+                >
+                  SCHEDULE MY PURCHASE
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="vehicles-price-second">
+            <h3 class="price-detail-heading">Pay Monthly</h3>
+            <div class="table-outer">
+              <div class="table-price">
+                <p class="table-price-p">$88-$102</p>
+                <div class="t-body-m">
+                  This is an estimate
+                  <div class="sighif">
+                    <div
+                      role="tooltip"
+                      id="price_tooltip"
+                      class="bottom-arrow sdsc1hs"
+                      direction="bottom"
+                      width="250"
+                      color=""
+                      style="
+                        display: none;
+                        --sdsc1hs-0: var(--cvna-color-blue-6);
+                        --sdsc1hs-1: 250px;
+                        --sdsc1hs-2: 24px;
+                        --sdsc1hs-3: -118px;
+                        --sdsc1hs-5: calc(100% + 0px);
+                        --sdsc1hs-6: calc(50% + 0px);
+                        --sdsc1hs-7: block;
+                        --sdsc1hs-8: var(--cvna-color-blue-6);
+                        --sdsc1hs-10: calc(-6px + 0px);
+                        --sdsc1hs-15: calc(99% + 0px);
+                        --sdsc1hs-16: calc(50% - 5px + 0px);
+                        --sdsc1hs-20: calc(-3% + 0px);
+                      "
+                    >
+                      <div class="t109u1xh"></div>
+                      <div class="bz4sugt">
+                        <p class="text-left">This range is based on:</p>
+                        <ul
+                          class="ml-24 my-12 t-body-s"
+                          style="list-style: initial"
+                        >
+                          <li class="pt-4">$0 Cash Down</li>
+                          <li class="pt-4">69 Month Loan</li>
+                          <li class="pt-4">18.98%-27.54% APR</li>
+                          <li class="pt-4">Average–Excellent Credit Score</li>
+                        </ul>
+                        <p></p>
+                      </div>
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      class="fill-current text-grey-5 q1ovw1rt"
+                    >
+                      <path
+                        d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm1.25 17c0 .69-.559 1.25-1.25 1.25-.689 0-1.25-.56-1.25-1.25s.561-1.25 1.25-1.25c.691 0 1.25.56 1.25 1.25zm1.393-9.998c-.608-.616-1.515-.955-2.551-.955-2.18 0-3.59 1.55-3.59 3.95h2.011c0-1.486.829-2.013 1.538-2.013.634 0 1.307.421 1.364 1.226.062.847-.39 1.277-.962 1.821-1.412 1.343-1.438 1.993-1.432 3.468h2.005c-.013-.664.03-1.203.935-2.178.677-.73 1.519-1.638 1.536-3.022.011-.924-.284-1.719-.854-2.297z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="below-emi-p">
+                <p class="p-details-module">
+                  Get personalized down/monthly payments within 2 minutes, and
+                  no impact to your credit score.
+                </p>
+                <p class="p-details-module module-fire">
+                  <svg viewBox="0 0 12 13" fill="none" class="mr-8">
+                    <g fill="currentColor">
+                      <path
+                        d="M3.38 13a3.16 3.16 0 0 1 .27-3.81 5.87 5.87 0 0 0 1-2.12A2.35 2.35 0 0 1 5 9a4.62 4.62 0 0 0 1.11-3.63A6 6 0 0 1 8.18 13c7.45-4 1.82-9.91.88-10.57a2.09 2.09 0 0 1-.27 2.35C7.68.81 4.93 0 4.93 0c.33 2-1.18 4.28-2.62 6a4.28 4.28 0 0 0-.56-2.16C1.64 5.27.44 6.48.12 8c-.45 2 .33 3.44 3.26 5z"
+                      ></path>
+                    </g>
+                  </svg>
+                  Roughly 80% of customers finance with us
+                </p>
+              </div>
+              <div class="price-button">
+                <button
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#finacial_calculator"
+                >
+                  GET YOUR TERMS
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Section M Footer -->
+    <footer class="section-m footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <a href="#" class="social-link">
+              <div
+                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap fb"
+              >
+                <div class="d-none d-md-block social-app">Facebook</div>
+                <i class="fa-brands fa-facebook social-app-icon"></i>
+              </div>
+            </a>
+          </div>
+          <div class="col-3">
+            <a href="#" class="social-link">
+              <div
+                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap insta"
+              >
+                <div class="d-none d-md-block social-app">Instagram</div>
+                <i class="fa-brands fa-instagram social-app-icon"></i>
+              </div>
+            </a>
+          </div>
+          <div class="col-3">
+            <a href="#" class="social-link">
+              <div
+                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap youtube"
+              >
+                <div class="d-none d-md-block social-app">Youtube</div>
+                <i class="fa-brands fa-youtube social-app-icon"></i>
+              </div>
+            </a>
+          </div>
+          <div class="col-3">
+            <a href="#" class="social-link">
+              <div
+                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap twitter"
+              >
+                <div class="d-none d-md-block social-app">twitter</div>
+                <i class="fa-brands fa-twitter social-app-icon"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-md-3">
+            <p>
+              LCT auto LLC offers multiple options to get you behind the wheel
+              of your dream car. We work with a variety of vehicles to get you
+              the best one possible. So come on down and drive off in your new
+              car today!
+            </p>
+            <div class="d-flex align-items-center my-4">
+              <i class="fa-solid fa-location-dot contact-icon"></i>
+              <p class="m-0 ms-2">1703 Capital Ave, Plano, TX 75074</p>
+            </div>
+            <div class="d-flex align-items-center my-4">
+              <i class="fa-solid fa-phone-flip contact-icon"></i>
+              <p class="m-0 ms-2">(469) 286 - 6875</p>
+            </div>
+            <div class="d-flex align-items-center my-4">
+              <i class="fa-solid fa-envelope contact-icon"></i>
+              <p class="m-0 ms-2">info@lctautollc.com</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="heading">Usefull links</div>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Change Oil and Filter</p>
+              </div>
+            </a>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Brake Pads Replacement</p>
+              </div>
+            </a>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Timing Belt Replacement</p>
+              </div>
+            </a>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Pre-purchase Car Inspection</p>
+              </div>
+            </a>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Starter Replacement</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-3">
+            <div class="heading">Recent Posts</div>
+            <div class="d-flex align-items-center">
+              <img src="/images/footer_car_post.png" class="me-4" />
+              <div>
+                <p class="m-0 mb-1">Buy your dream car</p>
+                <p class="m-0">
+                  <i class="fa-solid fa-calendar-days" style="color: red"></i>
+                  January 17, 2022
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="heading">SUBSCRIBE OUR NEWS LETTER</div>
+            <form>
+              <p>
+                Keep up on our always evolving products features and technology.
+                Enter your e-mail and subscribe to our newsletter.
+              </p>
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Your Email"
+                  required
+                />
+              </div>
+              <button class="mt-3 custom-btn-primary custom-btn-primary-2">
+                Subscriber
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="row question-row pb-5">
+          <div class="col-md-6">
+            <div class="container">
+              <div
+                class="question row justify-content-between align-items-center"
+              >
+                <div class="col-md-8">
+                  <div class="heading">ARE YOU LOOKING FOR A CAR?</div>
+                  <p>
+                    Search Our Inventory With Thousands Of Cars And More Cars
+                    Are Adding On Daily Basis
+                  </p>
+                </div>
+                <div class="col-md-4">
+                  <button class="mt-3 custom-btn-primary custom-btn-primary-2">
+                    Read More
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="container">
+              <div
+                class="question row justify-content-between align-items-center"
+              >
+                <div class="col-md-8">
+                  <div class="heading">DO YOU WANT TO SELL A CAR?</div>
+                  <p>
+                    Search Our Inventory With Thousands Of Cars And More Cars
+                    Are Adding On Daily Basis
+                  </p>
+                </div>
+                <div class="col-md-4">
+                  <button class="mt-3 custom-btn-primary custom-btn-primary-2">
+                    Read More
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="mb-4" />
+      <div class="container">
+        <div class="pb-4">©Copyright 2023 LCT Auto LLC</div>
+      </div>
+    </footer>
+  </body>
+</html>

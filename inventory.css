@@ -66,6 +66,19 @@
   margin-bottom: 10px;
 }
 
+.section-b .filter-btn {
+  padding: 3px 15px;
+  margin-top: 10px;
+}
+
+.section-b .btn-reset {
+  padding: 7px 25px;
+}
+
+.section-b .form-label {
+  font-size: 13px;
+}
+
 .section-b .path-active {
   color: #323232;
   font-weight: 600;
@@ -130,4 +143,10 @@
 .section-b .car-prop-value {
   color: #363636;
   font-weight: 700;
+}
+
+.section-b .custom-btn-detail {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
 }
