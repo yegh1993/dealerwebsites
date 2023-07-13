@@ -59,6 +59,7 @@ function displayVehicles(vehicles) {
           <i class="fa-solid fa-link me-1"></i>
           Detail
         </a>
+        
 
         <button class="custom-btn-light custom-btn-detail">
           <i class="fa-solid fa-play me-1"></i>
