@@ -150,3 +150,37 @@
   font-size: 13px;
   font-weight: 600;
 }
+
+.paginaton-container {
+  text-align: center;
+}
+
+.pagination-nav {
+  display: flex;
+  justify-self: center;
+  padding-top: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 7px;
+  margin: 0;
+  list-style-type: none;
+}
+.pagination-nav li {
+  font-size: 15px;
+  border: 1px solid #e3e3e3;
+  border-radius: 0;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.pagination-nav li:hover {
+  background-color: #db2e2d;
+  color: #fff;
+  transition: 0.5s ease-in-out;
+}
+
+.pagination-nav li.active {
+  background-color: #db2e2d;
+  color: #fff;
+}
