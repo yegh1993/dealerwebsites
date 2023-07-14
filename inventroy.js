@@ -13,6 +13,7 @@ async function fetchVehicles() {
       }
     )
     const vehicles = await response.json()
+    console.log(vehicles.results)
     displayVehicles(vehicles.results)
   } catch (error) {
     console.error('Error fetching vehicles:', error)
@@ -43,9 +44,12 @@ function displayVehicles(vehicles) {
     }</div>
         <div class="car-price">
           <span class="old-price">$14,000.00</span>
-          <span class="new-price">${parseFloat(vehicle.price || 0).toFixed(
-            2
-          )}</span>
+          <span class="new-price">
+          ${vehicle.price?.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+          })}
+          </span>
         </div>
         <div
           class="d-flex justify-content-between mt-3 car-props"
@@ -57,19 +61,27 @@ function displayVehicles(vehicles) {
           class="d-flex justify-content-between mb-3 car-props"
         >
           <div class="col-6 car-prop">Availablity</div>
-          <div class="col-6 car-prop-value">In Store</div>
+          <div class="col-6 car-prop-value">${
+            vehicle.status == 'ACTIVE' ? 'In Store' : 'N/A'
+          }</div>
         </div>
         <div class="d-flex justify-content-between mt-4">
-          <a href="/vdp.html" class="custom-btn-light custom-btn-detail">
+          <a href="/vdp.html?id=${
+            vehicle.idVehicle
+          }" class="custom-btn-light custom-btn-detail">
             <i class="fa-solid fa-link me-1"></i>
             Detail
           </a>
           
   
-          <button class="custom-btn-light custom-btn-detail">
+          ${
+            vehicle.video
+              ? `<button class="custom-btn-light custom-btn-detail">
             <i class="fa-solid fa-play me-1"></i>
             Video
-          </button>
+          </button>`
+              : ''
+          }
           </div>
         </div>
       </div>

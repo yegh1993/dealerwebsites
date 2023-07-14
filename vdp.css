@@ -116,6 +116,7 @@
 .price.car-price.hero-bar .old-price {
   font-weight: 600;
   font-size: 25px;
+  text-decoration: line-through;
 }
 .price.car-price.hero-bar .new-price {
   font-size: 35px;
@@ -154,6 +155,12 @@
   padding-left: 32px;
   padding-right: 32px;
   background-color: #fff;
+}
+
+.car-gallery-images .single-image {
+  width: 100%;
+  height: 631px;
+  object-fit: contain;
 }
 
 .grid-view {
@@ -455,7 +462,7 @@
 }
 
 .section-c ul[class*='list-'] {
-  display: flex ;
+  display: flex;
   flex-wrap: wrap;
   grid-gap: 6px 0;
 }
@@ -781,39 +788,41 @@ p.p-details-module.module-fire {
 .module-fire .mr-8 g {
   fill: #e03131;
 }
-:root{
-  --bs-accordion-inner-border-radius: calc(var(--bs-border-radius) - (var(--bs-border-width)));
+:root {
+  --bs-accordion-inner-border-radius: calc(
+    var(--bs-border-radius) - (var(--bs-border-width))
+  );
   --bs-border-radius: 0;
   --bs-border-width: 0;
   --bs-primary-bg-subtle: #cfe2ff;
   --bs-primary-text-emphasis: #ac002b;
   --bs-body-color: #999999;
-  --bs-accordion-transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out,border-radius 0.15s ease;
- 
-  
+  --bs-accordion-transition: color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out, border-radius 0.15s ease;
 }
-.accordion{
+.accordion {
   --bs-accordion-active-bg: var(--bs-primary-bg-subtle);
   --bs-accordion-active-color: var(--bs-primary-text-emphasis);
   --bs-accordion-color: var(--bs-body-color);
-  --bs-accordion-body-padding-y:1rem;
+  --bs-accordion-body-padding-y: 1rem;
   --bs-accordion-body-padding-x: 0;
 }
-.accordion-item{
+.accordion-item {
   border: 0;
   border-bottom: 2px solid;
   border-bottom-left-radius: var(--bs-accordion-inner-border-radius);
 }
-.accordion-button{
+.accordion-button {
   color: #363636;
   font-weight: 500;
   transition: var(--bs-accordion-transition);
   text-transform: uppercase;
-
 }
-.accordion-button :focus , :hover{
+.accordion-button :focus,
+.accordion-button:hover {
   color: #ac002b;
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
 .accordion-button:focus {
   z-index: 3;
@@ -828,7 +837,8 @@ p.p-details-module.module-fire {
   color: var(--bs-accordion-active-color);
   background: none;
 
-  box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
+  box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0
+    var(--bs-accordion-border-color);
 }
 .accordion-body {
   padding: var(--bs-accordion-body-padding-y) var(--bs-accordion-body-padding-x);
@@ -843,17 +853,17 @@ p.p-details-module.module-fire {
     padding-left: 18px;
     padding-right: 18px;
   }
-  .car-attributes{
+  .car-attributes {
     display: grid;
     grid-template-rows: 1fr 1fr;
     gap: 7px 50px;
     justify-content: space-between;
     align-items: center;
-    max-width: 1100PX;
+    max-width: 1100px;
     align-items: center;
-    justify-content: stretch; 
+    justify-content: stretch;
   }
-  .car-attributes .car_year{
+  .car-attributes .car_year {
     width: 50%;
   }
   .section-c ul[class*='list-'] {
@@ -862,24 +872,22 @@ p.p-details-module.module-fire {
     grid-gap: 6px 0;
     padding-left: 15px;
     width: 100%;
-}
-.car-details-tab ul[class*=list-] {
-  display: flex !important;
-  flex-wrap: wrap;
-  grid-gap: 6px 0;
+  }
+  .car-details-tab ul[class*='list-'] {
+    display: flex !important;
+    flex-wrap: wrap;
+    grid-gap: 6px 0;
+  }
 }
 
-}
-
-@media (max-width: 479px){
-  .car-attributes .car_year{
+@media (max-width: 479px) {
+  .car-attributes .car_year {
     width: 100%;
   }
   ul.list-col-3 li {
-   width: auto;
-   
-}
-.section-d .table-outer {
-  margin: 20px;
-}
+    width: auto;
+  }
+  .section-d .table-outer {
+    margin: 20px;
+  }
 }
