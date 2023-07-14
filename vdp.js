@@ -278,7 +278,11 @@ function displayFirstTabVehicleDetails(vehicle) {
   `
   document
     .getElementById('vehicle-tab-details')
-    .insertAdjacentHTML('beforeend', html)
+    ?.insertAdjacentHTML('beforeend', html)
+
+  document
+    .getElementById('vehicle-accordion-details')
+    ?.insertAdjacentHTML('beforeend', html)
 }
 
 function displaySecondTabFeaturesAndOptions(vehicle) {
