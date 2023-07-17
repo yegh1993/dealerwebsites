@@ -113,3 +113,63 @@ const swiper_review = new Swiper('.swiper-review', {
     // },
   },
 })
+
+const swiper_cover = new Swiper('.swiper-cover', {
+  // Optional parameters
+  loop: true,
+  autoplay: true,
+
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination',
+  },
+})
+
+var textWrapper = document.querySelector('.ml16')
+textWrapper.innerHTML = textWrapper.textContent.replace(
+  /\S/g,
+  "<span class='letter'>$&</span>"
+)
+anime
+  .timeline({ loop: true })
+  // .autoplay({ loop: true })
+  .add({
+    targets: '.ml16 .letter',
+    translateY: [-400, 0],
+    easing: 'easeOutExpo',
+    duration: 1400,
+    delay: (el, i) => 60 * i,
+    autoplay: true,
+  })
+  .add({
+    targets: '.ml16',
+    opacity: 0,
+    duration: 1000,
+    easing: 'easeOutExpo',
+    delay: 5000,
+    autoplay: true,
+  })
+var textWrapper = document.querySelector('.ml17')
+textWrapper.innerHTML = textWrapper.textContent.replace(
+  /\S/g,
+  "<span class='letter'>$&</span>"
+)
+anime
+  // .autoplay({ loop: true })
+  .timeline({ loop: true })
+  .add({
+    targets: '.ml17 .letter',
+    translateY: [-400, 0],
+    easing: 'easeOutExpo',
+    duration: 1400,
+    delay: (el, i) => 60 * i,
+    autoplay: true,
+  })
+  .add({
+    targets: '.ml17',
+    opacity: 0,
+    duration: 1000,
+    easing: 'easeOutExpo',
+    delay: 7000,
+    autoplay: true,
+  })

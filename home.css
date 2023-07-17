@@ -769,3 +769,98 @@ select:focus-visible {
   color: #363636;
   font-family: 'Roboto' sans-serif;
 }
+
+/* -------------------------------------------------------
+-                       ANIMATION - TEXT                 -
+---------------------------------------------------------- */
+.ml16 {
+  overflow: hidden;
+}
+
+.ml16 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+
+.ml17 {
+  overflow: hidden;
+}
+
+.ml17 .letter {
+  display: inline-block;
+  line-height: 1em;
+}
+
+/* -------------------------------------------------------
+-                       ANIMATION - IMAGE                -
+---------------------------------------------------------- */
+.fade-left {
+  animation: fadeInAnimation ease 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.fade-right {
+  animation: fadeInAnimation ease 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/*  left image */
+.left-image {
+  animation: moveToLeft 1s ease-in-out;
+  /* animation-delay: 1ms; */
+}
+
+@keyframes moveToLeft {
+  0% {
+    transform: translateX(150px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+/*  left image  End*/
+
+/*  right image */
+.right-image {
+  animation: moveToRight 1s ease-in-out;
+  animation-delay: 0.6s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes moveToRight {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+/* -------------------------------------------------------
+-                       ANIMATION - BUTTON               -
+---------------------------------------------------------- */
+.slide-up {
+  animation: slide-up 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+  animation-delay: 1.7s;
+}
+@keyframes slide-up {
+  0% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

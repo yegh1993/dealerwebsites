@@ -49,6 +49,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
+    <!-- AnimeJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
     <!-- Custom CSS -->
     <link href="/index.css" rel="stylesheet" />
     <link href="/home.css" rel="stylesheet" />
@@ -224,26 +227,70 @@
     </div>
 
     <!-- Section A Cover -->
-    <div class="section-a">
-      <div class="text">
-        <div class="sub-heading">Find the best car deals at</div>
-        <div class="heading">LCT Auto LLC</div>
-      </div>
-      <div class="cars">
-        <div class="d-flex justify-content-center">
-          <div class="car-a">
-            <img width="100%" src="/images/carA1.png" />
+    <div class="section-a swiper-cover swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">
+          <div class="text">
+            <div class="sub-heading ml16">
+              The lowest prices On the best car
+            </div>
+            <div class="heading ml17">Buy a car with confidence</div>
           </div>
-          <div class="car-b">
-            <img width="100%" src="/images/carA2.png" />
+          <div class="cars">
+            <div
+              class="position-relative d-flex justify-content-center align-items-center"
+            >
+              <img
+                style="max-width: 30%; margin-right: -13%"
+                src="/images/car-cover-5.png"
+              />
+
+              <img
+                style="max-width: 26%; margin-right: -6%"
+                src="/images/car-cover-4.png"
+              />
+
+              <img
+                style="max-width: 25%; z-index: 2"
+                src="/images/car-cover-1.png"
+              />
+
+              <img
+                style="max-width: 34%; margin-left: -10%; z-index: 1"
+                src="/images/car-cover-2.png"
+              />
+
+              <img
+                style="max-width: 30%; margin-left: -17%"
+                src="/images/car-cover-3.png"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="text">
+            <div class="sub-heading ml16">Find the best car deals at</div>
+            <div class="heading ml17">LCT Auto LLC</div>
+          </div>
+          <div class="cars">
+            <div class="d-flex justify-content-center align-items-center">
+              <div style="max-width: 50%" class="car-a slide left-image">
+                <img class="fade-left" width="100%" src="/images/carA1.png" />
+              </div>
+              <div style="max-width: 50%" class="car-b right-image">
+                <img class="fade-right" width="100%" src="/images/carA2.png" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
       <div class="btn-wrapper">
-        <div>
-          <!-- <button class="btn btn-danger border-0 rounded-0 custom-btn">
-            Learn More
-          </button> -->
+        <div class="slide-up">
           <button class="custom-btn-primary custom-btn-primary-2">
             Learn More
           </button>
@@ -252,7 +299,7 @@
     </div>
 
     <!-- Section B Form -->
-    <div class="section-b">
+    <div class="section-b position-relative z-2">
       <div class="container">
         <div class="form card rounded-0">
           <div class="container">
