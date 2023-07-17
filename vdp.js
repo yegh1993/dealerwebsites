@@ -24,8 +24,16 @@ async function fetchVehicleDetails() {
 }
 
 function displayVehicle(vehicle) {
+  const cover_images = [...vehicle.images]
+
+  const getGridAreas = () => {
+    if (cover_images.length < 2) return "'main' 'main'"
+    if (cover_images.length < 3) return "'main sideA' 'main sideA'"
+    if (cover_images.length >= 3) return "'main main sideA' 'main main sideB'"
+  }
+
   const html = `
-  <div class="hero-banner-u my-4">
+  <div class="hero-banner-u">
   <div class="certified-text">LCT AUTO LLC CERTIFIED</div>
   <div class="car-main-body">
     <div class="car-fixed-title">
@@ -46,8 +54,8 @@ function displayVehicle(vehicle) {
       <div class="flex">
         <div class="car-title-col">
           <div class="price car-price hero-bar">
-            <span class="old-price"> $5,200.00</span
-            ><span class="new-price">${vehicle.price?.toLocaleString('en-US', {
+            <!-- <span class="old-price"> $5,200.00</span> -->
+            <span class="new-price">${vehicle.price?.toLocaleString('en-US', {
               style: 'currency',
               currency: 'USD',
             })}</span>
@@ -74,51 +82,38 @@ function displayVehicle(vehicle) {
 </div>
 
 <div class="car-gallery-images">
-  ${
-    vehicle.images?.length >= 3
-      ? `<div class="gallery-preview-images">
-    <div class="grid-view row-gap">
-      <div class="relative">
-        <div class="sc-cbf9113b-5 cjnLvy grid-view">
-          <div class="position-relative">
-            <div role="button" class="h-100">
-              <img
-                class="gallery-image click-to-slick"
-                data-slic="0"
-                src=${vehicle.images && vehicle.images[0]?.url}
-                alt=""
-              />
-            </div>
-          </div>
-          <div role="button">
+  <div class="gallery-preview-images">
+  <div class="grid-view row-gap">
+    <div class="position-relative">
+      <div class="grid-view grid-area" style="
+        grid-template-areas: ${getGridAreas()}
+      ">
+      ${cover_images
+        .map((item, idx) =>
+          idx < 3
+            ? `
+          <div role="button" onclick="MorePhotos(this)" class="h-100 item${idx}">
             <img
               class="gallery-image click-to-slick"
-              data-slic="1"
-              src=${vehicle.images && vehicle.images[1]?.url}
+              data-slic="0"
+              src=${vehicle.images && vehicle.images[0]?.url}
               alt=""
             />
-          </div>
-          <div class="position-relative">
-            <div role="button" tabindex="0" class="h-100">
-              <img
-                class="gallery-image click-to-slick"
-                data-slic="2"
-                src=${vehicle.images && vehicle.images[1]?.url}
-                alt=""
-              />
-              <div class="total-car-images-btn position-absolute" onclick="MorePhotos(this)"
-              >
-                +16 <span class="elementor-hidden-mobile">Photos</span>
-              </div>
-            </div>
+          </div>`
+            : ''
+        )
+        .join('')}
+          <div class="total-car-images-btn position-absolute" onclick="MorePhotos(this)"
+          >
+            ${
+              cover_images.length - 3 > 0 ? '+' + (cover_images.length - 3) : ''
+            } <span class="elementor-hidden-mobile">Photos</span>
           </div>
         </div>
       </div>
     </div>
-  </div>`
-      : `<img role="button" onclick="MorePhotos(this)" src=${vehicle.images[0]?.url} class="single-image" />`
-  }
-
+  </div>
+</div>
   <!-- cars -->
   <div id="gallery" style="display: none">
     ${vehicle.images
