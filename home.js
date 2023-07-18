@@ -1,3 +1,9 @@
+/**
+ * ---------------------------------------------------
+ *                     RANGE                         -
+ * ---------------------------------------------------
+ */
+
 const range = document.querySelectorAll('.range-slider span input')
 progress = document.querySelector('.range-slider .progress')
 let gap = 0.1
@@ -24,6 +30,12 @@ range.forEach((input) => {
     }
   })
 })
+
+/**
+ * ---------------------------------------------------
+ *                     SWIPER                        -
+ * ---------------------------------------------------
+ */
 
 const swiper = new Swiper('.swiper', {
   // Optional parameters
@@ -123,18 +135,27 @@ const swiper_cover = new Swiper('.swiper-cover', {
   pagination: {
     el: '.swiper-pagination',
   },
+  autoplay: {
+    delay: 5000,
+  },
 })
 
-var textWrapper = document.querySelector('.ml16')
+/**
+ * ---------------------------------------------------
+ *                TEXT - ANIMATION - CAR 5           -
+ * ---------------------------------------------------
+ */
+
+var textWrapper = document.querySelector('.cars-five-sub-head')
 textWrapper.innerHTML = textWrapper.textContent.replace(
   /\S/g,
   "<span class='letter'>$&</span>"
 )
+
 anime
   .timeline({ loop: true })
-  // .autoplay({ loop: true })
   .add({
-    targets: '.ml16 .letter',
+    targets: '.cars-five-sub-head .letter',
     translateY: [-400, 0],
     easing: 'easeOutExpo',
     duration: 1400,
@@ -142,23 +163,23 @@ anime
     autoplay: true,
   })
   .add({
-    targets: '.ml16',
+    targets: '.cars-five-sub-head',
     opacity: 0,
-    duration: 1000,
+    duration: 1400,
     easing: 'easeOutExpo',
-    delay: 5000,
+    delay: 1500,
     autoplay: true,
   })
-var textWrapper = document.querySelector('.ml17')
+
+var textWrapper = document.querySelector('.cars-five-head')
 textWrapper.innerHTML = textWrapper.textContent.replace(
   /\S/g,
   "<span class='letter'>$&</span>"
 )
 anime
-  // .autoplay({ loop: true })
   .timeline({ loop: true })
   .add({
-    targets: '.ml17 .letter',
+    targets: '.cars-five-head .letter',
     translateY: [-400, 0],
     easing: 'easeOutExpo',
     duration: 1400,
@@ -166,10 +187,65 @@ anime
     autoplay: true,
   })
   .add({
-    targets: '.ml17',
+    targets: '.cars-five-head',
     opacity: 0,
-    duration: 1000,
+    duration: 1400,
     easing: 'easeOutExpo',
-    delay: 7000,
+    delay: 1500,
+    autoplay: true,
+  })
+
+/**
+ * ---------------------------------------------------
+ *                TEXT - ANIMATION - CAR 2           -
+ * ---------------------------------------------------
+ */
+
+var textWrapper = document.querySelector('.cars-two-sub-head')
+textWrapper.innerHTML = textWrapper.textContent.replace(
+  /\S/g,
+  "<span class='letter'>$&</span>"
+)
+
+anime
+  .timeline({ loop: true })
+  .add({
+    targets: '.cars-two-sub-head .letter',
+    translateY: [-400, 0],
+    easing: 'easeOutExpo',
+    duration: 1400,
+    delay: (el, i) => 60 * i,
+    autoplay: true,
+  })
+  .add({
+    targets: '.cars-two-sub-head',
+    opacity: 0,
+    duration: 1400,
+    easing: 'easeOutExpo',
+    delay: 1500,
+    autoplay: true,
+  })
+
+var textWrapper = document.querySelector('.cars-two-head')
+textWrapper.innerHTML = textWrapper.textContent.replace(
+  /\S/g,
+  "<span class='letter'>$&</span>"
+)
+anime
+  .timeline({ loop: true })
+  .add({
+    targets: '.cars-two-head .letter',
+    translateY: [-400, 0],
+    easing: 'easeOutExpo',
+    duration: 1400,
+    delay: (el, i) => 60 * i,
+    autoplay: true,
+  })
+  .add({
+    targets: '.cars-two-head',
+    opacity: 0,
+    duration: 1400,
+    easing: 'easeOutExpo',
+    delay: 1500,
     autoplay: true,
   })
