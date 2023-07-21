@@ -205,18 +205,39 @@
                 </div>
                 <form
                   class="dropdown-menu rounded-0 dropdown-menu-end p-3"
-                  style="min-width: 200px"
+                  style="min-width: 300px"
                 >
                   <div class="input-group">
                     <input
                       type="text"
-                      class="form-control"
-                      placeholder="Search"
+                      class="form-control custom-input"
+                      placeholder="Search By Brand, Model and More"
                       required
+                      oninput="HandleSearch(event)"
+                      autofocus="true"
                     />
                     <span class="input-group-text bg-white border-start-0">
-                      <i class="fa-solid fa-magnifying-glass"></i>
+                      <i
+                        id="nav-search"
+                        class="fa-solid fa-magnifying-glass"
+                      ></i>
+                      <!-- <i
+                        id="nav-loader"
+                        class="fa-solid fa-spinner fa-spin d-none"
+                      ></i> -->
+                      <img
+                        src="/images/cd_loader.svg"
+                        id="nav-loader"
+                        class="d-none"
+                      />
                     </span>
+                  </div>
+
+                  <div
+                    id="vehicle-list"
+                    style="max-height: 300px; overflow: auto"
+                  >
+                    <!-- Vehicle Item Shows Here -->
                   </div>
                 </form>
               </div>
@@ -289,40 +310,77 @@
     <div class="section-b position-relative z-2">
       <div class="container">
         <div class="form card rounded-0">
-          <div class="container">
+          <div id="filter-form" class="container px-3">
             <div class="row">
               <div class="col-md-8">
                 <div class="container">
                   <divc class="row">
                     <div class="col-md-4">
-                      <div class="mb-3">
+                      <div class="mb-3 custom-select">
                         <div class="label">Select Year</div>
-                        <select aria-placeholder="--select--">
-                          <option value="1991">1991</option>
-                          <option value="1992">1992</option>
-                          <option value="1993">1993</option>
+                        <select
+                          class="form-control rounded-0 w-100"
+                          aria-placeholder="Year"
+                          onchange="handleInputChange(event)"
+                          name="year"
+                        >
+                          <option hidden selected value="">--Select--</option>
+                          <option value="1991">1998</option>
+                          <option value="1992">2000</option>
+                          <option value="1993">2002</option>
+                          <option value="1993">2004</option>
+                          <option value="1993">2006</option>
+                          <option value="1993">2008</option>
+                          <option value="1993">2010</option>
+                          <option value="1993">2012</option>
+                          <option value="1993">2014</option>
+                          <option value="1993">2016</option>
+                          <option value="1993">2018</option>
+                          <option value="1993">2020</option>
+                          <option value="1993">2021</option>
+                          <option value="1993">2022</option>
+                          <option value="1993">2023</option>
                         </select>
                       </div>
-                      <div class="mb-3">
+                      <div class="mb-3 custom-select">
                         <div class="label">Select Condition</div>
-                        <select aria-placeholder="--select--">
+                        <select
+                          class="form-control rounded-0 w-100"
+                          aria-placeholder="Condition"
+                          onchange="handleInputChange(event)"
+                          name="condition"
+                        >
+                          <option hidden selected value="">--Select--</option>
                           <option value="Used">Used</option>
                           <option value="Certified">Certified</option>
                         </select>
                       </div>
                     </div>
                     <div class="col-md-4">
-                      <div class="mb-3">
+                      <div class="mb-3 custom-select">
                         <div class="label">Select Make</div>
-                        <select aria-placeholder="--select--">
+                        <select
+                          class="form-control rounded-0 w-100"
+                          aria-placeholder="Make"
+                          onchange="handleInputChange(event)"
+                          name="make"
+                        >
+                          <option hidden selected value="">--Select--</option>
                           <option value="Audi">Audi</option>
                           <option value="Toyota">Toyota</option>
                           <option value="Nissan">Nissan</option>
                         </select>
                       </div>
-                      <div class="mb-3">
+
+                      <div class="mb-3 custom-select">
                         <div class="label">Select Mileage</div>
-                        <select aria-placeholder="--select--">
+                        <select
+                          class="form-control rounded-0 w-100"
+                          aria-placeholder="Mileage"
+                          onchange="handleInputChange(event)"
+                          name="mileage"
+                        >
+                          <option hidden selected value="">--Select--</option>
                           <option value="10000">10000</option>
                           <option value="20000">20000</option>
                           <option value="30000">30000</option>
@@ -330,17 +388,30 @@
                       </div>
                     </div>
                     <div class="col-md-4">
-                      <div class="mb-3">
+                      <div class="mb-3 custom-select">
                         <div class="label">Select Model</div>
-                        <select aria-placeholder="--select--">
+                        <select
+                          class="form-control rounded-0 w-100"
+                          aria-placeholder="Model"
+                          onchange="handleInputChange(event)"
+                          name="model"
+                        >
+                          <option hidden selected value="">--Select--</option>
                           <option value="A8">A8</option>
                           <option value="Accord">Accord</option>
                           <option value="Corolla">Corolla</option>
                         </select>
                       </div>
-                      <div class="mb-3">
+
+                      <div class="mb-3 custom-select">
                         <div class="label">Select Transmission</div>
-                        <select aria-placeholder="--select--">
+                        <select
+                          class="form-control rounded-0 w-100"
+                          aria-placeholder="Transmission"
+                          onchange="handleInputChange(event)"
+                          name="transmission"
+                        >
+                          <option hidden selected value="">--Select--</option>
                           <option value="1-speed Automatic">
                             1-speed Automatic
                           </option>
@@ -365,7 +436,7 @@
                       id="dealer-slider-amount-1"
                       class="dealer-slider-amount"
                       readonly=""
-                      value="$25 - $100"
+                      value="$6,500 - $25,000"
                     />
                   </div>
                   <div class="min-value numberVal">
@@ -373,8 +444,8 @@
                       type="number"
                       class=""
                       min="0"
-                      max="100"
-                      value="25"
+                      max="30000"
+                      value="6500"
                       disabled
                       hidden
                     />
@@ -385,8 +456,8 @@
                       type="number"
                       class="border text-center"
                       min="0"
-                      max="100"
-                      value="75"
+                      max="30000"
+                      value="25000"
                       disabled
                       hidden
                     />
@@ -399,9 +470,9 @@
                       <input
                         class="range-min"
                         type="range"
-                        min="0"
-                        max="100"
-                        value="25"
+                        min="2500"
+                        max="30000"
+                        value="6500"
                       />
                       <!-- <span class="range-min-value">0</span> -->
                     </span>
@@ -409,16 +480,19 @@
                       <input
                         class="range-max"
                         type="range"
-                        min="0"
-                        max="100"
-                        value="100"
+                        min="2500"
+                        max="30000"
+                        value="25000"
                       />
                       <!-- <span class="range-max-value">100</span> -->
                     </span>
                   </div>
                 </div>
                 <div class="mt-3">
-                  <a href="javascript:void(0);">
+                  <a
+                    onclick="handleSeachInventory()"
+                    href="javascript:void(0);"
+                  >
                     <button class="custom-btn-primary custom-btn-primary-2">
                       Search Inventory
                     </button></a
@@ -426,6 +500,9 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div id="filter-loader" class="form-loader d-none">
+            <img src="/images/cd_loader.svg" id="nav-loader" />
           </div>
         </div>
       </div>
@@ -1123,12 +1200,28 @@
                   type="text"
                   class="form-control"
                   placeholder="Enter Your Email"
+                  id="subscriber_email"
                   required
                 />
               </div>
-              <button class="mt-3 custom-btn-primary custom-btn-primary-2">
-                Subscriber
+              <button
+                onclick="Subscribe(event)"
+                class="mt-3 custom-btn-primary custom-btn-primary-2"
+              >
+                <span id="subscriber-text">Subscriber</span>
+                <!-- <i
+                  id="subscriber-loader"
+                  class="fa-solid fa-spinner fa-spin d-none"
+                ></i> -->
+                <img
+                  src="/images/cd_loader.svg"
+                  id="subscriber-loader"
+                  class="d-none"
+                />
               </button>
+              <div id="subscriber-error" style="color: #db2e2d">
+                <!-- Error message shows here -->
+              </div>
             </form>
           </div>
         </div>
@@ -1182,7 +1275,16 @@
       </div>
     </footer>
 
+    <div class="maincardiv reveal">
+      <div>
+        <img class="imgcar1" src="/images/car.png" alt="" />
+
+        <img class="imgcarlight" src="/images/car-focus.png" alt="" />
+      </div>
+    </div>
+
     <!-- Custom Script -->
+    <script src="/common.js"></script>
     <script src="/home.js"></script>
   </body>
 </html>

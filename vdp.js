@@ -314,4 +314,19 @@ function MorePhotos(element) {
 window.onload = function () {
   // Call the API with the extracted data
   fetchVehicleDetails()
+
+  function animateTop() {
+    var reveals = document.querySelectorAll('.animateTopbar')
+    const YValueToShow = 450
+
+    for (var i = 0; i < reveals.length; i++) {
+      if (window.scrollY > YValueToShow) {
+        reveals[i].classList.add('active')
+      } else {
+        reveals[i].classList.remove('active')
+      }
+    }
+  }
+
+  window.addEventListener('scroll', animateTop)
 }

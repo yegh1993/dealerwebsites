@@ -1,4 +1,134 @@
 /* -------------------------------------------------------
+-                  TOP STICKY HEADER                     -
+---------------------------------------------------------- */
+
+.stcky-fixed {
+  top: 150px;
+  /* top: -30px; */
+}
+.car-fixed-header {
+  height: 75px;
+  transition: top 0.3s ease-in-out 0s;
+  width: 100%;
+  z-index: 200;
+  top: 0;
+  /* top: 150px; */
+  position: fixed;
+}
+.car-contain {
+  max-width: 1800px;
+  -webkit-box-align: stretch;
+  align-items: stretch;
+  padding-left: 32px;
+  padding-right: 32px;
+  background-color: #00619e;
+  justify-content: flex-start;
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+}
+.car-fixed-title {
+  -webkit-box-flex: 1;
+  flex: 1 1 30%;
+  color: #fff;
+  font-weight: 700;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  display: flex;
+  margin-right: auto;
+}
+.car-title-left {
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+.car-title-left p {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  text-transform: uppercase;
+  -webkit-box-flex: 1;
+}
+.car-title-left p {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  text-transform: uppercase;
+  -webkit-box-flex: 1;
+}
+.car-fixed-price {
+  -webkit-box-flex: 0;
+  flex-grow: 0;
+  max-width: initial;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: 0;
+}
+.car-fixed-price .flex {
+  justify-content: center;
+  align-items: center !important;
+  display: flex !important;
+}
+.car-flex-col {
+  color: #fff;
+  line-height: 1;
+}
+.single-cars .car-details .car-price.fixed-bar {
+  min-height: unset;
+}
+.car-flex-miles {
+  margin-left: 0px;
+  padding-left: 0px;
+  border-left: 0px;
+  margin-top: 6px;
+  font-size: 15px;
+  display: flex;
+  justify-content: end;
+  margin: 0;
+  margin-top: 5px;
+}
+.price.car-price.fixed-bar .old-price {
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: line-through;
+}
+.price.car-price.fixed-bar .new-price {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  align-items: center;
+}
+.car-fixed-btn {
+  margin-left: 30px;
+  align-items: center;
+  display: flex;
+}
+.car-fixed-btn button {
+  color: #fff;
+  min-height: 46px;
+  min-width: 161px;
+  font-size: 14px;
+  background-color: #2f9e44;
+  border: 1px solid transparent;
+  vertical-align: middle;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.animateTopbar {
+  transition: all 0.5s ease;
+  transform: translateY(-75px);
+}
+.animateTopbar.active {
+  transform: translateY(0);
+}
+
+/* -------------------------------------------------------
 -                       SECTION A                        -
 ---------------------------------------------------------- */
 .max-container {
