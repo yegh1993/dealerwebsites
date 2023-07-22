@@ -160,7 +160,9 @@
               </a>
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item px-1">
-                  <a class="nav-link" aria-current="page" href="/">Home</a>
+                  <a class="nav-link" aria-current="page" href="/"
+                    >Home</a
+                  >
                 </li>
                 <li class="nav-item px-1">
                   <a class="nav-link active" href="/inventory.html">Inventory</a>
@@ -194,18 +196,39 @@
                 </div>
                 <form
                   class="dropdown-menu rounded-0 dropdown-menu-end p-3"
-                  style="min-width: 200px"
+                  style="min-width: 300px"
                 >
                   <div class="input-group">
                     <input
                       type="text"
-                      class="form-control"
-                      placeholder="Search"
+                      class="form-control custom-input"
+                      placeholder="Search By Brand, Model and More"
                       required
+                      oninput="HandleSearch(event)"
+                      autofocus="true"
                     />
                     <span class="input-group-text bg-white border-start-0">
-                      <i class="fa-solid fa-magnifying-glass"></i>
+                      <i
+                        id="nav-search"
+                        class="fa-solid fa-magnifying-glass"
+                      ></i>
+                      <!-- <i
+                        id="nav-loader"
+                        class="fa-solid fa-spinner fa-spin d-none"
+                      ></i> -->
+                      <img
+                        src="/images/cd_loader.svg"
+                        id="nav-loader"
+                        class="d-none"
+                      />
                     </span>
+                  </div>
+
+                  <div
+                    id="vehicle-list"
+                    style="max-height: 300px; overflow: auto"
+                  >
+                    <!-- Vehicle Item Shows Here -->
                   </div>
                 </form>
               </div>
@@ -262,9 +285,9 @@
                   <input
                     class="range-min"
                     type="range"
-                    min="0"
-                    max="100"
-                    value="25"
+                    min="2500"
+                    max="30000"
+                    value="6500"
                   />
                   <!-- <span class="range-min-value">0</span> -->
                 </span>
@@ -272,9 +295,9 @@
                   <input
                     class="range-max"
                     type="range"
-                    min="0"
-                    max="100"
-                    value="100"
+                    min="2500"
+                    max="30000"
+                    value="25000"
                   />
                   <!-- <span class="range-max-value">100</span> -->
                 </span>
@@ -289,7 +312,7 @@
                   id="dealer-slider-amount-1"
                   class="dealer-slider-amount text-end"
                   readonly=""
-                  value="$25 - $100"
+                  value="$6500 - $25000"
                 />
               </div>
               <div>
@@ -301,13 +324,25 @@
               </div>
             </div>
             <div class="filters-wrap">
-              <div class="heading">VEHICLES FILTERS</div>
-              <div class="matched">110 Vehicles Matching</div>
+              <div id="filter-loader" class="filter-loader d-none">
+                <img src="/images/cd_loader.svg" id="nav-loader" />
+              </div>
 
-              <div class="my-2 custom-select">
+              <div class="heading">VEHICLES FILTERS</div>
+              <div class="matched" id="vehicle-found">
+                <!-- Filter Vehicle Count  -->
+              </div>
+
+              <div id="selected-filters">
+                <!-- Selected Filters Shows Here -->
+              </div>
+
+              <div class="mt-3 mb-2 custom-select">
                 <select
                   class="form-control rounded-0 w-100"
                   aria-placeholder="Year"
+                  onchange="handleInputChange(event)"
+                  name="Year"
                 >
                   <option hidden value="Year">Year</option>
                   <option value="1991">1998</option>
@@ -331,6 +366,8 @@
                 <select
                   class="form-control rounded-0 w-100"
                   aria-placeholder="Make"
+                  onchange="handleInputChange(event)"
+                  name="Make"
                 >
                   <option hidden value="Make">Make</option>
                   <option value="1991">Audi</option>
@@ -344,7 +381,8 @@
               </div>
 
               <div class="custom-select my-2">
-                <select class="select-box">
+                <select class="select-box"       onchange="handleInputChange(event)"
+                name="Model">
                   <option value="0">Model</option>                 
                   <option value="1">1500 </option>
                   <option value="2">200</option>
@@ -482,7 +520,7 @@
           
 
               <div>
-                <a  href="javascript:void(0);">
+                <a onclick="ResetFilter()" href="javascript:void(0);">
                   <button class="custom-btn-primary custom-btn-primary-2 btn-reset">
                     Reset
                   </button>
@@ -491,39 +529,43 @@
             </div>
             <div class="mt-5">
               <div class="heading">FINANCING CALCULATOR</div>
-              <form class="mt-4">
+              <form id="finance_form" onsubmit="calculateMonthlyPayment(event)"  class="mt-4">
                 <div class="mb-3">
                   <label for="formGroupExampleInput" class="form-label text-uppercase">Loan Amount*</label>
-                  <input class="custom-input" type="text" required />
+                  <input class="custom-input" type="text" name="loanAmount" oninput="HandleInputValues(event)" required />
                 </div>
 
                 <div class="mb-3">
                   <label for="formGroupExampleInput" class="form-label text-uppercase">Down Payment*</label>
-                  <input class="custom-input" type="text" required />
+                  <input class="custom-input" name="downPayment" oninput="HandleInputValues(event)" type="text" required />
                 </div>
 
                 <div class="mb-3">
                   <label for="formGroupExampleInput" class="form-label text-uppercase">Interest Rate(%)*</label>
-                  <input class="custom-input" type="text" required />
+                  <input class="custom-input" name="interestRate" oninput="HandleInputValues(event)" type="text" required />
                 </div>
 
                 <div class="mb-3">
                   <label for="formGroupExampleInput" class="form-label text-uppercase">Period (Month)*</label>
-                  <input class="custom-input" type="text" required />
+                  <input class="custom-input" name="periodInMonths" oninput="HandleInputValues(event)" type="text" required />
                 </div>
 
-                <div class="mt-3">
+                <div class="my-3">
                   <label for="formGroupExampleInput" class="form-label text-uppercase">Payment</label>
-
+                  <div class="d-flex align-items-center">
+                    <div id="payment_result">
+                      <!-- Payment Result shows here -->
+                    </div>
+                  </div>
                 </div>
                 <div class="d-flex">
-                  <a href="javascript:void(0);"
+                  <a type="submit" href="javascript:void(0);"
                     ><button class="custom-btn-primary custom-btn-primary-2 me-2">
 
                       Estimate Payment
                     </button></a
                   >
-                  <a href="javascript:void(0);"><button class="custom-btn-primary custom-btn-primary-2" >
+                  <a onclick="ResetForm(event)" href="javascript:void(0);"><button class="custom-btn-primary custom-btn-primary-2" >
                     Reset
                   </button></a>
                 </div>
@@ -771,6 +813,14 @@
         <div class="pb-4">©Copyright 2023 LCT Auto LLC</div>
       </div>
     </footer>
+
+    <div class="maincardiv reveal">
+      <div>
+        <img class="imgcar1" src="/images/car.png" alt="" />
+
+        <img class="imgcarlight" src="/images/car-focus.png" alt="" />
+      </div>
+    </div>
 
     <script src="/common.js" ></script>
     <script src="/inventroy.js" ></script>

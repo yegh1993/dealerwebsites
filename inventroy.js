@@ -1,3 +1,66 @@
+const filters = {}
+
+function handleInputChange(event) {
+  const key = event.target.name
+  const value = event.target.value
+  filters[key] = value
+  SearchInventory(value)
+  displaySelectedFilter()
+}
+
+// async function handleSeachInventory() {
+//   await SearchInventory()
+//   window.open(
+//     '/inventory.html?' +
+//       Object.entries(filters)
+//         .map((item) => item.join('='))
+//         .join('&') +
+//       '&minRange=' +
+//       inputValue[0].value +
+//       '&maxRange=' +
+//       inputValue[1].value
+//   )
+// }
+
+function Loader(show) {
+  if (show) {
+    document.getElementById('filter-loader').classList.remove('d-none')
+  } else {
+    document.getElementById('filter-loader').classList.add('d-none')
+  }
+}
+
+async function SearchInventory(value) {
+  Loader(true)
+  await fetchVehicles(value)
+  Loader(false)
+  return
+}
+
+async function removeFilter(key) {
+  delete filters[key]
+  Loader(true)
+  await fetchVehicles()
+  Loader(false)
+  displaySelectedFilter()
+
+  const inputElement = document.querySelector(`[name="${key}"]`)
+  inputElement.nextElementSibling.innerHTML = key
+}
+
+async function ResetFilter() {
+  Object.keys(filters).forEach((key) => {
+    const inputElement = document.querySelector(`[name="${key}"]`)
+    inputElement.nextElementSibling.innerHTML = key
+    delete filters[key]
+  })
+
+  Loader(true)
+  await fetchVehicles()
+  Loader(false)
+  displaySelectedFilter()
+}
+
 async function fetchVehicles() {
   const dealerId = '1'
   const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net'
@@ -20,7 +83,27 @@ async function fetchVehicles() {
   }
 }
 
+function displaySelectedFilter() {
+  const getHtml = ([label, value]) => `
+  <div class="d-flex align-items-center selected-filter-item" onclick="removeFilter('${label}')">
+                <i class="fa-regular fa-circle-xmark me-3"></i>
+                <div class="me-2">${label} &nbsp;:&nbsp;</div>
+                <div>${value}</div>
+              </div>
+  `
+
+  const html = Object.entries(filters)
+    .map((item) => getHtml(item))
+    .join('')
+
+  document.getElementById('selected-filters').innerHTML = html
+}
+
 function displayVehicles(vehicles) {
+  document.getElementById(
+    'vehicle-found'
+  ).innerHTML = `${vehicles.length} Vehicles Matching`
+
   var initialPageNumber = 1
   var itemsPerPage = 12
   displayItems(initialPageNumber, itemsPerPage)
@@ -182,3 +265,46 @@ function displayVehicles(vehicles) {
 }
 
 fetchVehicles()
+
+const finance = {}
+
+function HandleInputValues(event) {
+  const { name, value } = event.target
+  finance[name] = value
+}
+
+function calculateMonthlyPayment(event) {
+  event.stopPropagation()
+  event.preventDefault()
+
+  // Calculate the loan amount after deducting the down payment
+  var principal = finance.loanAmount - finance.downPayment
+
+  // Convert the annual interest rate to a monthly rate
+  var monthlyInterestRate = finance.interestRate / (12 * 100)
+
+  // Calculate the monthly payment using the formula for a fixed-rate mortgage
+  var numerator =
+    principal *
+    monthlyInterestRate *
+    Math.pow(1 + monthlyInterestRate, finance.periodInMonths)
+  var denominator =
+    Math.pow(1 + monthlyInterestRate, finance.periodInMonths) - 1
+  var monthlyPayment = numerator / denominator
+
+  // Round the monthly payment to two decimal places
+  monthlyPayment = Math.round(monthlyPayment * 100) / 100
+
+  document.getElementById('payment_result').innerHTML =
+    monthlyPayment.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }) + '<sup>/mo</sup>'
+}
+
+function ResetForm(event) {
+  event.stopPropagation()
+  event.preventDefault()
+  const form = document.getElementById('finance_form')
+  form.reset()
+}
