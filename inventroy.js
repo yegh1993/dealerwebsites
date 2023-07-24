@@ -5,7 +5,6 @@ var itemsPerPage = 12
 var sortBy = 'name'
 var sortingOrder = 'asc'
 var local_vehicles
-fetchVehicles()
 
 function handleInputChange(event) {
   const key = event.target.name
@@ -337,3 +336,15 @@ function ResetForm(event) {
   const form = document.getElementById('finance_form')
   form.reset()
 }
+
+window.addEventListener('load', () => {
+  const queryParams = new URLSearchParams(window.location.search)
+
+  // If you want to get all the parameters and their values as an object
+  queryParams.forEach((value, key) => {
+    filters[key] = value
+  })
+
+  displaySelectedFilter()
+  fetchVehicles()
+})

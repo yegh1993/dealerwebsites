@@ -390,12 +390,7 @@
     font-size: 20px;
     line-height: 25px;
   }
-  .car-term-miles {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 16px;
-    display: block;
-  }
+
   .sc-cbf9113b-5.cjnLvy {
     grid-template: 90px 80px / repeat(3, 1fr);
   }
@@ -419,6 +414,47 @@
     grid-template-rows: 64px 80px;
   }
 }
+
+@media (max-width: 767px) {
+  .hero-banner-u {
+    padding: 20px;
+  }
+  .car-title-left .car-title-new {
+    font-size: 18px;
+    line-height: 21px;
+  }
+  .car-term-miles {
+    grid-auto-flow: row;
+  }
+  .price.car-price.hero-bar .old-price {
+    font-size: 15px;
+  }
+  .price.car-price.hero-bar .new-price {
+    font-size: 18px;
+  }
+  .car-gallery-images {
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-bottom: 30px;
+  }
+  .car-contain {
+    padding-left: 18px;
+    padding-right: 18px;
+    display: block;
+  }
+  .car-title-left p {
+    font-size: 14px;
+    line-height: 40px;
+    margin-top: 2px;
+  }
+  .price.car-price.fixed-bar .old-price {
+    font-size: 14px;
+  }
+  .price.car-price.fixed-bar .new-price {
+    font-size: 16px;
+  }
+}
+
 /* -------------------------------------------------------
 -                       SECTION B                      -
 ---------------------------------------------------------- */

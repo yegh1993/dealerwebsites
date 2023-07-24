@@ -65,7 +65,7 @@ function displayVehicle(vehicle) {
     </div>
     <div class="car-fixed-btn hide-in-mobile">
       <a
-        href="https://lctautollc.com/wp/cars/?car_body_style=suv"
+        href="/inventory.html?Body Style=${vehicle.bodyStyle}"
         class="view-more-btn"
         type="button"
         >View More Cars</a
