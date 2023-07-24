@@ -111,6 +111,18 @@
   font-weight: 600;
 }
 
+.section-b .sort-icon {
+  transition: all ease 0.3s;
+}
+
+.section-b .sort-icon.desc {
+  transform: rotate(180deg);
+}
+
+.section-b .sort-icon.asc {
+  transform: rotate(0deg);
+}
+
 .section-b .view-icon {
   font-size: 24px;
   margin: 4px 10px;

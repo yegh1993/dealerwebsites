@@ -1,4 +1,11 @@
 const filters = {}
+const finance = {}
+var initialPageNumber = 1
+var itemsPerPage = 12
+var sortBy = 'name'
+var sortingOrder = 'asc'
+var local_vehicles
+fetchVehicles()
 
 function handleInputChange(event) {
   const key = event.target.name
@@ -7,20 +14,6 @@ function handleInputChange(event) {
   SearchInventory(value)
   displaySelectedFilter()
 }
-
-// async function handleSeachInventory() {
-//   await SearchInventory()
-//   window.open(
-//     '/inventory.html?' +
-//       Object.entries(filters)
-//         .map((item) => item.join('='))
-//         .join('&') +
-//       '&minRange=' +
-//       inputValue[0].value +
-//       '&maxRange=' +
-//       inputValue[1].value
-//   )
-// }
 
 function Loader(show) {
   if (show) {
@@ -77,7 +70,8 @@ async function fetchVehicles() {
     )
     const vehicles = await response.json()
     console.log(vehicles.results)
-    displayVehicles(vehicles.results)
+    local_vehicles = [...vehicles.results]
+    sortItem()
   } catch (error) {
     console.error('Error fetching vehicles:', error)
   }
@@ -99,174 +93,209 @@ function displaySelectedFilter() {
   document.getElementById('selected-filters').innerHTML = html
 }
 
-function displayVehicles(vehicles) {
-  document.getElementById(
-    'vehicle-found'
-  ).innerHTML = `${vehicles.length} Vehicles Matching`
+function changeItemsPerPage(event) {
+  itemsPerPage = parseInt(event.target.value)
+  displayVehicles()
+}
 
-  var initialPageNumber = 1
-  var itemsPerPage = 12
-  displayItems(initialPageNumber, itemsPerPage)
-  generatePaginationButtons(vehicles.length, itemsPerPage, initialPageNumber)
+function sortItem() {
+  const sortedVehicle = local_vehicles.sort((a, b) => {
+    if (sortingOrder == 'asc') {
+      if (sortBy == 'createdAt' || sortBy == 'updatedAt')
+        return new Date(a[sortBy]) - new Date(b[sortBy])
+      return a[sortBy] - b[sortBy]
+    }
+    if (sortingOrder == 'desc') {
+      if (sortBy == 'createdAt' || sortBy == 'updatedAt')
+        return new Date(b[sortBy]) - new Date(a[sortBy])
+      return b[sortBy] - a[sortBy]
+    }
+  })
+  local_vehicles = sortedVehicle
+  displayVehicles()
+}
 
-  function getHTML(vehicle) {
-    return `
-    <div class="col-md-4 mt-3">
-    <div class="car-item">
-      <div
-        style="width:100%;
-        background: url('${
-          vehicle.images ? vehicle.images[0]?.url : '/images/car7.jpeg'
-        }') center center no-repeat;
-        background-size:cover;
-        height:165px;"
-      ></div>
-      <div class="car-item-content">
-        <div class="car-name">${vehicle.year} ${vehicle.make} ${
-      vehicle.model
-    }</div>
-        <div class="car-price">
-          <span class="old-price">$14,000.00</span>
-          <span class="new-price">
-          ${vehicle.price?.toLocaleString('en-US', {
-            style: 'currency',
-            currency: 'USD',
-          })}
-          </span>
-        </div>
-        <div
-          class="d-flex justify-content-between mt-3 car-props"
-        >
-          <div class="col-6 car-prop">Mileage</div>
-          <div class="col-6 car-prop-value">${vehicle.mileage}</div>
-        </div>
-        <div
-          class="d-flex justify-content-between mb-3 car-props"
-        >
-          <div class="col-6 car-prop">Availablity</div>
-          <div class="col-6 car-prop-value">${
-            vehicle.status == 'ACTIVE' ? 'In Store' : 'N/A'
-          }</div>
-        </div>
-        <div class="d-flex justify-content-between mt-4">
-          <a href="/vdp.html?id=${
-            vehicle.idVehicle
-          }" class="custom-btn-light custom-btn-detail">
-            <i class="fa-solid fa-link me-1"></i>
-            Detail
-          </a>
-          
-  
-          ${
-            vehicle.video
-              ? `<button class="custom-btn-light custom-btn-detail">
-            <i class="fa-solid fa-play me-1"></i>
-            Video
-          </button>`
-              : ''
-          }
-          </div>
-        </div>
-      </div>
-    </div>
-    `
+function changeSortOrder(event) {
+  console.log(sortingOrder)
+  if (sortingOrder == 'asc') {
+    sortingOrder = 'desc'
+    event.target.classList.remove('asc')
+    event.target.classList.add('desc')
+    return sortItem()
   }
-
-  function displayItems(pageNumber, itemsPerPage) {
-    const startIndex = (pageNumber - 1) * itemsPerPage
-    const endIndex = startIndex + itemsPerPage
-    const itemsToDisplay = vehicles.slice(startIndex, endIndex)
-
-    const car_list_box = document.getElementById('car-list-box')
-    car_list_box.innerHTML = ''
-
-    for (let i = 0; i < itemsToDisplay.length; i++) {
-      car_list_box.insertAdjacentHTML('beforeend', getHTML(itemsToDisplay[i]))
-    }
-
-    const paginationButtons = document.querySelectorAll(
-      '#pagination-buttons li'
-    )
-    paginationButtons.forEach(function (button) {
-      button.classList.remove('active')
-    })
-    paginationButtons[pageNumber - 1]?.classList.add('active')
-  }
-
-  function generatePaginationButtons(totalItems, itemsPerPage, currentPage) {
-    const totalPages = Math.ceil(totalItems / itemsPerPage)
-    const paginationButtons = document.getElementById('pagination-buttons')
-    paginationButtons.innerHTML = ''
-
-    const maxVisibleButtons = 4 // Maximum number of visible buttons
-    const totalVisibleButtons = Math.min(totalPages, maxVisibleButtons) // Total number of visible buttons
-
-    const startButton = Math.max(
-      1,
-      currentPage - Math.floor(totalVisibleButtons / 2)
-    )
-    const endButton = Math.min(
-      totalPages,
-      startButton + totalVisibleButtons - 1
-    )
-
-    if (currentPage > Math.floor(totalVisibleButtons / 2) + 1) {
-      const backButton = document.createElement('li')
-      backButton.textContent = 'Back'
-      backButton.addEventListener('click', function () {
-        const previousPage = currentPage - 1
-        displayItems(previousPage, itemsPerPage)
-        generatePaginationButtons(totalItems, itemsPerPage, previousPage)
-      })
-      paginationButtons.appendChild(backButton)
-    }
-
-    if (currentPage > Math.floor(totalVisibleButtons / 2) + 1) {
-      var ellipsisStart = document.createElement('li')
-      ellipsisStart.textContent = '...'
-      ellipsisStart.disabled = true
-      paginationButtons.appendChild(ellipsisStart)
-    }
-
-    for (let i = startButton; i <= endButton; i++) {
-      const button = document.createElement('li')
-      button.textContent = i
-      button.addEventListener('click', function () {
-        var pageNumber = parseInt(this.textContent)
-        displayItems(pageNumber, itemsPerPage)
-        generatePaginationButtons(totalItems, itemsPerPage, pageNumber)
-      })
-      if (i === currentPage) {
-        button.classList.add('active')
-      }
-      paginationButtons.appendChild(button)
-    }
-
-    if (endButton < totalPages) {
-      var ellipsisEnd = document.createElement('li')
-      ellipsisEnd.textContent = '...'
-      ellipsisEnd.disabled = true
-      paginationButtons.appendChild(ellipsisEnd)
-    }
-
-    if (currentPage < totalPages) {
-      const nextButton = document.createElement('li')
-      nextButton.textContent = 'Next'
-      nextButton.addEventListener('click', function () {
-        const nextPage = currentPage + 1
-        if (nextPage <= totalPages) {
-          displayItems(nextPage, itemsPerPage)
-          generatePaginationButtons(totalItems, itemsPerPage, nextPage)
-        }
-      })
-      paginationButtons.appendChild(nextButton)
-    }
+  if (sortingOrder == 'desc') {
+    sortingOrder = 'asc'
+    event.target.classList.remove('desc')
+    event.target.classList.add('asc')
+    return sortItem()
   }
 }
 
-fetchVehicles()
+function changeSorting(event) {
+  sortBy = event.target.value
+  sortItem()
+}
 
-const finance = {}
+function displayVehicles() {
+  document.getElementById(
+    'vehicle-found'
+  ).innerHTML = `${local_vehicles.length} Vehicles Matching`
+
+  displayItems(initialPageNumber)
+  generatePaginationButtons(local_vehicles.length, initialPageNumber)
+}
+
+function getHTML(vehicle) {
+  return `
+  <div class="col-md-4 mt-3">
+  <div class="car-item">
+    <div
+      style="width:100%;
+      background: url('${
+        vehicle.images ? vehicle.images[0]?.url : '/images/car7.jpeg'
+      }') center center no-repeat;
+      background-size:cover;
+      height:165px;"
+    ></div>
+    <div class="car-item-content">
+      <div class="car-name">${vehicle.year} ${vehicle.make} ${
+    vehicle.model
+  }</div>
+      <div class="car-price">
+        <span class="old-price">$14,000.00</span>
+        <span class="new-price">
+        ${vehicle.price?.toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        })}
+        </span>
+      </div>
+      <div
+        class="d-flex justify-content-between mt-3 car-props"
+      >
+        <div class="col-6 car-prop">Mileage</div>
+        <div class="col-6 car-prop-value">${vehicle.mileage}</div>
+      </div>
+      <div
+        class="d-flex justify-content-between mb-3 car-props"
+      >
+        <div class="col-6 car-prop">Availablity</div>
+        <div class="col-6 car-prop-value">${
+          vehicle.status == 'ACTIVE' ? 'In Store' : 'N/A'
+        }</div>
+      </div>
+      <div class="d-flex justify-content-between mt-4">
+        <a href="/vdp.html?id=${
+          vehicle.idVehicle
+        }" class="custom-btn-light custom-btn-detail">
+          <i class="fa-solid fa-link me-1"></i>
+          Detail
+        </a>
+        
+
+        ${
+          vehicle.video
+            ? `<button class="custom-btn-light custom-btn-detail">
+          <i class="fa-solid fa-play me-1"></i>
+          Video
+        </button>`
+            : ''
+        }
+        </div>
+      </div>
+    </div>
+  </div>
+  `
+}
+
+function displayItems(pageNumber) {
+  const startIndex = (pageNumber - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const itemsToDisplay = local_vehicles.slice(startIndex, endIndex)
+
+  console.log('Display Items', itemsPerPage)
+
+  const car_list_box = document.getElementById('car-list-box')
+  car_list_box.innerHTML = ''
+
+  for (let i = 0; i < itemsToDisplay.length; i++) {
+    car_list_box.insertAdjacentHTML('beforeend', getHTML(itemsToDisplay[i]))
+  }
+
+  const paginationButtons = document.querySelectorAll('#pagination-buttons li')
+  paginationButtons.forEach(function (button) {
+    button.classList.remove('active')
+  })
+  paginationButtons[pageNumber - 1]?.classList.add('active')
+}
+
+function generatePaginationButtons(totalItems, currentPage) {
+  console.log('Pagination Button', itemsPerPage)
+  const totalPages = Math.ceil(totalItems / itemsPerPage)
+  const paginationButtons = document.getElementById('pagination-buttons')
+  paginationButtons.innerHTML = ''
+
+  const maxVisibleButtons = 4 // Maximum number of visible buttons
+  const totalVisibleButtons = Math.min(totalPages, maxVisibleButtons) // Total number of visible buttons
+
+  const startButton = Math.max(
+    1,
+    currentPage - Math.floor(totalVisibleButtons / 2)
+  )
+  const endButton = Math.min(totalPages, startButton + totalVisibleButtons - 1)
+
+  if (currentPage > Math.floor(totalVisibleButtons / 2) + 1) {
+    const backButton = document.createElement('li')
+    backButton.textContent = 'Back'
+    backButton.addEventListener('click', function () {
+      const previousPage = currentPage - 1
+      displayItems(previousPage)
+      generatePaginationButtons(totalItems, previousPage)
+    })
+    paginationButtons.appendChild(backButton)
+  }
+
+  if (currentPage > Math.floor(totalVisibleButtons / 2) + 1) {
+    var ellipsisStart = document.createElement('li')
+    ellipsisStart.textContent = '...'
+    ellipsisStart.disabled = true
+    paginationButtons.appendChild(ellipsisStart)
+  }
+
+  for (let i = startButton; i <= endButton; i++) {
+    const button = document.createElement('li')
+    button.textContent = i
+    button.addEventListener('click', function () {
+      var pageNumber = parseInt(this.textContent)
+      displayItems(pageNumber)
+      generatePaginationButtons(totalItems, pageNumber)
+    })
+    if (i === currentPage) {
+      button.classList.add('active')
+    }
+    paginationButtons.appendChild(button)
+  }
+
+  if (endButton < totalPages) {
+    var ellipsisEnd = document.createElement('li')
+    ellipsisEnd.textContent = '...'
+    ellipsisEnd.disabled = true
+    paginationButtons.appendChild(ellipsisEnd)
+  }
+
+  if (currentPage < totalPages) {
+    const nextButton = document.createElement('li')
+    nextButton.textContent = 'Next'
+    nextButton.addEventListener('click', function () {
+      const nextPage = currentPage + 1
+      if (nextPage <= totalPages) {
+        displayItems(nextPage)
+        generatePaginationButtons(totalItems, nextPage)
+      }
+    })
+    paginationButtons.appendChild(nextButton)
+  }
+}
 
 function HandleInputValues(event) {
   const { name, value } = event.target
