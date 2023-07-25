@@ -27,7 +27,7 @@ function displayVehicle(vehicle) {
   const cover_images = [...vehicle.images]
 
   const getGridAreas = () => {
-    if (cover_images.length < 2) return "'main' 'main'"
+    if (cover_images.length < 2) return "'sideA main sideB' 'sideA main sideB'"
     if (cover_images.length < 3) return "'main sideA' 'main sideA'"
     if (cover_images.length >= 3) return "'main main sideA' 'main main sideB'"
   }
@@ -85,8 +85,8 @@ function displayVehicle(vehicle) {
   <div class="gallery-preview-images">
   <div class="grid-view row-gap">
     <div class="position-relative">
-      <div class="grid-view grid-area" style="
-        grid-template-areas: ${getGridAreas()}
+      <div class="grid-view grid-area grid-container-bg" style="
+        grid-template-areas: ${getGridAreas()};
       ">
       ${cover_images
         .map((item, idx) =>
@@ -96,7 +96,7 @@ function displayVehicle(vehicle) {
             <img
               class="gallery-image click-to-slick"
               data-slic="0"
-              src=${vehicle.images && vehicle.images[0]?.url}
+              src=${item?.url}
               alt=""
             />
           </div>`
@@ -288,6 +288,7 @@ function displaySecondTabFeaturesAndOptions(vehicle) {
   <div class="masonry-main cd-vehicle-features">
               <ul class="list-style-1 list-col-3">
               ${vehicle.options
+                .filter((option) => option.installed)
                 .map(
                   (option) =>
                     `<li>
