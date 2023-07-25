@@ -51,6 +51,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bigpicture@2.2.1/dist/BigPicture.min.js"></script>
   </head>
   <body>
+    <!-- Loader -->
+    <div id="page-loader">
+      <div>
+        <img src="/images/loader.gif" alt="loading" title="loading" />
+      </div>
+    </div>
+
     <!-- Top Sticky Header -->
     <div id="sticky-banner" class="car-fixed-header stcky-fixed animateTopbar">
       <div class="car-contain">
@@ -75,9 +82,9 @@
         </div>
         <div class="car-fixed-btn hide-in-mobile">
           <button
-            data-toggle="modal"
-            data-target="#shedule_test_drive"
             type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#scheduleModal"
           >
             Get Started
           </button>
@@ -914,8 +921,8 @@
                   <div class="price-button">
                     <button
                       type="button"
-                      data-toggle="modal"
-                      data-target="#finacial_calculator"
+                      data-bs-toggle="modal"
+                      data-bs-target="#financeModal"
                     >
                       GET YOUR TERMS
                     </button>
@@ -1112,6 +1119,193 @@
       </div>
     </footer>
 
+    <!-- Finance Modal -->
+    <div
+      class="modal fade"
+      id="financeModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header d-flex align-items-center">
+            <h1 class="modal-title" id="exampleModalLabel">
+              FINANICNG CALCULATOR
+            </h1>
+
+            <span data-bs-dismiss="modal" aria-label="Close" class="close"
+              >&times;</span
+            >
+          </div>
+          <div class="modal-body">
+            <form
+              id="finance_form"
+              onsubmit="calculateMonthlyPayment(event)"
+              class=""
+            >
+              <div class="mb-3">
+                <label
+                  for="formGroupExampleInput"
+                  class="form-label text-uppercase"
+                  >Loan Amount*</label
+                >
+                <input
+                  class="custom-input"
+                  type="text"
+                  name="loanAmount"
+                  oninput="HandleInputValues(event)"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label
+                  for="formGroupExampleInput"
+                  class="form-label text-uppercase"
+                  >Down Payment*</label
+                >
+                <input
+                  class="custom-input"
+                  name="downPayment"
+                  oninput="HandleInputValues(event)"
+                  type="text"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label
+                  for="formGroupExampleInput"
+                  class="form-label text-uppercase"
+                  >Interest Rate(%)*</label
+                >
+                <input
+                  class="custom-input"
+                  name="interestRate"
+                  oninput="HandleInputValues(event)"
+                  type="text"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label
+                  for="formGroupExampleInput"
+                  class="form-label text-uppercase"
+                  >Period (Month)*</label
+                >
+                <input
+                  class="custom-input"
+                  name="periodInMonths"
+                  oninput="HandleInputValues(event)"
+                  type="text"
+                  required
+                />
+              </div>
+
+              <div class="my-3">
+                <label
+                  for="formGroupExampleInput"
+                  class="form-label text-uppercase"
+                  >Payment</label
+                >
+                <div class="d-flex align-items-center">
+                  <div id="payment_result">
+                    <!-- Payment Result shows here -->
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex">
+                <a type="submit" href="javascript:void(0);"
+                  ><button class="custom-btn-primary custom-btn-primary-2 me-2">
+                    Estimate Payment
+                  </button></a
+                >
+                <a onclick="ResetForm(event)" href="javascript:void(0);"
+                  ><button class="custom-btn-primary custom-btn-primary-2">
+                    Reset
+                  </button></a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Schedule Modal -->
+    <div
+      class="modal fade"
+      id="scheduleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header d-flex align-items-center">
+            <h1 class="modal-title" id="exampleModalLabel">
+              Schedule Test Drive
+            </h1>
+
+            <span data-bs-dismiss="modal" aria-label="Close" class="close"
+              >&times;</span
+            >
+          </div>
+          <div class="modal-body">
+            <form
+              id="schedule_form"
+              onsubmit="calculateMonthlyPayment(event)"
+              class="row g-3 px-0"
+            >
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label
+                    for="formGroupExampleInput"
+                    class="form-label text-uppercase"
+                    >Loan Amount*</label
+                  >
+                  <input
+                    class="custom-input"
+                    type="text"
+                    name="loanAmount"
+                    oninput="HandleInputValues(event)"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label
+                    for="formGroupExampleInput"
+                    class="form-label text-uppercase"
+                    >Loan Amount*</label
+                  >
+                  <input
+                    class="custom-input"
+                    type="text"
+                    name="loanAmount"
+                    oninput="HandleInputValues(event)"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="d-flex">
+                <a onclick="ResetForm(event)" href="javascript:void(0);"
+                  ><button class="custom-btn-primary custom-btn-primary-2">
+                    Reset
+                  </button></a
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/common.js"></script>
     <script src="/vdp.js"></script>
   </body>
 </html>

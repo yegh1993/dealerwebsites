@@ -1100,3 +1100,79 @@ p.p-details-module.module-fire {
     margin: 20px;
   }
 }
+
+/* -------------------------------------------------------
+-                       FINANACE MODAL                   -
+---------------------------------------------------------- */
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+/* The Close Button */
+.close {
+  float: right;
+  font-size: 36px;
+  line-height: 36px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #db2e2d;
+  text-decoration: none;
+}
+
+.modal-header {
+  padding: 15px;
+  background-color: #323232;
+  color: white;
+  display: inline;
+}
+
+.modal-title {
+  font-size: 24px;
+  color: white;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+
+.btnedit {
+  padding: 15px;
+  background-color: rgb(19, 163, 19);
+  color: white;
+  border: none;
+}
+button {
+  margin: 12px 0px;
+}
+.row {
+  margin: auto;
+  padding: 18px;
+}
+.radiobtn {
+  margin-right: 15px;
+}

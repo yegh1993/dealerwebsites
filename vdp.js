@@ -1,4 +1,5 @@
 async function fetchVehicleDetails() {
+  PageLoader(true)
   const urlParams = new URLSearchParams(window.location.search)
   const vehicleId = urlParams.get('id')
   if (!vehicleId) {
@@ -18,6 +19,7 @@ async function fetchVehicleDetails() {
     console.log(vehicle)
     displayVehicle(vehicle)
     displayVehicleDetails(vehicle)
+    PageLoader(false)
   } catch (error) {
     console.error('Error fetching vehicle details:', error)
   }
@@ -71,9 +73,9 @@ function displayVehicle(vehicle) {
         >View More Cars</a
       >
       <button
-        data-toggle="modal"
-        data-target="#shedule_test_drive"
         type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#scheduleModal"
       >
         Get Started
       </button>

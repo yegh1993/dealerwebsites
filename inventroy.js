@@ -1,5 +1,4 @@
 const filters = {}
-const finance = {}
 var initialPageNumber = 1
 var itemsPerPage = 12
 var sortBy = 'name'
@@ -54,6 +53,7 @@ async function ResetFilter() {
 }
 
 async function fetchVehicles() {
+  PageLoader(true)
   const dealerId = '1'
   const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net'
   const dealerApiToken =
@@ -71,6 +71,7 @@ async function fetchVehicles() {
     console.log(vehicles.results)
     local_vehicles = [...vehicles.results]
     sortItem()
+    PageLoader(false)
   } catch (error) {
     console.error('Error fetching vehicles:', error)
   }
@@ -294,47 +295,6 @@ function generatePaginationButtons(totalItems, currentPage) {
     })
     paginationButtons.appendChild(nextButton)
   }
-}
-
-function HandleInputValues(event) {
-  const { name, value } = event.target
-  finance[name] = value
-}
-
-function calculateMonthlyPayment(event) {
-  event.stopPropagation()
-  event.preventDefault()
-
-  // Calculate the loan amount after deducting the down payment
-  var principal = finance.loanAmount - finance.downPayment
-
-  // Convert the annual interest rate to a monthly rate
-  var monthlyInterestRate = finance.interestRate / (12 * 100)
-
-  // Calculate the monthly payment using the formula for a fixed-rate mortgage
-  var numerator =
-    principal *
-    monthlyInterestRate *
-    Math.pow(1 + monthlyInterestRate, finance.periodInMonths)
-  var denominator =
-    Math.pow(1 + monthlyInterestRate, finance.periodInMonths) - 1
-  var monthlyPayment = numerator / denominator
-
-  // Round the monthly payment to two decimal places
-  monthlyPayment = Math.round(monthlyPayment * 100) / 100
-
-  document.getElementById('payment_result').innerHTML =
-    monthlyPayment.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }) + '<sup>/mo</sup>'
-}
-
-function ResetForm(event) {
-  event.stopPropagation()
-  event.preventDefault()
-  const form = document.getElementById('finance_form')
-  form.reset()
 }
 
 window.addEventListener('load', () => {

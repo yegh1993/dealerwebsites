@@ -265,10 +265,69 @@ function Subscribe(event) {
   }
 
   showLoader()
-
-  return (subscriber_error.innerHTML = 'Something went worng while subscribing')
+  // handle API here
 
   hideLoader()
 
-  // handle API here
+  return (subscriber_error.innerHTML = 'Something went worng while subscribing')
+}
+
+/**
+ * ---------------------------------------------------
+ *                 PAGE LOADER                       -
+ * ---------------------------------------------------
+ */
+
+function PageLoader(show) {
+  if (show) document.getElementById('page-loader').classList.remove('d-none')
+  else document.getElementById('page-loader').classList.add('d-none')
+}
+
+/**
+ * ---------------------------------------------------
+ *                 FINANCE FORM                      -
+ * ---------------------------------------------------
+ */
+
+const finance = {}
+
+function HandleInputValues(event) {
+  const { name, value } = event.target
+  finance[name] = value
+}
+
+function calculateMonthlyPayment(event) {
+  event.stopPropagation()
+  event.preventDefault()
+
+  // Calculate the loan amount after deducting the down payment
+  var principal = finance.loanAmount - finance.downPayment
+
+  // Convert the annual interest rate to a monthly rate
+  var monthlyInterestRate = finance.interestRate / (12 * 100)
+
+  // Calculate the monthly payment using the formula for a fixed-rate mortgage
+  var numerator =
+    principal *
+    monthlyInterestRate *
+    Math.pow(1 + monthlyInterestRate, finance.periodInMonths)
+  var denominator =
+    Math.pow(1 + monthlyInterestRate, finance.periodInMonths) - 1
+  var monthlyPayment = numerator / denominator
+
+  // Round the monthly payment to two decimal places
+  monthlyPayment = Math.round(monthlyPayment * 100) / 100
+
+  document.getElementById('payment_result').innerHTML =
+    monthlyPayment.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    }) + '<sup>/mo</sup>'
+}
+
+function ResetForm(event) {
+  event.stopPropagation()
+  event.preventDefault()
+  const form = document.getElementById('finance_form')
+  form.reset()
 }
