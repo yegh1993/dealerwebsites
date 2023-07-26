@@ -33,15 +33,24 @@ async function fetchVehicleDetails() {
 
 function displayStickyTop(vehicle) {
   const html = `
-  <div class="car-fixed-title">
+  <div class="car-fixed-title flex-row align-items-center justify-content-between justify-content-md-center">
   <div class="car-title-left">
     <div>
       <p class="sc-1647e4d6-1 DclM">${vehicle.year} ${vehicle.make} ${
     vehicle.model
   }</p>
-      <p class="sc-1647e4d6-1 DclM hide-in-mobile">${vehicle.engineShape}</p>
+      <p class="sc-1647e4d6-1 DclM hide-in-mobile">${vehicle.trim}</p>
     </div>
   </div>
+  <div class="car-fixed-btn d-block d-md-none mt-2">
+  <button
+    type="button"
+    data-bs-toggle="modal"
+    data-bs-target="#scheduleModal"
+  >
+    Get Started
+  </button>
+</div>
 </div>
 <div class="car-fixed-price">
   <div class="flex">
@@ -83,7 +92,7 @@ function displayVehicle(vehicle) {
     vehicle.model
   }</h2>
           <div class="car-term-miles">
-            <span class="block m:inline">${vehicle.engineShape}</span>
+            <span class="block m:inline">${vehicle.trim}</span>
             <span class="">•</span>
             <span data-qa="mileage">${vehicle.mileage?.toLocaleString()} miles</span>
           </div>
