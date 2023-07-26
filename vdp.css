@@ -1104,31 +1104,6 @@ p.p-details-module.module-fire {
 /* -------------------------------------------------------
 -                       FINANACE MODAL                   -
 ---------------------------------------------------------- */
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
-
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
-
-/* The Close Button */
 .close {
   float: right;
   font-size: 36px;
@@ -1160,19 +1135,31 @@ p.p-details-module.module-fire {
   font-weight: 500;
 }
 
-.btnedit {
-  padding: 15px;
-  background-color: rgb(19, 163, 19);
+#schedule_form input:not([type='checkbox']) {
+  display: inline-block;
+  width: 160px;
+  height: 26px;
+  padding: 8px 4px;
+  margin: 8px 4px;
+}
+
+#schedule_form input[type='checkbox'] {
+  border: 1px solid var(--bs-border-color);
+}
+
+#schedule_form textarea {
+  padding: 8px 4px;
+}
+
+#schedule_form span {
+  margin: 8px 4px;
+}
+
+.tooltip-custom-content {
+  background-color: #000;
   color: white;
-  border: none;
-}
-button {
-  margin: 12px 0px;
-}
-.row {
-  margin: auto;
-  padding: 18px;
-}
-.radiobtn {
-  margin-right: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 15px 20px;
+  font-size: 12px;
 }

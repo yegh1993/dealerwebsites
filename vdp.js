@@ -1,11 +1,14 @@
+let showComment = true
+
 async function fetchVehicleDetails() {
   PageLoader(true)
   const urlParams = new URLSearchParams(window.location.search)
   const vehicleId = urlParams.get('id')
   if (!vehicleId) {
     console.error('Vehicle ID not provided')
-    return
+    return (window.location.href = '/')
   }
+
   const dealerApiToken =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmFrb3N5YW5kYXZpZGRldkBnbWFpbC5jb20iLCJzdWIiOjEsImRlYWxlcnNoaXAiOjEsInJvbGUiOiJERUFMRVJfQURNSU4iLCJpYXQiOjE2ODE4MzAyODIsImV4cCI6MTY4MTkxNjY4Mn0.jGifLS5ezj43hqJVrbFeFRlyDg1_j4MESQMdPC5tAyQ'
   const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net'
@@ -19,10 +22,45 @@ async function fetchVehicleDetails() {
     console.log(vehicle)
     displayVehicle(vehicle)
     displayVehicleDetails(vehicle)
+    displayStickyTop(vehicle)
+    displayPayOnce(vehicle)
     PageLoader(false)
   } catch (error) {
     console.error('Error fetching vehicle details:', error)
+    PageLoader(false)
   }
+}
+
+function displayStickyTop(vehicle) {
+  const html = `
+  <div class="car-fixed-title">
+  <div class="car-title-left">
+    <div>
+      <p class="sc-1647e4d6-1 DclM">${vehicle.year} ${vehicle.make} ${
+    vehicle.model
+  }</p>
+      <p class="sc-1647e4d6-1 DclM hide-in-mobile">${vehicle.engineShape}</p>
+    </div>
+  </div>
+</div>
+<div class="car-fixed-price">
+  <div class="flex">
+    <div class="car-flex-col">
+      <div class="price car-price fixed-bar">
+      <!-- <span class="old-price"> $5,200.00</span
+        > -->
+        <span class="new-price"> ${vehicle.price?.toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        })}</span>
+      </div>
+      <p class="car-flex-miles hide-in-mobile">${vehicle.mileage?.toLocaleString()} miles</p>
+    </div>
+  </div>
+</div>
+  `
+
+  document.getElementById('sticky-top').insertAdjacentHTML('afterbegin', html)
 }
 
 function displayVehicle(vehicle) {
@@ -52,8 +90,8 @@ function displayVehicle(vehicle) {
         </div>
       </div>
     </div>
-    <div class="car-fixed-price">
-      <div class="flex">
+    <div class="car-fixed-price d-block d-md-flex">
+      <div class="flex justify-content-end">
         <div class="car-title-col">
           <div class="price car-price hero-bar">
             <!-- <span class="old-price"> $5,200.00</span> -->
@@ -64,7 +102,18 @@ function displayVehicle(vehicle) {
           </div>
         </div>
       </div>
+      <div class="car-fixed-btn d-block d-md-none text-end">
+     
+      <button
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#scheduleModal"
+        class="mt-3"
+      >
+        Get Started
+      </button>
     </div>
+      </div>
     <div class="car-fixed-btn hide-in-mobile">
       <a
         href="/inventory.html?Body Style=${vehicle.bodyStyle}"
@@ -261,7 +310,9 @@ function displayFirstTabVehicleDetails(vehicle) {
               <div class="get-report-btn">
                 <a
                   target="_blank"
-                  href="http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&amp;vin=4S2CK58YX44313428"
+                  href="http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&amp;vin=${
+                    vehicle.vin
+                  }"
                   type="button"
                   >Get My Free Report</a
                 >
@@ -307,12 +358,75 @@ function displaySecondTabFeaturesAndOptions(vehicle) {
     .insertAdjacentHTML('beforeend', html)
 }
 
+function displayPayOnce(vehicle) {
+  const price = vehicle.price || 0
+  const tax = price * 0.1
+  const total = price + tax
+
+  const html = `
+  <div class="table-price">
+  <p class="table-price-p">${total.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })}</p>
+  <p class="t-body-m">&nbsp;</p>
+</div>
+<ul class="price-list-table">
+  <li class="taxable-list">
+    <span>Vehicle Price</span><span>${price.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    })}</span>
+  </li>
+  <li class="taxable-list">
+    <span>Tax, Title, Registration</span><span>${tax.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    })}</span>
+  </li>
+</ul>
+<ul class="price-list-total">
+  <li class="taxable-list">
+    <span>Total Cash Price</span>
+    <span>${total.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    })}</span>
+  </li>
+</ul>
+  `
+
+  document.getElementById('pay-once').insertAdjacentHTML('afterbegin', html)
+}
+
 function MorePhotos(element) {
   BigPicture({
     el: element,
     gallery: '#gallery',
   })
 }
+
+function handleInputChange(event) {
+  const { name, value } = event.target
+  schedule[name] = value
+}
+
+function ToggleComment(event) {
+  const parent = event.target.parentElement
+  const icon = parent.firstElementChild
+  const textarea = parent.nextElementSibling
+  if (showComment) {
+    icon.classList.remove('fa-plus')
+    icon.classList.add('fa-minus')
+    textarea.classList.remove('d-none')
+  } else {
+    icon.classList.add('fa-plus')
+    icon.classList.remove('fa-minus')
+    textarea.classList.add('d-none')
+  }
+  showComment = !showComment
+}
+
 // Call the API on window load
 window.onload = function () {
   // Call the API with the extracted data
@@ -332,4 +446,24 @@ window.onload = function () {
   }
 
   window.addEventListener('scroll', animateTop)
+
+  // const tooltipTriggerList = document.querySelectorAll(
+  //   '[data-bs-toggle="tooltip"]'
+  // )
+  // const tooltipList = [...tooltipTriggerList].map(
+  //   (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+  // )
+
+  var tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  )
+
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    console.log(tooltipTriggerEl.dataset.bsTitle)
+    return new bootstrap.Tooltip(tooltipTriggerEl, {
+      template: document.getElementById(tooltipTriggerEl.dataset.bsTitle)
+        .innerHTML,
+      html: true,
+    })
+  })
 }

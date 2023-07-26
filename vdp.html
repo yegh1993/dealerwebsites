@@ -60,26 +60,8 @@
 
     <!-- Top Sticky Header -->
     <div id="sticky-banner" class="car-fixed-header stcky-fixed animateTopbar">
-      <div class="car-contain">
-        <div class="car-fixed-title">
-          <div class="car-title-left">
-            <div>
-              <p class="sc-1647e4d6-1 DclM">2004 Isuzu Rodeo</p>
-              <p class="sc-1647e4d6-1 DclM hide-in-mobile">3.5L S 2WD</p>
-            </div>
-          </div>
-        </div>
-        <div class="car-fixed-price">
-          <div class="flex">
-            <div class="car-flex-col">
-              <div class="price car-price fixed-bar">
-                <span class="old-price"> $5,200.00</span
-                ><span class="new-price"> $3,770.00</span>
-              </div>
-              <p class="car-flex-miles hide-in-mobile">148,000 miles</p>
-            </div>
-          </div>
-        </div>
+      <div class="car-contain" id="sticky-top">
+        <!-- Car Detail Shows Here -->
         <div class="car-fixed-btn hide-in-mobile">
           <button
             type="button"
@@ -812,25 +794,8 @@
             <div class="col-outside">
               <div class="vehicles-price-first">
                 <h3 class="price-detail-heading">Pay Once</h3>
-                <div class="table-outer">
-                  <div class="table-price">
-                    <p class="table-price-p">$4,147.00</p>
-                    <p class="t-body-m">&nbsp;</p>
-                  </div>
-                  <ul class="price-list-table">
-                    <li class="taxable-list">
-                      <span>Vehicle Price</span><span>$3,770.00</span>
-                    </li>
-                    <li class="taxable-list">
-                      <span>Tax, Title, Registration</span><span>$377.00</span>
-                    </li>
-                  </ul>
-                  <ul class="price-list-total">
-                    <li class="taxable-list">
-                      <span>Total Cash Price</span>
-                      <span>$4,147.00</span>
-                    </li>
-                  </ul>
+                <div id="pay-once" class="table-outer">
+                  <!-- Price Details Shows Here -->
                   <div class="price-button price-first-btn">
                     <button
                       type="button"
@@ -849,47 +814,29 @@
                     <p class="table-price-p">$88-$102</p>
                     <div class="t-body-m">
                       This is an estimate
-                      <div class="sighif">
-                        <div
-                          role="tooltip"
-                          id="price_tooltip"
-                          class="bottom-arrow sdsc1hs"
-                          direction="bottom"
-                          width="250"
-                          color=""
-                          style="
-                            display: none;
-                            --sdsc1hs-0: var(--cvna-color-blue-6);
-                            --sdsc1hs-1: 250px;
-                            --sdsc1hs-2: 24px;
-                            --sdsc1hs-3: -118px;
-                            --sdsc1hs-5: calc(100% + 0px);
-                            --sdsc1hs-6: calc(50% + 0px);
-                            --sdsc1hs-7: block;
-                            --sdsc1hs-8: var(--cvna-color-blue-6);
-                            --sdsc1hs-10: calc(-6px + 0px);
-                            --sdsc1hs-15: calc(99% + 0px);
-                            --sdsc1hs-16: calc(50% - 5px + 0px);
-                            --sdsc1hs-20: calc(-3% + 0px);
-                          "
-                        >
-                          <div class="t109u1xh"></div>
-                          <div class="bz4sugt">
-                            <p class="text-left">This range is based on:</p>
-                            <ul
-                              class="ml-24 my-12 t-body-s"
-                              style="list-style: initial"
-                            >
-                              <li class="pt-4">$0 Cash Down</li>
-                              <li class="pt-4">69 Month Loan</li>
-                              <li class="pt-4">18.98%-27.54% APR</li>
-                              <li class="pt-4">
+                      <div
+                        class="sighif"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="bottom"
+                        data-bs-title="customTooltipTemplate"
+                      >
+                        <!-- Define a custom template for the tooltip -->
+                        <div id="customTooltipTemplate" style="display: none">
+                          <div class="tooltip-custom-content">
+                            <div>
+                              <strong>This range is base on:</strong>
+                            </div>
+                            <ul class="mb-0 mt-12" style="list-style: initial">
+                              <li class="pt-2">$0 Cash Down</li>
+                              <li class="pt-2">69 Month Loan</li>
+                              <li class="pt-2">18.98%-27.54% APR</li>
+                              <li class="pt-2">
                                 Average–Excellent Credit Score
                               </li>
                             </ul>
-                            <p></p>
                           </div>
                         </div>
+
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
@@ -1138,7 +1085,7 @@
               >&times;</span
             >
           </div>
-          <div class="modal-body">
+          <div class="modal-body px-4">
             <form
               id="finance_form"
               onsubmit="calculateMonthlyPayment(event)"
@@ -1259,126 +1206,96 @@
               onsubmit="calculateMonthlyPayment(event)"
               class="row g-3 px-0"
             >
-              <div class="col-md-6">
-                <div class="mb-2">
-                  <label
-                    for="formGroupExampleInput"
-                    class="form-label text-uppercase"
-                    >First Name*</label
-                  >
-                  <input
-                    class="custom-input"
-                    type="text"
-                    name="loanAmount"
-                    oninput="HandleInputValues(event)"
-                    required
-                  />
-                </div>
+              <div>
+                <span>Hello my name is</span>
+                <input
+                  class="custom-input"
+                  type="text"
+                  name="first_name"
+                  placeholder="First name"
+                  oninput="handleInputChange(event)"
+                  required
+                />
+                <input
+                  class="custom-input"
+                  type="text"
+                  name="last_name"
+                  placeholder="Last name"
+                  oninput="handleInputChange(event)"
+                  required
+                />
+                <span
+                  >and I'd like to request more details for
+                  <b>2023 Ford F-150</b>. I'm in the
+                </span>
+                <input
+                  class="custom-input"
+                  type="text"
+                  name="address"
+                  placeholder="Address"
+                  oninput="handleInputChange(event)"
+                  required
+                />
+                <span>area. You can reach me by email at</span>
+                <input
+                  class="custom-input"
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  oninput="handleInputChange(event)"
+                  required
+                  style="width: 200px"
+                />
+                <span>or by phone at</span>
+                <input
+                  class="custom-input"
+                  type="text"
+                  name="phone"
+                  placeholder="123-456-789(optional)"
+                  oninput="handleInputChange(event)"
+                />
               </div>
-              <div class="col-md-6">
-                <div class="mb-2">
-                  <label
-                    for="formGroupExampleInput"
-                    class="form-label text-uppercase"
-                    >Last Name*</label
-                  >
-                  <input
-                    class="custom-input"
-                    type="text"
-                    name="loanAmount"
-                    oninput="HandleInputValues(event)"
-                    required
-                  />
-                </div>
+              <div>Thank you!</div>
+
+              <div
+                onclick="ToggleComment(event)"
+                style="cursor: pointer"
+                class="mt-5 text-end"
+              >
+                <i class="fa-solid fa-plus"></i>
+                <span>Add Comment</span>
               </div>
 
-              <div class="col-md-6">
-                <div class="mb-2">
-                  <label
-                    for="formGroupExampleInput"
-                    class="form-label text-uppercase"
-                    >Email*</label
-                  >
-                  <input
-                    class="custom-input"
-                    type="text"
-                    name="loanAmount"
-                    oninput="HandleInputValues(event)"
-                    required
-                  />
-                </div>
+              <div class="d-none">
+                <textarea
+                  class="custom-input"
+                  type="text"
+                  name="phone"
+                  placeholder="123-456-789(optional)"
+                  oninput="handleInputChange(event)"
+                  required
+                ></textarea>
               </div>
 
-              <div class="col-md-6">
-                <div class="mb-2">
-                  <label
-                    for="formGroupExampleInput"
-                    class="form-label text-uppercase"
-                    >Mobile</label
-                  >
-                  <input
-                    class="custom-input"
-                    type="text"
-                    name="loanAmount"
-                    oninput="HandleInputValues(event)"
-                  />
-                </div>
-              </div>
-
-              <div class="col-12">
-                <div class="mb-2">
-                  <label
-                    for="formGroupExampleInput"
-                    class="form-label text-uppercase"
-                    >Address</label
-                  >
-                  <textarea
-                    class="custom-input"
-                    type="text"
-                    name="loanAmount"
-                    oninput="HandleInputValues(event)"
-                  ></textarea>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-2">
-                  <label
-                    for="formGroupExampleInput"
-                    class="form-label text-uppercase"
-                    >State</label
-                  >
-                  <input
-                    class="custom-input"
-                    type="text"
-                    name="loanAmount"
-                    oninput="HandleInputValues(event)"
-                  />
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-2">
-                  <label
-                    for="formGroupExampleInput"
-                    class="form-label text-uppercase"
-                    >Zip</label
-                  >
-                  <input
-                    class="custom-input"
-                    type="text"
-                    name="loanAmount"
-                    oninput="HandleInputValues(event)"
-                  />
-                </div>
+              <div>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Email me new listings for my search
+                </label>
               </div>
 
               <div class="d-flex">
-                <a onclick="ResetForm(event)" href="javascript:void(0);"
-                  ><button class="custom-btn-primary custom-btn-primary-2">
-                    Reset
-                  </button></a
+                <button
+                  onclick="ResetForm(event)"
+                  class="custom-btn-primary custom-btn-primary-2 w-100"
                 >
+                  Send Message
+                </button>
               </div>
             </form>
           </div>

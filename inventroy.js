@@ -147,7 +147,7 @@ function displayVehicles() {
 
 function getHTML(vehicle) {
   return `
-  <div class="col-md-4 mt-3">
+  <div class="col-lg-4 mt-3">
   <div class="car-item">
     <div
       style="width:100%;
