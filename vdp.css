@@ -16,7 +16,7 @@
   position: fixed;
 }
 .car-contain {
-  max-width: 1800px;
+  max-width: 1600px;
   -webkit-box-align: stretch;
   align-items: stretch;
   padding-left: 32px;
@@ -124,7 +124,7 @@
   background: #e4ecf0;
 }
 .vdp-wrap {
-  max-width: 1800px;
+  max-width: 1600px;
   margin: 0 auto;
   background: white;
 }
@@ -143,7 +143,7 @@
 }
 /* .b-image1 {
   background-size: contain cover;
-  background: url("/images/vdpBackground1.jpg") center center;
+  background: url("/vdpBackground1.jpg") center center;
   width: 100%;
   background-repeat: no-repeat;
   background-size: auto;
@@ -151,7 +151,7 @@
 }
 .b-image2 {
   background-size: cover;
-  background: url("/images/vdpBackground2.jpg");
+  background: url("/vdpBackground2.jpg");
   grid-row: 1;
   grid-column: 1;
   height: 100%;
@@ -159,7 +159,7 @@
 }
 .b-image3 {
   background-size: cover;
-  background: url("/images/vdpBackground3.jpg");
+  background: url("/vdpBackground3.jpg");
   width: 100%;
   height: 100%;
 } */
@@ -457,7 +457,7 @@
 ---------------------------------------------------------- */
 
 .div-container {
-  max-width: 1800px;
+  max-width: 1600px;
   background-color: #fff;
   margin: 0 auto;
 }
@@ -815,7 +815,7 @@ html {
   padding-bottom: 90px;
 }
 .div-container {
-  max-width: 1800px;
+  max-width: 1600px;
   background-color: #fff;
   margin: 0 auto;
 }
@@ -1096,7 +1096,7 @@ p.p-details-module.module-fire {
 }
 
 /* -------------------------------------------------------
--                       FINANACE MODAL                   -
+-                      SCHEDULE MODAL                    -
 ---------------------------------------------------------- */
 .close {
   float: right;
@@ -1104,7 +1104,7 @@ p.p-details-module.module-fire {
   line-height: 36px;
   font-weight: 600;
   font-family: 'Roboto', sans-serif;
-  color: white;
+  /* color: white; */
   cursor: pointer;
 }
 
@@ -1116,17 +1116,21 @@ p.p-details-module.module-fire {
 
 .modal-header {
   padding: 15px;
-  background-color: #323232;
-  color: white;
+  /* background-color: #323232; */
+  /* color: white; */
   display: inline;
 }
 
 .modal-title {
   font-size: 24px;
-  color: white;
+  /* color: white; */
   text-transform: uppercase;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
+}
+
+.modal-content {
+  color: #000;
 }
 
 #schedule_form input:not([type='checkbox']) {
@@ -1148,6 +1152,21 @@ p.p-details-module.module-fire {
 #schedule_form span {
   margin: 8px 4px;
 }
+
+@media (max-width: 426px) {
+  .modal-dialog {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .modal-content {
+    height: 100vh;
+  }
+}
+
+/* -------------------------------------------------------
+-                      TOOL TIP                          -
+---------------------------------------------------------- */
 
 .tooltip-custom-content {
   background-color: #000;

@@ -104,7 +104,7 @@ a {
 -                       SECTION M (FOOTER)               -
 ---------------------------------------------------------- */
 .section-m.footer {
-  background: url('/images/footer_car.jpg') center center no-repeat;
+  background: url('/footer_car.jpg') center center no-repeat;
   background-size: cover;
   position: relative;
 }
@@ -542,4 +542,37 @@ input[type='number']::-webkit-outer-spin-button {
 
 .reveal.active {
   transform: translateY(-40px);
+}
+
+/* -------------------------------------------------------
+-                    CAR STATUS TAG                      -
+---------------------------------------------------------- */
+
+.used-tag {
+  position: absolute;
+  top: 0;
+  left: 8px;
+  top: 8px;
+  background: #ef1313;
+  font-size: 11px !important;
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 10px;
+  z-index: 5;
+  text-transform: uppercase;
+  display: inline;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
+}
+.sold-tag {
+  background: url('/sold-img.png') center center no-repeat;
+  background-size: contain;
+  width: 88px;
+  height: 58px;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
 }

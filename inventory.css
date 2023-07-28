@@ -2,7 +2,7 @@
 -                       SECTION A                        -
 ---------------------------------------------------------- */
 .section-a {
-  background: url('/images/footer_car.jpg') center center no-repeat;
+  background: url('/footer_car.jpg') center center no-repeat;
   background-size: cover;
   position: relative;
   height: 250px;

@@ -24,6 +24,7 @@ async function fetchVehicleDetails() {
     displayVehicleDetails(vehicle)
     displayStickyTop(vehicle)
     displayPayOnce(vehicle)
+    calculateMonthlyPayment(vehicle)
     PageLoader(false)
   } catch (error) {
     console.error('Error fetching vehicle details:', error)
@@ -33,7 +34,7 @@ async function fetchVehicleDetails() {
 
 function displayStickyTop(vehicle) {
   const html = `
-  <div class="car-fixed-title flex-row align-items-center justify-content-between justify-content-md-center">
+  <div class="car-fixed-title flex-row align-items-center justify-content-between">
   <div class="car-title-left">
     <div>
       <p class="sc-1647e4d6-1 DclM">${vehicle.year} ${vehicle.make} ${
@@ -93,7 +94,7 @@ function displayVehicle(vehicle) {
   }</h2>
           <div class="car-term-miles">
             <span class="block m:inline">${vehicle.trim}</span>
-            <span class="">•</span>
+            <span class="d-none d-md-block">•</span>
             <span data-qa="mileage">${vehicle.mileage?.toLocaleString()} miles</span>
           </div>
         </div>
@@ -189,6 +190,20 @@ function displayVehicle(vehicle) {
 </div>
   `
   document.getElementById('car-details').insertAdjacentHTML('beforeend', html)
+
+  document
+    .getElementsByTagName('title')[0]
+    .insertAdjacentHTML(
+      'beforeend',
+      `${vehicle.year} ${vehicle.make} ${vehicle.model}`
+    )
+
+  document
+    .getElementById('vehicle-title')
+    .insertAdjacentHTML(
+      'beforeend',
+      `${vehicle.year} ${vehicle.make} ${vehicle.model}`
+    )
 }
 
 function displayVehicleDetails(vehicle) {
@@ -304,7 +319,7 @@ function displayFirstTabVehicleDetails(vehicle) {
               >
                 <div class="carvax-logo">
                   <img
-                    src="/images/crafax.png"
+                    src="/crafax.png"
                     alt="Carfax Logo"
                     width="70"
                   />
@@ -364,6 +379,10 @@ function displaySecondTabFeaturesAndOptions(vehicle) {
   `
   document
     .getElementById('profile-tab-details')
+    .insertAdjacentHTML('beforeend', html)
+
+  document
+    .getElementById('profile-accordion-details')
     .insertAdjacentHTML('beforeend', html)
 }
 
@@ -434,6 +453,49 @@ function ToggleComment(event) {
     textarea.classList.add('d-none')
   }
   showComment = !showComment
+}
+
+function calculateMonthlyPayment(vehicle) {
+  const price = vehicle.price || 0
+  const tax = price * 0.1
+  const total = price + tax
+
+  const loadAmount = total
+  const downPayment = 0
+  const monthlyPeriod = 69
+  const interestRate = [18.98, 27.54]
+
+  const monthlyPayments = interestRate.map((rate) => {
+    // Calculate the loan amount after deducting the down payment
+    var principal = loadAmount - downPayment
+
+    // Convert the annual interest rate to a monthly rate
+    var monthlyInterestRate = rate / (12 * 100)
+
+    // Calculate the monthly payment using the formula for a fixed-rate mortgage
+    var numerator =
+      principal *
+      monthlyInterestRate *
+      Math.pow(1 + monthlyInterestRate, monthlyPeriod)
+    var denominator = Math.pow(1 + monthlyInterestRate, monthlyPeriod) - 1
+    var monthlyPayment = numerator / denominator
+
+    // Round the monthly payment to two decimal places
+    monthlyPayment = Math.round(monthlyPayment * 100) / 100
+    return monthlyPayment.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    })
+  })
+
+  document
+    .getElementById('pay-monthly')
+    .insertAdjacentHTML(
+      'beforeend',
+      `${monthlyPayments[0]} - ${monthlyPayments[1]}`
+    )
+
+  console.log()
 }
 
 // Call the API on window load

@@ -147,16 +147,20 @@ function displayVehicles() {
 
 function getHTML(vehicle) {
   return `
-  <div class="col-md-6 col-lg-4 mt-3">
+  <div class="col-sm-6 col-lg-4 mt-3">
   <div class="car-item">
     <div
       style="width:100%;
+      position:relative;
       background: url('${
-        vehicle.images ? vehicle.images[0]?.url : '/images/car7.jpeg'
+        vehicle.images ? vehicle.images[0]?.url : '/car7.jpeg'
       }') center center no-repeat;
       background-size:cover;
       height:165px;"
-    ></div>
+    >
+    <!-- <span class="used-tag">Used</span> -->
+    ${vehicle.status == 'SOLD' ? '<span class="sold-tag"></span>' : ''}
+    </div>
     <div class="car-item-content">
       <div class="car-name">${vehicle.year} ${vehicle.make} ${
     vehicle.model

@@ -5,7 +5,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background: url('/images/bg.jpg') center center no-repeat;
+  background: url('/bg.jpg') center center no-repeat;
   background-size: cover;
   font-family: 'Roboto', sans-serif;
 }
@@ -339,7 +339,7 @@ select:focus-visible {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: url('/images/avatar.png') center center no-repeat;
+  background: url('/avatar.png') center center no-repeat;
   background-size: cover;
   margin: auto;
   margin-bottom: 12px;
@@ -357,7 +357,7 @@ select:focus-visible {
 -                       SECTION F                        -
 ---------------------------------------------------------- */
 .section-f {
-  background: url('/images/bg-car.png') center center no-repeat;
+  background: url('/bg-car.png') center center no-repeat;
   background-size: cover;
   padding: 80px 0;
   position: relative;
@@ -393,29 +393,6 @@ select:focus-visible {
 .section-f .car-image {
   width: 270px;
   max-height: 202px;
-}
-
-.used-tag {
-  background-color: #ef1313;
-  font-weight: 600;
-  padding: 8px 10px;
-  text-transform: uppercase;
-  border-radius: 0.25rem;
-  color: white;
-  font-size: 11px;
-  font-family: 'Open Sans', sans-serif;
-  position: absolute;
-  top: 8px;
-  left: 8px;
-}
-.sold-tag {
-  background: url('/images/sold-img.png') center center no-repeat;
-  background-size: contain;
-  width: 88px;
-  height: 58px;
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
 }
 
 .section-f .title {
@@ -460,7 +437,7 @@ select:focus-visible {
   background-color: #f6f6f6;
 }
 .section-g .bg-car {
-  background: url('/images/car7.jpeg') center center no-repeat;
+  background: url('/car7.jpeg') center center no-repeat;
   background-size: cover;
   height: 480px;
 }

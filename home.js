@@ -4,50 +4,6 @@
  * ---------------------------------------------------
  */
 
-const swiper = new Swiper('.swiper', {
-  // Optional parameters
-  loop: true,
-
-  // If we need pagination
-  // pagination: {
-  //   el: '.swiper-pagination',
-  // },
-
-  // Navigation arrows
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-
-  // And if we need scrollbar
-  // scrollbar: {
-  //   el: '.swiper-scrollbar',
-  // },
-  breakpoints: {
-    // when window width is >= 320px
-    320: {
-      slidesPerView: 1,
-      spaceBetween: 10,
-    },
-    // when window width is >= 768px
-    768: {
-      slidesPerView: 2,
-      spaceBetween: 20,
-    },
-    // when window width is >= 1024px
-    1024: {
-      slidesPerView: 3,
-      spaceBetween: 30,
-    },
-
-    // when window width is >= 1440px
-    1440: {
-      slidesPerView: 4,
-      spaceBetween: 40,
-    },
-  },
-})
-
 const swiper_review = new Swiper('.swiper-review', {
   // Optional parameters
   loop: true,
@@ -277,8 +233,101 @@ async function fetchVehicles(value) {
       }
     )
     const vehicles = await response.json()
-    console.log(vehicles.results)
+    return vehicles.results
   } catch (error) {
     console.error('Error fetching vehicles:', error)
   }
 }
+
+const gethtml = (vehicle) => `
+<div class="swiper-slide">
+<div class="car-item">
+  <div class="car-image-wrap">
+    <img src="${
+      vehicle.images ? vehicle.images[0]?.url : '/car7.jpeg'
+    }" width="100%" class="car-image" />
+  <!-- <span class="used-tag">Used</span> -->
+  ${vehicle.status == 'SOLD' ? '<span class="sold-tag"></span>' : ''}
+  </div>
+  <div class="content-wrap">
+    <div class="title">${vehicle.year} ${vehicle.make} ${vehicle.model}</div>
+    <div class="separator"></div>
+    <div>
+      <span class="actual-amount">$13,500.00</span>
+      <span class="after-discount"> ${vehicle.price?.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      })}</span>
+    </div>
+    <div class="mt-3">
+      <div class="d-flex justify-content-between mt-2">
+        <div>Mileage</div>
+        <div>${vehicle.mileage}</div>
+      </div>
+      <div class="d-flex justify-content-between mt-2">
+        <div>Availablity</div>
+        <div>${vehicle.status == 'ACTIVE' ? 'In Store' : 'N/A'}</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+`
+
+function showCarSlider() {
+  const swiper = new Swiper('.swiper', {
+    // Optional parameters
+    loop: true,
+
+    // If we need pagination
+    // pagination: {
+    //   el: '.swiper-pagination',
+    // },
+
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+    // And if we need scrollbar
+    // scrollbar: {
+    //   el: '.swiper-scrollbar',
+    // },
+    breakpoints: {
+      // when window width is >= 320px
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      },
+      // when window width is >= 768px
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      // when window width is >= 1024px
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+
+      // when window width is >= 1440px
+      1440: {
+        slidesPerView: 4,
+        spaceBetween: 40,
+      },
+    },
+  })
+}
+
+async function displayVehicle() {
+  PageLoader(true)
+  fetchVehicles().then((res) => {
+    const html = res.map((vehicle) => gethtml(vehicle)).join('')
+    document.getElementById('car-slider').insertAdjacentHTML('beforeend', html)
+    PageLoader(false)
+    showCarSlider()
+  })
+}
+
+displayVehicle()
