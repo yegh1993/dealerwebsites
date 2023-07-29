@@ -4,64 +4,109 @@
  * ---------------------------------------------------
  */
 
-const swiper_review = new Swiper('.swiper-review', {
-  // Optional parameters
-  loop: true,
-  autoplay: true,
+function showSliders() {
+  const swiper = new Swiper('.swiper', {
+    // Optional parameters
+    loop: true,
 
-  // If we need pagination
-  pagination: {
-    el: '.swiper-pagination',
-  },
-
-  // Navigation arrows
-  // navigation: {
-  //   nextEl: '.swiper-button-next',
-  //   prevEl: '.swiper-button-prev',
-  // },
-
-  // And if we need scrollbar
-  // scrollbar: {
-  //   el: '.swiper-scrollbar',
-  // },
-  breakpoints: {
-    // when window width is >= 320px
-    320: {
-      slidesPerView: 1,
-      spaceBetween: 10,
-    },
-    // when window width is >= 768px
-    768: {
-      slidesPerView: 2,
-      spaceBetween: 20,
-    },
-    // when window width is >= 1024px
-    1024: {
-      slidesPerView: 3,
-      spaceBetween: 30,
-    },
-
-    // when window width is >= 1440px
-    // 1440: {
-    //   slidesPerView: 4,
-    //   spaceBetween: 40,
+    // If we need pagination
+    // pagination: {
+    //   el: '.swiper-pagination',
     // },
-  },
-})
 
-const swiper_cover = new Swiper('.swiper-cover', {
-  // Optional parameters
-  loop: true,
-  autoplay: true,
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
 
-  // If we need pagination
-  pagination: {
-    el: '.swiper-pagination',
-  },
-  autoplay: {
-    delay: 5000,
-  },
-})
+    // And if we need scrollbar
+    // scrollbar: {
+    //   el: '.swiper-scrollbar',
+    // },
+    breakpoints: {
+      // when window width is >= 320px
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      },
+      // when window width is >= 768px
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      // when window width is >= 1024px
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+
+      // when window width is >= 1440px
+      1440: {
+        slidesPerView: 4,
+        spaceBetween: 40,
+      },
+    },
+  })
+  const swiper_review = new Swiper('.swiper-review', {
+    // Optional parameters
+    loop: true,
+    autoplay: true,
+
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination',
+    },
+
+    // Navigation arrows
+    // navigation: {
+    //   nextEl: '.swiper-button-next',
+    //   prevEl: '.swiper-button-prev',
+    // },
+
+    // And if we need scrollbar
+    // scrollbar: {
+    //   el: '.swiper-scrollbar',
+    // },
+    breakpoints: {
+      // when window width is >= 320px
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 10,
+      },
+      // when window width is >= 768px
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      // when window width is >= 1024px
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
+
+      // when window width is >= 1440px
+      // 1440: {
+      //   slidesPerView: 4,
+      //   spaceBetween: 40,
+      // },
+    },
+  })
+
+  const swiper_cover = new Swiper('.swiper-cover', {
+    // Optional parameters
+    loop: true,
+    autoplay: true,
+
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    autoplay: {
+      delay: 5000,
+    },
+  })
+}
 
 /**
  * ---------------------------------------------------
@@ -274,59 +319,13 @@ const gethtml = (vehicle) => `
 </div>
 `
 
-function showCarSlider() {
-  const swiper = new Swiper('.swiper', {
-    // Optional parameters
-    loop: true,
-
-    // If we need pagination
-    // pagination: {
-    //   el: '.swiper-pagination',
-    // },
-
-    // Navigation arrows
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-
-    // And if we need scrollbar
-    // scrollbar: {
-    //   el: '.swiper-scrollbar',
-    // },
-    breakpoints: {
-      // when window width is >= 320px
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 10,
-      },
-      // when window width is >= 768px
-      768: {
-        slidesPerView: 2,
-        spaceBetween: 20,
-      },
-      // when window width is >= 1024px
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 30,
-      },
-
-      // when window width is >= 1440px
-      1440: {
-        slidesPerView: 4,
-        spaceBetween: 40,
-      },
-    },
-  })
-}
-
 async function displayVehicle() {
   PageLoader(true)
   fetchVehicles().then((res) => {
     const html = res.map((vehicle) => gethtml(vehicle)).join('')
     document.getElementById('car-slider').insertAdjacentHTML('beforeend', html)
     PageLoader(false)
-    showCarSlider()
+    showSliders()
   })
 }
 

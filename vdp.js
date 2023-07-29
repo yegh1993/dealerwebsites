@@ -204,6 +204,10 @@ function displayVehicle(vehicle) {
       'beforeend',
       `${vehicle.year} ${vehicle.make} ${vehicle.model}`
     )
+
+  if (vehicle.status == 'SOLD')
+    document.getElementById('car-sold').classList.remove('d-none')
+  else document.getElementById('car-sold').classList.add('d-none')
 }
 
 function displayVehicleDetails(vehicle) {
@@ -494,8 +498,6 @@ function calculateMonthlyPayment(vehicle) {
       'beforeend',
       `${monthlyPayments[0]} - ${monthlyPayments[1]}`
     )
-
-  console.log()
 }
 
 // Call the API on window load
@@ -530,7 +532,6 @@ window.onload = function () {
   )
 
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    console.log(tooltipTriggerEl.dataset.bsTitle)
     return new bootstrap.Tooltip(tooltipTriggerEl, {
       template: document.getElementById(tooltipTriggerEl.dataset.bsTitle)
         .innerHTML,

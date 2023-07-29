@@ -16,7 +16,7 @@
   position: fixed;
 }
 .car-contain {
-  max-width: 1600px;
+  max-width: 90%;
   -webkit-box-align: stretch;
   align-items: stretch;
   padding-left: 32px;
@@ -124,7 +124,7 @@
   background: #e4ecf0;
 }
 .vdp-wrap {
-  max-width: 1600px;
+  max-width: 90%;
   margin: 0 auto;
   background: white;
 }
@@ -457,7 +457,7 @@
 ---------------------------------------------------------- */
 
 .div-container {
-  max-width: 1600px;
+  /* max-width: 90%; */
   background-color: #fff;
   margin: 0 auto;
 }
@@ -815,7 +815,7 @@ html {
   padding-bottom: 90px;
 }
 .div-container {
-  max-width: 1600px;
+  /* max-width: 90%; */
   background-color: #fff;
   margin: 0 auto;
 }
@@ -1175,4 +1175,57 @@ p.p-details-module.module-fire {
   border-radius: 4px;
   padding: 15px 20px;
   font-size: 12px;
+}
+
+/* -------------------------------------------------------
+-                      CAR SOLD                          -
+---------------------------------------------------------- */
+.car-sold {
+  max-width: 600px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  color: white;
+  width: 95%;
+}
+
+.car-sold .wrap {
+  background: rgba(24, 53, 88, 0.95);
+  box-shadow: rgba(25, 41, 61, 0.05) 0px 2px 3px 1px;
+  width: 100%;
+  padding: 40px;
+  text-align: center;
+}
+
+.car-sold .title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.car-sold .close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.car-sold .close-btn:hover {
+  color: #db2e2d;
+}
+
+@media (max-width: 426px) {
+  .car-sold .wrap {
+    padding: 20px 15px;
+    text-align: left;
+  }
+  .car-sold .title {
+    font-size: 18px;
+  }
+  .vdp-wrap {
+    max-width: 100%;
+  }
+  .car-contain {
+    max-width: 100%;
+  }
 }
