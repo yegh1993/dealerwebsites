@@ -3,13 +3,13 @@ var initialPageNumber = 1
 var itemsPerPage = 12
 var sortBy = 'name'
 var sortingOrder = 'asc'
-var local_vehicles
+var local_vehicles = []
 
 function handleInputChange(event) {
   const key = event.target.name
   const value = event.target.value
   filters[key] = value
-  SearchInventory(value)
+  SearchInventory()
   displaySelectedFilter()
 }
 
@@ -21,9 +21,9 @@ function Loader(show) {
   }
 }
 
-async function SearchInventory(value) {
+async function SearchInventory() {
   Loader(true)
-  await fetchVehicles(value)
+  await fetchVehicles()
   Loader(false)
   return
 }
@@ -42,7 +42,7 @@ async function removeFilter(key) {
 async function ResetFilter() {
   Object.keys(filters).forEach((key) => {
     const inputElement = document.querySelector(`[name="${key}"]`)
-    inputElement.nextElementSibling.innerHTML = key
+    if (inputElement) inputElement.nextElementSibling.innerHTML = key
     delete filters[key]
   })
 
@@ -52,15 +52,48 @@ async function ResetFilter() {
   displaySelectedFilter()
 }
 
+async function FilterPrice() {
+  filters['Min Price'] = inputValue[0].value
+  filters['Max Price'] = inputValue[1].value
+  Loader(true)
+  await fetchVehicles()
+  displaySelectedFilter()
+  Loader(false)
+}
+
+function getQueryString() {
+  let str = ''
+  if (filters.Year) str = str + '&year=' + filters.Year
+  if (filters.Make) str = str + '&make=' + filters.Make
+  if (filters.Model) str = str + '&model=' + filters.Model
+  if (filters.Condition) str = str + '&condition=' + filters.Condition
+  if (filters.Mileage) str = str + '&mileage=' + filters.Mileage
+  if (filters.Transmission) str = str + '&transmission=' + filters.Transmission
+  if (filters.Divetrain) str = str + '&diveTrain=' + filters.Divetrain
+  if (filters.Engine) str = str + '&engineShape=' + filters.Engine
+  if (filters.Availability) str = str + '&availability=' + filters.Availability
+  if (filters['Body Style']) str = str + '&bodyStyle=' + filters['Body Style']
+  if (filters['Min Price']) str = str + '&minPrice=' + filters['Min Price']
+  if (filters['Max Price']) str = str + '&maxPrice=' + filters['Max Price']
+  if (filters['Exterior Color'])
+    str = str + '&exteriorColor=' + filters['Exterior Color']
+  if (filters['Fuel Economy'])
+    str = str + '&fuelType=' + filters['Fuel Economy']
+
+  console.log(str)
+  return str
+}
+
 async function fetchVehicles() {
   PageLoader(true)
+  const queryString = getQueryString()
   const dealerId = '1'
   const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net'
   const dealerApiToken =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmFrb3N5YW5kYXZpZGRldkBnbWFpbC5jb20iLCJzdWIiOjEsImRlYWxlcnNoaXAiOjEsInJvbGUiOiJERUFMRVJfQURNSU4iLCJpYXQiOjE2ODE4MzAyODIsImV4cCI6MTY4MTkxNjY4Mn0.jGifLS5ezj43hqJVrbFeFRlyDg1_j4MESQMdPC5tAyQ'
   try {
     const response = await fetch(
-      `${apiUrl}/api/vehicles?idDealership=${dealerId}`,
+      `${apiUrl}/api/vehicles/findFilters?idDealership=${dealerId}${queryString}`,
       {
         headers: {
           Authorization: `Bearer ${dealerApiToken}`,
@@ -68,8 +101,7 @@ async function fetchVehicles() {
       }
     )
     const vehicles = await response.json()
-    console.log(vehicles.results)
-    local_vehicles = [...vehicles.results]
+    if (vehicles?.results) local_vehicles = [...vehicles.results]
     sortItem()
     PageLoader(false)
   } catch (error) {
@@ -81,7 +113,7 @@ function displaySelectedFilter() {
   const getHtml = ([label, value]) => `
   <div class="d-flex align-items-center selected-filter-item" onclick="removeFilter('${label}')">
                 <i class="fa-regular fa-circle-xmark me-3"></i>
-                <div class="me-2">${label} &nbsp;:&nbsp;</div>
+                <div class="me-2">${label}:&nbsp;</div>
                 <div>${value}</div>
               </div>
   `
@@ -141,13 +173,18 @@ function displayVehicles() {
     'vehicle-found'
   ).innerHTML = `${local_vehicles.length} Vehicles Matching`
 
-  displayItems(initialPageNumber)
-  generatePaginationButtons(local_vehicles.length, initialPageNumber)
+  if (local_vehicles.length) {
+    displayItems(initialPageNumber)
+    generatePaginationButtons(local_vehicles.length, initialPageNumber)
+  } else
+    document.getElementById('car-list-box').innerHTML =
+      '<div class="text-center"><b>No Vehicle Found</b></div>'
 }
 
 function getHTML(vehicle) {
   return `
   <div class="col-sm-6 col-lg-4 mt-3">
+  <a href="/vdp.html?id=${vehicle.idVehicle}">
   <div class="car-item">
     <div
       style="width:100%;
@@ -189,12 +226,10 @@ function getHTML(vehicle) {
         }</div>
       </div>
       <div class="d-flex justify-content-between mt-4">
-        <a href="/vdp.html?id=${
-          vehicle.idVehicle
-        }" class="custom-btn-light custom-btn-detail">
+        <span  class="custom-btn-light custom-btn-detail">
           <i class="fa-solid fa-link me-1"></i>
           Detail
-        </a>
+        </span>
         
 
         ${
@@ -208,7 +243,8 @@ function getHTML(vehicle) {
         </div>
       </div>
     </div>
-  </div>
+    </a>
+    </div>
   `
 }
 

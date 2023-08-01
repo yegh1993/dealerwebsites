@@ -331,3 +331,18 @@ function ResetForm(event) {
   const form = document.getElementById('finance_form')
   form.reset()
 }
+
+/**
+ * ---------------------------------------------------
+ *                 SCROLL TOP                        -
+ * ---------------------------------------------------
+ */
+
+function scrollToTop() {
+  // Scroll to the top of the page with smooth behavior
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: 'smooth',
+  })
+}

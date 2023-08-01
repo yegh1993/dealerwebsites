@@ -333,7 +333,7 @@
                     </div>
                     <div>
                       <a  href="javascript:void(0);">
-                        <button class="custom-btn-primary custom-btn-primary-2 filter-btn">
+                        <button onclick="FilterPrice()" class="custom-btn-primary custom-btn-primary-2 filter-btn">
                           Filter
                         </button>
                       </a>
@@ -541,7 +541,7 @@
       
                     <div class="custom-select my-2">
                       <select class="select-box"  onchange="handleInputChange(event)"
-                      name="Transimisson">
+                      name="Transmission">
                         <option value="0">Transmission</option>                 
                         <option value="1-speed automatic">1-Speed Automatic</option>
                         <option value="4-speed automatic">4-Speed Automatic</option>
@@ -1004,7 +1004,7 @@
       </div>
     </footer>
 
-    <div class="maincardiv reveal">
+    <div onclick="scrollToTop()" class="maincardiv reveal">
       <div>
         <img class="imgcar1" src="/car.png" alt="" />
 

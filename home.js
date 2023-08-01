@@ -240,9 +240,9 @@ async function handleSeachInventory() {
       Object.entries(filters)
         .map((item) => item.join('='))
         .join('&') +
-      '&minRange=' +
+      '&Min Price=' +
       inputValue[0].value +
-      '&maxRange=' +
+      '&Max Price=' +
       inputValue[1].value
   )
 }
