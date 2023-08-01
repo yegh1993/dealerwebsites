@@ -839,7 +839,7 @@
       <div class="container">
         <div class="row">
           <div class="col-3">
-            <a href="#" class="social-link">
+            <a href="http://www.facebook.com/lctautollc" class="social-link">
               <div
                 class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap fb"
               >
@@ -849,7 +849,7 @@
             </a>
           </div>
           <div class="col-3">
-            <a href="#" class="social-link">
+            <a href="http://www.Instagram.com/lctautollc" class="social-link">
               <div
                 class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap insta"
               >
@@ -859,7 +859,7 @@
             </a>
           </div>
           <div class="col-3">
-            <a href="#" class="social-link">
+            <a href="http://www.YouTube.com/lctautollc" class="social-link">
               <div
                 class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap youtube"
               >
@@ -869,7 +869,7 @@
             </a>
           </div>
           <div class="col-3">
-            <a href="#" class="social-link">
+            <a href="http://www.twitter.com/lctautollc" class="social-link">
               <div
                 class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap twitter"
               >
@@ -959,12 +959,28 @@
                   type="text"
                   class="form-control"
                   placeholder="Enter Your Email"
+                  id="subscriber_email"
                   required
                 />
               </div>
-              <button class="mt-3 custom-btn-primary custom-btn-primary-2">
-                Subscriber
+              <button
+                onclick="Subscribe(event)"
+                class="mt-3 custom-btn-primary custom-btn-primary-2"
+              >
+                <span id="subscriber-text">Subscriber</span>
+                <!-- <i
+                  id="subscriber-loader"
+                  class="fa-solid fa-spinner fa-spin d-none"
+                ></i> -->
+                <img
+                  src="/cd_loader.svg"
+                  id="subscriber-loader"
+                  class="d-none"
+                />
               </button>
+              <div id="subscriber-error" style="color: #db2e2d">
+                <!-- Error message shows here -->
+              </div>
             </form>
           </div>
         </div>
