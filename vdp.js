@@ -1,4 +1,6 @@
 let showComment = true
+let schedule = {}
+let local_vehicle = {}
 
 async function fetchVehicleDetails() {
   PageLoader(true)
@@ -19,12 +21,12 @@ async function fetchVehicleDetails() {
       },
     })
     const vehicle = await response.json()
-    console.log(vehicle)
+    local_vehicle = vehicle
     displayVehicle(vehicle)
     displayVehicleDetails(vehicle)
     displayStickyTop(vehicle)
     displayPayOnce(vehicle)
-    calculateMonthlyPayment(vehicle)
+    calculateMonthlyPaymentVehicle(vehicle)
     PageLoader(false)
   } catch (error) {
     console.error('Error fetching vehicle details:', error)
@@ -441,6 +443,13 @@ function MorePhotos(element) {
 function handleInputChange(event) {
   const { name, value } = event.target
   schedule[name] = value
+  console.log(schedule)
+}
+
+function handleEmailConsentToggle(event) {
+  const { id, checked } = event.target
+  schedule[id] = checked
+  console.log(schedule)
 }
 
 function ToggleComment(event) {
@@ -459,7 +468,7 @@ function ToggleComment(event) {
   showComment = !showComment
 }
 
-function calculateMonthlyPayment(vehicle) {
+function calculateMonthlyPaymentVehicle(vehicle) {
   const price = vehicle.price || 0
   const tax = price * 0.1
   const total = price + tax
@@ -498,6 +507,50 @@ function calculateMonthlyPayment(vehicle) {
       'beforeend',
       `${monthlyPayments[0]} - ${monthlyPayments[1]}`
     )
+}
+
+async function scheduleTestDrive(event) {
+  event.stopPropagation()
+  event.preventDefault()
+
+  document.getElementById('message-loader').classList.remove('d-none')
+
+  const payload = {
+    ...schedule,
+    vehicleId: local_vehicle.idVehicle,
+    leadType: 'Info Request',
+    leadSource: 'Dealer Website',
+  }
+
+  const dealerId = '1'
+  const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net'
+  const dealerApiToken =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmFrb3N5YW5kYXZpZGRldkBnbWFpbC5jb20iLCJzdWIiOjEsImRlYWxlcnNoaXAiOjEsInJvbGUiOiJERUFMRVJfQURNSU4iLCJpYXQiOjE2ODE4MzAyODIsImV4cCI6MTY4MTkxNjY4Mn0.jGifLS5ezj43hqJVrbFeFRlyDg1_j4MESQMdPC5tAyQ'
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${dealerApiToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  }
+
+  fetch(
+    `${apiUrl}/api/leads/dealership-website-leads/info-request`,
+    requestOptions
+  )
+    .then((res) => {
+      console.log('response', res)
+      document.getElementById('schedule_form_success').innerHTML =
+        'successfully registered'
+      document.getElementById('message-loader').classList.add('d-none')
+    })
+    .catch((err) => {
+      document.getElementById('schedule_form_error').innerHTML =
+        'something went wrong while registering'
+      document.getElementById('message-loader').classList.add('d-none')
+    })
 }
 
 // Call the API on window load

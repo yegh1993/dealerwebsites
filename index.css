@@ -477,6 +477,7 @@ input[type='number']::-webkit-outer-spin-button {
   cursor: pointer;
   user-select: none;
   transition: all 0.5s ease;
+  text-transform: capitalize;
 }
 .select-items div {
   border: none;

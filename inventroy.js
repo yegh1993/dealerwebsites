@@ -6,6 +6,7 @@ var sortingOrder = 'asc'
 var local_vehicles = []
 
 function handleInputChange(event) {
+  console.log(event)
   const key = event.target.name
   const value = event.target.value
   filters[key] = value
@@ -62,30 +63,36 @@ async function FilterPrice() {
 }
 
 function getQueryString() {
-  let str = ''
-  if (filters.Year) str = str + '&year=' + filters.Year
-  if (filters.Make) str = str + '&make=' + filters.Make
-  if (filters.Model) str = str + '&model=' + filters.Model
-  if (filters.Condition) str = str + '&condition=' + filters.Condition
-  if (filters.Mileage) str = str + '&mileage=' + filters.Mileage
-  if (filters.Transmission) str = str + '&transmission=' + filters.Transmission
-  if (filters.Divetrain) str = str + '&diveTrain=' + filters.Divetrain
-  if (filters.Engine) str = str + '&engineShape=' + filters.Engine
-  if (filters.Availability) str = str + '&availability=' + filters.Availability
-  if (filters['Body Style']) str = str + '&bodyStyle=' + filters['Body Style']
+  const arrTypes = [
+    'bodyStyle',
+    'condition',
+    'driveTrain',
+    'engineShape',
+    'fuelType',
+    'interiorColor',
+    'exteriorColor',
+    'make',
+    'model',
+    'transmission',
+    'availability',
+  ]
+
+  let str = Object.entries(filters)
+    .map(([label, value]) => {
+      const key = label.replace(' ', '')
+      if (arrTypes.includes(key))
+        return '&' + key + '=' + value + '&' + key + '='
+      return '&' + key + '=' + value
+    })
+    .join('')
+
   if (filters['Min Price']) str = str + '&minPrice=' + filters['Min Price']
   if (filters['Max Price']) str = str + '&maxPrice=' + filters['Max Price']
-  if (filters['Exterior Color'])
-    str = str + '&exteriorColor=' + filters['Exterior Color']
-  if (filters['Fuel Economy'])
-    str = str + '&fuelType=' + filters['Fuel Economy']
 
-  console.log(str)
   return str
 }
 
 async function fetchVehicles() {
-  PageLoader(true)
   const queryString = getQueryString()
   const dealerId = '1'
   const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net'
@@ -93,7 +100,7 @@ async function fetchVehicles() {
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmFrb3N5YW5kYXZpZGRldkBnbWFpbC5jb20iLCJzdWIiOjEsImRlYWxlcnNoaXAiOjEsInJvbGUiOiJERUFMRVJfQURNSU4iLCJpYXQiOjE2ODE4MzAyODIsImV4cCI6MTY4MTkxNjY4Mn0.jGifLS5ezj43hqJVrbFeFRlyDg1_j4MESQMdPC5tAyQ'
   try {
     const response = await fetch(
-      `${apiUrl}/api/vehicles/findFilters?idDealership=${dealerId}${queryString}`,
+      `${apiUrl}/api/vehicles/search?idDealership=${dealerId}${queryString}`,
       {
         headers: {
           Authorization: `Bearer ${dealerApiToken}`,
@@ -103,9 +110,10 @@ async function fetchVehicles() {
     const vehicles = await response.json()
     if (vehicles?.results) local_vehicles = [...vehicles.results]
     sortItem()
-    PageLoader(false)
+    return
   } catch (error) {
     console.error('Error fetching vehicles:', error)
+    return
   }
 }
 
@@ -113,7 +121,7 @@ function displaySelectedFilter() {
   const getHtml = ([label, value]) => `
   <div class="d-flex align-items-center selected-filter-item" onclick="removeFilter('${label}')">
                 <i class="fa-regular fa-circle-xmark me-3"></i>
-                <div class="me-2">${label}:&nbsp;</div>
+                <div class="me-2 text-capitalize">${label}:&nbsp;</div>
                 <div>${value}</div>
               </div>
   `
@@ -337,7 +345,28 @@ function generatePaginationButtons(totalItems, currentPage) {
   }
 }
 
-window.addEventListener('load', () => {
+function displayFilters(filters) {
+  const getHtml = (label, options) => `<div class="mt-3 mb-2 custom-select">
+  <select class="select-box"  
+  onchange="handleInputChange(event)"
+  name="${separateCamelCase(label)}"
+  >
+    <option value="0">${separateCamelCase(label)}</option>                 
+    ${options
+      .map((option) => `<option value="${option}">${option}</option>`)
+      .join('')}
+  </select>
+</div>
+  `
+
+  const html = Object.entries(filters)
+    .map(([label, options]) => getHtml(label, options))
+    .join('')
+
+  document.getElementById('filter-list').insertAdjacentHTML('beforeend', html)
+}
+
+window.addEventListener('load', async () => {
   const queryParams = new URLSearchParams(window.location.search)
 
   // If you want to get all the parameters and their values as an object
@@ -345,6 +374,11 @@ window.addEventListener('load', () => {
     filters[key] = value
   })
 
+  PageLoader(true)
   displaySelectedFilter()
-  fetchVehicles()
+  await fetchVehicles()
+  const serverFilters = await fetchFilters()
+  displayFilters(serverFilters)
+  showCustomSelect()
+  PageLoader(false)
 })

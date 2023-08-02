@@ -1171,7 +1171,7 @@
           <div class="modal-body">
             <form
               id="schedule_form"
-              onsubmit="calculateMonthlyPayment(event)"
+              onsubmit="scheduleTestDrive(event)"
               class="row g-3 px-0"
             >
               <div>
@@ -1179,7 +1179,7 @@
                 <input
                   class="custom-input"
                   type="text"
-                  name="first_name"
+                  name="firstName"
                   placeholder="First name"
                   oninput="handleInputChange(event)"
                   required
@@ -1187,7 +1187,7 @@
                 <input
                   class="custom-input"
                   type="text"
-                  name="last_name"
+                  name="lastName"
                   placeholder="Last name"
                   oninput="handleInputChange(event)"
                   required
@@ -1240,7 +1240,6 @@
                   name="comment"
                   placeholder=""
                   oninput="handleInputChange(event)"
-                  required
                 ></textarea>
               </div>
 
@@ -1249,21 +1248,29 @@
                   class="form-check-input"
                   type="checkbox"
                   value=""
-                  id="flexCheckDefault"
+                  id="emailConsent"
+                  oninput="handleEmailConsentToggle(event)"
                 />
-                <label class="form-check-label" for="flexCheckDefault">
+                <label class="form-check-label" for="emailConsent">
                   Email me new listings for my search
                 </label>
               </div>
 
               <div class="d-flex">
                 <button
-                  onclick="ResetForm(event)"
+                  type="submit"
                   class="custom-btn-primary custom-btn-primary-2 w-100"
                 >
+                  <img
+                    src="/cd_loader.svg"
+                    id="message-loader"
+                    class="d-none"
+                  />
                   Send Message
                 </button>
               </div>
+              <div class="text-success" id="schedule_form_success"></div>
+              <div class="text-danger" id="schedule_form_error"></div>
             </form>
           </div>
         </div>

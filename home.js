@@ -319,14 +319,52 @@ const gethtml = (vehicle) => `
 </div>
 `
 
+function displayFilters(filters) {
+  const getHtml = (label, options) => `
+  <div class="mb-3 custom-select col-md-4">
+  <div class="label text-capitalize">Select ${separateCamelCase(label)}</div>
+  <select
+    onchange="handleInputChange(event)"
+    name="${separateCamelCase(label)}"
+  >
+    <option hidden selected value="">--Select--</option>
+    ${options
+      .map((option) => `<option value="${option}">${option}</option>`)
+      .join('')}
+  </select>
+</div>
+  `
+
+  const requireFilters = [
+    'year',
+    'make',
+    'model',
+    'condition',
+    'mileage',
+    'transmission',
+  ]
+
+  const html = Object.entries(filters)
+    .filter(([label]) => requireFilters.includes(label))
+    .map(([label, options]) => getHtml(label, options))
+    .join('')
+
+  document.getElementById('filter-list').insertAdjacentHTML('beforeend', html)
+}
+
 async function displayVehicle() {
   PageLoader(true)
-  fetchVehicles().then((res) => {
-    const html = res.map((vehicle) => gethtml(vehicle)).join('')
-    document.getElementById('car-slider').insertAdjacentHTML('beforeend', html)
-    PageLoader(false)
-    showSliders()
-  })
+  const res = await fetchVehicles()
+  const filters = await fetchFilters()
+
+  displayFilters(filters)
+  showCustomSelect()
+
+  const html = res.map((vehicle) => gethtml(vehicle)).join('')
+  document.getElementById('car-slider').insertAdjacentHTML('beforeend', html)
+  showSliders()
+
+  PageLoader(false)
 }
 
 displayVehicle()
