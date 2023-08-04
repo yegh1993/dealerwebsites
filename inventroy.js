@@ -197,57 +197,53 @@ function getHTML(vehicle) {
     <div
       style="width:100%;
       position:relative;
-      background: url('${
-        vehicle.images ? vehicle.images[0]?.url : '/car7.jpeg'
-      }') center center no-repeat;
+      background: url('${vehicle.images ? vehicle.images[0]?.url : '/car7.jpeg'
+    }') center center no-repeat;
       background-size:cover;
-      height:165px;"
+      padding-bottom: 75%;"
     >
     <!-- <span class="used-tag">Used</span> -->
     ${vehicle.status == 'SOLD' ? '<span class="sold-tag"></span>' : ''}
     </div>
     <div class="car-item-content">
-      <div class="car-name">${vehicle.year} ${vehicle.make} ${
-    vehicle.model
-  }</div>
+      <div class="car-name">${vehicle.year} ${vehicle.make} ${vehicle.model
+    }</div>
       <div class="car-price">
         <span class="old-price">$14,000.00</span>
         <span class="new-price">
         ${vehicle.price?.toLocaleString('en-US', {
-          style: 'currency',
-          currency: 'USD',
-        })}
+      style: 'currency',
+      currency: 'USD',
+    })}
         </span>
       </div>
       <div
-        class="d-flex justify-content-between mt-3 car-props"
+        class="d-flex justify-content-between mt-2 car-props"
       >
         <div class="col-6 car-prop">Mileage</div>
         <div class="col-6 car-prop-value">${vehicle.mileage}</div>
       </div>
       <div
-        class="d-flex justify-content-between mb-3 car-props"
+        class="d-flex justify-content-between mb-2 car-props"
       >
         <div class="col-6 car-prop">Availablity</div>
-        <div class="col-6 car-prop-value">${
-          vehicle.status == 'ACTIVE' ? 'In Store' : 'N/A'
-        }</div>
+        <div class="col-6 car-prop-value">${vehicle.status == 'ACTIVE' ? 'In Store' : 'N/A'
+    }</div>
       </div>
-      <div class="d-flex justify-content-between mt-4">
+      <div class="d-flex justify-content-between mt-2" >
         <span  class="custom-btn-light custom-btn-detail">
           <i class="fa-solid fa-link me-1"></i>
           Detail
         </span>
         
 
-        ${
-          vehicle.video
-            ? `<button class="custom-btn-light custom-btn-detail">
+        ${vehicle.video
+      ? `<button class="custom-btn-light custom-btn-detail">
           <i class="fa-solid fa-play me-1"></i>
           Video
         </button>`
-            : ''
-        }
+      : ''
+    }
         </div>
       </div>
     </div>
@@ -358,8 +354,8 @@ function displayFilters(filters) {
   </select>
 </div>
   `
-
-  const html = Object.entries(filters)
+  const { year, mileage, price, ...rest } = filters
+  const html = Object.entries(rest)
     .map(([label, options]) => getHtml(label, options))
     .join('')
 

@@ -5,8 +5,9 @@
   background: url('/footer_car.jpg') center center no-repeat;
   background-size: cover;
   position: relative;
-  height: 250px;
+  height: 100px;
 }
+
 .section-a::before {
   content: '';
   display: block;
@@ -17,10 +18,12 @@
   width: 100%;
   background: rgba(0, 0, 0, 0.7);
 }
+
 .section-a .wrap {
   position: absolute;
   bottom: 10%;
 }
+
 .section-a .main-heading {
   font-size: 40px;
   line-height: 50px;
@@ -37,6 +40,7 @@
   margin-top: 54px;
   margin-bottom: 54px;
 }
+
 .section-b .heading {
   font-size: 16px;
   line-height: 24px;
@@ -45,6 +49,7 @@
   color: #363636;
   text-transform: uppercase;
 }
+
 .section-b .heading::after {
   display: block;
   content: '';
@@ -139,6 +144,14 @@
   background: white;
   border: 1px solid #e3e3e3;
   position: relative;
+
+
+}
+
+.car-item:hover {
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .section-b .car-item-content {
@@ -150,6 +163,7 @@
   font-size: 16px;
   font-weight: 600;
   transition: all ease 0.5s;
+
 }
 
 .section-b .car-item-content:hover .car-name {
@@ -206,6 +220,7 @@
   margin: 0;
   list-style-type: none;
 }
+
 .pagination-nav li {
   font-size: 15px;
   border: 1px solid #e3e3e3;
@@ -223,4 +238,11 @@
 .pagination-nav li.active {
   background-color: #db2e2d;
   color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .section-b {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
 }

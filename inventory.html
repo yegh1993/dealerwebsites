@@ -304,6 +304,8 @@
                           min="2500"
                           max="30000"
                           value="6500"
+                          step="250"
+
                         />
                         <!-- <span class="range-min-value">0</span> -->
                       </span>
@@ -314,6 +316,8 @@
                           min="2500"
                           max="30000"
                           value="25000"
+                          step="250"
+
                         />
                         <!-- <span class="range-max-value">100</span> -->
                       </span>
@@ -322,6 +326,156 @@
                     <div class="price-range mt-4 d-flex justify-content-between">
                       <label for="dealer-slider-amount-1" class="price-label"
                         >Price:</label
+                      >
+                      <input
+                        type="text"
+                        id="dealer-slider-amount-1"
+                        class="dealer-slider-amount text-end"
+                        readonly=""
+                        value="$6500 - $25000"
+                      />
+                    </div>
+                    <div>
+                      <a  href="javascript:void(0);">
+                        <button onclick="FilterPrice()" class="custom-btn-primary custom-btn-primary-2 filter-btn">
+                          Filter
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="heading mt-4" >Filter By Year</div>
+                  <div>
+                    <div class="min-value numberVal">
+                      <input
+                        type="number"
+                        class=""
+                        min="0"
+                        max="100"
+                        value="25"
+                        disabled
+                        hidden
+                      />
+                    </div>
+                    &nbsp;
+                    <div class="max-value numberVal">
+                      <input
+                        type="number"
+                        class="border text-center"
+                        min="0"
+                        max="100"
+                        value="75"
+                        disabled
+                        hidden
+                      />
+                    </div>
+                    &nbsp;
+      
+                    <div class="range-slider">
+                      <div class="progress"></div>
+                      <span class="range-min-wrapper">
+                        <input
+                          class="range-min"
+                          type="range"
+                          min="2500"
+                          max="30000"
+                          value="6500"
+                          step="250"
+
+                        />
+                        <!-- <span class="range-min-value">0</span> -->
+                      </span>
+                      <span class="range-max-wrapper">
+                        <input
+                          class="range-max"
+                          type="range"
+                          min="2500"
+                          max="30000"
+                          value="25000"
+                          step="250"
+
+                        />
+                        <!-- <span class="range-max-value">100</span> -->
+                      </span>
+                    </div>
+      
+                    <div class="price-range mt-4 d-flex justify-content-between">
+                      <label for="dealer-slider-amount-1" class="price-label"
+                        >Year:</label
+                      >
+                      <input
+                        type="text"
+                        id="dealer-slider-amount-1"
+                        class="dealer-slider-amount text-end"
+                        readonly=""
+                        value="$6500 - $25000"
+                      />
+                    </div>
+                    <div>
+                      <a  href="javascript:void(0);">
+                        <button onclick="FilterPrice()" class="custom-btn-primary custom-btn-primary-2 filter-btn">
+                          Filter
+                        </button>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="heading mt-4" >Filter By Mileage</div>
+                  <div>
+                    <div class="min-value numberVal">
+                      <input
+                        type="number"
+                        class=""
+                        min="0"
+                        max="100"
+                        value="25"
+                        disabled
+                        hidden
+                      />
+                    </div>
+                    &nbsp;
+                    <div class="max-value numberVal">
+                      <input
+                        type="number"
+                        class="border text-center"
+                        min="0"
+                        max="100"
+                        value="75"
+                        disabled
+                        hidden
+                      />
+                    </div>
+                    &nbsp;
+      
+                    <div class="range-slider">
+                      <div class="progress"></div>
+                      <span class="range-min-wrapper">
+                        <input
+                          class="range-min"
+                          type="range"
+                          min="2500"
+                          max="30000"
+                          value="6500"
+                          step="250"
+
+                        />
+                        <!-- <span class="range-min-value">0</span> -->
+                      </span>
+                      <span class="range-max-wrapper">
+                        <input
+                          class="range-max"
+                          type="range"
+                          min="2500"
+                          max="30000"
+                          value="25000"
+                          step="250"
+
+                        />
+                        <!-- <span class="range-max-value">100</span> -->
+                      </span>
+                    </div>
+      
+                    <div class="price-range mt-4 d-flex justify-content-between">
+                      <label for="dealer-slider-amount-1" class="price-label"
+                        >Mileage:</label
                       >
                       <input
                         type="text"
@@ -416,13 +570,13 @@
           </div>
           <div class="col-md-9">
             <div class="d-flex flex-wrap mt-4 justify-content-between align-items-center">
-              <div class="col-md-6 ">
+              <div class="col-md-6">
                 Home &nbsp; / &nbsp; <span class="path-active">Inventory</span>
               </div>
 
               <div class="col-md-6">
 
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center justify-content-end">
                   <div class="custom-select">
                     <select
                       class="form-control rounded-0"

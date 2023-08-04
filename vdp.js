@@ -1,6 +1,12 @@
 let showComment = true
 let schedule = {}
 let local_vehicle = {}
+const filters = {}
+var initialPageNumber = 1
+var itemsPerPage = 12
+var sortBy = 'name'
+var sortingOrder = 'asc'
+var local_vehicles = []
 
 async function fetchVehicleDetails() {
   PageLoader(true)
@@ -28,6 +34,9 @@ async function fetchVehicleDetails() {
     displayPayOnce(vehicle)
     calculateMonthlyPaymentVehicle(vehicle)
     PageLoader(false)
+
+    fetchVehicles()
+
   } catch (error) {
     console.error('Error fetching vehicle details:', error)
     PageLoader(false)
@@ -39,20 +48,23 @@ function displayStickyTop(vehicle) {
   <div class="car-fixed-title flex-row align-items-center justify-content-between">
   <div class="car-title-left">
     <div>
-      <p class="sc-1647e4d6-1 DclM">${vehicle.year} ${vehicle.make} ${
-    vehicle.model
-  }</p>
+      <p class="sc-1647e4d6-1 DclM">${vehicle.year} ${vehicle.make} ${vehicle.model
+    }</p>
       <p class="sc-1647e4d6-1 DclM hide-in-mobile">${vehicle.trim}</p>
     </div>
   </div>
   <div class="car-fixed-btn d-block d-md-none mt-2">
-  <button
+  ${vehicle.status !== 'SOLD'
+      ? ` <button
     type="button"
     data-bs-toggle="modal"
     data-bs-target="#scheduleModal"
   >
     Get Started
-  </button>
+  </button>`
+      : ''
+    }
+ 
 </div>
 </div>
 <div class="car-fixed-price">
@@ -62,9 +74,9 @@ function displayStickyTop(vehicle) {
       <!-- <span class="old-price"> $5,200.00</span
         > -->
         <span class="new-price"> ${vehicle.price?.toLocaleString('en-US', {
-          style: 'currency',
-          currency: 'USD',
-        })}</span>
+      style: 'currency',
+      currency: 'USD',
+    })}</span>
       </div>
       <p class="car-flex-miles hide-in-mobile">${vehicle.mileage?.toLocaleString()} miles</p>
     </div>
@@ -91,9 +103,8 @@ function displayVehicle(vehicle) {
     <div class="car-fixed-title">
       <div class="car-title-left">
         <div>
-          <h2 class="car-title-new">${vehicle.year} ${vehicle.make} ${
-    vehicle.model
-  }</h2>
+          <h2 class="car-title-new">${vehicle.year} ${vehicle.make} ${vehicle.model
+    }</h2>
           <div class="car-term-miles">
             <span class="block m:inline">${vehicle.trim}</span>
             <span class="d-none d-md-block">•</span>
@@ -108,41 +119,47 @@ function displayVehicle(vehicle) {
           <div class="price car-price hero-bar">
             <!-- <span class="old-price"> $5,200.00</span> -->
             <span class="new-price">${vehicle.price?.toLocaleString('en-US', {
-              style: 'currency',
-              currency: 'USD',
-            })}</span>
+      style: 'currency',
+      currency: 'USD',
+    })}</span>
           </div>
         </div>
       </div>
       <div class="car-fixed-btn d-block d-md-none text-end">
-     
-      <button
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#scheduleModal"
-        class="mt-3"
-      >
-        Get Started
-      </button>
-    </div>
-      </div>
+      ${vehicle.status !== 'SOLD'
+      ? `<button
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#scheduleModal"
+      class="mt-3"
+    >
+      Get Started
+    </button>`
+      : ''}
+
+    </div >
+      </div >
     <div class="car-fixed-btn hide-in-mobile">
       <a
         href="/inventory.html?Body Style=${vehicle.bodyStyle}"
         class="view-more-btn"
         type="button"
-        >View More Cars</a
+      >View More Cars</a
       >
-      <button
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#scheduleModal"
-      >
-        Get Started
-      </button>
+      ${vehicle.status !== 'SOLD'
+      ? `<button
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#scheduleModal"
+    >
+      Get Started
+    </button>`
+      : ''
+    }
+     
     </div>
-  </div>
-</div>
+  </div >
+</div >
 
 <div class="car-gallery-images">
   <div class="gallery-preview-images">
@@ -152,9 +169,9 @@ function displayVehicle(vehicle) {
         grid-template-areas: ${getGridAreas()};
       ">
       ${cover_images
-        .map((item, idx) =>
-          idx < 3
-            ? `
+      .map((item, idx) =>
+        idx < 3
+          ? `
           <div role="button" onclick="MorePhotos(this)" class="h-100 item${idx}">
             <img
               class="gallery-image click-to-slick"
@@ -163,23 +180,22 @@ function displayVehicle(vehicle) {
               alt=""
             />
           </div>`
-            : ''
-        )
-        .join('')}
+          : ''
+      )
+      .join('')}
           <div class="total-car-images-btn position-absolute" onclick="MorePhotos(this)"
           >
-            ${
-              cover_images.length - 3 > 0 ? '+' + (cover_images.length - 3) : ''
-            } <span class="elementor-hidden-mobile">Photos</span>
+            ${cover_images.length - 3 > 0 ? '+' + (cover_images.length - 3) : ''
+    } <span class="elementor-hidden-mobile">Photos</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-  <!-- cars -->
-  <div id="gallery" style="display: none">
-    ${vehicle.images
+  <!--cars -->
+    <div id="gallery" style="display: none">
+      ${vehicle.images
       ?.map(
         (item) => `<img
       src=${item.url}
@@ -188,27 +204,31 @@ function displayVehicle(vehicle) {
     />`
       )
       .join('')}
-  </div>
-</div>
-  `
+    </div>
+</div >
+    `
   document.getElementById('car-details').insertAdjacentHTML('beforeend', html)
 
   document
     .getElementsByTagName('title')[0]
     .insertAdjacentHTML(
       'beforeend',
-      `${vehicle.year} ${vehicle.make} ${vehicle.model}`
+      `${vehicle.year} ${vehicle.make} ${vehicle.model} `
     )
 
   document
     .getElementById('vehicle-title')
     .insertAdjacentHTML(
       'beforeend',
-      `${vehicle.year} ${vehicle.make} ${vehicle.model}`
+      `${vehicle.year} ${vehicle.make} ${vehicle.model} `
     )
 
-  if (vehicle.status == 'SOLD')
+  if (vehicle.status == 'SOLD') {
+
     document.getElementById('car-sold').classList.remove('d-none')
+    document.getElementById('myBtn').classList.add('d-none')
+  }
+
   else document.getElementById('car-sold').classList.add('d-none')
 }
 
@@ -219,7 +239,7 @@ function displayVehicleDetails(vehicle) {
 
 function displayFirstTabVehicleDetails(vehicle) {
   const html = `
-  <ul class="car-attributes mb-0">
+    <ul class="car-attributes mb-0" >
     <li class="car_year">
       <span class="car-year">Year</span>
       <strong class="text-right">${vehicle.year}</strong>
@@ -238,9 +258,8 @@ function displayFirstTabVehicleDetails(vehicle) {
     </li>
     <li class="car_year">
       <span class="car-year">Availability</span>
-      <strong class="text-right">${
-        vehicle.status === 'ACTIVE' ? 'In Store' : 'N/A'
-      }</strong>
+      <strong class="text-right">${vehicle.status === 'ACTIVE' ? 'In Store' : 'N/A'
+    }</strong>
     </li>
     <li class="car_year">
       <span class="car-year">VIN Number</span>
@@ -282,77 +301,76 @@ function displayFirstTabVehicleDetails(vehicle) {
       <span class="car-year">Fuel Type</span>
       <strong class="text-right">${vehicle.fuelType}</strong>
     </li>
-  </ul>
-  <div class="row fuel-effeincy">
-    <div class="col-lg-6 col-md-6 brder p-3">
-      <div id="" class="cd-vehicle-fuel-efficiency">
-        <div class="details-form contact-2 details-weight">
-          <div class="fuel-efficiency-detail fuel-efficiency2">
-            <div class="heading">
-              <h6>Fuel Economy Rating</h6>
-            </div>
-            <div class="row align-items-end">
-              <div class="col-4">
-                <label>City</label>
-                <span class="city_mpg">18</span>
+  </ul >
+    <div class="row fuel-effeincy">
+      <div class="col-lg-6 col-md-6 brder p-3">
+        <div id="" class="cd-vehicle-fuel-efficiency">
+          <div class="details-form contact-2 details-weight">
+            <div class="fuel-efficiency-detail fuel-efficiency2">
+              <div class="heading">
+                <h6>Fuel Economy Rating</h6>
               </div>
-              <div class="col-4">
-                <i class="fa-solid fa-gas-pump fa-3x"></i>
-              </div>
-              <div class="col-4">
-                <label>Highway</label>
-                <span class="highway_mpg">23</span>
-              </div>
-              <div class="col-sm-12 mt-3 actual">
-                Actual rating will vary with options, driving
-                conditions, driving habits and vehicle condition
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="colo-lg-6 col-md-6 p-3">
-      <div id="" class="cd-vehicle-fuel-efficiency">
-        <div class="details-form contact-2 details-weight">
-          <div class="fuel-efficiency-detail fuel-efficiency2">
-            <div class="heading">
-              <h6>Vehicle History Report</h6>
-            </div>
-            <div class="row">
-              <div
-                class="col-4 d-flex align-items-center justify-content-end"
-              >
-                <div class="carvax-logo">
-                  <img
-                    src="/crafax.png"
-                    alt="Carfax Logo"
-                    width="70"
-                  />
+              <div class="row align-items-end">
+                <div class="col-4">
+                  <label>City</label>
+                  <span class="city_mpg">18</span>
+                </div>
+                <div class="col-4">
+                  <i class="fa-solid fa-gas-pump fa-3x"></i>
+                </div>
+                <div class="col-4">
+                  <label>Highway</label>
+                  <span class="highway_mpg">23</span>
+                </div>
+                <div class="col-sm-12 mt-3 actual">
+                  Actual rating will vary with options, driving
+                  conditions, driving habits and vehicle condition
                 </div>
               </div>
-              <div class="col-8">
-                <h5>Get a Free Vehicle History Report</h5>
-                <p>Backed by Federal Vehicle Title Data</p>
-              </div>
             </div>
-            <div class="col-xs-12 mt-0 text-center">
-              <div class="get-report-btn">
-                <a
-                  target="_blank"
-                  href="http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&amp;vin=${
-                    vehicle.vin
-                  }"
-                  type="button"
-                  >Get My Free Report</a
+          </div>
+        </div>
+      </div>
+      <div class="colo-lg-6 col-md-6 p-3">
+        <div id="" class="cd-vehicle-fuel-efficiency">
+          <div class="details-form contact-2 details-weight">
+            <div class="fuel-efficiency-detail fuel-efficiency2">
+              <div class="heading">
+                <h6>Vehicle History Report</h6>
+              </div>
+              <div class="row">
+                <div
+                  class="col-4 d-flex align-items-center justify-content-end"
                 >
+                  <div class="carvax-logo">
+                    <img
+                      src="/crafax.png"
+                      alt="Carfax Logo"
+                      width="70"
+                    />
+                  </div>
+                </div>
+                <div class="col-8">
+                  <h5>Get a Free Vehicle History Report</h5>
+                  <p>Backed by Federal Vehicle Title Data</p>
+                </div>
+              </div>
+              <div class="col-xs-12 mt-0 text-center">
+                <div class="get-report-btn">
+                  <a
+                    target="_blank"
+                    href="http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&amp;vin=${vehicle.vin
+    }"
+                    type="button"
+                  >Get My Free Report</a
+                  >
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   `
   document
     .getElementById('vehicle-tab-details')
@@ -364,25 +382,25 @@ function displayFirstTabVehicleDetails(vehicle) {
 }
 
 function displaySecondTabFeaturesAndOptions(vehicle) {
-  const yes = `<i class="fas fa-check"></i>`
-  const no = `<i class="fa-solid fa-xmark"></i>`
+  const yes = `<i i class="fas fa-check" ></i > `
+  const no = `<i i class="fa-solid fa-xmark" ></i > `
 
   html = `
-  <div class="masonry-main cd-vehicle-features">
-              <ul class="list-style-1 list-col-3">
-              ${vehicle.options
-                .filter((option) => option.installed)
-                .map(
-                  (option) =>
-                    `<li>
+    <div class="masonry-main cd-vehicle-features" >
+      <ul class="list-style-1 list-col-3">
+        ${vehicle.options
+      .filter((option) => option.installed)
+      .map(
+        (option) =>
+          `<li>
                   ${option.installed ? yes : no}
                   ${option.label}
                   </li>`
-                )
-                .join('')}
-              </ul>
-            </div>
-  `
+      )
+      .join('')}
+      </ul>
+            </div >
+    `
   document
     .getElementById('profile-tab-details')
     .insertAdjacentHTML('beforeend', html)
@@ -398,34 +416,34 @@ function displayPayOnce(vehicle) {
   const total = price + tax
 
   const html = `
-  <div class="table-price">
+    < div class="table-price" >
   <p class="table-price-p">${total.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
   })}</p>
   <p class="t-body-m">&nbsp;</p>
-</div>
+</ >
 <ul class="price-list-table">
   <li class="taxable-list">
     <span>Vehicle Price</span><span>${price.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    })}</span>
+    style: 'currency',
+    currency: 'USD',
+  })}</span>
   </li>
   <li class="taxable-list">
     <span>Tax, Title, Registration</span><span>${tax.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    })}</span>
+    style: 'currency',
+    currency: 'USD',
+  })}</span>
   </li>
 </ul>
 <ul class="price-list-total">
   <li class="taxable-list">
     <span>Total Cash Price</span>
     <span>${total.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    })}</span>
+    style: 'currency',
+    currency: 'USD',
+  })}</span>
   </li>
 </ul>
   `
@@ -505,7 +523,7 @@ function calculateMonthlyPaymentVehicle(vehicle) {
     .getElementById('pay-monthly')
     .insertAdjacentHTML(
       'beforeend',
-      `${monthlyPayments[0]} - ${monthlyPayments[1]}`
+      `${monthlyPayments[0]} - ${monthlyPayments[1]} `
     )
 }
 
@@ -530,14 +548,14 @@ async function scheduleTestDrive(event) {
   const requestOptions = {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${dealerApiToken}`,
+      Authorization: `Bearer ${dealerApiToken} `,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),
   }
 
   fetch(
-    `${apiUrl}/api/leads/dealership-website-leads/info-request`,
+    `${apiUrl} /api/leads / dealership - website - leads / info - request`,
     requestOptions
   )
     .then((res) => {
@@ -552,6 +570,126 @@ async function scheduleTestDrive(event) {
       document.getElementById('message-loader').classList.add('d-none')
     })
 }
+async function fetchVehicles() {
+  const dealerId = '1'
+  const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net'
+  const dealerApiToken =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmFrb3N5YW5kYXZpZGRldkBnbWFpbC5jb20iLCJzdWIiOjEsImRlYWxlcnNoaXAiOjEsInJvbGUiOiJERUFMRVJfQURNSU4iLCJpYXQiOjE2ODE4MzAyODIsImV4cCI6MTY4MTkxNjY4Mn0.jGifLS5ezj43hqJVrbFeFRlyDg1_j4MESQMdPC5tAyQ'
+  try {
+    const response = await fetch(
+      `${apiUrl}/api/vehicles/search?idDealership=${dealerId}&bodyStyle=${local_vehicle.bodyStyle}&bodyStyle=&minPrice=${local_vehicle.price / 2}&maxPrice=${local_vehicle.price * 1.5}`,
+      {
+        headers: {
+          Authorization: `Bearer ${dealerApiToken}`,
+        },
+      }
+    )
+    const vehicles = await response.json()
+    if (vehicles?.results) local_vehicles = [...vehicles.results]
+    sortItem()
+    return
+  } catch (error) {
+    console.error('Error fetching vehicles:', error)
+    return
+  }
+}
+
+function sortItem() {
+  const sortedVehicle = local_vehicles.sort((a, b) => {
+    if (sortingOrder == 'asc') {
+      if (sortBy == 'createdAt' || sortBy == 'updatedAt')
+        return new Date(a[sortBy]) - new Date(b[sortBy])
+      return a[sortBy] - b[sortBy]
+    }
+    if (sortingOrder == 'desc') {
+      if (sortBy == 'createdAt' || sortBy == 'updatedAt')
+        return new Date(b[sortBy]) - new Date(a[sortBy])
+      return b[sortBy] - a[sortBy]
+    }
+  })
+  local_vehicles = sortedVehicle
+  displayItems()
+}
+
+function getHTML(vehicle) {
+  return `
+  <div class="col-sm-6 col-lg-4 mt-3">
+  <a href="/vdp.html?id=${vehicle.idVehicle}">
+  <div class="car-item">
+    <div
+      style="width:100%;
+      position:relative;
+      background: url('${vehicle.images ? vehicle.images[0]?.url : '/car7.jpeg'
+    }') center center no-repeat;
+      background-size:cover;
+      padding-bottom: 75%;"
+    >
+    <!-- <span class="used-tag">Used</span> -->
+    ${vehicle.status == 'SOLD' ? '<span class="sold-tag"></span>' : ''}
+    </div>
+    <div class="car-item-content">
+      <div class="car-name">${vehicle.year} ${vehicle.make} ${vehicle.model
+    }</div>
+      <div class="car-price">
+        <span class="old-price">$14,000.00</span>
+        <span class="new-price">
+        ${vehicle.price?.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    })}
+        </span>
+      </div>
+      <div
+        class="d-flex justify-content-between mt-2 car-props"
+      >
+        <div class="col-6 car-prop">Mileage</div>
+        <div class="col-6 car-prop-value">${vehicle.mileage}</div>
+      </div>
+      <div
+        class="d-flex justify-content-between mb-2 car-props"
+      >
+        <div class="col-6 car-prop">Availablity</div>
+        <div class="col-6 car-prop-value">${vehicle.status == 'ACTIVE' ? 'In Store' : 'N/A'
+    }</div>
+      </div>
+      <div class="d-flex justify-content-between mt-2" >
+        <span  class="custom-btn-light custom-btn-detail">
+          <i class="fa-solid fa-link me-1"></i>
+          Detail
+        </span>
+        
+
+        ${vehicle.video
+      ? `<button class="custom-btn-light custom-btn-detail">
+          <i class="fa-solid fa-play me-1"></i>
+          Video
+        </button>`
+      : ''
+    }
+        </div>
+      </div>
+    </div>
+    </a>
+    </div>
+  `
+}
+
+
+function displayItems() {
+
+  const itemsToDisplay = local_vehicles.slice(0, 3);
+  console.log('Display Items', itemsPerPage)
+
+  const car_list_box = document.getElementById('car-list-box')
+  car_list_box.innerHTML = ''
+
+  for (let i = 0; i < itemsToDisplay.length; i++) {
+    car_list_box.insertAdjacentHTML('beforeend', getHTML(itemsToDisplay[i]))
+  }
+
+
+}
+
 
 // Call the API on window load
 window.onload = function () {
