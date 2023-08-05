@@ -1,6 +1,7 @@
 let showComment = true
 let schedule = {}
 let local_vehicle = {}
+let recomendedCars = []
 
 async function fetchVehicleDetails() {
   PageLoader(true)
@@ -28,9 +29,11 @@ async function fetchVehicleDetails() {
     displayPayOnce(vehicle)
     calculateMonthlyPaymentVehicle(vehicle)
     PageLoader(false)
+    return
   } catch (error) {
     console.error('Error fetching vehicle details:', error)
     PageLoader(false)
+    return
   }
 }
 
@@ -554,9 +557,34 @@ async function scheduleTestDrive(event) {
 }
 
 // Call the API on window load
-window.onload = function () {
+window.onload = async function () {
   // Call the API with the extracted data
-  fetchVehicleDetails()
+  await fetchVehicleDetails()
+
+  fetchVehicles()
+
+  // var itemsToShow = 3
+
+  // // Show or hide the loaded items based on the current count
+  // function toggleLoadedItems() {
+  //   $('.loaded-item:lt(' + itemsToShow + ')').show()
+  //   $('.loaded-item:gt(' + (itemsToShow - 1) + ')').hide()
+  // }
+
+  // // Show the initial set of items
+  // toggleLoadedItems()
+
+  // // Handle "Load More" button click
+  // $('#load-more-button').on('click', function () {
+  //   // Increment the number of items to show
+  //   itemsToShow += 3
+  //   // Show or hide the loaded items
+  //   toggleLoadedItems()
+  //   // Hide the "Load More" button when all items are shown
+  //   if ($('.loaded-item:hidden').length === 0) {
+  //     $('#load-more-button').hide()
+  //   }
+  // })
 
   function animateTop() {
     var reveals = document.querySelectorAll('.animateTopbar')
@@ -591,4 +619,89 @@ window.onload = function () {
       html: true,
     })
   })
+}
+
+function displayRecomendedCars(recomendedCars) {
+  console.log(recomendedCars)
+  const getHTML = (car) => ` <a class="col-md-6 col-lg-4" href="/vdp.html?id=${
+    car.idVehicle
+  }">
+  <div class="car-item">
+    <div class="position-relative">
+      <img src="${car.images[0]?.url}" width="100%" height="260px" />
+      <div class="overlay1"></div>
+      <!-- <span class="label car-condition used">Used</span> -->
+      ${car.status == 'SOLD' ? '<span class="sold-tag"></span>' : ''}
+    </div>
+    <div class="car-item-content">
+      <div class="car-name">
+      ${car.year} ${car.make} ${car.model} ${car.trim}  
+      </div>
+      <div class="car-price">
+        <span class="old-price">$5,000</span>
+        <span class="new-price"> ${car.price?.toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        })}</span>
+      </div>
+      <div
+        class="d-flex justify-content-between mt-3 car-props"
+      >
+        <div class="col-6 car-prop">Mileage</div>
+        <div class="col-6 car-prop-value">${car.mileage}</div>
+      </div>
+      <div
+        class="d-flex justify-content-between mb-3 car-props"
+      >
+        <div class="col-6 car-prop">Availablity</div>
+        <div class="col-6 car-prop-value">${
+          car.status == 'ACTIVE' ? 'In Store' : 'N/A'
+        }</div>
+      </div>
+      <div class="button d-flex justify-content-between">
+        <div class="detail custom-btn-light">
+          <i class="fa-solid fa-link me-2"></i>
+          Detail
+        </div>
+      </div>
+    </div>
+  </div>
+  </a>  
+  `
+  const cars = recomendedCars.map((car) => getHTML(car)).join('')
+
+  document
+    .getElementById('recomended-car')
+    .insertAdjacentHTML('beforeend', cars)
+}
+
+async function fetchVehicles() {
+  const dealerId = '1'
+  const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net'
+  const dealerApiToken =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmFrb3N5YW5kYXZpZGRldkBnbWFpbC5jb20iLCJzdWIiOjEsImRlYWxlcnNoaXAiOjEsInJvbGUiOiJERUFMRVJfQURNSU4iLCJpYXQiOjE2ODE4MzAyODIsImV4cCI6MTY4MTkxNjY4Mn0.jGifLS5ezj43hqJVrbFeFRlyDg1_j4MESQMdPC5tAyQ'
+  try {
+    const response = await fetch(
+      `${apiUrl}/api/vehicles/search?idDealership=${dealerId}&bodyStyle=${local_vehicle.bodyStyle}&bodyStyle=`,
+      {
+        headers: {
+          Authorization: `Bearer ${dealerApiToken}`,
+        },
+      }
+    )
+    const vehicles = await response.json()
+    recomendedCars = vehicles.results.sort((a, b) => a.price - b.price)
+    LoadMore()
+    return
+  } catch (error) {
+    console.error('Error fetching vehicles:', error)
+    return
+  }
+}
+
+function LoadMore() {
+  const itemPerPage = 3
+  const currentIndex = document.querySelectorAll('.car-item').length
+  const newCars = recomendedCars.slice(currentIndex, currentIndex + itemPerPage)
+  displayRecomendedCars(newCars)
 }
