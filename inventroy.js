@@ -124,6 +124,7 @@ function getQueryString() {
 }
 
 async function fetchVehicles() {
+
   const queryString = getQueryString()
   const dealerId = '1'
   const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net'
@@ -487,13 +488,22 @@ function displayFilters(filters) {
 
 window.addEventListener('load', async () => {
 
-  filters['availability'] = ['In Store', 'Sold']
   const queryParams = new URLSearchParams(window.location.search)
 
   // If you want to get all the parameters and their values as an object
   queryParams.forEach((value, key) => {
     filters[key] = value
   })
+
+
+  if (queryParams.get('bodyStyle')) {
+    filters['bodyStyle'] = [queryParams.get('bodyStyle')]
+    filters['availability'] = ['In Store']
+
+  } else {
+    filters['availability'] = ['In Store', 'Sold']
+
+  }
 
   PageLoader(true)
   displaySelectedFilter()
