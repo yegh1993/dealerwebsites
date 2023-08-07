@@ -5,53 +5,73 @@
  */
 
 const range = document.querySelectorAll('.range-slider span input')
-progress = document.querySelector('.range-slider .progress')
-let gap = 0.1
-const inputValue = document.querySelectorAll('.numberVal input')
-const priceValue = document.getElementById('dealer-slider-amount-1')
+let gap = 0
 
 range.forEach((input) => {
   input.addEventListener('input', (e) => {
-    let minRange = parseInt(range[0].value)
-    let maxRange = parseInt(range[1].value)
+
+    let progress = e.target.parentElement.parentElement.querySelector(
+      '.progress'
+    );
+
+    let inputValue = e.target.parentElement.parentElement.parentElement.querySelectorAll('.numberVal input')
+    const actualValue = e.target.parentElement.parentElement.parentElement.querySelector('.actualvalue input')
+
+
+    const isPrice = actualValue.classList.contains('myPrice')
+
+    let newData = e.target.parentElement.parentElement.querySelectorAll('span input')
+
+
+    let minRange = parseInt(newData[0].value)
+    let maxRange = parseInt(newData[1].value)
 
     console.log(minRange, maxRange, gap)
 
     if (maxRange - minRange < gap) {
       if (e.target.className === 'range-min') {
-        range[0].value = maxRange - gap
+        newData[0].value = maxRange - gap
       } else {
-        range[1].value = minRange + gap
+        newData[1].value = minRange + gap
       }
     } else {
       progress.style.left =
-        ((minRange - range[0].min) / (range[0].max - range[0].min)) * 100 + '%'
+        ((minRange - newData[0].min) / (newData[0].max - newData[0].min)) * 100 + '%'
       progress.style.right =
         100 -
-        ((maxRange - range[0].min) / (range[0].max - range[0].min)) * 100 +
+        ((maxRange - newData[0].min) / (newData[0].max - newData[0].min)) * 100 +
         '%'
 
       inputValue[0].value = minRange
       inputValue[1].value = maxRange
-      priceValue.value = `${minRange.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 0,
-      })} - ${maxRange.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 0,
-      })}`
+
+      if (isPrice) {
+
+        actualValue.value = `${minRange.toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: 0,
+        })} - ${maxRange.toLocaleString('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: 0,
+        })}`
+
+      }
+      else {
+
+        actualValue.value = `${minRange} - ${maxRange}`
+      }
     }
   })
 })
+
 
 /**
  * ---------------------------------------------------
  *                      CUSTOM SELECT                -
  * ---------------------------------------------------
  */
-
 function showCustomSelect() {
   var x, i, j, l, ll, selElmnt, a, b, c
   /*look for any elements with the class "custom-select":*/
@@ -141,6 +161,8 @@ function showCustomSelect() {
   then close all select boxes:*/
   document.addEventListener('click', closeAllSelect)
 }
+
+
 
 /**
  * ---------------------------------------------------
@@ -355,10 +377,32 @@ function scrollToTop() {
  * ---------------------------------------------------
  */
 function separateCamelCase(input) {
+
   if (!input) return ''
   return input.replace(/([a-z])([A-Z])/g, '$1 $2')
 }
 
+
+
+
+
+/**
+ * ---------------------------------------------------
+ *              CAMEL CASE CONVERT                 -
+ * ---------------------------------------------------
+ */
+function toCamelCase(inputString) {
+  const words = inputString.split(' ');
+  const camelCaseWords = [words[0].toLowerCase()];
+
+  for (let i = 1; i < words.length; i++) {
+    camelCaseWords.push(words[i][0].toUpperCase() + words[i].slice(1).toLowerCase());
+  }
+
+  return camelCaseWords.join('');
+}
+
+/**
 /**
  * ---------------------------------------------------
  *              CAR SEARCH FILTERS                   -

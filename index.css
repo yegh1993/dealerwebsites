@@ -29,13 +29,14 @@ a {
   right: 0;
   z-index: 999999;
 }
-#page-loader > div {
+
+#page-loader>div {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
-#page-loader > div > img {
+#page-loader>div>img {
   text-align: center;
   max-width: 100%;
   left: 0;
@@ -108,6 +109,7 @@ a {
   background-size: cover;
   position: relative;
 }
+
 .section-m.footer::before {
   content: '';
   display: block;
@@ -118,9 +120,11 @@ a {
   width: 100%;
   background: rgba(0, 0, 0, 0.9);
 }
+
 .section-m .container {
   position: relative;
 }
+
 .section-m .social-app {
   font-size: 12px;
   line-height: 60px;
@@ -221,6 +225,7 @@ a {
   .section-m .social-app-icon {
     font-size: 22px;
   }
+
   .section-m .social-link-wrap {
     padding: 12px 0;
   }
@@ -247,6 +252,7 @@ input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
+
 .range-slider {
   position: relative;
   width: 100%;
@@ -255,14 +261,15 @@ input[type='number']::-webkit-outer-spin-button {
   background: #eee no-repeat padding-box;
   margin-top: -28px;
 }
+
 .range-slider .progress {
   position: absolute;
-  left: 15%;
-  right: 19%;
+
   height: 100%;
   border-radius: 15px;
   background: #db2e2d no-repeat padding-box;
 }
+
 .range-slider input[type='range'] {
   position: absolute;
   width: 100%;
@@ -272,6 +279,7 @@ input[type='number']::-webkit-outer-spin-button {
   background: none;
   outline: none;
 }
+
 .range-slider .range-min::-webkit-slider-thumb {
   pointer-events: auto;
   -webkit-appearance: none;
@@ -282,6 +290,7 @@ input[type='number']::-webkit-outer-spin-button {
   border-radius: 3px;
   cursor: pointer;
 }
+
 .range-slider .range-max::-webkit-slider-thumb {
   pointer-events: auto;
   -webkit-appearance: none;
@@ -306,9 +315,11 @@ input[type='number']::-webkit-outer-spin-button {
   transition: color 0.4s linear;
   position: relative;
 }
+
 .custom-btn-secondary:hover {
   color: white;
 }
+
 .custom-btn-secondary::before {
   content: '';
   position: absolute;
@@ -323,9 +334,11 @@ input[type='number']::-webkit-outer-spin-button {
   transform-origin: 100% 100%;
   transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
 }
+
 .custom-btn-secondary-1::before {
   transform: scaley(0);
 }
+
 .custom-btn-secondary-1:hover::before {
   transform: scaley(1);
 }
@@ -340,6 +353,7 @@ input[type='number']::-webkit-outer-spin-button {
   position: relative;
   transform: perspective(1px) translateZ(0);
 }
+
 .custom-btn-primary:hover {
   color: white;
 }
@@ -358,9 +372,11 @@ input[type='number']::-webkit-outer-spin-button {
   transform-origin: 100% 100%;
   transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
 }
+
 .custom-btn-primary-2::before {
   transform: scaley(0);
 }
+
 .custom-btn-primary-2:hover::before {
   transform: scaley(1);
 }
@@ -378,6 +394,7 @@ input[type='number']::-webkit-outer-spin-button {
   box-sizing: border-box;
   transition: all 0.6s ease-in-out;
 }
+
 .custom-btn-light:hover {
   background-color: rgb(219, 46, 45);
   color: white;
@@ -395,6 +412,7 @@ input[type='number']::-webkit-outer-spin-button {
   display: block;
   width: 100%;
 }
+
 .custom-input:focus {
   border-color: rgb(150, 140, 140);
   background: white;
@@ -419,13 +437,15 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .custom-select select {
-  display: none; /*hide original SELECT element:*/
+  display: none;
+  /*hide original SELECT element:*/
 }
 
 .select-selected {
   background-color: rgb(255, 255, 255);
   position: relative;
   padding-right: 30px !important;
+  width: 100%;
 }
 
 .select-selected::before {
@@ -479,9 +499,11 @@ input[type='number']::-webkit-outer-spin-button {
   transition: all 0.5s ease;
   text-transform: capitalize;
 }
+
 .select-items div {
   border: none;
 }
+
 .select-items {
   border: 1px solid #e8e8e8;
   border-top: none;
@@ -513,6 +535,7 @@ input[type='number']::-webkit-outer-spin-button {
 .select-selected:hover {
   border-color: #dbdbdb;
 }
+
 .select-selected.select-arrow-active {
   border-color: #999;
 }
@@ -525,12 +548,14 @@ input[type='number']::-webkit-outer-spin-button {
   bottom: 0;
   right: 30px;
 }
+
 .imgcarlight {
   position: absolute;
   top: 3px;
   right: 0px;
   opacity: 0;
 }
+
 .maincardiv .imgcarlight:hover {
   opacity: 1;
 }
@@ -568,6 +593,7 @@ input[type='number']::-webkit-outer-spin-button {
   vertical-align: baseline;
   border-radius: 0.25em;
 }
+
 .sold-tag {
   background: url('/sold-img.png') center center no-repeat;
   background-size: contain;

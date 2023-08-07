@@ -54,7 +54,7 @@ function displayStickyTop(vehicle) {
     </div>
   </div>
   <div class="car-fixed-btn d-block d-md-none mt-2">
-  ${vehicle.status !== 'SOLD'
+  ${vehicle.status == 'ACTIVE'
       ? ` <button
     type="button"
     data-bs-toggle="modal"
@@ -126,7 +126,7 @@ function displayVehicle(vehicle) {
         </div>
       </div>
       <div class="car-fixed-btn d-block d-md-none text-end">
-      ${vehicle.status !== 'SOLD'
+      ${vehicle.status == 'ACTIVE'
       ? `<button
       type="button"
       data-bs-toggle="modal"
@@ -141,12 +141,12 @@ function displayVehicle(vehicle) {
       </div >
     <div class="car-fixed-btn hide-in-mobile">
       <a
-        href="/inventory.html?Body Style=${vehicle.bodyStyle}"
+        href="/inventory.html?bodyStyle=${vehicle.bodyStyle}"
         class="view-more-btn"
         type="button"
       >View More Cars</a
       >
-      ${vehicle.status !== 'SOLD'
+      ${vehicle.status == 'ACTIVE'
       ? `<button
       type="button"
       data-bs-toggle="modal"
@@ -223,7 +223,7 @@ function displayVehicle(vehicle) {
       `${vehicle.year} ${vehicle.make} ${vehicle.model} `
     )
 
-  if (vehicle.status == 'SOLD') {
+  if (vehicle.status !== 'ACTIVE') {
 
     document.getElementById('car-sold').classList.remove('d-none')
     document.getElementById('myBtn').classList.add('d-none')
@@ -416,13 +416,13 @@ function displayPayOnce(vehicle) {
   const total = price + tax
 
   const html = `
-    < div class="table-price" >
+    <div class="table-price">
   <p class="table-price-p">${total.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
   })}</p>
   <p class="t-body-m">&nbsp;</p>
-</ >
+</div >
 <ul class="price-list-table">
   <li class="taxable-list">
     <span>Vehicle Price</span><span>${price.toLocaleString('en-US', {
@@ -577,7 +577,7 @@ async function fetchVehicles() {
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmFrb3N5YW5kYXZpZGRldkBnbWFpbC5jb20iLCJzdWIiOjEsImRlYWxlcnNoaXAiOjEsInJvbGUiOiJERUFMRVJfQURNSU4iLCJpYXQiOjE2ODE4MzAyODIsImV4cCI6MTY4MTkxNjY4Mn0.jGifLS5ezj43hqJVrbFeFRlyDg1_j4MESQMdPC5tAyQ'
   try {
     const response = await fetch(
-      `${apiUrl}/api/vehicles/search?idDealership=${dealerId}&bodyStyle=${local_vehicle.bodyStyle}&bodyStyle=&minPrice=${local_vehicle.price / 2}&maxPrice=${local_vehicle.price * 1.5}`,
+      `${apiUrl}/api/vehicles/search?idDealership=${dealerId}&bodyStyle=${local_vehicle.bodyStyle}&bodyStyle=&minPrice=${local_vehicle.price / 2}&maxPrice=${local_vehicle.price * 1.5}&availability=In Store&availability=`,
       {
         headers: {
           Authorization: `Bearer ${dealerApiToken}`,
@@ -585,7 +585,7 @@ async function fetchVehicles() {
       }
     )
     const vehicles = await response.json()
-    if (vehicles?.results) local_vehicles = [...vehicles.results]
+    if (vehicles?.results) local_vehicles = [...vehicles.results.filter((item) => item.idVehicle !== local_vehicle.idVehicle)]
     sortItem()
     return
   } catch (error) {
@@ -625,7 +625,7 @@ function getHTML(vehicle) {
       padding-bottom: 75%;"
     >
     <!-- <span class="used-tag">Used</span> -->
-    ${vehicle.status == 'SOLD' ? '<span class="sold-tag"></span>' : ''}
+    ${vehicle.status == 'SOLD' || vehicle.status == 'ARCHIVED' ? '<span class="sold-tag"></span>' : ''}
     </div>
     <div class="car-item-content">
       <div class="car-name">${vehicle.year} ${vehicle.make} ${vehicle.model

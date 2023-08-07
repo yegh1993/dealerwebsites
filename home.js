@@ -237,13 +237,13 @@ async function handleSeachInventory() {
   await SearchInventory()
   window.open(
     '/inventory.html?' +
-      Object.entries(filters)
-        .map((item) => item.join('='))
-        .join('&') +
-      '&Min Price=' +
-      inputValue[0].value +
-      '&Max Price=' +
-      inputValue[1].value
+    Object.entries(filters)
+      .map((item) => item.join('='))
+      .join('&') +
+    '&Min Price=' +
+    inputValue[0].value +
+    '&Max Price=' +
+    inputValue[1].value
   )
 }
 
@@ -288,11 +288,10 @@ const gethtml = (vehicle) => `
 <div class="swiper-slide">
 <div class="car-item">
   <div class="car-image-wrap">
-    <img src="${
-      vehicle.images ? vehicle.images[0]?.url : '/car7.jpeg'
-    }" width="100%" class="car-image" />
+    <img src="${vehicle.images ? vehicle.images[0]?.url : '/car7.jpeg'
+  }" width="100%" class="car-image" />
   <!-- <span class="used-tag">Used</span> -->
-  ${vehicle.status == 'SOLD' ? '<span class="sold-tag"></span>' : ''}
+  ${vehicle.status == 'SOLD' || vehicle.status == 'ARCHIVED' ? '<span class="sold-tag"></span>' : ''}
   </div>
   <div class="content-wrap">
     <div class="title">${vehicle.year} ${vehicle.make} ${vehicle.model}</div>
@@ -300,9 +299,9 @@ const gethtml = (vehicle) => `
     <div>
       <span class="actual-amount">$13,500.00</span>
       <span class="after-discount"> ${vehicle.price?.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD',
-      })}</span>
+    style: 'currency',
+    currency: 'USD',
+  })}</span>
     </div>
     <div class="mt-3">
       <div class="d-flex justify-content-between mt-2">

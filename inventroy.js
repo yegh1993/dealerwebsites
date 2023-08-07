@@ -5,10 +5,26 @@ var sortBy = 'name'
 var sortingOrder = 'asc'
 var local_vehicles = []
 
+const arrTypes = [
+  'bodyStyle',
+  'condition',
+  'driveTrain',
+  'engineShape',
+  'fuelType',
+  'interiorColor',
+  'exteriorColor',
+  'make',
+  'model',
+  'transmission',
+  'availability',
+]
+
+
+
 function handleInputChange(event) {
   console.log(event)
-  const key = event.target.name
-  const value = event.target.value
+  const key = toCamelCase(event.target.name)
+  const value = Array.from(event.target.selectedOptions).map(option => option.value);
   filters[key] = value
   SearchInventory()
   displaySelectedFilter()
@@ -54,40 +70,55 @@ async function ResetFilter() {
 }
 
 async function FilterPrice() {
-  filters['Min Price'] = inputValue[0].value
-  filters['Max Price'] = inputValue[1].value
+  filters['Min Price'] = document.querySelector('.priceValMin').value
+  filters['Max Price'] = document.querySelector('.priceValMax').value
   Loader(true)
   await fetchVehicles()
   displaySelectedFilter()
   Loader(false)
 }
 
+
+async function FilterMileage() {
+  filters['Min Mileage'] = document.querySelector('.mileageValMin').value
+  filters['Max Mileage'] = document.querySelector('.mileageValMax').value
+  Loader(true)
+  await fetchVehicles()
+  displaySelectedFilter()
+  Loader(false)
+}
+async function FilterYear() {
+  filters['Min Year'] = document.querySelector('.yearValMin').value
+  filters['Max Year'] = document.querySelector('.yearValMax').value
+  Loader(true)
+  await fetchVehicles()
+  displaySelectedFilter()
+  Loader(false)
+}
+
+
 function getQueryString() {
-  const arrTypes = [
-    'bodyStyle',
-    'condition',
-    'driveTrain',
-    'engineShape',
-    'fuelType',
-    'interiorColor',
-    'exteriorColor',
-    'make',
-    'model',
-    'transmission',
-    'availability',
-  ]
+
+
+  console.log('filters', filters)
 
   let str = Object.entries(filters)
     .map(([label, value]) => {
       const key = label.replace(' ', '')
       if (arrTypes.includes(key))
-        return '&' + key + '=' + value + '&' + key + '='
+        return value.map(val => '&' + key + '=' + val).join('') + '&' + key + '=' + '';
       return '&' + key + '=' + value
     })
     .join('')
 
   if (filters['Min Price']) str = str + '&minPrice=' + filters['Min Price']
   if (filters['Max Price']) str = str + '&maxPrice=' + filters['Max Price']
+
+  if (filters['Min Mileage']) str = str + '&minMileage=' + filters['Min Mileage']
+  if (filters['Max Mileage']) str = str + '&maxMileage=' + filters['Max Mileage']
+
+  if (filters['Min Year']) str = str + '&minYear=' + filters['Min Year']
+  if (filters['Max Year']) str = str + '&maxYear=' + filters['Max Year']
 
   return str
 }
@@ -109,6 +140,7 @@ async function fetchVehicles() {
     )
     const vehicles = await response.json()
     if (vehicles?.results) local_vehicles = [...vehicles.results]
+
     sortItem()
     return
   } catch (error) {
@@ -203,7 +235,7 @@ function getHTML(vehicle) {
       padding-bottom: 75%;"
     >
     <!-- <span class="used-tag">Used</span> -->
-    ${vehicle.status == 'SOLD' ? '<span class="sold-tag"></span>' : ''}
+    ${vehicle.status == 'SOLD' || vehicle.status == 'ARCHIVED' ? '<span class="sold-tag"></span>' : ''}
     </div>
     <div class="car-item-content">
       <div class="car-name">${vehicle.year} ${vehicle.make} ${vehicle.model
@@ -342,10 +374,13 @@ function generatePaginationButtons(totalItems, currentPage) {
 }
 
 function displayFilters(filters) {
-  const getHtml = (label, options) => `<div class="mt-3 mb-2 custom-select">
-  <select class="select-box"  
+  const getHtml = (label, options) => `<div class="mt-3 mb-2 ">
+  <select class="select-box select-selected "  
   onchange="handleInputChange(event)"
   name="${separateCamelCase(label)}"
+  multiple 
+
+  
   >
     <option value="0">${separateCamelCase(label)}</option>                 
     ${options
@@ -359,10 +394,100 @@ function displayFilters(filters) {
     .map(([label, options]) => getHtml(label, options))
     .join('')
 
+
+  const sortedPrice = price.sort((a, b) => a - b)
+  const minPrice = sortedPrice[0]
+  const maxPrice = sortedPrice[sortedPrice.length - 1]
+
   document.getElementById('filter-list').insertAdjacentHTML('beforeend', html)
+  const rangeMin = document.querySelectorAll('.priceValMin')
+  const rangeMax = document.querySelectorAll('.priceValMax')
+
+  for (let index = 0; index < rangeMin.length; index++) {
+    const element = rangeMin[index];
+    element.setAttribute('value', minPrice)
+    element.setAttribute('min', minPrice)
+    element.setAttribute('max', maxPrice)
+  }
+
+
+
+  for (let index = 0; index < rangeMax.length; index++) {
+    const element = rangeMax[index];
+    element.setAttribute('value', maxPrice)
+    element.setAttribute('min', minPrice)
+    element.setAttribute('max', maxPrice)
+  }
+
+  const dealerSliderAmount1 = document.getElementById('dealer-slider-amount-1')
+  dealerSliderAmount1.setAttribute('value', `${minPrice.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+  })} - ${maxPrice.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0,
+  })}`)
+
+  // same for year
+  const sortedYear = year.sort((a, b) => a - b)
+  const minYear = sortedYear[0]
+  const maxYear = sortedYear[sortedYear.length - 1]
+
+  const rangeMinYear = document.querySelectorAll('.yearValMin')
+  const rangeMaxYear = document.querySelectorAll('.yearValMax')
+
+  for (let index = 0; index < rangeMinYear.length; index++) {
+    const element = rangeMinYear[index];
+    element.setAttribute('value', minYear)
+    element.setAttribute('min', minYear)
+    element.setAttribute('max', maxYear)
+  }
+
+  for (let index = 0; index < rangeMaxYear.length; index++) {
+    const element = rangeMaxYear[index];
+    element.setAttribute('value', maxYear)
+    element.setAttribute('min', minYear)
+    element.setAttribute('max', maxYear)
+  }
+
+  const year1 = document.getElementById('year-1')
+  year1.setAttribute('value', `${minYear} - ${maxYear}`)
+
+  // same for mileage
+  const sortedMileage = mileage.sort((a, b) => a - b)
+  const minMileage = sortedMileage[0]
+  const maxMileage = sortedMileage[sortedMileage.length - 1]
+
+  const rangeMinMileage = document.querySelectorAll('.mileageValMin')
+  const rangeMaxMileage = document.querySelectorAll('.mileageValMax')
+
+  for (let index = 0; index < rangeMinMileage.length; index++) {
+    const element = rangeMinMileage[index];
+    element.setAttribute('value', minMileage)
+    element.setAttribute('min', minMileage)
+    element.setAttribute('max', maxMileage)
+  }
+
+  for (let index = 0; index < rangeMaxMileage.length; index++) {
+    const element = rangeMaxMileage[index];
+    element.setAttribute('value', maxMileage)
+    element.setAttribute('min', minMileage)
+    element.setAttribute('max', maxMileage)
+  }
+
+  const mileage1 = document.getElementById('mileage-1')
+
+  mileage1.setAttribute('value', `${minMileage} - ${maxMileage}`)
+
+
+
 }
 
 window.addEventListener('load', async () => {
+
+  filters['availability'] = ['In Store', 'Sold']
   const queryParams = new URLSearchParams(window.location.search)
 
   // If you want to get all the parameters and their values as an object
@@ -374,6 +499,8 @@ window.addEventListener('load', async () => {
   displaySelectedFilter()
   await fetchVehicles()
   const serverFilters = await fetchFilters()
+
+  console.log('Server Filters', serverFilters)
   displayFilters(serverFilters)
   showCustomSelect()
   PageLoader(false)
