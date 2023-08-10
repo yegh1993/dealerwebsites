@@ -214,6 +214,8 @@ function displayVehicles() {
     'vehicle-found'
   ).innerHTML = `${local_vehicles.length} Vehicles Matching`
 
+  document.getElementById('found-vehicle-count').innerHTML = local_vehicles.length
+
   if (local_vehicles.length) {
     displayItems(initialPageNumber)
     generatePaginationButtons(local_vehicles.length, initialPageNumber)

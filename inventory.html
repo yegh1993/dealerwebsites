@@ -173,7 +173,7 @@
                   >
                 </li>
                 <li class="nav-item px-1">
-                  <a class="nav-link active" href="/inventory.html">Inventory</a>
+                  <a class="nav-link active active-link" href="/inventory.html">Inventory</a>
                 </li>
                 <!-- <li class="nav-item px-1">
                   <a class="nav-link" href="#">Who we are</a>
@@ -261,7 +261,7 @@
         <div class="row gx-5">
 
           <div class="col-md-3">
-      
+
             <div class="offcanvas-md offcanvas-start" tabindex="-1" id="offcanvasResponsive" aria-labelledby="offcanvasResponsiveLabel">
               <div class="offcanvas-header justify-content-end">
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
@@ -274,7 +274,7 @@
                       <input
                         type="number"
                         class="range-min priceValMin"
-                 
+
                         disabled
                         hidden
                       />
@@ -283,21 +283,21 @@
                     <div class="max-value numberVal">
                       <input
                         type="number"
-                        class="border text-center range-max priceValMax" 
-                   
+                        class="border text-center range-max priceValMax"
+
                         disabled
                         hidden
                       />
                     </div>
                     &nbsp;
-      
+
                     <div class="range-slider">
                       <div class="progress"></div>
                       <span class="range-min-wrapper">
                         <input
                           class="range-min priceValMin"
                           type="range"
-                    
+
                           step="250"
 
                         />
@@ -307,14 +307,14 @@
                         <input
                           class="range-max priceValMax"
                           type="range"
-                   
+
                           step="250"
 
                         />
                         <!-- <span class="range-max-value">100</span> -->
                       </span>
                     </div>
-      
+
                     <div class="actualvalue mt-4 d-flex justify-content-between">
                       <label for="dealer-slider-amount-1" class="price-label"
                         >Price:</label
@@ -341,7 +341,7 @@
                       <input
                         type="number"
                         class="range-min mileageValMin"
-                 
+
                         disabled
                         hidden
                       />
@@ -350,21 +350,21 @@
                     <div class="max-value numberVal">
                       <input
                         type="number"
-                        class="border text-center range-max mileageValMax" 
-                   
+                        class="border text-center range-max mileageValMax"
+
                         disabled
                         hidden
                       />
                     </div>
                     &nbsp;
-      
+
                     <div class="range-slider">
                       <div class="progress"></div>
                       <span class="range-min-wrapper">
                         <input
                           class="range-min mileageValMin"
                           type="range"
-                    
+
                           step="1"
 
                         />
@@ -374,14 +374,14 @@
                         <input
                           class="range-max mileageValMax"
                           type="range"
-                   
+
                           step="1"
 
                         />
                         <!-- <span class="range-max-value">100</span> -->
                       </span>
                     </div>
-      
+
                     <div class="actualvalue mt-4 d-flex justify-content-between">
                       <label for="dealer-slider-amount-1" class="mileage-label"
                         >Mileage:</label
@@ -408,7 +408,7 @@
                       <input
                         type="number"
                         class="range-min yearValMin"
-                 
+
                         disabled
                         hidden
                       />
@@ -417,21 +417,21 @@
                     <div class="max-value numberVal">
                       <input
                         type="number"
-                        class="border text-center range-max yearValMax" 
-                   
+                        class="border text-center range-max yearValMax"
+
                         disabled
                         hidden
                       />
                     </div>
                     &nbsp;
-      
+
                     <div class="range-slider">
                       <div class="progress"></div>
                       <span class="range-min-wrapper">
                         <input
                           class="range-min yearValMin"
                           type="range"
-                    
+
                           step="1"
 
                         />
@@ -441,14 +441,14 @@
                         <input
                           class="range-max yearValMax"
                           type="range"
-                   
+
                           step="1"
 
                         />
                         <!-- <span class="range-max-value">100</span> -->
                       </span>
                     </div>
-      
+
                     <div class="actualvalue mt-4 d-flex justify-content-between">
                       <label for="dealer-slider-amount-1" class="year-label"
                         >Year:</label
@@ -469,23 +469,23 @@
                       </a>
                     </div>
                   </div>
-                  
+
                   <div class="filters-wrap">
                     <div id="filter-loader" class="filter-loader d-none">
                       <img src="/cd_loader.svg" id="nav-loader" />
                     </div>
-      
+
                     <div class="heading">VEHICLES FILTERS</div>
                     <div class="matched" id="vehicle-found">
                       <!-- Filter Vehicle Count  -->
                     </div>
-      
+
                     <div id="selected-filters">
                       <!-- Selected Filters Shows Here -->
                     </div>
 
                     <div id='filter-list'></div>
-      
+
                     <div>
                       <a onclick="ResetFilter()" href="javascript:void(0);">
                         <button class="custom-btn-primary custom-btn-primary-2 btn-reset">
@@ -501,22 +501,22 @@
                         <label for="formGroupExampleInput" class="form-label text-uppercase">Loan Amount*</label>
                         <input class="custom-input" type="text" name="loanAmount" oninput="HandleInputValues(event)" required />
                       </div>
-      
+
                       <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label text-uppercase">Down Payment*</label>
                         <input class="custom-input" name="downPayment" oninput="HandleInputValues(event)" type="text" required />
                       </div>
-      
+
                       <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label text-uppercase">Interest Rate(%)*</label>
                         <input class="custom-input" name="interestRate" oninput="HandleInputValues(event)" type="text" required />
                       </div>
-      
+
                       <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label text-uppercase">Period (Month)*</label>
                         <input class="custom-input" name="periodInMonths" oninput="HandleInputValues(event)" type="text" required />
                       </div>
-      
+
                       <div class="my-3">
                         <label for="formGroupExampleInput" class="form-label text-uppercase">Payment</label>
                         <div class="d-flex align-items-center">
@@ -528,7 +528,7 @@
                       <div class="d-flex">
                         <a type="submit" href="javascript:void(0);"
                           ><button class="custom-btn-primary custom-btn-primary-2 me-2">
-      
+
                             Estimate Payment
                           </button></a
                         >
@@ -542,15 +542,19 @@
                 </div>
               </div>
             </div>
-          
-         
+
+
           </div>
           <div class="col-md-9">
             <div class="d-flex flex-wrap mt-4 justify-content-between align-items-center">
               <div class="col-md-6">
                 Home &nbsp; / &nbsp; <span class="path-active">Inventory</span>
               </div>
-
+              <div class="col-md-3">
+                <b>Found Vehicle/
+                 <span id="found-vehicle-count"></span>
+                </b>
+              </div>
               <div class="col-md-6">
 
                 <div class="d-flex align-items-center justify-content-end">
