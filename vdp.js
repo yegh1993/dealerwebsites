@@ -165,15 +165,26 @@ function displayVehicle(vehicle) {
   <div class="gallery-preview-images">
   <div class="grid-view row-gap">
     <div class="position-relative">
-      <div class="grid-view grid-area grid-container-bg" style="
+      <div class="grid-view grid-area" style="
         grid-template-areas: ${getGridAreas()};
+        position: relative;
       ">
+        <img
+            class="gallery-image click-to-slick"
+            style="filter: blur(10px); position: absolute; padding: 5px"
+            data-slic="0"
+            src=${cover_images[0]?.url}
+            alt=""
+         />
       ${cover_images
       .map((item, idx) =>
-        idx < 3
-          ? `
-          <div role="button" onclick="MorePhotos(this)" class="h-100 item${idx}">
-            <img
+          idx < 3
+              ? `
+          <div role="button" onclick="MorePhotos(this)" class="h-100 item${idx}" style="
+          position: relative;
+          z-index: 9999;
+          ">
+          <img
               class="gallery-image click-to-slick"
               data-slic="0"
               src=${item?.url}

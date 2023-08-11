@@ -370,10 +370,6 @@
   grid-area: sideB;
 }
 
-.grid-container-bg {
-  background: radial-gradient(black, transparent);
-}
-
 .cjnLvy>div:nth-child(1) {
   grid-area: 1 / 1 / 3 / 3;
 }
