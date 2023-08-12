@@ -137,6 +137,44 @@
   color: #db2d2e;
 }
 
+.section-b .invetory-search-container {
+  position: relative;
+  border: 1px solid #d8d8d8;
+  background-color: rgb(244, 248, 250);
+  padding: 12px;
+  width: 100%;
+}
+
+.section-b .invetory-search-container .invetory-search-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  width: 16px;
+  aspect-ratio: 1;
+  fill: #878484;
+}
+
+.section-b .invetory-search-container .invetory-search-input {
+  margin-left: 24px;
+  border: none;
+  background-color: transparent;
+  width: calc(100% - 24px - 24px);
+}
+.section-b .invetory-search-container .invetory-search-input:focus {
+  outline: none;
+}
+
+.section-b .invetory-search-container .invetory-clear-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  width: 18px;
+  aspect-ratio: 1;
+  fill: #878484;
+}
+
 .section-b .car-item {
   /* max-width: 264px; */
   width: 100%;
