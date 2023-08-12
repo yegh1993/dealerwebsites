@@ -182,7 +182,7 @@ function displayVehicle(vehicle) {
           ? `
           <div role="button" onclick="MorePhotos(this)" class="h-100 item${idx}" style="
           position: relative;
-          z-index: 9999;
+          z-index: 1;
           ">
           <img
               class="gallery-image click-to-slick"
@@ -423,7 +423,7 @@ function displaySecondTabFeaturesAndOptions(vehicle) {
 
 function displayPayOnce(vehicle) {
   const price = vehicle.price || 0
-  const tax = price * 0.1
+  const tax = price * 0.072
   const total = price + tax
 
   const html = `
@@ -539,6 +539,7 @@ function calculateMonthlyPaymentVehicle(vehicle) {
 }
 
 async function scheduleTestDrive(event) {
+  console.log("scheduleTestDrive function called");
   event.stopPropagation()
   event.preventDefault()
 
@@ -553,7 +554,7 @@ async function scheduleTestDrive(event) {
 
   const dealerId = '1'
   const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net'
-  const dealerApiToken =
+  const SaaSApiToken =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmFrb3N5YW5kYXZpZGRldkBnbWFpbC5jb20iLCJzdWIiOjEsImRlYWxlcnNoaXAiOjEsInJvbGUiOiJERUFMRVJfQURNSU4iLCJpYXQiOjE2ODE4MzAyODIsImV4cCI6MTY4MTkxNjY4Mn0.jGifLS5ezj43hqJVrbFeFRlyDg1_j4MESQMdPC5tAyQ'
 
   const requestOptions = {
