@@ -178,8 +178,8 @@ function displayVehicle(vehicle) {
          />
       ${cover_images
       .map((item, idx) =>
-          idx < 3
-              ? `
+        idx < 3
+          ? `
           <div role="button" onclick="MorePhotos(this)" class="h-100 item${idx}" style="
           position: relative;
           z-index: 9999;
@@ -581,29 +581,60 @@ async function scheduleTestDrive(event) {
       document.getElementById('message-loader').classList.add('d-none')
     })
 }
+
+const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net';
+
+// NOTE: You should avoid storing sensitive tokens in your code. Use environment variables or secure storage.
+const dealerApiToken = 'YOUR_SECURE_TOKEN_HERE';
+
 async function fetchVehicles() {
-  const dealerId = '1'
-  const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net'
-  const dealerApiToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmFrb3N5YW5kYXZpZGRldkBnbWFpbC5jb20iLCJzdWIiOjEsImRlYWxlcnNoaXAiOjEsInJvbGUiOiJERUFMRVJfQURNSU4iLCJpYXQiOjE2ODE4MzAyODIsImV4cCI6MTY4MTkxNjY4Mn0.jGifLS5ezj43hqJVrbFeFRlyDg1_j4MESQMdPC5tAyQ'
+  const dealerId = '1';
+  
   try {
+    // Note: URLSearchParams doesn't natively support array parameters, 
+    // so we have to handle them manually.
+    let paramsString = `idDealership=${dealerId}`;
+    paramsString += `&minPrice=${Math.round(local_vehicle.price / 2)}`;
+    paramsString += `&maxPrice=${Math.round(local_vehicle.price * 1.5)}`;
+
+    // Handle bodyStyle as an array.
+    if (local_vehicle.bodyStyle) {
+      paramsString += `&bodyStyle[]=${local_vehicle.bodyStyle}`;
+    }
+
+    // You can add other styles to this array if needed.
+    paramsString += '&bodyStyle[]='; // Empty value.
+
+    // Handle availability as an array.
+    paramsString += '&availability[]=In Store';
+    paramsString += '&availability[]='; // Empty value.
+
     const response = await fetch(
-      `${apiUrl}/api/vehicles/search?idDealership=${dealerId}&bodyStyle=${local_vehicle.bodyStyle}&bodyStyle=&minPrice=${local_vehicle.price / 2}&maxPrice=${local_vehicle.price * 1.5}&availability=In Store&availability=`,
+      `${apiUrl}/api/vehicles/search?${paramsString}`,
       {
         headers: {
           Authorization: `Bearer ${dealerApiToken}`,
         },
       }
-    )
-    const vehicles = await response.json()
-    if (vehicles?.results) local_vehicles = [...vehicles.results.filter((item) => item.idVehicle !== local_vehicle.idVehicle)]
-    sortItem()
-    return
+    );
+    
+    if (!response.ok) {
+      throw new Error(`API returned with status code: ${response.status}`);
+    }
+    
+    const vehicles = await response.json();
+
+    if (vehicles?.results) {
+      local_vehicles = vehicles.results.filter((item) => item.idVehicle !== local_vehicle.idVehicle);
+    }
+
+    sortItem();
   } catch (error) {
-    console.error('Error fetching vehicles:', error)
-    return
+    console.error('Error fetching vehicles:', error);
   }
 }
+
+
 
 function sortItem() {
   const sortedVehicle = local_vehicles.sort((a, b) => {
