@@ -1,3 +1,57 @@
+const outputDiv = document.getElementById('typingOutput');
+const messages = [
+  "Discover Your Next Ride Here!",
+  "Drive Plano's Best Selection 🚗",
+  "Elegant Choices, Affordable Prices!",
+  "Ready for the Road? So Are We!",
+  "Turn Heads in Plano, TX!",
+  "Financing Made Easy for You!",
+  "Upgrade Your Drive Today!",
+  "Why Wait? Find Your Dream Car Now!"
+];
+let currentMessageIndex = 0;
+
+function simulateTyping() {
+  setTimeout(() => {
+    typeNextCharacter();
+  }, 500);
+}
+
+const typingDelay = 40;  // Reduced delay for faster typing
+const deletionDelay = typingDelay / 5;  // 5 times faster deletion
+
+function typeNextCharacter(index = 0) {
+  const message = messages[currentMessageIndex];
+
+  if (index < message.length) {
+    outputDiv.textContent += message[index];
+    setTimeout(() => {
+      typeNextCharacter(index + 1);
+    }, typingDelay);  // using the typingDelay
+  } else {
+    // Wait for a moment after the full message is written out
+    setTimeout(() => {
+      deleteCharacter(message.length - 1);
+    }, 2000);  // 2 second delay before starting deletion
+  }
+}
+
+function deleteCharacter(index) {
+  if (index >= 0) {
+    outputDiv.textContent = outputDiv.textContent.slice(0, index);
+    setTimeout(() => {
+      deleteCharacter(index - 1);
+    }, deletionDelay);  // using the deletionDelay
+  } else {
+    currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+    setTimeout(simulateTyping, 1);  // 1 seconds before starting the next message
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  simulateTyping();
+});
+
 const filters = {}
 var initialPageNumber = 1
 var itemsPerPage = 12

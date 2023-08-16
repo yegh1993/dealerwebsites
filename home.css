@@ -7,7 +7,7 @@
   height: 100vh;
   background: url('/bg.jpg') center center no-repeat;
   background-size: cover;
-  font-family: 'Roboto', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
 }
 
 .text {
@@ -56,7 +56,7 @@
   font-size: 14px;
   padding: 12px 19px;
   text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
 }
 
 @media (min-width: 768px) {
@@ -122,13 +122,13 @@
   padding: 10px 16px;
   color: #323232;
   font-size: 13px;
-  font-family: 'Open-Sans', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
 }
 
 .select-items div {
   color: #323232;
   font-size: 13px;
-  font-family: 'Open-Sans', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
 }
 
 .label {
@@ -180,7 +180,7 @@ select:focus-visible {
 }
 
 .cfb-submit-btn {
-  font-family: 'Open Sans', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -235,11 +235,11 @@ select:focus-visible {
   margin: auto;
   margin-top: 80px;
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
 }
 
 .section-c .heading {
-  font-family: 'Roboto', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   font-size: 40px;
   font-weight: 500;
   line-height: 50px;
@@ -400,7 +400,7 @@ select:focus-visible {
   font-size: 16px;
   line-height: 22px;
   color: #db2e2d;
-  font-family: 'Open Sans', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
 }
 .section-f .title:hover {
   color: #363636;
@@ -451,7 +451,7 @@ select:focus-visible {
   font-size: 20px;
   line-height: 22px;
   font-weight: 600;
-  font-family: 'Open Sans', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   margin-top: 15px;
   font-style: italic;
 }
@@ -461,7 +461,7 @@ select:focus-visible {
   line-height: 22px;
   font-weight: 700;
   color: #db2e2d;
-  font-family: 'Open Sans', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   margin-top: 15px;
 }
 
@@ -471,7 +471,7 @@ select:focus-visible {
   color: #db2e2d;
   text-transform: uppercase;
   font-weight: 600;
-  font-family: 'Open Sans', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   text-decoration: none;
 }
 .section-g .link-btn:hover {
@@ -534,12 +534,12 @@ select:focus-visible {
 
 .section-h .author {
   line-height: 22px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
 }
 
 .section-h p {
   margin-top: 22px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
 }
 
 .section-h .button {
@@ -588,7 +588,7 @@ select:focus-visible {
   font-size: 28px;
   line-height: 42px;
   color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   font-weight: 500;
   max-width: 750px;
   text-align: center;
@@ -643,7 +643,7 @@ select:focus-visible {
   font-weight: 500;
   color: #363636;
   text-transform: uppercase;
-  font-family: 'Roboto' sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   margin-top: 10px;
 }
 
@@ -678,7 +678,7 @@ select:focus-visible {
   font-size: 40px;
   line-height: 50px;
   font-weight: 500;
-  font-family: 'Roboto' sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   color: #363636;
 }
 
@@ -727,7 +727,7 @@ select:focus-visible {
   line-height: 24px;
   color: #db2e2d;
   font-weight: 400;
-  font-family: 'Roboto' sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   margin-top: 20px;
 }
 
@@ -770,7 +770,7 @@ select:focus-visible {
   line-height: 46px;
   font-weight: 500;
   color: #363636;
-  font-family: 'Roboto' sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
 }
 
 /* -------------------------------------------------------

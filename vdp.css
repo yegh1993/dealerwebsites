@@ -195,7 +195,7 @@
   font-weight: 700;
   margin-bottom: 0px;
   text-transform: capitalize;
-  font-family: Brandon Text, Lato, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
 }
 
 .car-main-body {
@@ -228,7 +228,7 @@
   font-weight: 700;
   margin-bottom: 0px;
   text-transform: capitalize;
-  font-family: Brandon Text, Lato, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
 }
 
 .car-term-miles {
@@ -261,7 +261,7 @@
 .car-title-col {
   color: rgb(24 53 88/1);
   line-height: 1;
-  font-family: Brandon Text, Lato, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
 }
 
 .single-cars .car-details .car-price.hero-bar {
@@ -886,7 +886,7 @@ h5,
 h6,
 body,
 html {
-  font-family: Open Sans, Arial, Helvetica, sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   font-weight: 400;
   text-transform: none;
   /* font-size: 14px; */
@@ -1243,7 +1243,7 @@ p.p-details-module.module-fire {
   font-size: 36px;
   line-height: 36px;
   font-weight: 600;
-  font-family: 'Roboto', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   /* color: white; */
   cursor: pointer;
 }
@@ -1265,7 +1265,7 @@ p.p-details-module.module-fire {
   font-size: 24px;
   /* color: white; */
   text-transform: uppercase;
-  font-family: 'Roboto', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   font-weight: 500;
 }
 

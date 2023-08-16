@@ -25,11 +25,11 @@
 }
 
 .section-a .main-heading {
-  font-size: 40px;
+  font-size: 37.9px;
   line-height: 50px;
   color: white;
   font-weight: 500;
-  font-family: 'Roboto', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   text-transform: uppercase;
 }
 
@@ -134,7 +134,7 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 600;
-  font-family: 'Roboto', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   color: #363636;
   text-transform: uppercase;
 }
@@ -238,6 +238,44 @@
 
 .section-b .view-icon.active {
   color: #db2d2e;
+}
+
+.section-b .invetory-search-container {
+  position: relative;
+  border: 1px solid #d8d8d8;
+  background-color: rgb(244, 248, 250);
+  padding: 12px;
+  width: 100%;
+}
+
+.section-b .invetory-search-container .invetory-search-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  width: 16px;
+  aspect-ratio: 1;
+  fill: #878484;
+}
+
+.section-b .invetory-search-container .invetory-search-input {
+  margin-left: 24px;
+  border: none;
+  background-color: transparent;
+  width: calc(100% - 24px - 24px);
+}
+.section-b .invetory-search-container .invetory-search-input:focus {
+  outline: none;
+}
+
+.section-b .invetory-search-container .invetory-clear-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  width: 18px;
+  aspect-ratio: 1;
+  fill: #878484;
 }
 
 .section-b .car-item {

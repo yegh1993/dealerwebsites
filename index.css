@@ -3,7 +3,7 @@ body {
   overflow-x: hidden;
   color: #999999 !important;
   letter-spacing: 0px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   line-height: 22px;
 }
 
@@ -76,7 +76,7 @@ a {
   color: white;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding: 10px 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
 }
 
 .top-bar a {
@@ -95,7 +95,7 @@ a {
   background-color: black;
   color: white;
   font-size: 13px;
-  font-family: 'Roboto', sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
 }
 
 .navbar-toggler-icon {
@@ -185,7 +185,7 @@ a {
   font-size: 16px;
   line-height: 24px;
   color: white;
-  font-family: 'Roboto' sans-serif;
+  font-family: neue-haas-grotesk-display,sans-serif;
   text-transform: uppercase;
   margin-bottom: 26px;
 }
