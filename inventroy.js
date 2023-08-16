@@ -22,10 +22,20 @@ const arrTypes = [
 
 
 function handleInputChange(event) {
-  console.log(event)
+  console.log('event', event.target.value)
   const key = toCamelCase(event.target.name)
-  const value = Array.from(event.target.selectedOptions).map(option => option.value);
-  filters[key] = value
+  const value = event.target.value;
+
+  if(filters.hasOwnProperty(key)){
+    if(!filters[key].includes(value)){
+      filters[key].push(value);
+    }else{
+      filters[key].splice(filters[key].indexOf(value), 1);
+    }
+  }else{
+    filters[key] = [value]
+  }
+
   SearchInventory()
   displaySelectedFilter()
 }
@@ -99,9 +109,6 @@ async function FilterYear() {
 
 function getQueryString() {
 
-
-  console.log('filters', filters)
-
   let str = Object.entries(filters)
     .map(([label, value]) => {
       const key = label.replace(' ', '')
@@ -151,17 +158,24 @@ async function fetchVehicles() {
 }
 
 function displaySelectedFilter() {
-  const getHtml = ([label, value]) => `
-  <div class="d-flex align-items-center selected-filter-item" onclick="removeFilter('${label}')">
-                <i class="fa-regular fa-circle-xmark me-3"></i>
-                <div class="me-2 text-capitalize">${label}:&nbsp;</div>
+  console.log('filter length', filters)
+  const getHtml = ([label, values]) => `
+  ${values
+      .map((value) => `<div class="d-flex align-items-center selected-filter-item" onclick="removeFilter('${label}')">
                 <div>${value}</div>
-              </div>
-  `
+               <i class="fa-solid fa-xmark"></i>
+              </div>`)
+      .join('')}`
 
   const html = Object.entries(filters)
     .map((item) => getHtml(item))
     .join('')
+
+  if (Object.keys(filters).length > 0) {
+    document.getElementById('vehiclesFilters').classList.remove('d-none')
+  } else {
+    document.getElementById('vehiclesFilters').classList.add('d-none')
+  }
 
   document.getElementById('selected-filters').innerHTML = html
 }
@@ -377,21 +391,25 @@ function generatePaginationButtons(totalItems, currentPage) {
 }
 
 function displayFilters(filters) {
-  const getHtml = (label, options) => `<div class="mt-3 mb-2 ">
-  <select class="select-box select-selected "  
-  onchange="handleInputChange(event)"
-  name="${separateCamelCase(label)}"
-  multiple 
+  const getHtml = (label, options) => `<div class="f-accordion-item">
+        <div class="f-accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#${label}" aria-expanded="false" aria-controls="${label}">
+          <div class="heading">
+            ${separateCamelCase(label)}
+          </div>
+        </div>
+        <div id="${label}" class="collapse" aria-labelledby="${label}">
+          <div class="f-accordion-body">
+           ${options
+              .map((option) => `<div class="form-check f-checkbox">
+                                    <input class="form-check-input f-checkbox-input" type="checkbox" id="${option}" name="${separateCamelCase(label)}" value="${option}" onchange="handleInputChange(event)" >
+                                    <label class="form-check-label" for="${option}">${option}</label>
+                                  </div>`)
+              .join('')}
+          </div>
+        </div>
+      </div>
+    </div>`
 
-  
-  >
-    <option value="0">${separateCamelCase(label)}</option>                 
-    ${options
-      .map((option) => `<option value="${option}">${option}</option>`)
-      .join('')}
-  </select>
-</div>
-  `
   const { year, mileage, price, ...rest } = filters
   const html = Object.entries(rest)
     .map(([label, options]) => getHtml(label, options))
@@ -402,7 +420,7 @@ function displayFilters(filters) {
   const minPrice = sortedPrice[0]
   const maxPrice = sortedPrice[sortedPrice.length - 1]
 
-  document.getElementById('filter-list').insertAdjacentHTML('beforeend', html)
+  document.getElementById('filtersAccordion').insertAdjacentHTML('beforeend', html)
   const rangeMin = document.querySelectorAll('.priceValMin')
   const rangeMax = document.querySelectorAll('.priceValMax')
 
@@ -496,16 +514,6 @@ window.addEventListener('load', async () => {
   queryParams.forEach((value, key) => {
     filters[key] = value
   })
-
-
-  if (queryParams.get('bodyStyle')) {
-    filters['bodyStyle'] = [queryParams.get('bodyStyle')]
-    filters['availability'] = ['In Store']
-
-  } else {
-    filters['availability'] = ['In Store', 'Sold']
-
-  }
 
   PageLoader(true)
   displaySelectedFilter()
