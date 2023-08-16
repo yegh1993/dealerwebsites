@@ -1243,8 +1243,7 @@ p.p-details-module.module-fire {
   font-size: 36px;
   line-height: 36px;
   font-weight: 600;
-  font-family: neue-haas-grotesk-display,sans-serif;
-  /* color: white; */
+  font-family: neue-haas-grotesk-display, sans-serif;
   cursor: pointer;
 }
 
@@ -1256,16 +1255,13 @@ p.p-details-module.module-fire {
 
 .modal-header {
   padding: 15px;
-  /* background-color: #323232; */
-  /* color: white; */
   display: inline;
 }
 
 .modal-title {
   font-size: 24px;
-  /* color: white; */
   text-transform: uppercase;
-  font-family: neue-haas-grotesk-display,sans-serif;
+  font-family: neue-haas-grotesk-display, sans-serif;
   font-weight: 500;
 }
 
@@ -1279,11 +1275,17 @@ p.p-details-module.module-fire {
   height: 26px;
   padding: 8px 4px;
   margin: 8px 4px;
+  border: 1px solid #acd2fb;
+  border-radius: 4px; /* New style to add border radius */
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.1); /* New style to add shadow */
 }
 
-#schedule_form input[type='checkbox'] {
-  border: 1px solid var(--bs-border-color);
+#schedule_form input:not([type='checkbox']):not(:placeholder-shown) {
+  font-weight: bold; /* Bold font */
+  background-color: #eef7fe; /* Light blue background */
+  color: #000000ae; /* Red text color */
 }
+
 
 #schedule_form textarea {
   padding: 8px 4px;
@@ -1291,6 +1293,13 @@ p.p-details-module.module-fire {
 
 #schedule_form span {
   margin: 8px 4px;
+  font-size: 16px;
+}
+
+#vehicle-title {
+  font-weight: bold; /* New style to make font bold */
+  color: #db2e2d; /* New style to change color */
+  font-size: 18px; /* New style to change font size */
 }
 
 @media (max-width: 426px) {
@@ -1304,6 +1313,15 @@ p.p-details-module.module-fire {
     height: 100vh;
   }
 }
+
+/* New styles for centering the modal */
+.modal.fade .modal-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 
 /* -------------------------------------------------------
 -                      TOOL TIP                          -
