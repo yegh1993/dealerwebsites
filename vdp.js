@@ -475,6 +475,70 @@ function handleInputChange(event) {
   console.log(schedule)
 }
 
+function toggleErrorClass(element, condition) {
+  if (condition) {
+    element.classList.add('input-error');
+  } else {
+    element.classList.remove('input-error');
+  }
+}
+
+function formatZIPCode(event) {
+  // Remove non-digits
+  event.target.value = event.target.value.replace(/\D/g, "");
+  // Limit to 5 digits
+  event.target.value = event.target.value.slice(0, 5);
+}
+
+function validateZIPCode(event) {
+  const zip = event.target.value;
+  const regex = /^\d{5}$/; // Matches 5-digit ZIP codes
+
+  if (!regex.test(zip)) {
+    event.target.style.borderColor = 'red';
+  } else {
+    event.target.style.borderColor = ''; // Reset border color to default
+  }
+}
+
+function validateEmail(event) {
+  const email = event.target.value;
+  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+  if (!regex.test(email)) {
+    event.target.style.borderColor = 'red';
+  } else {
+    event.target.style.borderColor = ''; // Reset border color to default
+  }
+}
+
+function formatPhoneNumber(event) {
+  // Remove non-digits
+  let phoneNumber = event.target.value.replace(/\D/g, "");
+  // Limit to 10 digits
+  phoneNumber = phoneNumber.slice(0, 10);
+  // Format as (123) 456-7890
+  if (phoneNumber.length > 6) {
+    phoneNumber = "(" + phoneNumber.slice(0, 3) + ") " + phoneNumber.slice(3, 6) + "-" + phoneNumber.slice(6);
+  } else if (phoneNumber.length > 3) {
+    phoneNumber = "(" + phoneNumber.slice(0, 3) + ") " + phoneNumber.slice(3);
+  } else if (phoneNumber.length > 0) {
+    phoneNumber = "(" + phoneNumber;
+  }
+  event.target.value = phoneNumber;
+}
+
+function validatePhoneNumber(event) {
+  const phone = event.target.value;
+  const regex = /^\(\d{3}\) \d{3}-\d{4}$/;
+
+  if (!regex.test(phone)) {
+    event.target.style.borderColor = 'red';
+  } else {
+    event.target.style.borderColor = ''; // Reset border color to default
+  }
+}
+
 function handleEmailConsentToggle(event) {
   const { id, checked } = event.target
   schedule[id] = checked
@@ -590,7 +654,7 @@ const dealerApiToken = 'YOUR_SECURE_TOKEN_HERE';
 
 async function fetchVehicles() {
   const dealerId = '1';
-  
+
   try {
     // Note: URLSearchParams doesn't natively support array parameters, 
     // so we have to handle them manually.
@@ -618,11 +682,11 @@ async function fetchVehicles() {
         },
       }
     );
-    
+
     if (!response.ok) {
       throw new Error(`API returned with status code: ${response.status}`);
     }
-    
+
     const vehicles = await response.json();
 
     if (vehicles?.results) {
