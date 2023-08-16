@@ -1,181 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Inventory Archive - LCT Auto LLC</title>
 
-    <!-- FontAwesom -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inventory Archive - LCT Auto LLC</title>
 
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Roboto -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
-      rel="stylesheet"
-    />
-    <!-- Open Sans -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+  <!-- FontAwesom -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet" />
+  <!-- Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
 
-    <!-- Bootstrap Script -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-      crossorigin="anonymous"
-    ></script>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
 
-    <!-- Custom CSS -->
-    <link href="/index.css" rel="stylesheet" />
-    <link href="/inventory.css" rel="stylesheet" />
-  </head>
-  <body>
+  <!-- Bootstrap Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
 
-    <!-- Loader -->
-    <div id="page-loader">
-      <div>
-        <img src="/loader.gif" alt="loading" title="loading" />
-      </div>
+  <!-- Custom CSS -->
+  <link href="/index.css" rel="stylesheet" />
+  <link href="/inventory.css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- Loader -->
+  <div id="page-loader">
+    <div>
+      <img src="/loader.gif" alt="loading" title="loading" />
     </div>
+  </div>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-      <div class="container text-center">
-        <div class="row justify-content-between">
-          <div class="col-auto container ms-0">
-            <div class="row align-items-center">
-              <a
-                href="https://goo.gl/maps/VQthjXqXhzoynYw16"
-                class="col-auto d-flex align-items-center"
-              >
-                <i class="fa-solid fa-location-dot"></i>
-                <div class="ms-2 d-none d-lg-block">
-                  1703 Capital Ave, Plano, TX 75074.
-                </div>
-              </a>
-
-              <div class="col-auto d-flex align-items-center">
-                <i class="fa-regular fa-clock"></i>
-                <div class="ms-2 d-none d-lg-block">9:00 AM To 6:00 PM</div>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container text-center">
+      <div class="row justify-content-between">
+        <div class="col-auto container ms-0">
+          <div class="row align-items-center">
+            <a href="https://goo.gl/maps/VQthjXqXhzoynYw16" class="col-auto d-flex align-items-center">
+              <i class="fa-solid fa-location-dot"></i>
+              <div class="ms-2 d-none d-lg-block">
+                1703 Capital Ave, Plano, TX 75074.
               </div>
+            </a>
+
+            <div class="col-auto d-flex align-items-center">
+              <i class="fa-regular fa-clock"></i>
+              <div class="ms-2 d-none d-lg-block">9:00 AM To 6:00 PM</div>
             </div>
           </div>
+        </div>
 
-          <div class="col-auto container me-0">
-            <div class="row">
-              <a
-                href="tel:(469)%20286-6875"
-                class="col-auto d-flex align-items-center"
-              >
-                <i class="fa-solid fa-phone"></i>
-                <div class="ms-2 d-none d-lg-block">(469) 286-6875</div>
+        <div class="col-auto container me-0">
+          <div class="row">
+            <a href="tel:(469)%20286-6875" class="col-auto d-flex align-items-center">
+              <i class="fa-solid fa-phone"></i>
+              <div class="ms-2 d-none d-lg-block">(469) 286-6875</div>
+            </a>
+
+            <a href="mailto:info@lctautollc.com" class="col-auto d-flex align-items-center">
+              <i class="fa-regular fa-envelope"></i>
+              <div class="ms-2 d-none d-lg-block">info@lctautollc.com</div>
+            </a>
+
+            <div class="col-auto d-flex align-items-center">
+              <a href="http://www.facebook.com/lctautollc" target="_blank" class="mx-2">
+                <i class="fa-brands fa-facebook-f"></i>
               </a>
-
-              <a
-                href="mailto:info@lctautollc.com"
-                class="col-auto d-flex align-items-center"
-              >
-                <i class="fa-regular fa-envelope"></i>
-                <div class="ms-2 d-none d-lg-block">info@lctautollc.com</div>
+              <a href="http://www.twitter.com/lctautollc" target="_blank" class="mx-2">
+                <i class="fa-brands fa-twitter"></i>
               </a>
-
-              <div class="col-auto d-flex align-items-center">
-                <a
-                  href="http://www.facebook.com/lctautollc"
-                  target="_blank"
-                  class="mx-2"
-                >
-                  <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                <a
-                  href="http://www.twitter.com/lctautollc"
-                  target="_blank"
-                  class="mx-2"
-                >
-                  <i class="fa-brands fa-twitter"></i>
-                </a>
-                <a
-                  href="http://www.Instagram.com/lctautollc"
-                  target="_blank"
-                  class="mx-2"
-                >
-                  <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a
-                  href="http://www.YouTube.com/lctautollc"
-                  target="_blank"
-                  class="mx-2"
-                >
-                  <i class="fa-brands fa-youtube"></i>
-                </a>
-              </div>
+              <a href="http://www.Instagram.com/lctautollc" target="_blank" class="mx-2">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a href="http://www.YouTube.com/lctautollc" target="_blank" class="mx-2">
+                <i class="fa-brands fa-youtube"></i>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Nav Bar -->
-    <div class="nav-bar">
-      <div class="container">
-        <nav class="navbar navbar-expand-lg">
-          <div class="container-fluid">
-            <div class="d-flex">
-              <img
-                src="/car_logo.png"
-                style="padding: 33px 0"
-                width="80%"
-                class="d-block d-lg-none"
-              />
-              <button
-                class="navbar-toggler ms-auto"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarTogglerDemo01"
-                aria-controls="navbarTogglerDemo01"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <i class="fa-solid fa-bars navbar-toggler-icon"></i>
-              </button>
-            </div>
+  <!-- Nav Bar -->
+  <div class="nav-bar">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <div class="d-flex">
+            <img src="/car_logo.png" style="padding: 33px 0" width="80%" class="d-block d-lg-none" />
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <i class="fa-solid fa-bars navbar-toggler-icon"></i>
+            </button>
+          </div>
 
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-              <a class="navbar-brand d-none d-lg-block" href="/">
-                <img
-                  src="/car_logo.png"
-                  style="padding: 33px 0; max-width: 345px"
-                  width="100%"
-                />
-              </a>
-              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item px-1">
-                  <a class="nav-link" aria-current="page" href="/"
-                    >Home</a
-                  >
-                </li>
-                <li class="nav-item px-1">
-                  <a class="nav-link active active-link" href="/inventory.html">Inventory</a>
-                </li>
-                <!-- <li class="nav-item px-1">
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a class="navbar-brand d-none d-lg-block" href="/">
+              <img src="/car_logo.png" style="padding: 33px 0; max-width: 345px" width="100%" />
+            </a>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item px-1">
+                <a class="nav-link" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item px-1">
+                <a class="nav-link active active-link" href="/inventory.html">Inventory</a>
+              </li>
+              <!-- <li class="nav-item px-1">
                   <a class="nav-link" href="#">Who we are</a>
                 </li>
                 <li class="nav-item px-1">
@@ -190,643 +136,524 @@
                 <li class="nav-item px-1">
                   <a class="nav-link" href="#">Blog</a>
                 </li> -->
-              </ul>
+            </ul>
 
-              <div class="dropdown ms-2">
-                <div
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  data-bs-auto-close="outside"
-                  data-bs-offset="10,20"
-                >
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
-                <form
-                  class="dropdown-menu rounded-0 dropdown-menu-end p-3"
-                  style="min-width: 300px"
-                >
-                  <div class="input-group">
-                    <input
-                      type="text"
-                      class="form-control custom-input"
-                      placeholder="Search By Brand, Model and More"
-                      required
-                      oninput="HandleSearch(event)"
-                      autofocus="true"
-                    />
-                    <span class="input-group-text bg-white border-start-0">
-                      <i
-                        id="nav-search"
-                        class="fa-solid fa-magnifying-glass"
-                      ></i>
-                      <!-- <i
+            <div class="dropdown ms-2">
+              <div type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
+                data-bs-offset="10,20">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <form class="dropdown-menu rounded-0 dropdown-menu-end p-3" style="min-width: 300px">
+                <div class="input-group">
+                  <input type="text" class="form-control custom-input" placeholder="Search By Brand, Model and More"
+                    required oninput="HandleSearch(event)" autofocus="true" />
+                  <span class="input-group-text bg-white border-start-0">
+                    <i id="nav-search" class="fa-solid fa-magnifying-glass"></i>
+                    <!-- <i
                         id="nav-loader"
                         class="fa-solid fa-spinner fa-spin d-none"
                       ></i> -->
-                      <img
-                        src="/cd_loader.svg"
-                        id="nav-loader"
-                        class="d-none"
-                      />
+                    <img src="/cd_loader.svg" id="nav-loader" class="d-none" />
+                  </span>
+                </div>
+
+                <div id="vehicle-list" style="max-height: 300px; overflow: auto">
+                  <!-- Vehicle Item Shows Here -->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Section A Cover -->
+  <div class="section-a">
+    <div class="container">
+      <div class="wrap">
+        <!-- This empty div will get filled with the typed message by the JavaScript -->
+        <div class="main-heading" id="typingOutput"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Section B -->
+  <div class="section-b">
+    <div class="container">
+      <div class="row gx-5">
+
+        <div class="col-md-3">
+          <div class="offcanvas-md offcanvas-start" tabindex="-1" id="offcanvasResponsive"
+            aria-labelledby="offcanvasResponsiveLabel">
+            <div class="offcanvas-header justify-content-end">
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive"
+                aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <div class="w-100">
+                <div class="heading">Filter By Price</div>
+                <div>
+                  <div class="min-value numberVal">
+                    <input type="number" class="range-min priceValMin" disabled hidden />
+                  </div>
+                  &nbsp;
+                  <div class="max-value numberVal">
+                    <input type="number" class="border text-center range-max priceValMax" disabled hidden />
+                  </div>
+                  &nbsp;
+
+                  <div class="range-slider">
+                    <div class="progress"></div>
+                    <span class="range-min-wrapper">
+                      <input class="range-min priceValMin" type="range" step="250" />
+                      <!-- <span class="range-min-value">0</span> -->
+                    </span>
+                    <span class="range-max-wrapper">
+                      <input class="range-max priceValMax" type="range" step="250" />
+                      <!-- <span class="range-max-value">100</span> -->
                     </span>
                   </div>
 
-                  <div
-                    id="vehicle-list"
-                    style="max-height: 300px; overflow: auto"
-                  >
-                    <!-- Vehicle Item Shows Here -->
+                  <div class="actualvalue mt-4 d-flex justify-content-between">
+                    <label for="dealer-slider-amount-1" class="price-label">Price:</label>
+                    <input type="text" id="dealer-slider-amount-1" class="dealer-slider-amount text-end myPrice"
+                      readonly="" value="" />
                   </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </div>
-
-    <!-- Section A Cover -->
-    <div class="section-a">
-      <div class="container">
-        <div class="wrap">
-          <div class="main-heading">Inventory</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section B -->
-    <div class="section-b">
-      <div class="container">
-        <div class="row gx-5">
-
-          <div class="col-md-3">
-
-            <div class="offcanvas-md offcanvas-start" tabindex="-1" id="offcanvasResponsive" aria-labelledby="offcanvasResponsiveLabel">
-              <div class="offcanvas-header justify-content-end">
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
-              </div>
-              <div class="offcanvas-body">
-                <div class="w-100">
-                  <div class="heading">Filter By Price</div>
                   <div>
-                    <div class="min-value numberVal">
-                      <input
-                        type="number"
-                        class="range-min priceValMin"
-
-                        disabled
-                        hidden
-                      />
-                    </div>
-                    &nbsp;
-                    <div class="max-value numberVal">
-                      <input
-                        type="number"
-                        class="border text-center range-max priceValMax"
-
-                        disabled
-                        hidden
-                      />
-                    </div>
-                    &nbsp;
-
-                    <div class="range-slider">
-                      <div class="progress"></div>
-                      <span class="range-min-wrapper">
-                        <input
-                          class="range-min priceValMin"
-                          type="range"
-
-                          step="250"
-
-                        />
-                        <!-- <span class="range-min-value">0</span> -->
-                      </span>
-                      <span class="range-max-wrapper">
-                        <input
-                          class="range-max priceValMax"
-                          type="range"
-
-                          step="250"
-
-                        />
-                        <!-- <span class="range-max-value">100</span> -->
-                      </span>
-                    </div>
-
-                    <div class="actualvalue mt-4 d-flex justify-content-between">
-                      <label for="dealer-slider-amount-1" class="price-label"
-                        >Price:</label
-                      >
-                      <input
-                        type="text"
-                        id="dealer-slider-amount-1"
-                        class="dealer-slider-amount text-end myPrice"
-                        readonly=""
-                        value=""
-                      />
-                    </div>
-                    <div>
-                      <a  href="javascript:void(0);">
-                        <button onclick="FilterPrice()" class="custom-btn-primary custom-btn-primary-2 filter-btn">
-                          Filter
-                        </button>
-                      </a>
-                    </div>
+                    <a href="javascript:void(0);">
+                      <button onclick="FilterPrice()" class="custom-btn-primary custom-btn-primary-2 filter-btn">
+                        Filter
+                      </button>
+                    </a>
                   </div>
-                  <div class="heading mt-4">Filter By Mileage</div>
+                </div>
+                <div class="heading mt-4">Filter By Mileage</div>
+                <div>
+                  <div class="min-value numberVal">
+                    <input type="number" class="range-min mileageValMin" disabled hidden />
+                  </div>
+                  &nbsp;
+                  <div class="max-value numberVal">
+                    <input type="number" class="border text-center range-max mileageValMax" disabled hidden />
+                  </div>
+                  &nbsp;
+
+                  <div class="range-slider">
+                    <div class="progress"></div>
+                    <span class="range-min-wrapper">
+                      <input class="range-min mileageValMin" type="range" step="1" />
+                      <!-- <span class="range-min-value">0</span> -->
+                    </span>
+                    <span class="range-max-wrapper">
+                      <input class="range-max mileageValMax" type="range" step="1" />
+                      <!-- <span class="range-max-value">100</span> -->
+                    </span>
+                  </div>
+
+                  <div class="actualvalue mt-4 d-flex justify-content-between">
+                    <label for="dealer-slider-amount-1" class="mileage-label">Mileage:</label>
+                    <input type="text" id="mileage-1" class="dealer-slider-amount text-end" readonly="" value="" />
+                  </div>
                   <div>
-                    <div class="min-value numberVal">
-                      <input
-                        type="number"
-                        class="range-min mileageValMin"
-
-                        disabled
-                        hidden
-                      />
-                    </div>
-                    &nbsp;
-                    <div class="max-value numberVal">
-                      <input
-                        type="number"
-                        class="border text-center range-max mileageValMax"
-
-                        disabled
-                        hidden
-                      />
-                    </div>
-                    &nbsp;
-
-                    <div class="range-slider">
-                      <div class="progress"></div>
-                      <span class="range-min-wrapper">
-                        <input
-                          class="range-min mileageValMin"
-                          type="range"
-
-                          step="1"
-
-                        />
-                        <!-- <span class="range-min-value">0</span> -->
-                      </span>
-                      <span class="range-max-wrapper">
-                        <input
-                          class="range-max mileageValMax"
-                          type="range"
-
-                          step="1"
-
-                        />
-                        <!-- <span class="range-max-value">100</span> -->
-                      </span>
-                    </div>
-
-                    <div class="actualvalue mt-4 d-flex justify-content-between">
-                      <label for="dealer-slider-amount-1" class="mileage-label"
-                        >Mileage:</label
-                      >
-                      <input
-                        type="text"
-                        id="mileage-1"
-                        class="dealer-slider-amount text-end"
-                        readonly=""
-                        value=""
-                      />
-                    </div>
-                    <div>
-                      <a  href="javascript:void(0);">
-                        <button onclick="FilterMileage()" class="custom-btn-primary custom-btn-primary-2 filter-btn">
-                          Filter
-                        </button>
-                      </a>
-                    </div>
+                    <a href="javascript:void(0);">
+                      <button onclick="FilterMileage()" class="custom-btn-primary custom-btn-primary-2 filter-btn">
+                        Filter
+                      </button>
+                    </a>
                   </div>
-                       <div class="heading mt-4">Filter By Year</div>
+                </div>
+                <div class="heading mt-4">Filter By Year</div>
+                <div>
+                  <div class="min-value numberVal">
+                    <input type="number" class="range-min yearValMin" disabled hidden />
+                  </div>
+                  &nbsp;
+                  <div class="max-value numberVal">
+                    <input type="number" class="border text-center range-max yearValMax" disabled hidden />
+                  </div>
+                  &nbsp;
+
+                  <div class="range-slider">
+                    <div class="progress"></div>
+                    <span class="range-min-wrapper">
+                      <input class="range-min yearValMin" type="range" step="1" />
+                      <!-- <span class="range-min-value">0</span> -->
+                    </span>
+                    <span class="range-max-wrapper">
+                      <input class="range-max yearValMax" type="range" step="1" />
+                      <!-- <span class="range-max-value">100</span> -->
+                    </span>
+                  </div>
+
+                  <div class="actualvalue mt-4 d-flex justify-content-between">
+                    <label for="dealer-slider-amount-1" class="year-label">Year:</label>
+                    <input type="text" id="year-1" class="dealer-slider-amount text-end" readonly="" value="" />
+                  </div>
                   <div>
-                    <div class="min-value numberVal">
-                      <input
-                        type="number"
-                        class="range-min yearValMin"
+                    <a href="javascript:void(0);">
+                      <button onclick="FilterYear()" class="custom-btn-primary custom-btn-primary-2 filter-btn">
+                        Filter
+                      </button>
+                    </a>
+                  </div>
+                </div>
 
-                        disabled
-                        hidden
-                      />
-                    </div>
-                    &nbsp;
-                    <div class="max-value numberVal">
-                      <input
-                        type="number"
-                        class="border text-center range-max yearValMax"
-
-                        disabled
-                        hidden
-                      />
-                    </div>
-                    &nbsp;
-
-                    <div class="range-slider">
-                      <div class="progress"></div>
-                      <span class="range-min-wrapper">
-                        <input
-                          class="range-min yearValMin"
-                          type="range"
-
-                          step="1"
-
-                        />
-                        <!-- <span class="range-min-value">0</span> -->
-                      </span>
-                      <span class="range-max-wrapper">
-                        <input
-                          class="range-max yearValMax"
-                          type="range"
-
-                          step="1"
-
-                        />
-                        <!-- <span class="range-max-value">100</span> -->
-                      </span>
-                    </div>
-
-                    <div class="actualvalue mt-4 d-flex justify-content-between">
-                      <label for="dealer-slider-amount-1" class="year-label"
-                        >Year:</label
-                      >
-                      <input
-                        type="text"
-                        id="year-1"
-                        class="dealer-slider-amount text-end"
-                        readonly=""
-                        value=""
-                      />
-                    </div>
-                    <div>
-                      <a  href="javascript:void(0);">
-                        <button onclick="FilterYear()" class="custom-btn-primary custom-btn-primary-2 filter-btn">
-                          Filter
-                        </button>
-                      </a>
-                    </div>
+                <div class="filters-wrap">
+                  <div id="filter-loader" class="filter-loader d-none">
+                    <img src="/cd_loader.svg" id="nav-loader" />
                   </div>
 
-                  <div class="filters-wrap">
-                    <div id="filter-loader" class="filter-loader d-none">
-                      <img src="/cd_loader.svg" id="nav-loader" />
-                    </div>
-
-                    <div class="heading">VEHICLES FILTERS</div>
-                    <div class="matched" id="vehicle-found">
-                      <!-- Filter Vehicle Count  -->
-                    </div>
-
-                    <div id="selected-filters">
-                      <!-- Selected Filters Shows Here -->
-                    </div>
-
-                    <div id='filter-list'></div>
-
-                    <div>
-                      <a onclick="ResetFilter()" href="javascript:void(0);">
-                        <button class="custom-btn-primary custom-btn-primary-2 btn-reset">
-                          Reset
-                        </button>
-                      </a>
-                    </div>
+                  <div class="heading">VEHICLES FILTERS</div>
+                  <div class="matched" id="vehicle-found">
+                    <!-- Filter Vehicle Count  -->
                   </div>
-                  <div class="mt-5">
-                    <div class="heading">FINANCING CALCULATOR</div>
-                    <form id="finance_form" onsubmit="calculateMonthlyPayment(event)"  class="mt-4">
-                      <div class="mb-3">
-                        <label for="formGroupExampleInput" class="form-label text-uppercase">Loan Amount*</label>
-                        <input class="custom-input" type="text" name="loanAmount" oninput="HandleInputValues(event)" required />
-                      </div>
 
-                      <div class="mb-3">
-                        <label for="formGroupExampleInput" class="form-label text-uppercase">Down Payment*</label>
-                        <input class="custom-input" name="downPayment" oninput="HandleInputValues(event)" type="text" required />
-                      </div>
+                  <div id="selected-filters">
+                    <!-- Selected Filters Shows Here -->
+                  </div>
 
-                      <div class="mb-3">
-                        <label for="formGroupExampleInput" class="form-label text-uppercase">Interest Rate(%)*</label>
-                        <input class="custom-input" name="interestRate" oninput="HandleInputValues(event)" type="text" required />
-                      </div>
+                  <div id='filter-list'></div>
 
-                      <div class="mb-3">
-                        <label for="formGroupExampleInput" class="form-label text-uppercase">Period (Month)*</label>
-                        <input class="custom-input" name="periodInMonths" oninput="HandleInputValues(event)" type="text" required />
-                      </div>
+                  <div>
+                    <a onclick="ResetFilter()" href="javascript:void(0);">
+                      <button class="custom-btn-primary custom-btn-primary-2 btn-reset">
+                        Reset
+                      </button>
+                    </a>
+                  </div>
+                </div>
+                <div class="mt-5">
+                  <div class="heading">FINANCING CALCULATOR</div>
+                  <form id="finance_form" onsubmit="calculateMonthlyPayment(event)" class="mt-4">
+                    <div class="mb-3">
+                      <label for="formGroupExampleInput" class="form-label text-uppercase">Loan Amount*</label>
+                      <input class="custom-input" type="text" name="loanAmount" oninput="HandleInputValues(event)"
+                        required />
+                    </div>
 
-                      <div class="my-3">
-                        <label for="formGroupExampleInput" class="form-label text-uppercase">Payment</label>
-                        <div class="d-flex align-items-center">
-                          <div id="payment_result">
-                            <!-- Payment Result shows here -->
-                          </div>
+                    <div class="mb-3">
+                      <label for="formGroupExampleInput" class="form-label text-uppercase">Down Payment*</label>
+                      <input class="custom-input" name="downPayment" oninput="HandleInputValues(event)" type="text"
+                        required />
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="formGroupExampleInput" class="form-label text-uppercase">Interest Rate(%)*</label>
+                      <input class="custom-input" name="interestRate" oninput="HandleInputValues(event)" type="text"
+                        required />
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="formGroupExampleInput" class="form-label text-uppercase">Period (Month)*</label>
+                      <input class="custom-input" name="periodInMonths" oninput="HandleInputValues(event)" type="text"
+                        required />
+                    </div>
+
+                    <div class="my-3">
+                      <label for="formGroupExampleInput" class="form-label text-uppercase">Payment</label>
+                      <div class="d-flex align-items-center">
+                        <div id="payment_result">
+                          <!-- Payment Result shows here -->
                         </div>
                       </div>
-                      <div class="d-flex">
-                        <a type="submit" href="javascript:void(0);"
-                          ><button class="custom-btn-primary custom-btn-primary-2 me-2">
+                    </div>
+                    <div class="d-flex">
+                      <a type="submit" href="javascript:void(0);"><button
+                          class="custom-btn-primary custom-btn-primary-2 me-2">
 
-                            Estimate Payment
-                          </button></a
-                        >
-                        <a onclick="ResetForm(event)" href="javascript:void(0);"><button class="custom-btn-primary custom-btn-primary-2" >
+                          Estimate Payment
+                        </button></a>
+                      <a onclick="ResetForm(event)" href="javascript:void(0);"><button
+                          class="custom-btn-primary custom-btn-primary-2">
                           Reset
                         </button></a>
-                      </div>
-                    </form>
-                  </div>
-
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
-
-
           </div>
-          <div class="col-md-9">
-            <div class="d-flex flex-wrap mt-4 justify-content-between align-items-center">
-              <div class="col-md-6">
-                Home &nbsp; / &nbsp; <span class="path-active">Inventory</span>
-              </div>
-              <div class="col-md-3">
-                <b>Found Vehicle/
-                 <span id="found-vehicle-count"></span>
-                </b>
-              </div>
-              <div class="col-md-6">
+        </div>
 
-                <div class="d-flex align-items-center justify-content-end">
-                  <div class="custom-select">
-                    <select
-                      class="form-control rounded-0"
-                      onchange="changeItemsPerPage(event)"
-                    >
-                      <option value="12">12</option>
-                      <option value="12">12</option>
-                      <option value="24">24</option>
-                      <option value="36">36</option>
-                      <option value="48">48</option>
-                      <option value="60">60</option>
-                    </select>
-                  </div>
-                  <div class="mx-3 custom-select">
-                    <select
-                      class="form-control rounded-0"
-                      aria-placeholder="Sort By Date"
-                      onchange="changeSorting(event)"
-                    >
-                      <option value="updatedAt">Sort by default</option>
-                      <option value="updatedAt">Sort by default</option>
-                      <option value="make">Sort by name</option>
-                      <option value="price">Sort by price</option>
-                      <option value="createdAt">Sort by date</option>
-                      <option value="year">Sort by years</option>
-                    </select>
-                  </div>
-                  <i onclick="changeSortOrder(event)" class="fa-solid fa-arrow-down sort-icon"></i>
+        <div class="col-md-9">
+          <div class="col-12">
+            Found Vehicle / <span id="found-vehicle-count"></span>
+          </div>
+
+          <div class="col-12">
+            <div class="invetory-search-container mt-3">
+              <svg class="invetory-search-icon" viewBox="0 0 16 16">
+                <path
+                  d="M15.75 14.57l-3.86-3.86A6.64 6.64 0 0 0 6.64 0 6.66 6.66 0 0 0 0 6.64a6.64 6.64 0 0 0 6.64 6.64 6.57 6.57 0 0 0 4.07-1.39l3.86 3.87a.87.87 0 0 0 .59.24.83.83 0 0 0 .59-1.43zM6.64 1.67a5 5 0 0 1 3.52 1.46 5 5 0 0 1-3.52 8.48 4.9 4.9 0 0 1-3.51-1.45 5 5 0 0 1 3.51-8.49z"
+                  fill="currentColor"></path>
+              </svg>
+
+              <input class="invetory-search-input" placeholder="Search makes, models or any keywords" />
+
+              <svg id="invetory-clear-icon" class="invetory-clear-icon" viewBox="0 0 24 24" role="button">
+                <g>
+                  <path
+                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z">
+                  </path>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap mt-4 justify-content-between align-items-center">
+            <div class="col-md-6">
+              Home &nbsp; / &nbsp; <span class="path-active">Inventory</span>
+            </div>
+
+            <div class="col-md-6">
+
+              <div class="d-flex align-items-center justify-content-end">
+                <div class="custom-select">
+                  <select class="form-control rounded-0" onchange="changeItemsPerPage(event)">
+                    <option value="12">12</option>
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                    <option value="36">36</option>
+                    <option value="48">48</option>
+                    <option value="60">60</option>
+                  </select>
                 </div>
-                <!-- <div class="mt-3">
+                <div class="mx-3 custom-select">
+                  <select class="form-control rounded-0" aria-placeholder="Sort By Date"
+                    onchange="changeSorting(event)">
+                    <option value="updatedAt">Sort by default</option>
+                    <option value="updatedAt">Sort by default</option>
+                    <option value="make">Sort by name</option>
+                    <option value="price">Sort by price</option>
+                    <option value="createdAt">Sort by date</option>
+                    <option value="year">Sort by years</option>
+                  </select>
+                </div>
+                <i onclick="changeSortOrder(event)" class="fa-solid fa-arrow-down sort-icon"></i>
+              </div>
+              <!-- <div class="mt-3">
                   <i class="fa-solid fa-table-cells view-icon ms-0 active"></i>
                   <i class="fa-solid fa-trowel-bricks view-icon"></i>
                   <i class="fa-solid fa-list view-icon"></i>
                 </div> -->
-              </div>
-            </div>
-
-            <div class="mt-3 path-active d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive">
-              <i class="fa-solid fa-bars"></i> &nbsp;
-              Show sidebar
-            </div>
-
-              <div class="container mt-3 mt-md-5 px-0">
-                <div id="car-list-box" class="row">
-                <!-- Vehicle List Shows Here -->
-                </div>
-              </div>
-
-              <div class="pagination-container">
-                  <ul id="pagination-buttons" class="pagination-nav">
-                    <!-- Page numbers appear here -->
-                  </ul>
-              </div>
-
             </div>
           </div>
+
+          <div class="mt-3 path-active d-md-none" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive">
+            <i class="fa-solid fa-bars"></i> &nbsp;
+            Show sidebar
+          </div>
+
+          <div class="container mt-3 mt-md-5 px-0">
+            <div id="car-list-box" class="row">
+              <!-- Vehicle List Shows Here -->
+            </div>
+          </div>
+
+          <div class="pagination-container">
+            <ul id="pagination-buttons" class="pagination-nav">
+              <!-- Page numbers appear here -->
+            </ul>
+          </div>
+
         </div>
       </div>
     </div>
+  </div>
+  </div>
 
-    <!-- Section M Footer -->
-    <footer class="section-m footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-3">
-            <a href="http://www.facebook.com/lctautollc" class="social-link">
-              <div
-                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap fb"
-              >
-                <div class="d-none d-md-block social-app">Facebook</div>
-                <i class="fa-brands fa-facebook social-app-icon"></i>
-              </div>
-            </a>
+  <!-- Section M Footer -->
+  <footer class="section-m footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <a href="http://www.facebook.com/lctautollc" class="social-link">
+            <div
+              class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap fb">
+              <div class="d-none d-md-block social-app">Facebook</div>
+              <i class="fa-brands fa-facebook social-app-icon"></i>
+            </div>
+          </a>
+        </div>
+        <div class="col-3">
+          <a href="http://www.Instagram.com/lctautollc" class="social-link">
+            <div
+              class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap insta">
+              <div class="d-none d-md-block social-app">Instagram</div>
+              <i class="fa-brands fa-instagram social-app-icon"></i>
+            </div>
+          </a>
+        </div>
+        <div class="col-3">
+          <a href="http://www.YouTube.com/lctautollc" class="social-link">
+            <div
+              class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap youtube">
+              <div class="d-none d-md-block social-app">Youtube</div>
+              <i class="fa-brands fa-youtube social-app-icon"></i>
+            </div>
+          </a>
+        </div>
+        <div class="col-3">
+          <a href="http://www.twitter.com/lctautollc" class="social-link">
+            <div
+              class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap twitter">
+              <div class="d-none d-md-block social-app">twitter</div>
+              <i class="fa-brands fa-twitter social-app-icon"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md-3">
+          <p>
+            LCT auto LLC offers multiple options to get you behind the wheel
+            of your dream car. We work with a variety of vehicles to get you
+            the best one possible. So come on down and drive off in your new
+            car today!
+          </p>
+          <div class="d-flex align-items-center my-4">
+            <i class="fa-solid fa-location-dot contact-icon"></i>
+            <p class="m-0 ms-2">1703 Capital Ave, Plano, TX 75074</p>
           </div>
-          <div class="col-3">
-            <a href="http://www.Instagram.com/lctautollc" class="social-link">
-              <div
-                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap insta"
-              >
-                <div class="d-none d-md-block social-app">Instagram</div>
-                <i class="fa-brands fa-instagram social-app-icon"></i>
-              </div>
-            </a>
+          <div class="d-flex align-items-center my-4">
+            <i class="fa-solid fa-phone-flip contact-icon"></i>
+            <p class="m-0 ms-2">(469) 286 - 6875</p>
           </div>
-          <div class="col-3">
-            <a href="http://www.YouTube.com/lctautollc" class="social-link">
-              <div
-                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap youtube"
-              >
-                <div class="d-none d-md-block social-app">Youtube</div>
-                <i class="fa-brands fa-youtube social-app-icon"></i>
-              </div>
-            </a>
-          </div>
-          <div class="col-3">
-            <a href="http://www.twitter.com/lctautollc" class="social-link">
-              <div
-                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap twitter"
-              >
-                <div class="d-none d-md-block social-app">twitter</div>
-                <i class="fa-brands fa-twitter social-app-icon"></i>
-              </div>
-            </a>
+          <div class="d-flex align-items-center my-4">
+            <i class="fa-solid fa-envelope contact-icon"></i>
+            <p class="m-0 ms-2">info@lctautollc.com</p>
           </div>
         </div>
-
-        <div class="row mt-5">
-          <div class="col-md-3">
-            <p>
-              LCT auto LLC offers multiple options to get you behind the wheel
-              of your dream car. We work with a variety of vehicles to get you
-              the best one possible. So come on down and drive off in your new
-              car today!
-            </p>
-            <div class="d-flex align-items-center my-4">
-              <i class="fa-solid fa-location-dot contact-icon"></i>
-              <p class="m-0 ms-2">1703 Capital Ave, Plano, TX 75074</p>
+        <div class="col-md-3">
+          <div class="heading">Usefull links</div>
+          <a href="#" class="usefull-link">
+            <div class="d-flex align-items-center my-2">
+              <i class="fa-solid fa-angles-right"></i>
+              <p class="m-0 ms-2">Change Oil and Filter</p>
             </div>
-            <div class="d-flex align-items-center my-4">
-              <i class="fa-solid fa-phone-flip contact-icon"></i>
-              <p class="m-0 ms-2">(469) 286 - 6875</p>
+          </a>
+          <a href="#" class="usefull-link">
+            <div class="d-flex align-items-center my-2">
+              <i class="fa-solid fa-angles-right"></i>
+              <p class="m-0 ms-2">Brake Pads Replacement</p>
             </div>
-            <div class="d-flex align-items-center my-4">
-              <i class="fa-solid fa-envelope contact-icon"></i>
-              <p class="m-0 ms-2">info@lctautollc.com</p>
+          </a>
+          <a href="#" class="usefull-link">
+            <div class="d-flex align-items-center my-2">
+              <i class="fa-solid fa-angles-right"></i>
+              <p class="m-0 ms-2">Timing Belt Replacement</p>
             </div>
-          </div>
-          <div class="col-md-3">
-            <div class="heading">Usefull links</div>
-            <a href="#" class="usefull-link">
-              <div class="d-flex align-items-center my-2">
-                <i class="fa-solid fa-angles-right"></i>
-                <p class="m-0 ms-2">Change Oil and Filter</p>
-              </div>
-            </a>
-            <a href="#" class="usefull-link">
-              <div class="d-flex align-items-center my-2">
-                <i class="fa-solid fa-angles-right"></i>
-                <p class="m-0 ms-2">Brake Pads Replacement</p>
-              </div>
-            </a>
-            <a href="#" class="usefull-link">
-              <div class="d-flex align-items-center my-2">
-                <i class="fa-solid fa-angles-right"></i>
-                <p class="m-0 ms-2">Timing Belt Replacement</p>
-              </div>
-            </a>
-            <a href="#" class="usefull-link">
-              <div class="d-flex align-items-center my-2">
-                <i class="fa-solid fa-angles-right"></i>
-                <p class="m-0 ms-2">Pre-purchase Car Inspection</p>
-              </div>
-            </a>
-            <a href="#" class="usefull-link">
-              <div class="d-flex align-items-center my-2">
-                <i class="fa-solid fa-angles-right"></i>
-                <p class="m-0 ms-2">Starter Replacement</p>
-              </div>
-            </a>
-          </div>
-          <div class="col-md-3">
-            <div class="heading">Recent Posts</div>
-            <div class="d-flex align-items-center">
-              <img src="/footer_car_post.png" class="me-4" />
-              <div>
-                <p class="m-0 mb-1">Buy your dream car</p>
-                <p class="m-0">
-                  <i class="fa-solid fa-calendar-days" style="color: red"></i>
-                  January 17, 2022
-                </p>
-              </div>
+          </a>
+          <a href="#" class="usefull-link">
+            <div class="d-flex align-items-center my-2">
+              <i class="fa-solid fa-angles-right"></i>
+              <p class="m-0 ms-2">Pre-purchase Car Inspection</p>
             </div>
-          </div>
-          <div class="col-md-3">
-            <div class="heading">SUBSCRIBE OUR NEWS LETTER</div>
-            <form>
-              <p>
-                Keep up on our always evolving products features and technology.
-                Enter your e-mail and subscribe to our newsletter.
+          </a>
+          <a href="#" class="usefull-link">
+            <div class="d-flex align-items-center my-2">
+              <i class="fa-solid fa-angles-right"></i>
+              <p class="m-0 ms-2">Starter Replacement</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3">
+          <div class="heading">Recent Posts</div>
+          <div class="d-flex align-items-center">
+            <img src="/footer_car_post.png" class="me-4" />
+            <div>
+              <p class="m-0 mb-1">Buy your dream car</p>
+              <p class="m-0">
+                <i class="fa-solid fa-calendar-days" style="color: red"></i>
+                January 17, 2022
               </p>
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter Your Email"
-                  id="subscriber_email"
-                  required
-                />
-              </div>
-              <button
-                onclick="Subscribe(event)"
-                class="mt-3 custom-btn-primary custom-btn-primary-2"
-              >
-                <span id="subscriber-text">Subscriber</span>
-                <!-- <i
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="heading">SUBSCRIBE OUR NEWS LETTER</div>
+          <form>
+            <p>
+              Keep up on our always evolving products features and technology.
+              Enter your e-mail and subscribe to our newsletter.
+            </p>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Enter Your Email" id="subscriber_email" required />
+            </div>
+            <button onclick="Subscribe(event)" class="mt-3 custom-btn-primary custom-btn-primary-2">
+              <span id="subscriber-text">Subscriber</span>
+              <!-- <i
                   id="subscriber-loader"
                   class="fa-solid fa-spinner fa-spin d-none"
                 ></i> -->
-                <img
-                  src="/cd_loader.svg"
-                  id="subscriber-loader"
-                  class="d-none"
-                />
-              </button>
-              <div id="subscriber-error" style="color: #db2e2d">
-                <!-- Error message shows here -->
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <div class="row question-row pb-5">
-          <div class="col-md-6">
-            <div class="container">
-              <div
-                class="question row justify-content-between align-items-center"
-              >
-                <div class="col-md-8">
-                  <div class="heading">ARE YOU LOOKING FOR A CAR?</div>
-                  <p>
-                    Search Our Inventory With Thousands Of Cars And More Cars
-                    Are Adding On Daily Basis
-                  </p>
-                </div>
-                <div class="col-md-4">
-                  <button class="mt-3 custom-btn-primary custom-btn-primary-2">
-                    Read More
-                  </button>
-                </div>
-              </div>
+              <img src="/cd_loader.svg" id="subscriber-loader" class="d-none" />
+            </button>
+            <div id="subscriber-error" style="color: #db2e2d">
+              <!-- Error message shows here -->
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="container">
-              <div
-                class="question row justify-content-between align-items-center"
-              >
-                <div class="col-md-8">
-                  <div class="heading">DO YOU WANT TO SELL A CAR?</div>
-                  <p>
-                    Search Our Inventory With Thousands Of Cars And More Cars
-                    Are Adding On Daily Basis
-                  </p>
-                </div>
-                <div class="col-md-4">
-                  <button class="mt-3 custom-btn-primary custom-btn-primary-2">
-                    Read More
-                  </button>
-                </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row question-row pb-5">
+        <div class="col-md-6">
+          <div class="container">
+            <div class="question row justify-content-between align-items-center">
+              <div class="col-md-8">
+                <div class="heading">ARE YOU LOOKING FOR A CAR?</div>
+                <p>
+                  Search Our Inventory With Thousands Of Cars And More Cars
+                  Are Adding On Daily Basis
+                </p>
+              </div>
+              <div class="col-md-4">
+                <button class="mt-3 custom-btn-primary custom-btn-primary-2">
+                  Read More
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <hr class="mb-4" />
-      <div class="container">
-        <div class="pb-4">©Copyright 2023 LCT Auto LLC</div>
-      </div>
-    </footer>
-
-    <div onclick="scrollToTop()" class="maincardiv reveal">
-      <div>
-        <img class="imgcar1" src="/car.png" alt="" />
-
-        <img class="imgcarlight" src="/car-focus.png" alt="" />
+        <div class="col-md-6">
+          <div class="container">
+            <div class="question row justify-content-between align-items-center">
+              <div class="col-md-8">
+                <div class="heading">DO YOU WANT TO SELL A CAR?</div>
+                <p>
+                  Search Our Inventory With Thousands Of Cars And More Cars
+                  Are Adding On Daily Basis
+                </p>
+              </div>
+              <div class="col-md-4">
+                <button class="mt-3 custom-btn-primary custom-btn-primary-2">
+                  Read More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <hr class="mb-4" />
+    <div class="container">
+      <div class="pb-4">©Copyright 2023 LCT Auto LLC</div>
+    </div>
+  </footer>
 
-    <script src="/common.js" ></script>
-    <script src="/inventroy.js" ></script>
-  </body>
+  <div onclick="scrollToTop()" class="maincardiv reveal">
+    <div>
+      <img class="imgcar1" src="/car.png" alt="" />
+
+      <img class="imgcarlight" src="/car-focus.png" alt="" />
+    </div>
+  </div>
+
+  <script src="/common.js"></script>
+  <script src="/inventroy.js"></script>
+</body>
+
 </html>
