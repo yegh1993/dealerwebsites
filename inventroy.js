@@ -276,7 +276,91 @@ function displayVehicles() {
   } else
     document.getElementById('car-list-box').innerHTML =
       '<div class="text-center"><b>No Vehicle Found</b></div>'
+
+  generateStructuredData();
 }
+
+async function generateStructuredData() {
+  const dealershipName = "LCT Auto";
+  const dealershipLocation = "Plano, TX";
+  
+  const offersList = local_vehicles.map((vehicle, index) => {
+      const itemCondition = (vehicle.condition === "NEW") ? "NewCondition" : "UsedCondition";
+      const year = new Date(vehicle.dateInStock).getFullYear();
+      
+      // Construct the description
+      const vehicleName = `${year} ${vehicle.make} ${vehicle.model}`;
+      const description = `Used ${vehicleName} for sale - $${vehicle.price}, ${vehicle.mileage} mi sold by ${dealershipName} in ${dealershipLocation}`;
+
+      const offer = {
+          "@context": "https://schema.org",
+          "@type": "Offer",
+          "availability": "InStock",
+          "price": vehicle.price,
+          "priceCurrency": "USD",
+          "url": vehicle.link || `https://lctautollc.com/vdp.html?id=${vehicle.idVehicle}`,
+          "@id": `https://lctautollc.com/vdp.html?id=${vehicle.idVehicle}`,
+          "itemOffered": {
+              "@context": "https://schema.org",
+              "@type": "Vehicle",
+              "bodyType": vehicle.bodyStyle,
+              "brand": {
+                  "@context": "https://schema.org",
+                  "@type": "Brand",
+                  "name": vehicle.make
+              },
+              "description": description,
+              "model": vehicle.model,
+              "name": vehicleName,
+              "mpn": vehicleName,
+              "sku": vehicle.stockNumber,
+              "vehicleModelDate": year,
+              "itemCondition": itemCondition,
+              "mileageFromOdometer": {
+                  "@context": "https://schema.org",
+                  "@type": "QuantitativeValue",
+                  "value": vehicle.mileage,
+                  "unitCode": "SMI"
+              },
+              "image": vehicle.images.length > 0 ? vehicle.images[0].url : "",
+              "color": vehicle.exteriorColor,
+              "vehicleIdentificationNumber": vehicle.vin, // Updated to use correct field
+              "driveWheelConfiguration": vehicle.driveTrain,
+              "fuelType": vehicle.fuelType,
+              "vehicleTransmission": vehicle.engineShape,
+              "offers": {
+                  "@id": `https://lctautollc.com/vdp.html?id=${vehicle.idVehicle}`
+              }
+          }
+      };
+      return offer;
+  });
+
+  const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Vehicle",
+      "name": "Pickup Trucks",
+      "mpn": "Pickup Trucks",
+      "sku": "bg5",
+      "bodyType": "Pickup Trucks",
+      "description": "Pickup Trucks For Sale",
+      "offers": {
+          "@context": "https://schema.org",
+          "@type": "AggregateOffer",
+          "highPrice": Math.max(...offersList.map(offer => offer.price)),
+          "lowPrice": Math.min(...offersList.map(offer => offer.price)),
+          "offers": offersList
+      }
+  };
+
+  document.getElementById("structured-data").textContent = JSON.stringify(structuredData, null, 2);
+}
+
+
+
+
+
+
 
 function getHTML(vehicle) {
   return `
@@ -571,3 +655,4 @@ window.addEventListener('load', async () => {
   showCustomSelect()
   PageLoader(false)
 })
+
