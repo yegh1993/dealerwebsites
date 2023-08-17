@@ -656,7 +656,7 @@ async function fetchVehicles() {
   const dealerId = '1';
 
   try {
-    // Note: URLSearchParams doesn't natively support array parameters, 
+    // Note: URLSearchParams doesn't natively support array parameters,
     // so we have to handle them manually.
     let paramsString = `idDealership=${dealerId}`;
     paramsString += `&minPrice=${Math.round(local_vehicle.price / 2)}`;
@@ -690,7 +690,7 @@ async function fetchVehicles() {
     const vehicles = await response.json();
 
     if (vehicles?.results) {
-      local_vehicles = vehicles.results.filter((item) => item.idVehicle !== local_vehicle.idVehicle);
+      local_vehicles = vehicles.results;
     }
 
     sortItem();

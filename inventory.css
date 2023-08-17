@@ -122,12 +122,23 @@
   border-color: #db2d2e;
 }
 
+
+.f-color-item{
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+}
+
 /* -------------------------------------------------------
 -                       SECTION B                        -
 ---------------------------------------------------------- */
 .section-b {
-  margin-top: 54px;
+  margin-top: 15px;
   margin-bottom: 54px;
+}
+
+.breadcrumb-content{
+  margin-bottom: 35px;
 }
 
 .section-b .heading {
@@ -385,5 +396,10 @@
   .section-b {
     margin-top: 0px;
     margin-bottom: 0px;
+  }
+
+  .breadcrumb-content{
+    margin-top: 10px;
+    margin-bottom: 30px;
   }
 }

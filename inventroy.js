@@ -58,6 +58,7 @@ var itemsPerPage = 12
 var sortBy = 'name'
 var sortingOrder = 'asc'
 var local_vehicles = []
+var isQueryParams = false
 
 const arrTypes = [
   'bodyStyle',
@@ -76,8 +77,7 @@ const arrTypes = [
 
 
 function handleInputChange(event) {
-  console.log('event', event.target.value)
-  const key = toCamelCase(event.target.name)
+  const key = toCamelCase(event.target.dataset.id)
   const value = event.target.value;
 
   if(filters.hasOwnProperty(key)){
@@ -85,6 +85,10 @@ function handleInputChange(event) {
       filters[key].push(value);
     }else{
       filters[key].splice(filters[key].indexOf(value), 1);
+
+      if(filters[key].length == 0){
+        delete filters[key]
+      }
     }
   }else{
     filters[key] = [value]
@@ -109,21 +113,33 @@ async function SearchInventory() {
   return
 }
 
-async function removeFilter(key) {
-  delete filters[key]
+async function removeFilter(key, value) {
+  if(filters[key].includes(value)){
+    filters[key].splice(filters[key].indexOf(value), 1);
+
+    if(filters[key].length == 0){
+      delete filters[key]
+    }
+  }
+
   Loader(true)
   await fetchVehicles()
   Loader(false)
   displaySelectedFilter()
 
-  const inputElement = document.querySelector(`[name="${key}"]`)
-  inputElement.nextElementSibling.innerHTML = key
+  const inputElement = document.querySelector(`[value="${value}"]:checked`)
+  if(inputElement) inputElement.checked = false;
 }
 
 async function ResetFilter() {
   Object.keys(filters).forEach((key) => {
-    const inputElement = document.querySelector(`[name="${key}"]`)
-    if (inputElement) inputElement.nextElementSibling.innerHTML = key
+    const checkedInputsList = document.querySelectorAll(`[data-id="${separateCamelCase(key)}"]:checked`)
+
+    if(checkedInputsList.length > 0){
+      for(let i=0; i < checkedInputsList.length; i++){
+        checkedInputsList[i].checked = false;
+      }
+    }
     delete filters[key]
   })
 
@@ -212,10 +228,9 @@ async function fetchVehicles() {
 }
 
 function displaySelectedFilter() {
-  console.log('filter length', filters)
   const getHtml = ([label, values]) => `
   ${values
-      .map((value) => `<div class="d-flex align-items-center selected-filter-item" onclick="removeFilter('${label}')">
+      .map((value) => `<div class="d-flex align-items-center selected-filter-item" onclick="removeFilter('${label}', '${value}')">
                 <div>${value}</div>
                <i class="fa-solid fa-xmark"></i>
               </div>`)
@@ -545,10 +560,7 @@ function displayFilters(filters) {
         <div id="${label}" class="collapse" aria-labelledby="${label}">
           <div class="f-accordion-body">
            ${options
-              .map((option) => `<div class="form-check f-checkbox">
-                                    <input class="form-check-input f-checkbox-input" type="checkbox" id="${option}" name="${separateCamelCase(label)}" value="${option}" onchange="handleInputChange(event)" >
-                                    <label class="form-check-label" for="${option}">${option}</label>
-                                  </div>`)
+              .map((option) => updateItems(label, option))
               .join('')}
           </div>
         </div>
@@ -647,17 +659,51 @@ function displayFilters(filters) {
 
   mileage1.setAttribute('value', `${minMileage} - ${maxMileage}`)
 
+}
 
+function updateItems(label, option) {
+  if (option != null) {
+    const colorContent = (label, option) => `<div class="d-flex  justify-content-between">
+              <div class="form-check f-checkbox">
+                <input class="form-check-input f-checkbox-input" type="checkbox" id="${option}" data-id="${separateCamelCase(label)}" name="${label}" value="${option}" onchange="handleInputChange(event)" >
+                <label class="form-check-label" for="${option}">${option}</label>
+              </div>
+              <div class="f-color-item" style="background-color: ${colorPiker(option)}"></div>
+            </div>`
 
+    switch (label) {
+      case 'exteriorColor':
+        return colorContent(label, option)
+        break;
+      case 'interiorColor':
+        return colorContent(label, option)
+        break;
+      default:
+        return `<div class="form-check f-checkbox">
+                <input class="form-check-input f-checkbox-input" type="checkbox" id="${option}" data-id="${separateCamelCase(label)}" name="${label}" value="${option}" onchange="handleInputChange(event)" >
+                <label class="form-check-label" for="${option}">${option}</label>
+              </div>`
+    }
+  }
+}
+
+function colorPiker(colorName){
+  switch (colorName) {
+    case 'Burgundy':
+          return '#800020';
+      break;
+    default:
+      return colorName
+  }
 }
 
 window.addEventListener('load', async () => {
 
   const queryParams = new URLSearchParams(window.location.search)
-
+  isQueryParams = queryParams.size
   // If you want to get all the parameters and their values as an object
   queryParams.forEach((value, key) => {
-    filters[key] = value
+    filters[key] = [value]
   })
 
   PageLoader(true)
