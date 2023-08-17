@@ -410,27 +410,28 @@ function getHTML(vehicle) {
         <div class="col-6 car-prop-value">${vehicle.status == 'ACTIVE' ? 'In Store' : 'N/A'
     }</div>
       </div>
-      <div class="d-flex justify-content-between mt-2" >
-        <span  class="custom-btn-light custom-btn-detail">
-          <i class="fa-solid fa-link me-1"></i>
-          Detail
-        </span>
-        
+      <div class="flex-container">
+  <div class="flex-item">
+    <a href="tel:(4692866875)" class="phone-link">(469) 286-6875</a>
+  </div>
+  <a href="#" class="btn btn-sm request-info-btn">Request Info</a>
+</div>
 
-        ${vehicle.video
+
+      ${vehicle.video
       ? `<button class="custom-btn-light custom-btn-detail">
           <i class="fa-solid fa-play me-1"></i>
           Video
         </button>`
       : ''
     }
-        </div>
-      </div>
     </div>
-    </a>
-    </div>
+  </div>
+  </a>
+  </div>
   `
 }
+
 
 function displayItems(pageNumber) {
   const startIndex = (pageNumber - 1) * itemsPerPage
