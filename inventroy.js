@@ -292,6 +292,11 @@ async function generateStructuredData() {
     const vehicleName = `${year} ${vehicle.make} ${vehicle.model}`;
     const description = `Used ${vehicleName} for sale - $${vehicle.price}, ${vehicle.mileage} mi sold by ${dealershipName} in ${dealershipLocation}`;
 
+    // Calculate priceValidUntil date
+    const dateInStock = new Date(vehicle.dateInStock);
+    const priceValidUntil = new Date(dateInStock);
+    priceValidUntil.setMonth(priceValidUntil.getMonth() + 3);
+
     const offer = {
       "@context": "https://schema.org",
       "@type": "Offer",
@@ -300,6 +305,7 @@ async function generateStructuredData() {
       "priceCurrency": "USD",
       "url": vehicle.link || `https://lctautollc.com/vdp.html?id=${vehicle.idVehicle}`,
       "@id": `https://lctautollc.com/vdp.html?id=${vehicle.idVehicle}`,
+      "priceValidUntil": priceValidUntil.toISOString(),
       "itemOffered": {
         "@context": "https://schema.org",
         "@type": "Vehicle",
@@ -327,7 +333,11 @@ async function generateStructuredData() {
         "vehicleIdentificationNumber": vehicle.vin,
         "driveWheelConfiguration": vehicle.driveTrain,
         "fuelType": vehicle.fuelType,
-        "vehicleTransmission": vehicle.engineShape,
+        "vehicleTransmission": vehicle.transmission,
+        "vehicleEngine": {
+          "@type": "EngineSpecification",
+          "name": vehicle.engineShape
+        },
         "offers": {
           "@id": `https://lctautollc.com/vdp.html?id=${vehicle.idVehicle}`
         }
@@ -357,6 +367,7 @@ async function generateStructuredData() {
 
   document.getElementById("structured-data").textContent = JSON.stringify(structuredData, null, 2);
 }
+
 
 function getHTML(vehicle) {
   return `
