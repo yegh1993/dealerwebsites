@@ -459,7 +459,15 @@ function getHTML(vehicle) {
   `;
 }
 
+let isTransitioning = false;
+
 function changeImage(event, direction) {
+  if (isTransitioning) {
+    return; // Exit the function if a transition is already in progress
+  }
+
+  isTransitioning = true; // Set the flag to indicate that a transition is in progress
+
   event.stopPropagation(); // Prevent the click event from propagating to the parent anchor tag
 
   const imagesContainer = event.target.parentElement.parentElement; // Select the parent container of the images
@@ -483,7 +491,6 @@ function changeImage(event, direction) {
     return;
   }
 
-  images[currentIndex].style.display = 'none';
   const newIndex = (currentIndex + direction + images.length) % images.length;
   console.log(`New index: ${newIndex}`);
 
@@ -492,8 +499,25 @@ function changeImage(event, direction) {
     return;
   }
 
+  // Position the new image correctly before the transition starts
+  images[newIndex].style.transform = direction === 1 ? 'translateX(100%)' : 'translateX(-100%)';
   images[newIndex].style.display = 'block';
+
+  // Add the smooth scrolling effect
+  setTimeout(() => {
+    images[currentIndex].style.transform = direction === 1 ? 'translateX(-100%)' : 'translateX(100%)';
+    images[newIndex].style.transform = 'translateX(0%)';
+  }, 50); // Wait a short time to ensure the new image is positioned correctly
+
+  // Hide the current image after the transition has completed
+  setTimeout(() => {
+    images[currentIndex].style.display = 'none';
+    isTransitioning = false; // Reset the flag to indicate that the transition has completed
+  }, 550); // Wait for the transition to complete
 }
+
+
+
 
 
 function showRequestInfoModal(event) {
@@ -514,6 +538,98 @@ function showRequestInfoModal(event) {
   $('#scheduleModal').on('hidden.bs.modal', function() {
       this.remove();
   });
+}
+
+function handleInputChange(event) {
+  const { name, value } = event.target
+  schedule[name] = value
+  console.log(schedule)
+}
+
+function toggleErrorClass(element, condition) {
+  if (condition) {
+    element.classList.add('input-error');
+  } else {
+    element.classList.remove('input-error');
+  }
+}
+
+function formatZIPCode(event) {
+  // Remove non-digits
+  event.target.value = event.target.value.replace(/\D/g, "");
+  // Limit to 5 digits
+  event.target.value = event.target.value.slice(0, 5);
+}
+
+function validateZIPCode(event) {
+  const zip = event.target.value;
+  const regex = /^\d{5}$/; // Matches 5-digit ZIP codes
+
+  if (!regex.test(zip)) {
+    event.target.style.borderColor = 'red';
+  } else {
+    event.target.style.borderColor = ''; // Reset border color to default
+  }
+}
+
+function validateEmail(event) {
+  const email = event.target.value;
+  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+  if (!regex.test(email)) {
+    event.target.style.borderColor = 'red';
+  } else {
+    event.target.style.borderColor = ''; // Reset border color to default
+  }
+}
+
+function formatPhoneNumber(event) {
+  // Remove non-digits
+  let phoneNumber = event.target.value.replace(/\D/g, "");
+  // Limit to 10 digits
+  phoneNumber = phoneNumber.slice(0, 10);
+  // Format as (123) 456-7890
+  if (phoneNumber.length > 6) {
+    phoneNumber = "(" + phoneNumber.slice(0, 3) + ") " + phoneNumber.slice(3, 6) + "-" + phoneNumber.slice(6);
+  } else if (phoneNumber.length > 3) {
+    phoneNumber = "(" + phoneNumber.slice(0, 3) + ") " + phoneNumber.slice(3);
+  } else if (phoneNumber.length > 0) {
+    phoneNumber = "(" + phoneNumber;
+  }
+  event.target.value = phoneNumber;
+}
+
+function validatePhoneNumber(event) {
+  const phone = event.target.value;
+  const regex = /^\(\d{3}\) \d{3}-\d{4}$/;
+
+  if (!regex.test(phone)) {
+    event.target.style.borderColor = 'red';
+  } else {
+    event.target.style.borderColor = ''; // Reset border color to default
+  }
+}
+
+function handleEmailConsentToggle(event) {
+  const { id, checked } = event.target
+  schedule[id] = checked
+  console.log(schedule)
+}
+
+function ToggleComment(event) {
+  const parent = event.target.parentElement
+  const icon = parent.firstElementChild
+  const textarea = parent.nextElementSibling
+  if (showComment) {
+    icon.classList.remove('fa-plus')
+    icon.classList.add('fa-minus')
+    textarea.classList.remove('d-none')
+  } else {
+    icon.classList.add('fa-plus')
+    icon.classList.remove('fa-minus')
+    textarea.classList.add('d-none')
+  }
+  showComment = !showComment
 }
 
 function generateModalHTML() {
@@ -826,4 +942,3 @@ window.addEventListener('load', async () => {
   showCustomSelect()
   PageLoader(false)
 })
-
