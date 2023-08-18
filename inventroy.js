@@ -80,17 +80,17 @@ function handleInputChange(event) {
   const key = toCamelCase(event.target.dataset.id)
   const value = event.target.value;
 
-  if(filters.hasOwnProperty(key)){
-    if(!filters[key].includes(value)){
+  if (filters.hasOwnProperty(key)) {
+    if (!filters[key].includes(value)) {
       filters[key].push(value);
-    }else{
+    } else {
       filters[key].splice(filters[key].indexOf(value), 1);
 
-      if(filters[key].length == 0){
+      if (filters[key].length == 0) {
         delete filters[key]
       }
     }
-  }else{
+  } else {
     filters[key] = [value]
   }
 
@@ -114,10 +114,10 @@ async function SearchInventory() {
 }
 
 async function removeFilter(key, value) {
-  if(filters[key].includes(value)){
+  if (filters[key].includes(value)) {
     filters[key].splice(filters[key].indexOf(value), 1);
 
-    if(filters[key].length == 0){
+    if (filters[key].length == 0) {
       delete filters[key]
     }
   }
@@ -128,15 +128,15 @@ async function removeFilter(key, value) {
   displaySelectedFilter()
 
   const inputElement = document.querySelector(`[value="${value}"]:checked`)
-  if(inputElement) inputElement.checked = false;
+  if (inputElement) inputElement.checked = false;
 }
 
 async function ResetFilter() {
   Object.keys(filters).forEach((key) => {
     const checkedInputsList = document.querySelectorAll(`[data-id="${separateCamelCase(key)}"]:checked`)
 
-    if(checkedInputsList.length > 0){
-      for(let i=0; i < checkedInputsList.length; i++){
+    if (checkedInputsList.length > 0) {
+      for (let i = 0; i < checkedInputsList.length; i++) {
         checkedInputsList[i].checked = false;
       }
     }
@@ -399,66 +399,92 @@ async function generateStructuredData() {
 
 
 function getHTML(vehicle) {
+  const imageScrollerHtml = vehicle.images.map((image, index) => `
+  <img src="${image.url}" class="vehicle-image" data-index="${index}" ${index !== 0 ? 'style="display: none;"' : ''}>
+`).join('');
+
   return `
   <div class="col-sm-6 col-lg-4 mt-3">
-  <a href="/vdp.html?id=${vehicle.idVehicle}">
-  <div class="car-item">
-    <div
-      style="width:100%;
-      position:relative;
-      background: url('${vehicle.images ? vehicle.images[0]?.url : '/car7.jpeg'
-    }') center center no-repeat;
-      background-size:cover;
-      padding-bottom: 75%;"
-    >
-    <!-- <span class="used-tag">Used</span> -->
-    ${vehicle.status == 'SOLD' || vehicle.status == 'ARCHIVED' ? '<span class="sold-tag"></span>' : ''}
-    </div>
-    <div class="car-item-content">
-      <div class="car-name">${vehicle.year} ${vehicle.make} ${vehicle.model
-    }</div>
-      <div class="car-price">
-        <span class="old-price">$14,000.00</span>
-        <span class="new-price">
-        ${vehicle.price?.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    })}
-        </span>
-      </div>
-      <div
-        class="d-flex justify-content-between mt-2 car-props"
-      >
-        <div class="col-6 car-prop">Mileage</div>
-        <div class="col-6 car-prop-value">${vehicle.mileage}</div>
-      </div>
-      <div
-        class="d-flex justify-content-between mb-2 car-props"
-      >
-        <div class="col-6 car-prop">Availablity</div>
-        <div class="col-6 car-prop-value">${vehicle.status == 'ACTIVE' ? 'In Store' : 'N/A'
-    }</div>
-      </div>
-      <div class="flex-container">
-  <div class="flex-item">
-    <a href="tel:(4692866875)" class="phone-link">(469) 286-6875</a>
-  </div>
-  <a href="#" class="btn btn-sm request-info-btn">Request Info</a>
-</div>
-
-
-      ${vehicle.video
+    <a href="/vdp.html?id=${vehicle.idVehicle}">
+      <div class="car-item">
+        <div class="vehicle-images">
+          <button class="prev-image" onclick="event.preventDefault(); event.stopPropagation(); changeImage(event, -1)"><i class="fas fa-arrow-left"></i></button>
+          ${imageScrollerHtml}
+          <button class="next-image" onclick="event.preventDefault(); event.stopPropagation(); changeImage(event, 1)"><i class="fas fa-arrow-right"></i></button>
+        </div>
+          <div class="car-item-content">
+            <div class="car-name">${vehicle.year} ${vehicle.make} ${vehicle.model}</div>
+            <div class="car-price">
+              <span class="old-price">$14,000.00</span>
+              <span class="new-price">
+                ${vehicle.price?.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })}
+              </span>
+            </div>
+            <div class="d-flex justify-content-between mt-2 car-props">
+              <div class="col-6 car-prop">Mileage</div>
+              <div class="col-6 car-prop-value">${vehicle.mileage}</div>
+            </div>
+            <div class="d-flex justify-content-between mb-2 car-props">
+              <div class="col-6 car-prop">Availablity</div>
+              <div class="col-6 car-prop-value">${vehicle.status == 'ACTIVE' ? 'In Store' : 'N/A'}</div>
+            </div>
+            <div class="flex-container">
+              <div class="flex-item">
+                <a href="tel:(4692866875)" class="phone-link">(469) 286-6875</a>
+              </div>
+              <a href="#" class="btn btn-sm request-info-btn">Request Info</a>
+            </div>
+            ${vehicle.video
       ? `<button class="custom-btn-light custom-btn-detail">
-          <i class="fa-solid fa-play me-1"></i>
-          Video
-        </button>`
+                  <i class="fa-solid fa-play me-1"></i>
+                  Video
+                </button>`
       : ''
     }
+          </div>
+        </div>
+      </a>
     </div>
-  </div>
-  </a>
-  </div>
-  `
+  `;
+}
+
+function changeImage(event, direction) {
+  event.stopPropagation(); // Prevent the click event from propagating to the parent anchor tag
+
+  const imagesContainer = event.target.parentElement.parentElement; // Select the parent container of the images
+  console.log('Images container:', imagesContainer);
+
+  const images = imagesContainer.getElementsByClassName('vehicle-image');
+  console.log('Images:', images);
+
+  let currentIndex = -1;
+  for (let i = 0; i < images.length; i++) {
+    console.log(`Image ${i} opacity: ${images[i].style.opacity}`);
+    if (images[i].style.opacity !== '0') {
+      currentIndex = i;
+      break;
+    }
+  }
+
+  console.log(`Current index: ${currentIndex}`);
+  if (currentIndex === -1) {
+    console.error('Error: No image is currently displayed.');
+    return;
+  }
+
+  images[currentIndex].style.opacity = '0';
+  const newIndex = (currentIndex + direction + images.length) % images.length;
+  console.log(`New index: ${newIndex}`);
+
+  if (!images[newIndex]) {
+    console.error(`Error: No image found at index ${newIndex}.`);
+    return;
+  }
+
+  images[newIndex].style.opacity = '1';
 }
 
 
@@ -561,8 +587,8 @@ function displayFilters(filters) {
         <div id="${label}" class="collapse" aria-labelledby="${label}">
           <div class="f-accordion-body">
            ${options
-              .map((option) => updateItems(label, option))
-              .join('')}
+      .map((option) => updateItems(label, option))
+      .join('')}
           </div>
         </div>
       </div>
@@ -688,10 +714,10 @@ function updateItems(label, option) {
   }
 }
 
-function colorPiker(colorName){
+function colorPiker(colorName) {
   switch (colorName) {
     case 'Burgundy':
-          return '#800020';
+      return '#800020';
       break;
     default:
       return colorName

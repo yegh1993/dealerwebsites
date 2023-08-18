@@ -308,6 +308,41 @@
 
 }
 
+.vehicle-images {
+  position: relative;
+  display: inline-block;
+}
+
+.vehicle-image {
+  width: 100%;
+  height: auto;
+  transition: opacity 0.5s;
+}
+
+.prev-image, .next-image {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.prev-image {
+  left: 0;
+}
+
+.next-image {
+  right: 0;
+}
+
+.car-item:hover .prev-image, .car-item:hover .next-image {
+  opacity: 1;
+}
+
 .section-b .car-item-content {
   padding: 20px;
 }
