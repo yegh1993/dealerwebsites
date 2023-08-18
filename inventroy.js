@@ -403,6 +403,9 @@ function getHTML(vehicle) {
   <img src="${image.url}" class="vehicle-image" data-index="${index}" ${index !== 0 ? 'style="display: none;"' : ''}>
 `).join('');
 
+  // Calculate the old price
+  const oldPrice = vehicle.price * 1.18;
+
   return `
   <div class="col-sm-6 col-lg-4 mt-3">
     <a href="/vdp.html?id=${vehicle.idVehicle}">
@@ -412,42 +415,47 @@ function getHTML(vehicle) {
           ${imageScrollerHtml}
           <button class="next-image" onclick="event.preventDefault(); event.stopPropagation(); changeImage(event, 1)"><i class="fas fa-arrow-right"></i></button>
         </div>
-          <div class="car-item-content">
-            <div class="car-name">${vehicle.year} ${vehicle.make} ${vehicle.model}</div>
-            <div class="car-price">
-              <span class="old-price">$14,000.00</span>
-              <span class="new-price">
-                ${vehicle.price?.toLocaleString('en-US', {
+        <div class="car-item-content">
+          <div class="car-name">${vehicle.year} ${vehicle.make} ${vehicle.model}</div>
+          <div class="car-price">
+            <span class="old-price">
+              ${oldPrice.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
   })}
-              </span>
+            </span>
+            <span class="new-price">
+              ${vehicle.price?.toLocaleString('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  })}
+            </span>
+          </div>
+          <div class="d-flex justify-content-between mt-2 car-props">
+            <div class="car-prop-icon"><i class="fas fa-tachometer-alt icon"></i></div>
+            <div class="car-prop-value">${vehicle.mileage.toLocaleString()} mi</div>
+          </div>
+          <div class="d-flex justify-content-between mb-2 car-props">
+            <div class="car-prop-icon"><i class="fas fa-map-marker-alt icon"></i>Plano, TX</div>
+            <div class="car-prop-value"></div>
+          </div>
+          <div class="flex-container">
+            <div class="flex-item">
+              <a href="tel:(4692866875)" class="phone-link">(469) 286-6875</a>
             </div>
-            <div class="d-flex justify-content-between mt-2 car-props">
-              <div class="col-6 car-prop">Mileage</div>
-              <div class="col-6 car-prop-value">${vehicle.mileage}</div>
-            </div>
-            <div class="d-flex justify-content-between mb-2 car-props">
-              <div class="col-6 car-prop">Availablity</div>
-              <div class="col-6 car-prop-value">${vehicle.status == 'ACTIVE' ? 'In Store' : 'N/A'}</div>
-            </div>
-            <div class="flex-container">
-              <div class="flex-item">
-                <a href="tel:(4692866875)" class="phone-link">(469) 286-6875</a>
-              </div>
-              <a href="#" class="btn btn-sm request-info-btn">Request Info</a>
-            </div>
-            ${vehicle.video
+            <a href="#" class="btn btn-sm request-info-btn" onclick="showRequestInfoModal(event)">Request Info</a>
+          </div>
+          ${vehicle.video
       ? `<button class="custom-btn-light custom-btn-detail">
                   <i class="fa-solid fa-play me-1"></i>
                   Video
                 </button>`
       : ''
     }
-          </div>
         </div>
-      </a>
-    </div>
+      </div>
+    </a>
+  </div>
   `;
 }
 
@@ -462,8 +470,8 @@ function changeImage(event, direction) {
 
   let currentIndex = -1;
   for (let i = 0; i < images.length; i++) {
-    console.log(`Image ${i} opacity: ${images[i].style.opacity}`);
-    if (images[i].style.opacity !== '0') {
+    console.log(`Image ${i} display: ${images[i].style.display}`);
+    if (images[i].style.display !== 'none') {
       currentIndex = i;
       break;
     }
@@ -475,7 +483,7 @@ function changeImage(event, direction) {
     return;
   }
 
-  images[currentIndex].style.opacity = '0';
+  images[currentIndex].style.display = 'none';
   const newIndex = (currentIndex + direction + images.length) % images.length;
   console.log(`New index: ${newIndex}`);
 
@@ -484,7 +492,82 @@ function changeImage(event, direction) {
     return;
   }
 
-  images[newIndex].style.opacity = '1';
+  images[newIndex].style.display = 'block';
+}
+
+
+function showRequestInfoModal(event) {
+  // Stop the button from doing its default behavior
+  event.preventDefault();
+
+  // Create the modal using our function from step 1
+  const modalHTML = generateModalHTML();
+  const modalDiv = document.createElement('div');
+  modalDiv.innerHTML = modalHTML;
+  document.body.appendChild(modalDiv);
+
+  // Display the modal
+  const modal = new bootstrap.Modal(document.getElementById('scheduleModal'));
+  modal.show();
+
+  // Remove the modal from the page once it's closed
+  $('#scheduleModal').on('hidden.bs.modal', function() {
+      this.remove();
+  });
+}
+
+function generateModalHTML() {
+  return `
+  <!-- Request More Info Modal -->
+  <div class="modal fade" id="scheduleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header d-flex align-items-center">
+                  <h1 class="modal-title" id="exampleModalLabel">Request More Info</h1>
+                  <span data-bs-dismiss="modal" aria-label="Close" class="close">&times;</span>
+              </div>
+              <div class="modal-body">
+                  <form id="schedule_form" onsubmit="scheduleTestDrive(event)" class="row g-3 px-0">
+                      <div>
+                          <span class="ms-0">Hello my name is</span>
+                          <input class="custom-input" type="text" name="firstName" placeholder="First name" oninput="handleInputChange(event)" required pattern="[A-Za-z]{2,}" title="Please enter a valid first name" />
+                          <input class="custom-input" type="text" name="lastName" placeholder="Last name" oninput="handleInputChange(event)" required pattern="[A-Za-z]{2,}" title="Please enter a valid last name" />
+                          <span>and I'd like to request more details for <b id="vehicle-title"></b>. I'm in the</span>
+                          <input class="custom-input" type="text" name="zip" placeholder="ZIP Code" oninput="formatZIPCode(event)" onfocusout="validateZIPCode(event)" required />
+                          <span>area. You can reach me by email at</span>
+                          <input class="custom-input" type="email" name="email" placeholder="Email Address" onfocusout="validateEmail(event)" required />
+                          <span class="text-danger" id="email_error"></span>
+                          <span>or by phone at</span>
+                          <input class="custom-input" type="text" name="phone" placeholder="123-456-7890(optional)" oninput="formatPhoneNumber(event)" onfocusout="validatePhoneNumber(event)" />
+                          <br>
+                          <br>
+                          <span>Thank you!</span>
+                      </div>
+                      <div onclick="ToggleComment(event)" style="cursor: pointer" class="mt-5 text-end">
+                          <i class="fa-solid"></i>
+                          <span>Add Comment</span>
+                      </div>
+                      <div class="d-none">
+                          <textarea class="custom-input" name="comment" placeholder="" oninput="handleInputChange(event)"></textarea>
+                      </div>
+                      <div>
+                          <input class="form-check-input" type="checkbox" value="" id="emailConsent" oninput="handleEmailConsentToggle(event)" />
+                          <label class="form-check-label" for="emailConsent">Email me new listings for my search</label>
+                      </div>
+                      <div class="d-flex">
+                          <button type="submit" class="custom-btn-primary custom-btn-primary-2 w-100">
+                              <img src="/cd_loader.svg" id="message-loader" class="d-none" />
+                              Send Message
+                          </button>
+                      </div>
+                      <div class="text-success" id="schedule_form_success"></div>
+                      <div class="text-danger" id="schedule_form_error"></div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  `;
 }
 
 
