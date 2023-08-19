@@ -76,7 +76,7 @@ const arrTypes = [
 
 
 
-function handleInputChange(event) {
+async function handleInputChange(event) {
   const key = toCamelCase(event.target.dataset.id)
   const value = event.target.value;
 
@@ -97,6 +97,22 @@ function handleInputChange(event) {
   SearchInventory()
   displaySelectedFilter()
 }
+
+function searchByKeywords(event){
+  const keyWord = event.target.value;
+
+  if(keyWord.length > 0){
+    document.getElementById('inventory-clear-icon').classList.remove('d-none')
+  }else{
+    document.getElementById('inventory-clear-icon').classList.add('d-none')
+  }
+}
+
+function clearSearch(){
+  document.getElementById('inventorySearchInput').value = ''
+  document.getElementById('inventory-clear-icon').classList.add('d-none')
+}
+
 
 function Loader(show) {
   if (show) {
@@ -407,7 +423,7 @@ function getHTML(vehicle) {
   const oldPrice = vehicle.price * 1.18;
 
   return `
-  <div class="col-sm-6 col-lg-4 mt-3">
+  <div class="col-sm-6 col-lg-4 col-md-5 col-xl-3 mt-3">
     <a href="/vdp.html?id=${vehicle.idVehicle}">
       <div class="car-item">
         <div class="vehicle-images">
@@ -517,15 +533,17 @@ function changeImage(event, direction) {
 }
 
 
-
-
-
 function showRequestInfoModal(event) {
   // Stop the button from doing its default behavior
   event.preventDefault();
 
+  // Get the idVehicle from the card element
+  const card = event.target.closest('.col-sm-6');
+  const idVehicle = card.querySelector('a').getAttribute('href').split('=')[1];
+  console.log('idVehicle:', idVehicle);
+
   // Create the modal using our function from step 1
-  const modalHTML = generateModalHTML();
+  const modalHTML = generateModalHTML(idVehicle);
   const modalDiv = document.createElement('div');
   modalDiv.innerHTML = modalHTML;
   document.body.appendChild(modalDiv);
@@ -535,16 +553,23 @@ function showRequestInfoModal(event) {
   modal.show();
 
   // Remove the modal from the page once it's closed
-  $('#scheduleModal').on('hidden.bs.modal', function() {
+  document.getElementById('scheduleModal').addEventListener('hidden.bs.modal', function() {
       this.remove();
   });
 }
 
-function handleInputChange(event) {
+
+
+let schedule = {};
+
+function handleScheduleInputChange(event) {
   const { name, value } = event.target
   schedule[name] = value
-  console.log(schedule)
+
+  console.log('handleScheduleInputChange called with name:', name, 'and value:', value);
+  console.log('Updated schedule:', schedule);
 }
+
 
 function toggleErrorClass(element, condition) {
   if (condition) {
@@ -617,22 +642,24 @@ function handleEmailConsentToggle(event) {
 }
 
 function ToggleComment(event) {
-  const parent = event.target.parentElement
-  const icon = parent.firstElementChild
-  const textarea = parent.nextElementSibling
-  if (showComment) {
-    icon.classList.remove('fa-plus')
-    icon.classList.add('fa-minus')
-    textarea.classList.remove('d-none')
+  const parent = event.target.parentElement;
+  const icon = parent.firstElementChild;
+  const textarea = parent.nextElementSibling;
+  const isHidden = textarea.classList.contains('d-none');
+
+  if (isHidden) {
+    icon.classList.remove('fa-plus');
+    icon.classList.add('fa-minus');
+    textarea.classList.remove('d-none');
   } else {
-    icon.classList.add('fa-plus')
-    icon.classList.remove('fa-minus')
-    textarea.classList.add('d-none')
+    icon.classList.add('fa-plus');
+    icon.classList.remove('fa-minus');
+    textarea.classList.add('d-none');
   }
-  showComment = !showComment
 }
 
-function generateModalHTML() {
+
+function generateModalHTML(idVehicle) {
   return `
   <!-- Request More Info Modal -->
   <div class="modal fade" id="scheduleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -644,10 +671,11 @@ function generateModalHTML() {
               </div>
               <div class="modal-body">
                   <form id="schedule_form" onsubmit="scheduleTestDrive(event)" class="row g-3 px-0">
+                      <input type="hidden" name="idVehicle" value="${idVehicle}" />
                       <div>
                           <span class="ms-0">Hello my name is</span>
-                          <input class="custom-input" type="text" name="firstName" placeholder="First name" oninput="handleInputChange(event)" required pattern="[A-Za-z]{2,}" title="Please enter a valid first name" />
-                          <input class="custom-input" type="text" name="lastName" placeholder="Last name" oninput="handleInputChange(event)" required pattern="[A-Za-z]{2,}" title="Please enter a valid last name" />
+                          <input class="custom-input" type="text" name="firstName" placeholder="First name" oninput="handleScheduleInputChange(event)" required pattern="[A-Za-z]{2,}" title="Please enter a valid first name" />
+                          <input class="custom-input" type="text" name="lastName" placeholder="Last name" oninput="handleScheduleInputChange(event)" required pattern="[A-Za-z]{2,}" title="Please enter a valid last name" />
                           <span>and I'd like to request more details for <b id="vehicle-title"></b>. I'm in the</span>
                           <input class="custom-input" type="text" name="zip" placeholder="ZIP Code" oninput="formatZIPCode(event)" onfocusout="validateZIPCode(event)" required />
                           <span>area. You can reach me by email at</span>
@@ -664,7 +692,7 @@ function generateModalHTML() {
                           <span>Add Comment</span>
                       </div>
                       <div class="d-none">
-                          <textarea class="custom-input" name="comment" placeholder="" oninput="handleInputChange(event)"></textarea>
+                          <textarea class="custom-input" name="comment" placeholder="" oninput="handleScheduleInputChange(event)"></textarea>
                       </div>
                       <div>
                           <input class="form-check-input" type="checkbox" value="" id="emailConsent" oninput="handleEmailConsentToggle(event)" />
@@ -684,6 +712,86 @@ function generateModalHTML() {
       </div>
   </div>
   `;
+}
+
+
+async function scheduleTestDrive(event) {
+  console.log("scheduleTestDrive function called");
+  event.stopPropagation()
+  event.preventDefault()
+
+  document.getElementById('message-loader').classList.remove('d-none')
+
+  const form = event.target;
+  const formData = new FormData(form);
+  const idVehicle = Number(formData.get('idVehicle')); // Convert to number
+  const firstName = formData.get('firstName');
+  const lastName = formData.get('lastName');
+  const email = formData.get('email');
+  const zip = formData.get('zip');
+  const phone = formData.get('phone');
+  const comment = formData.get('comment');
+  const emailConsent = formData.get('emailConsent') === 'on';
+
+  const payload = {
+    firstName: firstName,
+    lastName: lastName,
+    emailAddress: email,
+    emailConsent: emailConsent,
+    zip: zip,
+    phoneNumber: phone.replace(/\D/g, ''), // Reformat phone number
+    comments: comment,
+    vehicleId: idVehicle, // Now a number
+    dealershipId: 1
+  };
+
+  const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net';
+  const SaaSApiToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmFrb3N5YW5kYXZpZGRldkBnbWFpbC5jb20iLCJzdWIiOjEsImRlYWxlcnNoaXAiOjEsInJvbGUiOiJERUFMRVJfQURNSU4iLCJpYXQiOjE2ODE4MzAyODIsImV4cCI6MTY4MTkxNjY4Mn0.jGifLS5ezj43hqJVrbFeFRlyDg1_j4MESQMdPC5tAyQ';
+
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${SaaSApiToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+    signal: signal
+  };
+
+  const fetchPromise = fetch(
+    `${apiUrl}/api/leads/info-request`,
+    requestOptions
+  );
+
+  const timeoutPromise = new Promise((_, reject) =>
+    setTimeout(() => {
+      controller.abort();
+      reject(new Error('Request timed out'));
+    }, 10000)
+  );
+
+  Promise.race([fetchPromise, timeoutPromise])
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return res;
+    })
+    .then((res) => {
+      console.log('response', res)
+      document.getElementById('schedule_form_success').innerHTML =
+        'Successfully submitted! We will be in touch with you shortly.'
+      document.getElementById('message-loader').classList.add('d-none')
+    })
+    .catch((err) => {
+      console.error(err);
+      document.getElementById('schedule_form_error').innerHTML =
+        'Something went wrong. Please Text or Call us directly.'
+      document.getElementById('message-loader').classList.add('d-none')
+    })
 }
 
 
@@ -891,10 +999,10 @@ function updateItems(label, option) {
   if (option != null) {
     const colorContent = (label, option) => `<div class="d-flex  justify-content-between">
               <div class="form-check f-checkbox">
-                <input class="form-check-input f-checkbox-input" type="checkbox" id="${option}" data-id="${separateCamelCase(label)}" name="${label}" value="${option}" onchange="handleInputChange(event)" >
-                <label class="form-check-label" for="${option}">${option}</label>
+                <input class="form-check-input f-checkbox-input" type="checkbox" id="${label}_${option}" data-id="${separateCamelCase(label)}" name="${label}" value="${option}" onchange="handleInputChange(event)" >
+                <label class="form-check-label" for="${label}_${option}">${option}</label>
               </div>
-              <div class="f-color-item" style="background-color: ${colorPiker(option)}"></div>
+              <div class="f-color-item" style="${colorPiker(option)}"></div>
             </div>`
 
     switch (label) {
@@ -906,20 +1014,26 @@ function updateItems(label, option) {
         break;
       default:
         return `<div class="form-check f-checkbox">
-                <input class="form-check-input f-checkbox-input" type="checkbox" id="${option}" data-id="${separateCamelCase(label)}" name="${label}" value="${option}" onchange="handleInputChange(event)" >
-                <label class="form-check-label" for="${option}">${option}</label>
+                <input class="form-check-input f-checkbox-input" type="checkbox" id="${label}_${option}" data-id="${separateCamelCase(label)}" name="${label}" value="${option}" onchange="handleInputChange(event)" >
+                <label class="form-check-label" for="${label}_${option}">${option}</label>
               </div>`
     }
   }
 }
 
 function colorPiker(colorName) {
-  switch (colorName) {
-    case 'Burgundy':
-      return '#800020';
+  switch (colorName.toLowerCase()) {
+    case 'burgundy':
+      return 'background-color: #800020';
+      break;
+    case 'white':
+      return 'background-color: #fff; border:1px solid #d8d8d8';
+      break;
+    case 'other':
+      return 'background-color: #E91E63; box-shadow: inset -8px 6px 6px 0px rgb(33 150 243 / 84%);'
       break;
     default:
-      return colorName
+      return 'background-color:' + colorName.toLowerCase()
   }
 }
 
