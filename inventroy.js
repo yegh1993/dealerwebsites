@@ -267,6 +267,16 @@ function changeItemsPerPage(event) {
   fetchVehicles(currentPage);
 }
 
+//Smooth transition to the top of the grid when pages clicked
+document.getElementById('pagination-buttons').addEventListener('click', function(event) {
+  if (event.target.tagName === 'LI') {
+    window.scrollTo({
+      top: document.querySelector('.breadcrumb-content').offsetTop,
+      behavior: 'smooth'
+    });
+  }
+});
+
 // Load the first page of vehicles
 fetchVehicles(currentPage);
 
