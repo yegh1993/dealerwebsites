@@ -216,32 +216,75 @@ function getQueryString() {
   return str
 }
 
-async function fetchVehicles() {
+let currentPage = 1;
 
-  const queryString = getQueryString()
-  const dealerId = '1'
-  const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net'
+async function fetchVehicles(page = 1) {
+  const dealerId = '1';
+  const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net';
   const dealerApiToken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmFrb3N5YW5kYXZpZGRldkBnbWFpbC5jb20iLCJzdWIiOjEsImRlYWxlcnNoaXAiOjEsInJvbGUiOiJERUFMRVJfQURNSU4iLCJpYXQiOjE2ODE4MzAyODIsImV4cCI6MTY4MTkxNjY4Mn0.jGifLS5ezj43hqJVrbFeFRlyDg1_j4MESQMdPC5tAyQ'
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmFrb3N5YW5kYXZpZGRldkBnbWFpbC5jb20iLCJzdWIiOjEsImRlYWxlcnNoaXAiOjEsInJvbGUiOiJERUFMRVJfQURNSU4iLCJpYXQiOjE2ODE4MzAyODIsImV4cCI6MTY4MTkxNjY4Mn0.jGifLS5ezj43hqJVrbFeFRlyDg1_j4MESQMdPC5tAyQ';
+  const skip = (page - 1) * itemsPerPage;
+
   try {
     const response = await fetch(
-      `${apiUrl}/api/vehicles/search?idDealership=${dealerId}${queryString}`,
+      `${apiUrl}/api/vehicles/search?idDealership=${dealerId}&limit=${itemsPerPage}&skip=${skip}`,
       {
         headers: {
           Authorization: `Bearer ${dealerApiToken}`,
         },
       }
-    )
-    const vehicles = await response.json()
-    if (vehicles?.results) local_vehicles = [...vehicles.results]
+    );
+    const vehicles = await response.json();
+    if (vehicles?.results) local_vehicles = [...vehicles.results];
 
-    sortItem()
-    return
+    sortItem();
+    updatePaginationButtons(page, vehicles.total);
+    return;
   } catch (error) {
-    console.error('Error fetching vehicles:', error)
-    return
+    console.error('Error fetching vehicles:', error);
+    return;
   }
 }
+
+function updatePaginationButtons(page, totalVehicles) {
+  const paginationButtons = document.getElementById("pagination-buttons");
+  const totalPages = Math.ceil(totalVehicles / itemsPerPage);
+  let paginationHTML = "";
+
+  for (let i = 1; i <= totalPages; i++) {
+    paginationHTML += `<li${i === page ? ' class="active"' : ''}>${i}</li>`;
+  }
+
+  if (page < totalPages) {
+    paginationHTML += '<li>Next</li>';
+  }
+
+  paginationButtons.innerHTML = paginationHTML;
+}
+
+function changeItemsPerPage(event) {
+  itemsPerPage = parseInt(event.target.value, 10);
+  fetchVehicles(currentPage);
+}
+
+// Load the first page of vehicles
+fetchVehicles(currentPage);
+
+// Add event listeners to the pagination buttons
+document.getElementById("pagination-buttons").addEventListener("click", (event) => {
+  if (event.target.tagName === "LI") {
+    const text = event.target.textContent;
+    if (text === "Next") {
+      currentPage++;
+    } else {
+      currentPage = parseInt(text, 10);
+    }
+    fetchVehicles(currentPage);
+  }
+});
+
+
+
 
 function displaySelectedFilter() {
   const getHtml = ([label, values]) => `
