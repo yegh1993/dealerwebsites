@@ -31,7 +31,7 @@ async function fetchVehicleDetails() {
     displayVehicle(vehicle)
     displayVehicleDetails(vehicle)
     displayStickyTop(vehicle)
-    displayPayOnce(vehicle)
+    //displayPayOnce(vehicle)
     calculateMonthlyPaymentVehicle(vehicle)
     PageLoader(false)
 
@@ -270,9 +270,8 @@ function displayFirstTabVehicleDetails(vehicle) {
     </li>
     <li class="car_year">
       <span class="car-year">Availability</span>
-      <strong class="text-right">${
-        vehicle.status === "ACTIVE" ? "In Store" : "N/A"
-      }</strong>
+      <strong class="text-right">${vehicle.status === "ACTIVE" ? "In Store" : "N/A"
+    }</strong>
     </li>
     <li class="car_year">
       <span class="car-year">VIN Number</span>
@@ -364,14 +363,7 @@ function displayFirstTabVehicleDetails(vehicle) {
 </div>
               <div class="col-xs-12 mt-0 text-center">
                 <div class="get-report-btn">
-                  <a
-                    target="_blank"
-                    href="http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&amp;vin=${
-                      vehicle.vin
-                    }"
-                    type="button"
-                  >Get My Free Report</a
-                  >
+                <button type="button" data-bs-toggle="modal" data-bs-target="#reportModal">Get My Free Report</button>
                 </div>
               </div>
             </div>
@@ -419,7 +411,47 @@ function displaySecondTabFeaturesAndOptions(vehicle) {
     .insertAdjacentHTML('beforeend', html)
 }
 
-function displayPayOnce(vehicle) {
+//Get My Free Report Form Handling
+document.addEventListener('DOMContentLoaded', function() {
+  const reportForm = document.getElementById('reportForm');
+  const submitButton = document.getElementById('submitReportForm');
+
+  // Disable the submit button by default
+  submitButton.disabled = true;
+
+  // Listen for input changes on the form
+  reportForm.addEventListener('input', function() {
+    const formData = new FormData(reportForm);
+    const firstName = formData.get('firstName');
+    const lastName = formData.get('lastName');
+    const email = formData.get('email');
+    const checkbox = document.getElementById('consentCheckbox').checked;
+
+    // Enable the submit button only if all fields are filled and checkbox is checked
+    if (firstName && lastName && email && checkbox) {
+      submitButton.disabled = false;
+    } else {
+      submitButton.disabled = true;
+    }
+  });
+
+  // Attach event listener to "Get My Free Report" submit button
+  submitButton.addEventListener('click', function() {
+    // Collect form data
+    const formData = new FormData(reportForm);
+    // Do something with formData, like sending it to a server
+    // ...
+
+    // Then show the report
+    window.open('http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&vin=' + vehicle.vin, '_blank');
+
+    // Close the modal
+    var myModal = new bootstrap.Modal(document.getElementById('reportModal'));
+    myModal.hide();
+  });
+});
+
+/*function displayPayOnce(vehicle) {
   const price = vehicle.price || 0
   const tax = price * 0.072
   const total = price + tax
@@ -459,6 +491,7 @@ function displayPayOnce(vehicle) {
 
   document.getElementById('pay-once').insertAdjacentHTML('afterbegin', html)
 }
+*/
 
 function MorePhotos(element) {
   BigPicture({
