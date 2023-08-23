@@ -440,13 +440,31 @@
           </div>
           <div class="col-outside">
             <div class="vehicles-price-first">
-              <h3 class="price-detail-heading">Pay Once</h3>
+              <h3 class="price-detail-heading">Trade-In Value Estimate</h3>
               <div id="pay-once" class="table-outer">
-                <!-- Price Details Shows Here -->
+                <div class="table-price">
+                  <i class="bi bi-car"></i>
+                  <p class="table-price-p">We Want Your Car</p>
+                </div>
+                <ul class="price-list-table">
+                  <li class="taxable-list">
+                    <span>Instant Estimate Available</span><span>&nbsp;</span>
+                  </li>
+                  <li class="taxable-list">
+                    <span>No Impact on Your Credit Score</span><span>&nbsp;</span>
+                  </li>
+                  <li class="taxable-list">
+                    <span>Easy and Secure Process</span><span>&nbsp;</span>
+                  </li>
+                </ul>
+                <p class="p-details-module module-fire"
+                  style="display: flex; align-items: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                  <i class="fas fa-shield-alt"
+                    style="color: #e03131; background-color: transparent; margin-right: 8px; font-size: 25px; align-self: center;"></i>
+                  Trusted by Thousands for Accurate Trade-In Estimates
+                </p>
                 <div class="price-button price-first-btn">
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#scheduleModal">
-                    SCHEDULE MY PURCHASE
-                  </button>
+                  <button type="button"><i class="bi bi-calculator"></i> START YOUR VALUATION</button>
                 </div>
               </div>
             </div>
@@ -837,6 +855,56 @@
       </div>
     </div>
   </div>
+
+  <!-- Get Free Report Modal -->
+  <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header d-flex align-items-center">
+          <h1 class="modal-title" id="reportModalLabel">Get My Free Report</h1>
+          <span data-bs-dismiss="modal" aria-label="Close" class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+          <form id="reportForm" class="row g-3 px-0">
+            <!-- First Name -->
+            <input class="custom-input" type="text" name="firstName" placeholder="First Name"
+              oninput="handleInputChange(event)" required pattern="[A-Za-z]{2,}"
+              title="Please enter a valid first name" />
+
+            <!-- Last Name -->
+            <input class="custom-input" type="text" name="lastName" placeholder="Last Name"
+              oninput="handleInputChange(event)" required pattern="[A-Za-z]{2,}"
+              title="Please enter a valid last name" />
+
+            <!-- Email Address -->
+            <input class="custom-input" type="email" name="email" placeholder="Email Address"
+              onfocusout="validateEmail(event)" required />
+
+            <!-- Phone Number -->
+            <input class="custom-input" type="text" name="phone" placeholder="123-456-7890 (optional)"
+              oninput="formatPhoneNumber(event)" onfocusout="validatePhoneNumber(event)" />
+
+            <!-- Consent Checkbox -->
+            <div class="form-check custom-form-check">
+              <input class="form-check-input custom-form-check-input" type="checkbox" value="" id="consentCheckbox" checked>
+              <label class="form-check-label custom-form-check-label" for="consentCheckbox">
+                By clicking "View Report", I agree to be contacted by the dealer and its software provider. I consent to
+                receive communications via text message, autodialer, or prerecorded message. I have read and agree to
+                the site's Terms and Conditions and Privacy Policy.
+              </label>
+            </div>                     
+
+            <!-- Submit Button -->
+            <div class="d-flex">
+              <button id="submitReportForm" type="submit" class="custom-btn-primary custom-btn-primary-2 w-100" disabled>View Report</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
   <div onclick="scrollToTop()" class="maincardiv reveal">
     <div>
