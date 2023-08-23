@@ -195,34 +195,17 @@
   <div class="max-container">
     <div class="vdp-wrap">
       <!-- Section A -->
+      <div class="breadcrumb-content mb-3 p-3 pl-5">
+        <a href="/" class="breadcrumb-link">Home</a> &nbsp; / &nbsp;
+        <a href="/inventory.html" class="breadcrumb-link">Inventory</a> &nbsp;/&nbsp;
+        <span id="active_car_title" class="active"></span>
+      </div>
       <div id="car-details" class="section-a">
         <!-- Vehicle Details Appeare here -->
       </div>
-
       <!-- Section B -->
-      <div class="section-b div-container related-vehicles-sec">
-        <div class="cd-related-vehicles">
-          <div class="i-car-heading">
-            <h3 class="element-title">RECOMMENDED FOR YOU</h3>
-          </div>
-          <div class="container">
-            <div class="row" id="car-list-box">
-              <div class="col-md-6 col-lg-4">
-
-              </div>
-
-              <div class="text-center my-5">
-                <button class="custom-btn-primary custom-btn-primary-2">
-                  Load More
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Section C -->
-      <div class="container tab-width section-c">
+      <div class="container tab-width section-b">
+        <div class="divider"></div>
         <!-- TABS -->
         <ul class="nav nav-tabs justify-content-center d-none d-lg-flex" id="myTab" role="tablist">
           <!-- HEADER Tabs   -->
@@ -448,10 +431,11 @@
         </div>
       </div>
 
-      <!-- Section D -->
-      <div class="section-d div-container vehicles-price-details">
+      <!-- Section C -->
+      <div class="section-c div-container vehicles-price-details">
         <div class="vehicles-price-inner">
           <div class="i-car-heading">
+            <div class="divider"></div>
             <h3 class="element-title">PRICE DETAILS</h3>
           </div>
           <div class="col-outside">
@@ -524,6 +508,27 @@
                     GET YOUR TERMS
                   </button>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section B -->
+      <div class="section-d div-container related-vehicles-sec">
+        <div class="divider"></div>
+        <div class="cd-related-vehicles">
+          <div class="i-car-heading">
+            <h3 class="element-title">RECOMMENDED FOR YOU</h3>
+          </div>
+          <div class="container">
+            <div class="row" id="car-list-box">
+              <div class="col-md-6 col-lg-4">
+              </div>
+              <div class="text-center my-5">
+                <button class="custom-btn-primary custom-btn-primary-2">
+                  Load More
+                </button>
               </div>
             </div>
           </div>
@@ -764,7 +769,7 @@
     </div>
   </div>
 
-  <!-- Schedule Modal -->
+  <!-- Request More Info Modal -->
   <div class="modal fade" id="scheduleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
