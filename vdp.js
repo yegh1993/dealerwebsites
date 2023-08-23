@@ -95,6 +95,8 @@ function displayVehicle(vehicle) {
     if (cover_images.length < 3) return "'main sideA' 'main sideA'"
     if (cover_images.length >= 3) return "'main main sideA' 'main main sideB'"
   }
+  const carTitle = vehicle.year + ' ' + vehicle.make + ' ' + vehicle.model;
+  document.getElementById('active_car_title').innerHTML = carTitle;
 
   const html = `
   <div class="hero-banner-u">
@@ -103,8 +105,7 @@ function displayVehicle(vehicle) {
     <div class="car-fixed-title">
       <div class="car-title-left">
         <div>
-          <h2 class="car-title-new">${vehicle.year} ${vehicle.make} ${vehicle.model
-    }</h2>
+          <h2 class="car-title-new">${carTitle}</h2>
           <div class="car-term-miles">
             <span class="block m:inline">${vehicle.trim}</span>
             <span class="d-none d-md-block">•</span>
@@ -119,9 +120,9 @@ function displayVehicle(vehicle) {
           <div class="price car-price hero-bar">
             <!-- <span class="old-price"> $5,200.00</span> -->
             <span class="new-price">${vehicle.price?.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    })}</span>
+    style: 'currency',
+    currency: 'USD',
+  })}</span>
           </div>
         </div>
       </div>
@@ -269,8 +270,9 @@ function displayFirstTabVehicleDetails(vehicle) {
     </li>
     <li class="car_year">
       <span class="car-year">Availability</span>
-      <strong class="text-right">${vehicle.status === 'ACTIVE' ? 'In Store' : 'N/A'
-    }</strong>
+      <strong class="text-right">${
+        vehicle.status === "ACTIVE" ? "In Store" : "N/A"
+      }</strong>
     </li>
     <li class="car_year">
       <span class="car-year">VIN Number</span>
@@ -319,9 +321,9 @@ function displayFirstTabVehicleDetails(vehicle) {
           <div class="details-form contact-2 details-weight">
             <div class="fuel-efficiency-detail fuel-efficiency2">
               <div class="heading">
-                <h6>Fuel Economy Rating</h6>
+                <h4>Fuel Economy Rating</h4>
               </div>
-              <div class="row align-items-end">
+              <div class="row align-items-end mt-4">
                 <div class="col-4">
                   <label>City</label>
                   <span class="city_mpg">18</span>
@@ -333,7 +335,7 @@ function displayFirstTabVehicleDetails(vehicle) {
                   <label>Highway</label>
                   <span class="highway_mpg">23</span>
                 </div>
-                <div class="col-sm-12 mt-3 actual">
+                <div class="col-sm-12 mt-4 actual">
                   Actual rating will vary with options, driving
                   conditions, driving habits and vehicle condition
                 </div>
@@ -347,31 +349,26 @@ function displayFirstTabVehicleDetails(vehicle) {
           <div class="details-form contact-2 details-weight">
             <div class="fuel-efficiency-detail fuel-efficiency2">
               <div class="heading">
-                <h6>Vehicle History Report</h6>
+                <h4>Vehicle History Report</h4>
               </div>
-              <div class="row">
-                <div
-                  class="col-4 d-flex align-items-center justify-content-end"
-                >
-                  <div class="carvax-logo">
-                    <img
-                      src="/crafax.png"
-                      alt="Carfax Logo"
-                      width="70"
-                    />
-                  </div>
-                </div>
-                <div class="col-8">
-                  <h5>Get a Free Vehicle History Report</h5>
-                  <p>Backed by Federal Vehicle Title Data</p>
-                </div>
-              </div>
+              <div class="row justify-content-center mt-4 mb-3">
+  <div class="col-4" style="text-align: left; width: 90px;">
+    <div class="carvax-logo">
+      <img src="/crafax.png" alt="Carfax Logo" width="90">
+    </div>
+  </div>
+  <div class="col-8 d-flex justify-content-center align-items-center flex-column text-center">
+  <h6>Get a Free Vehicle History Report</h6>
+  <p>Backed by Federal Vehicle Title Data</p>
+  </div>
+</div>
               <div class="col-xs-12 mt-0 text-center">
                 <div class="get-report-btn">
                   <a
                     target="_blank"
-                    href="http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&amp;vin=${vehicle.vin
-    }"
+                    href="http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&amp;vin=${
+                      vehicle.vin
+                    }"
                     type="button"
                   >Get My Free Report</a
                   >
@@ -382,15 +379,16 @@ function displayFirstTabVehicleDetails(vehicle) {
         </div>
       </div>
     </div>
-  `
+  `;
   document
-    .getElementById('vehicle-tab-details')
-    ?.insertAdjacentHTML('beforeend', html)
+    .getElementById("vehicle-tab-details")
+    ?.insertAdjacentHTML("beforeend", html);
 
   document
-    .getElementById('vehicle-accordion-details')
-    ?.insertAdjacentHTML('beforeend', html)
+    .getElementById("vehicle-accordion-details")
+    ?.insertAdjacentHTML("beforeend", html);
 }
+
 
 function displaySecondTabFeaturesAndOptions(vehicle) {
   const yes = `<i i class="fas fa-check" ></i > `
@@ -690,7 +688,7 @@ async function fetchVehicles() {
     const vehicles = await response.json();
 
     if (vehicles?.results) {
-      local_vehicles = vehicles.results;
+      local_vehicles = vehicles.results.filter((item) => item.idVehicle !== local_vehicle.idVehicle);
     }
 
     sortItem();
@@ -793,8 +791,6 @@ function displayItems() {
   for (let i = 0; i < itemsToDisplay.length; i++) {
     car_list_box.insertAdjacentHTML('beforeend', getHTML(itemsToDisplay[i]))
   }
-
-
 }
 
 
