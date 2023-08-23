@@ -1389,6 +1389,24 @@ a.view-more-btn:hover, button[data-bs-target="#scheduleModal"]:hover {
   min-height: 100vh;
 }
 
+.custom-btn-primary[disabled], .custom-btn-primary-2[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.custom-form-check {
+  display: flex;
+  align-items: center;
+}
+
+.custom-form-check-input {
+  margin-right: 10px; /* Adjust as needed */
+}
+
+.custom-form-check-label {
+  flex: 3;
+  padding-left: 10px;
+}
 
 /* -------------------------------------------------------
 -                      TOOL TIP                          -
