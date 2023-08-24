@@ -415,6 +415,7 @@ function displaySecondTabFeaturesAndOptions(vehicle) {
 document.addEventListener('DOMContentLoaded', function() {
   const reportForm = document.getElementById('reportForm');
   const submitButton = document.getElementById('submitReportForm');
+  const consentCheckbox = document.getElementById('consentCheckbox'); // Added this line
 
   // Disable the submit button by default
   submitButton.disabled = true;
@@ -425,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const firstName = formData.get('firstName');
     const lastName = formData.get('lastName');
     const email = formData.get('email');
-    const checkbox = document.getElementById('consentCheckbox').checked;
+    const checkbox = consentCheckbox.checked;
 
     // Enable the submit button only if all fields are filled and checkbox is checked
     if (firstName && lastName && email && checkbox) {
@@ -433,6 +434,16 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       submitButton.disabled = true;
     }
+
+    // Added this block for checkbox styling
+    if (consentCheckbox.disabled) {
+      consentCheckbox.style.opacity = "0.5";
+      consentCheckbox.style.cursor = "not-allowed";
+    } else {
+      consentCheckbox.style.opacity = "";
+      consentCheckbox.style.cursor = "";
+    }
+    // End of added block
   });
 
   // Attach event listener to "Get My Free Report" submit button
@@ -450,6 +461,7 @@ document.addEventListener('DOMContentLoaded', function() {
     myModal.hide();
   });
 });
+
 
 /*function displayPayOnce(vehicle) {
   const price = vehicle.price || 0
