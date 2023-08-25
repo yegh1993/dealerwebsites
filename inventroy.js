@@ -49,6 +49,8 @@ function deleteCharacter(index) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+  applyFiltersFromURL();
+  updateUIWithFilters();
   simulateTyping();
 });
 
@@ -59,6 +61,7 @@ var sortBy = 'name'
 var sortingOrder = 'asc'
 var local_vehicles = []
 var isQueryParams = false
+var totalCount = 0;
 
 const arrTypes = [
   'bodyStyle',
@@ -75,8 +78,37 @@ const arrTypes = [
 ]
 
 
+//Updating Page With URLs
+function getFiltersFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  let filtersFromURL = {};
+  for (let [key, value] of params.entries()) {
+    if (filtersFromURL[key]) {
+      filtersFromURL[key].push(value);
+    } else {
+      filtersFromURL[key] = [value];
+    }
+  }
+  return filtersFromURL;
+}
+
+function applyFiltersFromURL() {
+  const filtersFromURL = getFiltersFromURL();
+  Object.assign(filters, filtersFromURL);
+  SearchInventory();
+}
+
+function updateUIWithFilters() {
+  for (let [key, values] of Object.entries(filters)) {
+    values.forEach(value => {
+      const inputElement = document.querySelector(`[data-id="${key}"][value="${value}"]`);
+      if (inputElement) inputElement.checked = true;
+    });
+  }
+}
 
 async function handleInputChange(event) {
+  console.log("Input changed!");  // This should be logged every time a filter changes
   const key = toCamelCase(event.target.dataset.id)
   const value = event.target.value;
 
@@ -98,34 +130,25 @@ async function handleInputChange(event) {
   displaySelectedFilter()
 }
 
-function searchByKeywords(event){
+function searchByKeywords(event) {
   const keyWord = event.target.value;
 
-  if(keyWord.length > 0){
+  if (keyWord.length > 0) {
     document.getElementById('inventory-clear-icon').classList.remove('d-none')
-  }else{
+  } else {
     document.getElementById('inventory-clear-icon').classList.add('d-none')
   }
 }
 
-function clearSearch(){
+function clearSearch() {
   document.getElementById('inventorySearchInput').value = ''
   document.getElementById('inventory-clear-icon').classList.add('d-none')
 }
 
 
-function Loader(show) {
-  if (show) {
-    document.getElementById('filter-loader').classList.remove('d-none')
-  } else {
-    document.getElementById('filter-loader').classList.add('d-none')
-  }
-}
 
 async function SearchInventory() {
-  Loader(true)
   await fetchVehicles()
-  Loader(false)
   return
 }
 
@@ -138,13 +161,13 @@ async function removeFilter(key, value) {
     }
   }
 
-  Loader(true)
   await fetchVehicles()
-  Loader(false)
   displaySelectedFilter()
 
   const inputElement = document.querySelector(`[value="${value}"]:checked`)
   if (inputElement) inputElement.checked = false;
+
+  resetRangeFilter(key)
 }
 
 async function ResetFilter() {
@@ -156,40 +179,86 @@ async function ResetFilter() {
         checkedInputsList[i].checked = false;
       }
     }
+    resetRangeFilter(key)
+
     delete filters[key]
   })
 
-  Loader(true)
   await fetchVehicles()
-  Loader(false)
   displaySelectedFilter()
+}
+
+function resetRangeFilter(key) {
+  switch (key) {
+    case 'price':
+      let priceMinRange = document.querySelector(`.priceValMin`)
+      let priceMaxRange = document.querySelector(`.priceValMax`)
+      let priceProgress = priceMinRange.parentElement.parentElement.querySelector('.progress');
+      let priceActualValue = document.querySelector(`#filterByPrice .actual-value input`)
+
+      priceMinRange.value = priceMinRange.min
+      priceMaxRange.value = priceMaxRange.max
+
+      priceProgress.style.left = '0%'
+      priceProgress.style.right = '0.82%'
+
+      priceActualValue.value = `${parseInt(priceMinRange.min).toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+      })} - ${parseInt(priceMaxRange.max).toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+      })}`
+      break;
+    case 'mileage':
+      let mileageMinRange = document.querySelector(`.mileageValMin`)
+      let mileageMaxRange = document.querySelector(`.mileageValMax`)
+      let mileageProgress = mileageMinRange.parentElement.parentElement.querySelector('.progress');
+      let mileageActualValue = document.querySelector(`#filterByMileage .actual-value input`);
+
+      mileageMinRange.value = mileageMinRange.min
+      mileageMaxRange.value = mileageMaxRange.max
+
+      mileageProgress.style.left = '0%'
+      mileageProgress.style.right = '0.82%'
+
+      mileageActualValue.value = `${mileageMinRange.min} - ${mileageMaxRange.max}`
+      break;
+    case 'year':
+      let yearMinRange = document.querySelector(`.yearValMin`)
+      let yearMaxRange = document.querySelector(`.yearValMax`)
+      let yearProgress = yearMinRange.parentElement.parentElement.querySelector('.progress');
+      let yearActualValue = document.querySelector(`#filterByYear .actual-value input`);
+
+      yearMinRange.value = yearMinRange.min
+      yearMaxRange.value = yearMaxRange.max
+
+      yearProgress.style.left = '0%'
+      yearProgress.style.right = '0.82%'
+
+      yearActualValue.value = `${yearMinRange.min} - ${yearMaxRange.max}`
+      break;
+  }
 }
 
 async function FilterPrice() {
-  filters['Min Price'] = document.querySelector('.priceValMin').value
-  filters['Max Price'] = document.querySelector('.priceValMax').value
-  Loader(true)
+  filters['price'] = [document.querySelector('.price-value').value];
   await fetchVehicles()
   displaySelectedFilter()
-  Loader(false)
 }
-
 
 async function FilterMileage() {
-  filters['Min Mileage'] = document.querySelector('.mileageValMin').value
-  filters['Max Mileage'] = document.querySelector('.mileageValMax').value
-  Loader(true)
+  filters['mileage'] = [`${document.querySelector('.mileageValMin').value} - ${document.querySelector('.mileageValMax').value}`];
   await fetchVehicles()
   displaySelectedFilter()
-  Loader(false)
 }
+
 async function FilterYear() {
-  filters['Min Year'] = document.querySelector('.yearValMin').value
-  filters['Max Year'] = document.querySelector('.yearValMax').value
-  Loader(true)
+  filters['year'] = [`${document.querySelector('.yearValMin').value} - ${document.querySelector('.yearValMax').value}`];
   await fetchVehicles()
   displaySelectedFilter()
-  Loader(false)
 }
 
 
@@ -199,19 +268,25 @@ function getQueryString() {
     .map(([label, value]) => {
       const key = label.replace(' ', '')
       if (arrTypes.includes(key))
-        return value.map(val => '&' + key + '=' + val).join('') + '&' + key + '=' + '';
+        return value.map(val => '&' + key + '=' + val).join('');
       return '&' + key + '=' + value
     })
     .join('')
 
-  if (filters['Min Price']) str = str + '&minPrice=' + filters['Min Price']
-  if (filters['Max Price']) str = str + '&maxPrice=' + filters['Max Price']
+  if (filters['price']) {
+    const price = filters['price'][0].split('-');
+    str = str + '&minPrice=' + Number(price[0].replace('$', '').split(',').join('')) + '&maxPrice=' + Number(price[1].replace('$', '').split(',').join(''))
+  }
 
-  if (filters['Min Mileage']) str = str + '&minMileage=' + filters['Min Mileage']
-  if (filters['Max Mileage']) str = str + '&maxMileage=' + filters['Max Mileage']
+  if (filters['mileage']) {
+    const mileage = filters['mileage'][0].split('-');
+    str = str + '&minMileage=' + Number(mileage[0]) + '&maxMileage=' + Number(mileage[1])
+  }
 
-  if (filters['Min Year']) str = str + '&minYear=' + filters['Min Year']
-  if (filters['Max Year']) str = str + '&maxYear=' + filters['Max Year']
+  if (filters['year']) {
+    const year = filters['year'][0].split('-');
+    str = str + '&minYear=' + Number(year[0]) + '&maxYear=' + Number(year[1])
+  }
 
   return str
 }
@@ -219,6 +294,7 @@ function getQueryString() {
 let currentPage = 1;
 
 async function fetchVehicles(page = 1) {
+  const queryString = getQueryString()
   const dealerId = '1';
   const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net';
   const dealerApiToken =
@@ -227,7 +303,7 @@ async function fetchVehicles(page = 1) {
 
   try {
     const response = await fetch(
-      `${apiUrl}/api/vehicles/search?idDealership=${dealerId}&limit=${itemsPerPage}&skip=${skip}`,
+      `${apiUrl}/api/vehicles/search?idDealership=${dealerId}&limit=${itemsPerPage}&skip=${skip}${queryString}`,
       {
         headers: {
           Authorization: `Bearer ${dealerApiToken}`,
@@ -236,6 +312,7 @@ async function fetchVehicles(page = 1) {
     );
     const vehicles = await response.json();
     if (vehicles?.results) local_vehicles = [...vehicles.results];
+    totalCount = vehicles.total
 
     sortItem();
     updatePaginationButtons(page, vehicles.total);
@@ -260,7 +337,18 @@ function updatePaginationButtons(page, totalVehicles) {
   }
 
   paginationButtons.innerHTML = paginationHTML;
+
+  // Update the URL with the current page number only if it's greater than 1
+  if (page > 1) {
+    window.history.pushState({}, '', '?page=' + page);
+  } else {
+    // Remove the page query parameter if the current page is 1
+    const currentUrl = window.location.href;
+    const baseUrl = currentUrl.split('?')[0];
+    window.history.pushState({}, '', baseUrl);
+  }
 }
+
 
 function changeItemsPerPage(event) {
   itemsPerPage = parseInt(event.target.value, 10);
@@ -268,7 +356,7 @@ function changeItemsPerPage(event) {
 }
 
 //Smooth transition to the top of the grid when pages clicked
-document.getElementById('pagination-buttons').addEventListener('click', function(event) {
+document.getElementById('pagination-buttons').addEventListener('click', function (event) {
   if (event.target.tagName === 'LI') {
     window.scrollTo({
       top: document.querySelector('.breadcrumb-content').offsetTop,
@@ -303,20 +391,63 @@ function displaySelectedFilter() {
                 <div>${value}</div>
                <i class="fa-solid fa-xmark"></i>
               </div>`)
-      .join('')}`
+      .join('')}`;
 
   const html = Object.entries(filters)
     .map((item) => getHtml(item))
-    .join('')
+    .join('');
 
   if (Object.keys(filters).length > 0) {
-    document.getElementById('vehiclesFilters').classList.remove('d-none')
+    document.getElementById('vehiclesFilters').classList.remove('d-none');
   } else {
-    document.getElementById('vehiclesFilters').classList.add('d-none')
+    document.getElementById('vehiclesFilters').classList.add('d-none');
   }
 
-  document.getElementById('selected-filters').innerHTML = html
+  const clearAllHandle = `<div class="d-flex"><a onclick="ResetFilter()" class="clear-filters" href="javascript:;">Clear All</a></div>`;
+
+  document.getElementById('selected-filters').innerHTML = html.concat('', clearAllHandle);
+
+  updateURLWithFilters();  // Call this at the end of the function
 }
+
+//Updating URLs when filters applied
+function updateURLWithFilters() {
+  const queryString = getQueryString();
+  let refinedParams = {};
+
+  // Split the query string into individual parameters
+  const params = new URLSearchParams(queryString);
+
+  // Iterate over each parameter
+  for (let [key, value] of params.entries()) {
+      if (key === "year") {
+          refinedParams['minYear'] = value.split(" - ")[0];
+          refinedParams['maxYear'] = value.split(" - ")[1];
+      } else if (key === "mileage") {
+          refinedParams['minMileage'] = value.split(" - ")[0];
+          refinedParams['maxMileage'] = value.split(" - ")[1];
+      } else if (key === "price") {
+          // Remove the dollar sign and commas from the price, then split it
+          const prices = value.replace(/[$,]/g, '').split(" - ");
+          refinedParams['minPrice'] = prices[0];
+          refinedParams['maxPrice'] = prices[1];
+      } else {
+          // Add other filters as they are
+          refinedParams[key] = value;
+      }
+  }
+
+  // Convert the refinedParams object back to a query string format
+  const refinedQueryString = Object.entries(refinedParams).map(([key, value]) => `${key}=${value}`).join('&');
+
+  // Construct the new URL
+  const newURL = window.location.origin + window.location.pathname + "?" + refinedQueryString;
+  console.log("New URL:", newURL);  // Log the new URL
+  window.history.pushState({ path: newURL }, '', newURL);
+}
+
+
+
 
 function changeItemsPerPage(event) {
   itemsPerPage = parseInt(event.target.value)
@@ -362,11 +493,8 @@ function changeSorting(event) {
 }
 
 function displayVehicles() {
-  document.getElementById(
-    'vehicle-found'
-  ).innerHTML = `${local_vehicles.length} Vehicles Matching`
 
-  document.getElementById('found-vehicle-count').innerHTML = local_vehicles.length
+  document.getElementById('found-vehicle-count').innerHTML = totalCount
 
   if (local_vehicles.length) {
     displayItems(initialPageNumber)
@@ -476,7 +604,7 @@ function getHTML(vehicle) {
   const oldPrice = vehicle.price * 1.18;
 
   return `
-  <div class="col-sm-6 col-lg-4 col-md-5 col-xl-3 mt-3">
+  <div class="col-sm-6 col-lg-4 col-md-6 col-xl-3 mt-3">
     <a href="/vdp.html?id=${vehicle.idVehicle}">
       <div class="car-item">
         <div class="vehicle-images">
@@ -595,21 +723,34 @@ function showRequestInfoModal(event) {
   const idVehicle = card.querySelector('a').getAttribute('href').split('=')[1];
   console.log('idVehicle:', idVehicle);
 
-  // Create the modal using our function from step 1
-  const modalHTML = generateModalHTML(idVehicle);
-  const modalDiv = document.createElement('div');
-  modalDiv.innerHTML = modalHTML;
-  document.body.appendChild(modalDiv);
+  // Retrieve the vehicle information from the vehicle card using the correct class 'car-name'
+  const vehicleTitleElement = card.querySelector('.car-name');
+  if (vehicleTitleElement) {
+    const vehicleTitle = vehicleTitleElement.textContent.trim();
+    console.log('vehicleTitle:', vehicleTitle);
 
-  // Display the modal
-  const modal = new bootstrap.Modal(document.getElementById('scheduleModal'));
-  modal.show();
+    // Create the modal using our function from step 1
+    const modalHTML = generateModalHTML(idVehicle, vehicleTitle); // Pass the vehicleTitle as the second parameter
+    const modalDiv = document.createElement('div');
+    modalDiv.innerHTML = modalHTML;
+    document.body.appendChild(modalDiv);
 
-  // Remove the modal from the page once it's closed
-  document.getElementById('scheduleModal').addEventListener('hidden.bs.modal', function() {
+    // Display the modal
+    const modal = new bootstrap.Modal(document.getElementById('scheduleModal'));
+    modal.show();
+
+    // Remove the modal from the page once it's closed
+    document.getElementById('scheduleModal').addEventListener('hidden.bs.modal', function () {
       this.remove();
-  });
+    });
+  } else {
+    console.error('Unable to retrieve vehicle title from vehicle card');
+  }
 }
+
+
+
+
 
 
 
@@ -712,7 +853,7 @@ function ToggleComment(event) {
 }
 
 
-function generateModalHTML(idVehicle) {
+function generateModalHTML(idVehicle, vehicleTitle) {
   return `
   <!-- Request More Info Modal -->
   <div class="modal fade" id="scheduleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -729,7 +870,7 @@ function generateModalHTML(idVehicle) {
                           <span class="ms-0">Hello my name is</span>
                           <input class="custom-input" type="text" name="firstName" placeholder="First name" oninput="handleScheduleInputChange(event)" required pattern="[A-Za-z]{2,}" title="Please enter a valid first name" />
                           <input class="custom-input" type="text" name="lastName" placeholder="Last name" oninput="handleScheduleInputChange(event)" required pattern="[A-Za-z]{2,}" title="Please enter a valid last name" />
-                          <span>and I'd like to request more details for <b id="vehicle-title"></b>. I'm in the</span>
+                          <span>and I'd like to request more details for <b id="vehicle-title">${vehicleTitle}</b>. I'm in the</span>
                           <input class="custom-input" type="text" name="zip" placeholder="ZIP Code" oninput="formatZIPCode(event)" onfocusout="validateZIPCode(event)" required />
                           <span>area. You can reach me by email at</span>
                           <input class="custom-input" type="email" name="email" placeholder="Email Address" onfocusout="validateEmail(event)" required />
@@ -768,10 +909,13 @@ function generateModalHTML(idVehicle) {
 }
 
 
+
 async function scheduleTestDrive(event) {
   console.log("scheduleTestDrive function called");
   event.stopPropagation()
   event.preventDefault()
+
+  console.log("local_vehicle:", local_vehicle); // Add this line
 
   document.getElementById('message-loader').classList.remove('d-none')
 
@@ -797,6 +941,8 @@ async function scheduleTestDrive(event) {
     vehicleId: idVehicle, // Now a number
     dealershipId: 1
   };
+
+  console.log("payload:", payload); // Add this line
 
   const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net';
   const SaaSApiToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmFrb3N5YW5kYXZpZGRldkBnbWFpbC5jb20iLCJzdWIiOjEsImRlYWxlcnNoaXAiOjEsInJvbGUiOiJERUFMRVJfQURNSU4iLCJpYXQiOjE2ODE4MzAyODIsImV4cCI6MTY4MTkxNjY4Mn0.jGifLS5ezj43hqJVrbFeFRlyDg1_j4MESQMdPC5tAyQ';
@@ -937,6 +1083,8 @@ function generatePaginationButtons(totalItems, currentPage) {
   }
 }
 
+let rangeData = {};
+
 function displayFilters(filters) {
   const getHtml = (label, options) => `<div class="f-accordion-item">
         <div class="f-accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#${label}" aria-expanded="false" aria-controls="${label}">
@@ -959,94 +1107,66 @@ function displayFilters(filters) {
     .map(([label, options]) => getHtml(label, options))
     .join('')
 
-
-  const sortedPrice = price.sort((a, b) => a - b)
-  const minPrice = sortedPrice[0]
-  const maxPrice = sortedPrice[sortedPrice.length - 1]
-
   document.getElementById('filtersAccordion').insertAdjacentHTML('beforeend', html)
-  const rangeMin = document.querySelectorAll('.priceValMin')
-  const rangeMax = document.querySelectorAll('.priceValMax')
 
-  for (let index = 0; index < rangeMin.length; index++) {
-    const element = rangeMin[index];
-    element.setAttribute('value', minPrice)
-    element.setAttribute('min', minPrice)
-    element.setAttribute('max', maxPrice)
-  }
+  rangeData.minPrice = Math.min(...price)
+  rangeData.maxPrice = Math.max(...price);
 
+  rangeData.minYear = Math.min(...year)
+  rangeData.maxYear = Math.max(...year);
 
+  rangeData.minMileage = Math.min(...mileage)
+  rangeData.maxMileage = Math.max(...mileage);
 
-  for (let index = 0; index < rangeMax.length; index++) {
-    const element = rangeMax[index];
-    element.setAttribute('value', maxPrice)
-    element.setAttribute('min', minPrice)
-    element.setAttribute('max', maxPrice)
-  }
-
-  const dealerSliderAmount1 = document.getElementById('dealer-slider-amount-1')
-  dealerSliderAmount1.setAttribute('value', `${minPrice.toLocaleString('en-US', {
+  const priceActualData = document.getElementById('price-actual-value')
+  priceActualData.setAttribute('value', `${rangeData.minPrice.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
     minimumFractionDigits: 0,
-  })} - ${maxPrice.toLocaleString('en-US', {
+  })} - ${rangeData.maxPrice.toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
     minimumFractionDigits: 0,
   })}`)
 
-  // same for year
-  const sortedYear = year.sort((a, b) => a - b)
-  const minYear = sortedYear[0]
-  const maxYear = sortedYear[sortedYear.length - 1]
+  const yearActualData = document.getElementById('year-actual-value')
+  yearActualData.setAttribute('value', `${rangeData.minYear} - ${rangeData.maxYear}`)
 
-  const rangeMinYear = document.querySelectorAll('.yearValMin')
-  const rangeMaxYear = document.querySelectorAll('.yearValMax')
+  const mileageActualData = document.getElementById('mileage-actual-value')
+  mileageActualData.setAttribute('value', `${rangeData.minMileage} - ${rangeData.maxMileage}`)
 
-  for (let index = 0; index < rangeMinYear.length; index++) {
-    const element = rangeMinYear[index];
-    element.setAttribute('value', minYear)
-    element.setAttribute('min', minYear)
-    element.setAttribute('max', maxYear)
-  }
-
-  for (let index = 0; index < rangeMaxYear.length; index++) {
-    const element = rangeMaxYear[index];
-    element.setAttribute('value', maxYear)
-    element.setAttribute('min', minYear)
-    element.setAttribute('max', maxYear)
-  }
-
-  const year1 = document.getElementById('year-1')
-  year1.setAttribute('value', `${minYear} - ${maxYear}`)
-
-  // same for mileage
-  const sortedMileage = mileage.sort((a, b) => a - b)
-  const minMileage = sortedMileage[0]
-  const maxMileage = sortedMileage[sortedMileage.length - 1]
-
-  const rangeMinMileage = document.querySelectorAll('.mileageValMin')
-  const rangeMaxMileage = document.querySelectorAll('.mileageValMax')
-
-  for (let index = 0; index < rangeMinMileage.length; index++) {
-    const element = rangeMinMileage[index];
-    element.setAttribute('value', minMileage)
-    element.setAttribute('min', minMileage)
-    element.setAttribute('max', maxMileage)
-  }
-
-  for (let index = 0; index < rangeMaxMileage.length; index++) {
-    const element = rangeMaxMileage[index];
-    element.setAttribute('value', maxMileage)
-    element.setAttribute('min', minMileage)
-    element.setAttribute('max', maxMileage)
-  }
-
-  const mileage1 = document.getElementById('mileage-1')
-
-  mileage1.setAttribute('value', `${minMileage} - ${maxMileage}`)
+  handleRangeData('.priceValMin', '.priceValMax', rangeData.minPrice, rangeData.maxPrice)
+  handleRangeData('.yearValMin', '.yearValMax', rangeData.minYear, rangeData.maxYear)
+  handleRangeData('.mileageValMin', '.mileageValMax', rangeData.minMileage, rangeData.maxMileage)
 
 }
+
+//TODO: need to optimize
+function handleRangeData(minSelector, maxSelector, minData, maxData) {
+  const rangeMin = document.querySelectorAll(minSelector)
+  const rangeMax = document.querySelectorAll(maxSelector)
+
+  for (let index = 0; index < rangeMin.length; index++) {
+    const element = rangeMin[index];
+    element.setAttribute('value', minData)
+    element.setAttribute('min', minData)
+    element.setAttribute('max', maxData)
+  }
+
+  for (let index = 0; index < rangeMax.length; index++) {
+    const element = rangeMax[index];
+    element.setAttribute('value', maxData)
+    element.setAttribute('min', minData)
+    element.setAttribute('max', maxData)
+  }
+}
+
+
+setTimeout(function () {
+  handleRangeData('.priceValMin', '.priceValMax', rangeData.minPrice, rangeData.maxPrice)
+  handleRangeData('.yearValMin', '.yearValMax', rangeData.minYear, rangeData.maxYear)
+  handleRangeData('.mileageValMin', '.mileageValMax', rangeData.minMileage, rangeData.maxMileage)
+}, 2000);
 
 function updateItems(label, option) {
   if (option != null) {
