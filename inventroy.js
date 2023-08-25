@@ -85,19 +85,13 @@ function getFiltersFromURL() {
 
   for (let [key, value] of params.entries()) {
     if (key.startsWith('min') || key.startsWith('max')) {
-      // Extract the base filter name (e.g., "mileage" from "minMileage")
       const baseKey = key.substring(3).toLowerCase();
-
-      // If the base filter doesn't exist in the filtersFromURL object, create it
       if (!filtersFromURL[baseKey]) {
-        filtersFromURL[baseKey] = [' - '];  // Initialize with a placeholder
+        filtersFromURL[baseKey] = [' - '];
       }
-
-      // If it's a min value, prepend it to the existing value
       if (key.startsWith('min')) {
         filtersFromURL[baseKey][0] = value + filtersFromURL[baseKey][0];
       } else {
-        // If it's a max value, append it to the existing value
         filtersFromURL[baseKey][0] = filtersFromURL[baseKey][0] + value;
       }
     } else {
@@ -108,36 +102,39 @@ function getFiltersFromURL() {
       }
     }
   }
-
-  console.log("Parsed filters from URL:", filtersFromURL);
   return filtersFromURL;
 }
 
 
 
 
-
 function applyFiltersFromURL() {
   const filtersFromURL = getFiltersFromURL();
-  Object.assign(filters, filtersFromURL);
+  filters = { ...filters, ...filtersFromURL };
   SearchInventory();
 }
+
 
 
 
 function updateUIWithFilters() {
   for (let [key, values] of Object.entries(filters)) {
     values.forEach(value => {
-      const inputElement = document.querySelector(`[data-id="${key}"][value="${value}"]`);
-      if (inputElement) {
-        console.log(`Updating UI element for filter ${key} with value ${value}`);
-        inputElement.checked = true;
+      if (key === "year" || key === "mileage" || key === "price") {
+        const [min, max] = value.split(" - ");
+        const minElement = document.querySelector(`[data-id="min${capitalizeFirstLetter(key)}"][value="${min}"]`);
+        const maxElement = document.querySelector(`[data-id="max${capitalizeFirstLetter(key)}"][value="${max}"]`);
+        if (minElement) minElement.checked = true;
+        if (maxElement) maxElement.checked = true;
       } else {
-        console.log(`Failed to find UI element for filter ${key} with value ${value}`);
+        const inputElement = document.querySelector(`[data-id="${key}"][value="${value}"]`);
+        if (inputElement) inputElement.checked = true;
       }
     });
   }
 }
+
+
 
 async function handleInputChange(event) {
   const key = toCamelCase(event.target.dataset.id)
@@ -418,15 +415,14 @@ document.getElementById("pagination-buttons").addEventListener("click", (event) 
 
 function displaySelectedFilter() {
   const getHtml = ([label, values]) => {
-    return `
-    ${values
-        .map((value) => {
-          return `<div class="d-flex align-items-center selected-filter-item" onclick="removeFilter('${label}', '${value}')">
-                      <div>${value}</div>
-                     <i class="fa-solid fa-xmark"></i>
-                    </div>`;
-        })
-        .join('')}`;
+    return values
+      .map((value) => {
+        return `<div class="d-flex align-items-center selected-filter-item" onclick="removeFilter('${label}', '${value}')">
+                    <div>${value}</div>
+                   <i class="fa-solid fa-xmark"></i>
+                  </div>`;
+      })
+      .join('');
   };
 
   const html = Object.entries(filters)
@@ -440,11 +436,10 @@ function displaySelectedFilter() {
   }
 
   const clearAllHandle = `<div class="d-flex"><a onclick="ResetFilter()" class="clear-filters" href="javascript:;">Clear All</a></div>`;
-
   document.getElementById('selected-filters').innerHTML = html.concat('', clearAllHandle);
-
-  updateURLWithFilters();  // Call this at the end of the function
+  updateURLWithFilters();
 }
+
 
 //Updating URLs when filters applied
 function updateURLWithFilters() {
