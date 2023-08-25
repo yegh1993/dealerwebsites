@@ -268,7 +268,7 @@ function getQueryString() {
     .map(([label, value]) => {
       const key = label.replace(' ', '')
       if (arrTypes.includes(key))
-      return value.map(val => '&' + key + '=' + val).join('') + '&' + key + '=' + '';
+        return value.map(val => '&' + key + '=' + val).join('') + '&' + key + '=' + '';
       return '&' + key + '=' + value
     })
     .join('')
@@ -338,16 +338,21 @@ function updatePaginationButtons(page, totalVehicles) {
 
   paginationButtons.innerHTML = paginationHTML;
 
-  // Update the URL with the current page number only if it's greater than 1
+  // Get the current URL and its parameters
+  const currentUrl = new URL(window.location.href);
+  const params = currentUrl.searchParams;
+
+  // Update the page parameter or remove it if it's the first page
   if (page > 1) {
-    window.history.pushState({}, '', '?page=' + page);
+    params.set('page', page);
   } else {
-    // Remove the page query parameter if the current page is 1
-    const currentUrl = window.location.href;
-    const baseUrl = currentUrl.split('?')[0];
-    window.history.pushState({}, '', baseUrl);
+    params.delete('page');
   }
+
+  // Update the URL without reloading the page
+  window.history.pushState({}, '', currentUrl.toString());
 }
+
 
 
 function changeItemsPerPage(event) {
@@ -381,17 +386,24 @@ document.getElementById("pagination-buttons").addEventListener("click", (event) 
   }
 });
 
-
-
-
 function displaySelectedFilter() {
-  const getHtml = ([label, values]) => `
-  ${values
-      .map((value) => `<div class="d-flex align-items-center selected-filter-item" onclick="removeFilter('${label}', '${value}')">
-                <div>${value}</div>
-               <i class="fa-solid fa-xmark"></i>
-              </div>`)
-      .join('')}`;
+  console.log("displaySelectedFilter called!"); // Log when the function is called
+
+  console.log("Current filters:", filters); // Log the current state of the filters object
+
+  const getHtml = ([label, values]) => {
+    console.log(`Label: ${label}, Values: ${values}`); // Log the label and values
+    return `
+    ${values
+        .map((value) => {
+          console.log(`Value for ${label}: ${value}`); // Log individual values
+          return `<div class="d-flex align-items-center selected-filter-item" onclick="removeFilter('${label}', '${value}')">
+                      <div>${value}</div>
+                     <i class="fa-solid fa-xmark"></i>
+                    </div>`;
+        })
+        .join('')}`;
+  };
 
   const html = Object.entries(filters)
     .map((item) => getHtml(item))
@@ -412,40 +424,28 @@ function displaySelectedFilter() {
 
 //Updating URLs when filters applied
 function updateURLWithFilters() {
-  const queryString = getQueryString();
-  let refinedParams = {};
+  const params = new URLSearchParams();
 
-  // Split the query string into individual parameters
-  const params = new URLSearchParams(queryString);
-
-  // Iterate over each parameter
-  for (let [key, value] of params.entries()) {
-      if (key === "year") {
-          refinedParams['minYear'] = value.split(" - ")[0];
-          refinedParams['maxYear'] = value.split(" - ")[1];
-      } else if (key === "mileage") {
-          refinedParams['minMileage'] = value.split(" - ")[0];
-          refinedParams['maxMileage'] = value.split(" - ")[1];
-      } else if (key === "price") {
-          // Remove the dollar sign and commas from the price, then split it
-          const prices = value.replace(/[$,]/g, '').split(" - ");
-          refinedParams['minPrice'] = prices[0];
-          refinedParams['maxPrice'] = prices[1];
-      } else {
-          // Add other filters as they are
-          refinedParams[key] = value;
-      }
+  for (let [key, values] of Object.entries(filters)) {
+    if (key === "year" || key === "mileage" || key === "price") {
+      const [min, max] = values[0].split(" - "); // Assuming these filters only have one range value
+      params.set(`min${capitalizeFirstLetter(key)}`, min.replace(/[$,]/g, ''));
+      params.set(`max${capitalizeFirstLetter(key)}`, max.replace(/[$,]/g, ''));
+    } else {
+      // Join multiple values with commas and set them as a single parameter
+      params.set(key, values.join(','));
+    }
   }
 
-  // Convert the refinedParams object back to a query string format
-  const refinedQueryString = Object.entries(refinedParams).map(([key, value]) => `${key}=${value}`).join('&');
-
-  // Construct the new URL
-  const newURL = window.location.origin + window.location.pathname + "?" + refinedQueryString;
+  const newURL = window.location.origin + window.location.pathname + "?" + params.toString();
   console.log("New URL:", newURL);  // Log the new URL
   window.history.pushState({ path: newURL }, '', newURL);
 }
 
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 
 
@@ -1211,7 +1211,7 @@ function colorPiker(colorName) {
 }
 
 window.addEventListener('load', async () => {
-
+  console.log("Initial URL:", window.location.href);
   const queryParams = new URLSearchParams(window.location.search)
   isQueryParams = queryParams.size
   // If you want to get all the parameters and their values as an object
@@ -1221,7 +1221,9 @@ window.addEventListener('load', async () => {
 
   PageLoader(true)
   displaySelectedFilter()
+  console.log("After displaySelectedFilter, URL:", window.location.href);
   await fetchVehicles()
+  console.log("After fetchVehicles, URL:", window.location.href);
   const serverFilters = await fetchFilters()
 
   console.log('Server Filters', serverFilters)
