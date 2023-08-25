@@ -79,6 +79,25 @@ const arrTypes = [
 
 
 //Updating Page With URLs
+window.addEventListener('load', async () => {
+  console.log("Page loading with filters:", filters);
+  const queryParams = new URLSearchParams(window.location.search)
+  isQueryParams = queryParams.size
+  // If you want to get all the parameters and their values as an object
+  queryParams.forEach((value, key) => {
+    filters[key] = [value]
+  })
+
+  PageLoader(true)
+  displaySelectedFilter()
+  await fetchVehicles()
+  const serverFilters = await fetchFilters()
+
+  displayFilters(serverFilters)
+  showCustomSelect()
+  PageLoader(false)
+})
+
 function getFiltersFromURL() {
   const params = new URLSearchParams(window.location.search);
   let filtersFromURL = {};
@@ -94,11 +113,13 @@ function getFiltersFromURL() {
 
 function applyFiltersFromURL() {
   const filtersFromURL = getFiltersFromURL();
+  console.log("Applying filters from URL:", filtersFromURL);
   Object.assign(filters, filtersFromURL);
   SearchInventory();
 }
 
 function updateUIWithFilters() {
+  console.log("Updating UI with filters:", filters);
   for (let [key, values] of Object.entries(filters)) {
     values.forEach(value => {
       const inputElement = document.querySelector(`[data-id="${key}"][value="${value}"]`);
@@ -107,8 +128,9 @@ function updateUIWithFilters() {
   }
 }
 
+
+
 async function handleInputChange(event) {
-  console.log("Input changed!");  // This should be logged every time a filter changes
   const key = toCamelCase(event.target.dataset.id)
   const value = event.target.value;
 
@@ -318,7 +340,6 @@ async function fetchVehicles(page = 1) {
     updatePaginationButtons(page, vehicles.total);
     return;
   } catch (error) {
-    console.error('Error fetching vehicles:', error);
     return;
   }
 }
@@ -412,6 +433,7 @@ function displaySelectedFilter() {
 
 //Updating URLs when filters applied
 function updateURLWithFilters() {
+  console.log("Attempting to update URL with filters...");
   const queryString = getQueryString();
   let refinedParams = {};
 
@@ -452,7 +474,7 @@ function updateURLWithFilters() {
 
   // Construct the new URL
   const newURL = window.location.origin + window.location.pathname + "?" + refinedQueryString;
-  console.log("New URL:", newURL);  // Log the new URL
+  console.log("New URL:", newURL);  // This is already there, but just making sure
   window.history.pushState({ path: newURL }, '', newURL);
 }
 
@@ -485,7 +507,6 @@ function sortItem() {
 }
 
 function changeSortOrder(event) {
-  console.log(sortingOrder)
   if (sortingOrder == 'asc') {
     sortingOrder = 'desc'
     event.target.classList.remove('asc')
@@ -681,31 +702,21 @@ function changeImage(event, direction) {
   event.stopPropagation(); // Prevent the click event from propagating to the parent anchor tag
 
   const imagesContainer = event.target.parentElement.parentElement; // Select the parent container of the images
-  console.log('Images container:', imagesContainer);
-
   const images = imagesContainer.getElementsByClassName('vehicle-image');
-  console.log('Images:', images);
-
   let currentIndex = -1;
   for (let i = 0; i < images.length; i++) {
-    console.log(`Image ${i} display: ${images[i].style.display}`);
     if (images[i].style.display !== 'none') {
       currentIndex = i;
       break;
     }
   }
 
-  console.log(`Current index: ${currentIndex}`);
   if (currentIndex === -1) {
-    console.error('Error: No image is currently displayed.');
     return;
   }
 
   const newIndex = (currentIndex + direction + images.length) % images.length;
-  console.log(`New index: ${newIndex}`);
-
   if (!images[newIndex]) {
-    console.error(`Error: No image found at index ${newIndex}.`);
     return;
   }
 
@@ -734,13 +745,11 @@ function showRequestInfoModal(event) {
   // Get the idVehicle from the card element
   const card = event.target.closest('.col-sm-6');
   const idVehicle = card.querySelector('a').getAttribute('href').split('=')[1];
-  console.log('idVehicle:', idVehicle);
 
   // Retrieve the vehicle information from the vehicle card using the correct class 'car-name'
   const vehicleTitleElement = card.querySelector('.car-name');
   if (vehicleTitleElement) {
     const vehicleTitle = vehicleTitleElement.textContent.trim();
-    console.log('vehicleTitle:', vehicleTitle);
 
     // Create the modal using our function from step 1
     const modalHTML = generateModalHTML(idVehicle, vehicleTitle); // Pass the vehicleTitle as the second parameter
@@ -757,7 +766,6 @@ function showRequestInfoModal(event) {
       this.remove();
     });
   } else {
-    console.error('Unable to retrieve vehicle title from vehicle card');
   }
 }
 
@@ -773,8 +781,6 @@ function handleScheduleInputChange(event) {
   const { name, value } = event.target
   schedule[name] = value
 
-  console.log('handleScheduleInputChange called with name:', name, 'and value:', value);
-  console.log('Updated schedule:', schedule);
 }
 
 
@@ -845,7 +851,6 @@ function validatePhoneNumber(event) {
 function handleEmailConsentToggle(event) {
   const { id, checked } = event.target
   schedule[id] = checked
-  console.log(schedule)
 }
 
 function ToggleComment(event) {
@@ -924,11 +929,9 @@ function generateModalHTML(idVehicle, vehicleTitle) {
 
 
 async function scheduleTestDrive(event) {
-  console.log("scheduleTestDrive function called");
   event.stopPropagation()
   event.preventDefault()
 
-  console.log("local_vehicle:", local_vehicle); // Add this line
 
   document.getElementById('message-loader').classList.remove('d-none')
 
@@ -955,7 +958,6 @@ async function scheduleTestDrive(event) {
     dealershipId: 1
   };
 
-  console.log("payload:", payload); // Add this line
 
   const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net';
   const SaaSApiToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtpcmFrb3N5YW5kYXZpZGRldkBnbWFpbC5jb20iLCJzdWIiOjEsImRlYWxlcnNoaXAiOjEsInJvbGUiOiJERUFMRVJfQURNSU4iLCJpYXQiOjE2ODE4MzAyODIsImV4cCI6MTY4MTkxNjY4Mn0.jGifLS5ezj43hqJVrbFeFRlyDg1_j4MESQMdPC5tAyQ';
@@ -993,13 +995,11 @@ async function scheduleTestDrive(event) {
       return res;
     })
     .then((res) => {
-      console.log('response', res)
       document.getElementById('schedule_form_success').innerHTML =
         'Successfully submitted! We will be in touch with you shortly.'
       document.getElementById('message-loader').classList.add('d-none')
     })
     .catch((err) => {
-      console.error(err);
       document.getElementById('schedule_form_error').innerHTML =
         'Something went wrong. Please Text or Call us directly.'
       document.getElementById('message-loader').classList.add('d-none')
@@ -1012,7 +1012,6 @@ function displayItems(pageNumber) {
   const endIndex = startIndex + itemsPerPage
   const itemsToDisplay = local_vehicles.slice(startIndex, endIndex)
 
-  console.log('Display Items', itemsPerPage)
 
   const car_list_box = document.getElementById('car-list-box')
   car_list_box.innerHTML = ''
@@ -1029,7 +1028,6 @@ function displayItems(pageNumber) {
 }
 
 function generatePaginationButtons(totalItems, currentPage) {
-  console.log('Pagination Button', itemsPerPage)
   const totalPages = Math.ceil(totalItems / itemsPerPage)
   const paginationButtons = document.getElementById('pagination-buttons')
   paginationButtons.innerHTML = ''
@@ -1222,23 +1220,3 @@ function colorPiker(colorName) {
       return 'background-color:' + colorName.toLowerCase()
   }
 }
-
-window.addEventListener('load', async () => {
-
-  const queryParams = new URLSearchParams(window.location.search)
-  isQueryParams = queryParams.size
-  // If you want to get all the parameters and their values as an object
-  queryParams.forEach((value, key) => {
-    filters[key] = [value]
-  })
-
-  PageLoader(true)
-  displaySelectedFilter()
-  await fetchVehicles()
-  const serverFilters = await fetchFilters()
-
-  console.log('Server Filters', serverFilters)
-  displayFilters(serverFilters)
-  showCustomSelect()
-  PageLoader(false)
-})
