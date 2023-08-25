@@ -427,24 +427,37 @@ function updateURLWithFilters() {
           refinedParams['minMileage'] = value.split(" - ")[0];
           refinedParams['maxMileage'] = value.split(" - ")[1];
       } else if (key === "price") {
-          // Remove the dollar sign and commas from the price, then split it
           const prices = value.replace(/[$,]/g, '').split(" - ");
           refinedParams['minPrice'] = prices[0];
           refinedParams['maxPrice'] = prices[1];
       } else {
-          // Add other filters as they are
-          refinedParams[key] = value;
+          // For checkbox filters
+          if (!refinedParams[key]) {
+              refinedParams[key] = [];
+          }
+          if (Array.isArray(refinedParams[key])) {
+              refinedParams[key].push(value);
+          }
       }
   }
 
   // Convert the refinedParams object back to a query string format
-  const refinedQueryString = Object.entries(refinedParams).map(([key, value]) => `${key}=${value}`).join('&');
+  const refinedQueryString = Object.entries(refinedParams).flatMap(([key, value]) => {
+      if (Array.isArray(value)) {
+          return value.map(v => `${key}=${v}`);
+      } else {
+          return `${key}=${value}`;
+      }
+  }).join('&');
 
   // Construct the new URL
   const newURL = window.location.origin + window.location.pathname + "?" + refinedQueryString;
   console.log("New URL:", newURL);  // Log the new URL
   window.history.pushState({ path: newURL }, '', newURL);
 }
+
+
+
 
 
 
