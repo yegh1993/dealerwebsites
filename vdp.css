@@ -344,6 +344,19 @@
   width: 100%;
 }
 
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .grid-view.grid-area {
+    grid-template-rows: 237px auto; /* 316px * 3 / 4 = 237px for 4:3 aspect ratio */
+  }
+  .gallery-image {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+
 [role='button'] {
   cursor: pointer;
 }
@@ -1671,4 +1684,14 @@ button[data-bs-target='#scheduleModal']:hover {
 .car-item:hover .prev-image,
 .car-item:hover .next-image {
   opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .prev-image, .next-image {
+    opacity: 1; /* Make buttons fully visible */
+    z-index: 2; /* Ensure buttons are above the images */
+  }
+  .vehicle-images:hover .prev-image, .vehicle-images:hover .next-image {
+    opacity: 1; /* Keep buttons fully visible on hover as well */
+  }
 }
