@@ -36,7 +36,6 @@ async function fetchVehicleDetails() {
     PageLoader(false)
 
     fetchVehicles()
-
   } catch (error) {
     console.error('Error fetching vehicle details:', error)
     PageLoader(false)
@@ -48,13 +47,15 @@ function displayStickyTop(vehicle) {
   <div class="car-fixed-title flex-row align-items-center justify-content-between">
   <div class="car-title-left">
     <div>
-      <p class="sc-1647e4d6-1 DclM">${vehicle.year} ${vehicle.make} ${vehicle.model
-    }</p>
+      <p class="sc-1647e4d6-1 DclM">${vehicle.year} ${vehicle.make} ${
+    vehicle.model
+  }</p>
       <p class="sc-1647e4d6-1 DclM hide-in-mobile">${vehicle.trim}</p>
     </div>
   </div>
   <div class="car-fixed-btn d-block d-md-none mt-2">
-  ${vehicle.status == 'ACTIVE'
+  ${
+    vehicle.status == 'ACTIVE'
       ? ` <button
     type="button"
     data-bs-toggle="modal"
@@ -63,7 +64,7 @@ function displayStickyTop(vehicle) {
     Get Started
   </button>`
       : ''
-    }
+  }
  
 </div>
 </div>
@@ -74,9 +75,9 @@ function displayStickyTop(vehicle) {
       <!-- <span class="old-price"> $5,200.00</span
         > -->
         <span class="new-price"> ${vehicle.price?.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    })}</span>
+          style: 'currency',
+          currency: 'USD',
+        })}</span>
       </div>
       <p class="car-flex-miles hide-in-mobile">${vehicle.mileage?.toLocaleString()} miles</p>
     </div>
@@ -95,8 +96,8 @@ function displayVehicle(vehicle) {
     if (cover_images.length < 3) return "'main sideA' 'main sideA'"
     if (cover_images.length >= 3) return "'main main sideA' 'main main sideB'"
   }
-  const carTitle = vehicle.year + ' ' + vehicle.make + ' ' + vehicle.model;
-  document.getElementById('active_car_title').innerHTML = carTitle;
+  const carTitle = vehicle.year + ' ' + vehicle.make + ' ' + vehicle.model
+  document.getElementById('active_car_title').innerHTML = carTitle
 
   const html = `
   <div class="hero-banner-u">
@@ -120,15 +121,23 @@ function displayVehicle(vehicle) {
           <div class="price car-price hero-bar">
             <!-- <span class="old-price"> $5,200.00</span> -->
             <span class="new-price">${vehicle.price?.toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  })}</span>
+              style: 'currency',
+              currency: 'USD',
+            })}</span>
           </div>
         </div>
       </div>
       <div class="car-fixed-btn d-block d-md-none text-end">
-      ${vehicle.status == 'ACTIVE'
-      ? `<button
+      ${
+        vehicle.status == 'ACTIVE'
+          ? `
+          <a
+        href="/inventory.html?bodyStyle=${vehicle.bodyStyle}"
+        class="view-more-btn me-0 mt-2"
+        type="button"
+      >View More Cars</a
+      >
+          <button
       type="button"
       data-bs-toggle="modal"
       data-bs-target="#scheduleModal"
@@ -136,7 +145,8 @@ function displayVehicle(vehicle) {
     >
       Get Started
     </button>`
-      : ''}
+          : ''
+      }
 
     </div >
       </div >
@@ -147,16 +157,17 @@ function displayVehicle(vehicle) {
         type="button"
       >View More Cars</a
       >
-      ${vehicle.status == 'ACTIVE'
-      ? `<button
+      ${
+        vehicle.status == 'ACTIVE'
+          ? `<button
       type="button"
       data-bs-toggle="modal"
       data-bs-target="#scheduleModal"
     >
       Get Started
     </button>`
-      : ''
-    }
+          : ''
+      }
      
     </div>
   </div >
@@ -178,9 +189,9 @@ function displayVehicle(vehicle) {
             alt=""
          />
       ${cover_images
-      .map((item, idx) =>
-        idx < 3
-          ? `
+        .map((item, idx) =>
+          idx < 3
+            ? `
           <div role="button" onclick="MorePhotos(this)" class="h-100 item${idx}" style="
           position: relative;
           z-index: 1;
@@ -192,30 +203,43 @@ function displayVehicle(vehicle) {
               alt=""
             />
           </div>`
-          : ''
-      )
-      .join('')}
+            : ''
+        )
+        .join('')}
           <div class="total-car-images-btn position-absolute" onclick="MorePhotos(this)"
           >
-            ${cover_images.length - 3 > 0 ? '+' + (cover_images.length - 3) : ''
-    } <span class="elementor-hidden-mobile">Photos</span>
+            ${
+              cover_images.length - 3 > 0 ? '+' + (cover_images.length - 3) : ''
+            } <span class="elementor-hidden-mobile">Photos</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<!-- Added Call and Text buttons -->
+<div class="contact-buttons">
+    <a href="javascript:void(0)" id="callButton" onclick="handleCallClick()">
+        <i class="fas fa-phone"></i> Call
+    </a>
+    <button id="textButton" onclick="handleTextClick()">
+        <i class="fas fa-comment"></i> Text
+    </button>
+</div>
+
+
+
   <!--cars -->
     <div id="gallery" style="display: none">
       ${vehicle.images
-      ?.map(
-        (item) => `<img
+        ?.map(
+          (item) => `<img
       src=${item.url}
       data-bp=${item.url}
       alt="2004 Isuzu Rodeo 3.5L S 2WD"
     />`
-      )
-      .join('')}
+        )
+        .join('')}
     </div>
 </div >
     `
@@ -236,12 +260,9 @@ function displayVehicle(vehicle) {
     )
 
   if (vehicle.status !== 'ACTIVE') {
-
     document.getElementById('car-sold').classList.remove('d-none')
     document.getElementById('myBtn').classList.add('d-none')
-  }
-
-  else document.getElementById('car-sold').classList.add('d-none')
+  } else document.getElementById('car-sold').classList.add('d-none')
 }
 
 function displayVehicleDetails(vehicle) {
@@ -270,8 +291,9 @@ function displayFirstTabVehicleDetails(vehicle) {
     </li>
     <li class="car_year">
       <span class="car-year">Availability</span>
-      <strong class="text-right">${vehicle.status === "ACTIVE" ? "In Store" : "N/A"
-    }</strong>
+      <strong class="text-right">${
+        vehicle.status === 'ACTIVE' ? 'In Store' : 'N/A'
+      }</strong>
     </li>
     <li class="car_year">
       <span class="car-year">VIN Number</span>
@@ -371,16 +393,15 @@ function displayFirstTabVehicleDetails(vehicle) {
         </div>
       </div>
     </div>
-  `;
+  `
   document
-    .getElementById("vehicle-tab-details")
-    ?.insertAdjacentHTML("beforeend", html);
+    .getElementById('vehicle-tab-details')
+    ?.insertAdjacentHTML('beforeend', html)
 
   document
-    .getElementById("vehicle-accordion-details")
-    ?.insertAdjacentHTML("beforeend", html);
+    .getElementById('vehicle-accordion-details')
+    ?.insertAdjacentHTML('beforeend', html)
 }
-
 
 function displaySecondTabFeaturesAndOptions(vehicle) {
   const yes = `<i i class="fas fa-check" ></i > `
@@ -390,15 +411,15 @@ function displaySecondTabFeaturesAndOptions(vehicle) {
     <div class="masonry-main cd-vehicle-features" >
       <ul class="list-style-1 list-col-3">
         ${vehicle.options
-      .filter((option) => option.installed)
-      .map(
-        (option) =>
-          `<li>
+          .filter((option) => option.installed)
+          .map(
+            (option) =>
+              `<li>
                   ${option.installed ? yes : no}
                   ${option.label}
                   </li>`
-      )
-      .join('')}
+          )
+          .join('')}
       </ul>
             </div >
     `
@@ -412,56 +433,101 @@ function displaySecondTabFeaturesAndOptions(vehicle) {
 }
 
 //Get My Free Report Form Handling
-document.addEventListener('DOMContentLoaded', function() {
-  const reportForm = document.getElementById('reportForm');
-  const submitButton = document.getElementById('submitReportForm');
-  const consentCheckbox = document.getElementById('consentCheckbox'); // Added this line
+document.addEventListener('DOMContentLoaded', function () {
+  const reportForm = document.getElementById('reportForm')
+  const submitButton = document.getElementById('submitReportForm')
+  const consentCheckbox = document.getElementById('consentCheckbox') // Added this line
 
   // Disable the submit button by default
-  submitButton.disabled = true;
+  submitButton.disabled = true
 
   // Listen for input changes on the form
-  reportForm.addEventListener('input', function() {
-    const formData = new FormData(reportForm);
-    const firstName = formData.get('firstName');
-    const lastName = formData.get('lastName');
-    const email = formData.get('email');
-    const checkbox = consentCheckbox.checked;
+  reportForm.addEventListener('input', function () {
+    const formData = new FormData(reportForm)
+    const firstName = formData.get('firstName')
+    const lastName = formData.get('lastName')
+    const email = formData.get('email')
+    const checkbox = consentCheckbox.checked
 
     // Enable the submit button only if all fields are filled and checkbox is checked
     if (firstName && lastName && email && checkbox) {
-      submitButton.disabled = false;
+      submitButton.disabled = false
     } else {
-      submitButton.disabled = true;
+      submitButton.disabled = true
     }
 
     // Added this block for checkbox styling
     if (consentCheckbox.disabled) {
-      consentCheckbox.style.opacity = "0.5";
-      consentCheckbox.style.cursor = "not-allowed";
+      consentCheckbox.style.opacity = '0.5'
+      consentCheckbox.style.cursor = 'not-allowed'
     } else {
-      consentCheckbox.style.opacity = "";
-      consentCheckbox.style.cursor = "";
+      consentCheckbox.style.opacity = ''
+      consentCheckbox.style.cursor = ''
     }
     // End of added block
-  });
+  })
 
   // Attach event listener to "Get My Free Report" submit button
-  submitButton.addEventListener('click', function() {
+  submitButton.addEventListener('click', function () {
     // Collect form data
-    const formData = new FormData(reportForm);
+    const formData = new FormData(reportForm)
     // Do something with formData, like sending it to a server
     // ...
 
     // Then show the report
-    window.open('http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&vin=' + vehicle.vin, '_blank');
+    window.open(
+      'http://www.carfax.com/VehicleHistory/p/Report.cfx?partner=DVW_1&vin=' +
+        vehicle.vin,
+      '_blank'
+    )
 
     // Close the modal
-    var myModal = new bootstrap.Modal(document.getElementById('reportModal'));
-    myModal.hide();
-  });
-});
+    var myModal = new bootstrap.Modal(document.getElementById('reportModal'))
+    myModal.hide()
+  })
+})
 
+async function handleCallClick() {
+  // Use a "tel:" link to initiate the call
+  const dealerNumber = '1234567890' // Replace with the actual dealer number
+  window.location.href = `tel:${dealerNumber}`
+
+  // Send the information to the backend for statistics
+  try {
+    await fetch(`${apiUrl}/api/callEvent`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${dealerApiToken}`,
+      },
+      body: JSON.stringify({ vehicleId: local_vehicle.id, eventType: 'call' }),
+    })
+  } catch (error) {
+    console.error('Error sending call event:', error)
+  }
+}
+
+async function handleTextClick() {
+  // Construct the natural inquiry message with the exterior color
+  const textContent = `Hi, I came across the ${local_vehicle.exteriorColor} ${local_vehicle.year} ${local_vehicle.make} ${local_vehicle.model} on your website. Is it still available?`
+
+  // Open the default text app with the inquiry message
+  window.open(`sms:?&body=${encodeURIComponent(textContent)}`)
+
+  // Send the information to the backend for statistics
+  try {
+    await fetch(`${apiUrl}/api/textEvent`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${dealerApiToken}`,
+      },
+      body: JSON.stringify({ vehicleId: local_vehicle.id, eventType: 'text' }),
+    })
+  } catch (error) {
+    console.error('Error sending text event:', error)
+  }
+}
 
 /*function displayPayOnce(vehicle) {
   const price = vehicle.price || 0
@@ -520,65 +586,141 @@ function handleInputChange(event) {
 
 function toggleErrorClass(element, condition) {
   if (condition) {
-    element.classList.add('input-error');
+    element.classList.add('input-error')
   } else {
-    element.classList.remove('input-error');
+    element.classList.remove('input-error')
   }
 }
 
 function formatZIPCode(event) {
   // Remove non-digits
-  event.target.value = event.target.value.replace(/\D/g, "");
+  event.target.value = event.target.value.replace(/\D/g, '')
   // Limit to 5 digits
-  event.target.value = event.target.value.slice(0, 5);
+  event.target.value = event.target.value.slice(0, 5)
 }
 
 function validateZIPCode(event) {
-  const zip = event.target.value;
-  const regex = /^\d{5}$/; // Matches 5-digit ZIP codes
+  const zip = event.target.value
+  const regex = /^\d{5}$/ // Matches 5-digit ZIP codes
 
   if (!regex.test(zip)) {
-    event.target.style.borderColor = 'red';
+    event.target.style.borderColor = 'red'
   } else {
-    event.target.style.borderColor = ''; // Reset border color to default
+    event.target.style.borderColor = '' // Reset border color to default
   }
 }
 
 function validateEmail(event) {
-  const email = event.target.value;
-  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const email = event.target.value
+  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
 
   if (!regex.test(email)) {
-    event.target.style.borderColor = 'red';
+    event.target.style.borderColor = 'red'
   } else {
-    event.target.style.borderColor = ''; // Reset border color to default
+    event.target.style.borderColor = '' // Reset border color to default
   }
 }
 
 function formatPhoneNumber(event) {
   // Remove non-digits
-  let phoneNumber = event.target.value.replace(/\D/g, "");
+  let phoneNumber = event.target.value.replace(/\D/g, '')
   // Limit to 10 digits
-  phoneNumber = phoneNumber.slice(0, 10);
+  phoneNumber = phoneNumber.slice(0, 10)
   // Format as (123) 456-7890
   if (phoneNumber.length > 6) {
-    phoneNumber = "(" + phoneNumber.slice(0, 3) + ") " + phoneNumber.slice(3, 6) + "-" + phoneNumber.slice(6);
+    phoneNumber =
+      '(' +
+      phoneNumber.slice(0, 3) +
+      ') ' +
+      phoneNumber.slice(3, 6) +
+      '-' +
+      phoneNumber.slice(6)
   } else if (phoneNumber.length > 3) {
-    phoneNumber = "(" + phoneNumber.slice(0, 3) + ") " + phoneNumber.slice(3);
+    phoneNumber = '(' + phoneNumber.slice(0, 3) + ') ' + phoneNumber.slice(3)
   } else if (phoneNumber.length > 0) {
-    phoneNumber = "(" + phoneNumber;
+    phoneNumber = '(' + phoneNumber
   }
-  event.target.value = phoneNumber;
+  event.target.value = phoneNumber
 }
 
 function validatePhoneNumber(event) {
-  const phone = event.target.value;
-  const regex = /^\(\d{3}\) \d{3}-\d{4}$/;
+  const phone = event.target.value
+  const regex = /^\(\d{3}\) \d{3}-\d{4}$/
 
   if (!regex.test(phone)) {
-    event.target.style.borderColor = 'red';
+    event.target.style.borderColor = 'red'
   } else {
-    event.target.style.borderColor = ''; // Reset border color to default
+    event.target.style.borderColor = '' // Reset border color to default
+  }
+}
+
+function toggleErrorClass(element, condition) {
+  if (condition) {
+    element.classList.add('input-error')
+  } else {
+    element.classList.remove('input-error')
+  }
+}
+
+function formatZIPCode(event) {
+  // Remove non-digits
+  event.target.value = event.target.value.replace(/\D/g, '')
+  // Limit to 5 digits
+  event.target.value = event.target.value.slice(0, 5)
+}
+
+function validateZIPCode(event) {
+  const zip = event.target.value
+  const regex = /^\d{5}$/ // Matches 5-digit ZIP codes
+
+  if (!regex.test(zip)) {
+    event.target.style.borderColor = 'red'
+  } else {
+    event.target.style.borderColor = '' // Reset border color to default
+  }
+}
+
+function validateEmail(event) {
+  const email = event.target.value
+  const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+
+  if (!regex.test(email)) {
+    event.target.style.borderColor = 'red'
+  } else {
+    event.target.style.borderColor = '' // Reset border color to default
+  }
+}
+
+function formatPhoneNumber(event) {
+  // Remove non-digits
+  let phoneNumber = event.target.value.replace(/\D/g, '')
+  // Limit to 10 digits
+  phoneNumber = phoneNumber.slice(0, 10)
+  // Format as (123) 456-7890
+  if (phoneNumber.length > 6) {
+    phoneNumber =
+      '(' +
+      phoneNumber.slice(0, 3) +
+      ') ' +
+      phoneNumber.slice(3, 6) +
+      '-' +
+      phoneNumber.slice(6)
+  } else if (phoneNumber.length > 3) {
+    phoneNumber = '(' + phoneNumber.slice(0, 3) + ') ' + phoneNumber.slice(3)
+  } else if (phoneNumber.length > 0) {
+    phoneNumber = '(' + phoneNumber
+  }
+  event.target.value = phoneNumber
+}
+
+function validatePhoneNumber(event) {
+  const phone = event.target.value
+  const regex = /^\(\d{3}\) \d{3}-\d{4}$/
+
+  if (!regex.test(phone)) {
+    event.target.style.borderColor = 'red'
+  } else {
+    event.target.style.borderColor = '' // Reset border color to default
   }
 }
 
@@ -646,7 +788,7 @@ function calculateMonthlyPaymentVehicle(vehicle) {
 }
 
 async function scheduleTestDrive(event) {
-  console.log("scheduleTestDrive function called");
+  console.log('scheduleTestDrive function called')
   event.stopPropagation()
   event.preventDefault()
 
@@ -690,32 +832,32 @@ async function scheduleTestDrive(event) {
     })
 }
 
-const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net';
+// const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net'
 
 // NOTE: You should avoid storing sensitive tokens in your code. Use environment variables or secure storage.
-const dealerApiToken = 'YOUR_SECURE_TOKEN_HERE';
+// const dealerApiToken = 'YOUR_SECURE_TOKEN_HERE'
 
 async function fetchVehicles() {
-  const dealerId = '1';
+  const dealerId = '1'
 
   try {
     // Note: URLSearchParams doesn't natively support array parameters,
     // so we have to handle them manually.
-    let paramsString = `idDealership=${dealerId}`;
-    paramsString += `&minPrice=${Math.round(local_vehicle.price / 2)}`;
-    paramsString += `&maxPrice=${Math.round(local_vehicle.price * 1.5)}`;
+    // let paramsString = `idDealership=${dealerId}`
+    // paramsString += `&minPrice=${Math.round(local_vehicle.price / 2)}`
+    // paramsString += `&maxPrice=${Math.round(local_vehicle.price * 1.5)}`
 
     // Handle bodyStyle as an array.
     if (local_vehicle.bodyStyle) {
-      paramsString += `&bodyStyle[]=${local_vehicle.bodyStyle}`;
+      paramsString += `&bodyStyle[]=${local_vehicle.bodyStyle}`
     }
 
     // You can add other styles to this array if needed.
-    paramsString += '&bodyStyle[]='; // Empty value.
+    // paramsString += '&bodyStyle[]=' // Empty value.
 
     // Handle availability as an array.
-    paramsString += '&availability[]=In Store';
-    paramsString += '&availability[]='; // Empty value.
+    // paramsString += '&availability[]=In Store'
+    // paramsString += '&availability[]=' // Empty value.
 
     const response = await fetch(
       `${apiUrl}/api/vehicles/search?${paramsString}`,
@@ -724,25 +866,25 @@ async function fetchVehicles() {
           Authorization: `Bearer ${dealerApiToken}`,
         },
       }
-    );
+    )
 
     if (!response.ok) {
-      throw new Error(`API returned with status code: ${response.status}`);
+      throw new Error(`API returned with status code: ${response.status}`)
     }
 
-    const vehicles = await response.json();
+    const vehicles = await response.json()
 
     if (vehicles?.results) {
-      local_vehicles = vehicles.results.filter((item) => item.idVehicle !== local_vehicle.idVehicle);
+      local_vehicles = vehicles.results.filter(
+        (item) => item.idVehicle !== local_vehicle.idVehicle
+      )
     }
 
-    sortItem();
+    sortItem()
   } catch (error) {
-    console.error('Error fetching vehicles:', error);
+    console.error('Error fetching vehicles:', error)
   }
 }
-
-
 
 function sortItem() {
   const sortedVehicle = local_vehicles.sort((a, b) => {
@@ -769,24 +911,30 @@ function getHTML(vehicle) {
     <div
       style="width:100%;
       position:relative;
-      background: url('${vehicle.images ? vehicle.images[0]?.url : '/car7.jpeg'
-    }') center center no-repeat;
+      background: url('${
+        vehicle.images ? vehicle.images[0]?.url : '/car7.jpeg'
+      }') center center no-repeat;
       background-size:cover;
       padding-bottom: 75%;"
     >
     <!-- <span class="used-tag">Used</span> -->
-    ${vehicle.status == 'SOLD' || vehicle.status == 'ARCHIVED' ? '<span class="sold-tag"></span>' : ''}
+    ${
+      vehicle.status == 'SOLD' || vehicle.status == 'ARCHIVED'
+        ? '<span class="sold-tag"></span>'
+        : ''
+    }
     </div>
     <div class="car-item-content">
-      <div class="car-name">${vehicle.year} ${vehicle.make} ${vehicle.model
-    }</div>
+      <div class="car-name">${vehicle.year} ${vehicle.make} ${
+    vehicle.model
+  }</div>
       <div class="car-price">
         <span class="old-price">$14,000.00</span>
         <span class="new-price">
         ${vehicle.price?.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    })}
+          style: 'currency',
+          currency: 'USD',
+        })}
         </span>
       </div>
       <div
@@ -799,8 +947,9 @@ function getHTML(vehicle) {
         class="d-flex justify-content-between mb-2 car-props"
       >
         <div class="col-6 car-prop">Availablity</div>
-        <div class="col-6 car-prop-value">${vehicle.status == 'ACTIVE' ? 'In Store' : 'N/A'
-    }</div>
+        <div class="col-6 car-prop-value">${
+          vehicle.status == 'ACTIVE' ? 'In Store' : 'N/A'
+        }</div>
       </div>
       <div class="d-flex justify-content-between mt-2" >
         <span  class="custom-btn-light custom-btn-detail">
@@ -809,13 +958,14 @@ function getHTML(vehicle) {
         </span>
         
 
-        ${vehicle.video
-      ? `<button class="custom-btn-light custom-btn-detail">
+        ${
+          vehicle.video
+            ? `<button class="custom-btn-light custom-btn-detail">
           <i class="fa-solid fa-play me-1"></i>
           Video
         </button>`
-      : ''
-    }
+            : ''
+        }
         </div>
       </div>
     </div>
@@ -824,11 +974,8 @@ function getHTML(vehicle) {
   `
 }
 
-
 function displayItems() {
-
-  const itemsToDisplay = local_vehicles.slice(0, 3);
-  console.log('Display Items', itemsPerPage)
+  const itemsToDisplay = local_vehicles.slice(0, 3)
 
   const car_list_box = document.getElementById('car-list-box')
   car_list_box.innerHTML = ''
@@ -838,9 +985,173 @@ function displayItems() {
   }
 }
 
+const apiUrl = 'https://dealers-website-hub-api.azurewebsites.net'
+
+// NOTE: You should avoid storing sensitive tokens in your code. Use environment variables or secure storage.
+const dealerApiToken = 'YOUR_SECURE_TOKEN_HERE'
+
+async function fetchVehicles() {
+  const dealerId = '1'
+
+  try {
+    // Note: URLSearchParams doesn't natively support array parameters,
+    // so we have to handle them manually.
+    let paramsString = `idDealership=${dealerId}`
+    paramsString += `&minPrice=${Math.round(local_vehicle.price / 2)}`
+    paramsString += `&maxPrice=${Math.round(local_vehicle.price * 1.5)}`
+
+    // Handle bodyStyle as an array.
+    if (local_vehicle.bodyStyle) {
+      paramsString += `&bodyStyle[]=${local_vehicle.bodyStyle}`
+    }
+
+    // You can add other styles to this array if needed.
+    paramsString += '&bodyStyle[]=' // Empty value.
+
+    // Handle availability as an array.
+    paramsString += '&availability[]=In Store'
+    paramsString += '&availability[]=' // Empty value.
+
+    const response = await fetch(
+      `${apiUrl}/api/vehicles/search?${paramsString}`,
+      {
+        headers: {
+          Authorization: `Bearer ${dealerApiToken}`,
+        },
+      }
+    )
+
+    if (!response.ok) {
+      throw new Error(`API returned with status code: ${response.status}`)
+    }
+
+    const vehicles = await response.json()
+
+    if (vehicles?.results) {
+      local_vehicles = vehicles.results.filter(
+        (item) => item.idVehicle !== local_vehicle.idVehicle
+      )
+    }
+
+    console.log('API, local vehicles', local_vehicles.length)
+
+    sortItem()
+  } catch (error) {
+    console.error('Error fetching vehicles:', error)
+  }
+}
+
+function sortItem() {
+  const sortedVehicle = local_vehicles.sort((a, b) => {
+    if (sortingOrder == 'asc') {
+      if (sortBy == 'createdAt' || sortBy == 'updatedAt')
+        return new Date(a[sortBy]) - new Date(b[sortBy])
+      return a[sortBy] - b[sortBy]
+    }
+    if (sortingOrder == 'desc') {
+      if (sortBy == 'createdAt' || sortBy == 'updatedAt')
+        return new Date(b[sortBy]) - new Date(a[sortBy])
+      return b[sortBy] - a[sortBy]
+    }
+  })
+  local_vehicles = sortedVehicle
+  displayItems()
+}
+
+function getHTML(vehicle) {
+  const imageScrollerHtml = vehicle.images
+    .map(
+      (image, index) => `
+  <img src="${image.url}" class="vehicle-image" data-index="${index}" ${
+        index !== 0 ? 'style="display: none;"' : ''
+      }>
+`
+    )
+    .join('')
+
+  // Calculate the old price
+  const oldPrice = vehicle.price * 1.18
+
+  return `
+  <div class="col-sm-6 col-md-6 col-lg-4 mt-3">
+    <a href="/vdp.html?id=${vehicle.idVehicle}">
+      <div class="car-item">
+        <div class="vehicle-images">
+          <button class="prev-image" onclick="event.preventDefault(); event.stopPropagation(); changeImage(event, -1)"><i class="fas fa-arrow-left"></i></button>
+          ${imageScrollerHtml}
+          <button class="next-image" onclick="event.preventDefault(); event.stopPropagation(); changeImage(event, 1)"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="car-item-content">
+          <div class="car-name">${vehicle.year} ${vehicle.make} ${
+    vehicle.model
+  }</div>
+          <div class="car-price">
+            <span class="old-price">
+              ${oldPrice.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              })}
+            </span>
+            <span class="new-price">
+              ${vehicle.price?.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              })}
+            </span>
+          </div>
+          <div class="d-flex justify-content-between mt-2 car-props">
+            <div class="car-prop-icon"><i class="fas fa-tachometer-alt icon"></i></div>
+            <div class="car-prop-value">${vehicle.mileage.toLocaleString()} mi</div>
+          </div>
+          <div class="d-flex justify-content-between mb-2 car-props">
+            <div class="car-prop-icon"><i class="fas fa-map-marker-alt icon"></i>Plano, TX</div>
+            <div class="car-prop-value"></div>
+          </div>
+          <div class="flex-container">
+            <div class="flex-item">
+              <a href="tel:(4692866875)" class="phone-link">(469) 286-6875</a>
+            </div>
+            <a href="#" class="btn btn-sm request-info-btn" onclick="showRequestInfoModal(event)">Request Info</a>
+          </div>
+          ${
+            vehicle.video
+              ? `<button class="custom-btn-light custom-btn-detail">
+                  <i class="fa-solid fa-play me-1"></i>
+                  Video
+                </button>`
+              : ''
+          }
+        </div>
+      </div>
+    </a>
+  </div>
+  `
+}
+
+function displayItems(index = 0) {
+  const itemsToDisplay = local_vehicles.slice(0, index + 3)
+
+  const car_list_box = document.getElementById('car-list-box')
+  car_list_box.innerHTML = ''
+
+  console.log(itemsToDisplay.length, local_vehicles.length)
+
+  if (itemsToDisplay.length == local_vehicles.length)
+    document.getElementById('view-more-btn').classList.add('d-none')
+
+  for (let i = 0; i < itemsToDisplay.length; i++) {
+    car_list_box.insertAdjacentHTML('beforeend', getHTML(itemsToDisplay[i]))
+  }
+}
+
+function viewMore() {
+  const viewedItems = document.getElementById('car-list-box').children.length
+  // console.log(viewedItems, local_vehicles.length) we can handle condition here when it viewed list completed
+  displayItems(viewedItems)
+}
 
 // Call the API on window load
-window.onload = function () {
+window.onload = async function () {
   // Call the API with the extracted data
   fetchVehicleDetails()
 
@@ -878,3 +1189,153 @@ window.onload = function () {
     })
   })
 }
+
+// const swiper_review = new Swiper('.swiper-review', {
+//   // Optional parameters
+//   // loop: true,
+//   // autoplay: true,
+//   slidesPerView: 1,
+
+//   // If we need pagination
+//   pagination: {
+//     el: '.swiper-pagination',
+//   },
+// })
+
+// <!-- Section K -->
+// <div class="section-k">
+//   <div class="container text-center">
+//     <!-- Slider main container -->
+//     <div class="swiper-review swiper mt-5">
+//       <!-- Additional required wrapper -->
+//       <div class="swiper-wrapper">
+//         <!-- Slides -->
+//         <div class="swiper-slide">
+//           <div class="position-relative">
+//             <div
+//               class="grid-view grid-area"
+//               style="
+//                 grid-template-areas: 'main main sideA' 'main main sideB';
+//                 position: relative;
+//               "
+//             >
+//               <img
+//                 class="gallery-image click-to-slick"
+//                 style="
+//                   filter: blur(10px);
+//                   position: absolute;
+//                   padding: 5px;
+//                 "
+//                 data-slic="0"
+//                 src="car-cover-5.png"
+//                 alt=""
+//               />
+//               <div
+//                 role="button"
+//                 onclick="MorePhotos(this)"
+//                 class="h-100 item0"
+//                 style="position: relative; z-index: 1"
+//               >
+//                 <img
+//                   class="gallery-image click-to-slick"
+//                   data-slic="0"
+//                   src="car-cover-2.png"
+//                   alt=""
+//                 />
+//               </div>
+//               <div
+//                 role="button"
+//                 onclick="MorePhotos(this)"
+//                 class="h-100 item${idx}"
+//                 style="position: relative; z-index: 1"
+//               >
+//                 <img
+//                   class="gallery-image click-to-slick"
+//                   data-slic="0"
+//                   src="car-cover-2.png"
+//                   alt=""
+//                 />
+//               </div>
+//               <div
+//                 role="button"
+//                 onclick="MorePhotos(this)"
+//                 class="h-100 item${idx}"
+//                 style="position: relative; z-index: 1"
+//               >
+//                 <img
+//                   class="gallery-image click-to-slick"
+//                   data-slic="0"
+//                   src="car-cover-2.png"
+//                   alt=""
+//                 />
+//               </div>
+//               <div
+//                 class="total-car-images-btn position-absolute"
+//                 onclick="MorePhotos(this)"
+//               >
+//                 <span class="elementor-hidden-mobile">Photos</span>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//         <div class="swiper-slide">
+//           <div class="client-review-wrap">
+//             <div class="client-car-wrap">
+//               <img
+//                 class="client-car"
+//                 width="100%"
+//                 src="/slider_car.png"
+//               />
+//             </div>
+//           </div>
+//         </div>
+//         <div class="swiper-slide">
+//           <div class="client-review-wrap">
+//             <div class="client-car-wrap">
+//               <img
+//                 class="client-car"
+//                 width="100%"
+//                 src="/slider_car.png"
+//               />
+//             </div>
+//           </div>
+//         </div>
+//         <div class="swiper-slide">
+//           <div class="client-review-wrap">
+//             <div class="client-car-wrap">
+//               <img
+//                 class="client-car"
+//                 width="100%"
+//                 src="/slider_car.png"
+//               />
+//             </div>
+//           </div>
+//         </div>
+//         <div class="swiper-slide">
+//           <div class="client-review-wrap">
+//             <div class="client-car-wrap">
+//               <img
+//                 class="client-car"
+//                 width="100%"
+//                 src="/slider_car.png"
+//               />
+//             </div>
+//           </div>
+//         </div>
+//         <div class="swiper-slide">
+//           <div class="client-review-wrap">
+//             <div class="client-car-wrap">
+//               <img
+//                 class="client-car"
+//                 width="100%"
+//                 src="/slider_car.png"
+//               />
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//       <!-- If we need pagination -->
+//       <div class="swiper-pagination"></div>
+//     </div>
+//   </div>
+// </div>
