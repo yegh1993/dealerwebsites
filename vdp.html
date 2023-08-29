@@ -1,361 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title></title>
+    <!-- FontAwesom -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-  <!-- FontAwesom -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Roboto -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Open Sans -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Roboto -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
-    rel="stylesheet" />
-  <!-- Open Sans -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <!-- Bootstrap Script -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- Bootstrap Script -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-    crossorigin="anonymous"></script>
+    <!-- Swiper Slider -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
 
-  <!-- Custom CSS -->
-  <link href="/index.css" rel="stylesheet" />
-  <link href="/vdp.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-  <!-- BigPicture -->
-  <script src="https://cdn.jsdelivr.net/npm/bigpicture@2.2.1/dist/BigPicture.min.js"></script>
-</head>
+    <!-- Custom CSS -->
+    <link href="/index.css" rel="stylesheet" />
+    <link href="/vdp.css" rel="stylesheet" />
 
-<body>
-  <!-- Loader -->
-  <div id="page-loader">
-    <div>
-      <img src="/loader.gif" alt="loading" title="loading" />
-    </div>
-  </div>
+    <!-- BigPicture -->
+    <script src="https://cdn.jsdelivr.net/npm/bigpicture@2.2.1/dist/BigPicture.min.js"></script>
+  </head>
 
-  <!-- Car Sold -->
-  <div id="car-sold" class="car-sold">
-    <div class="position-relative">
-      <div class="wrap">
-        <div class="title">
-          <i class="fa-solid fa-triangle-exclamation me-1 text-warning"></i>
-          <span>VEHICLE NO LONGER AVAILABLE</span>
-          <i class="fa-solid fa-xmark close-btn"
-            onclick="document.getElementById('car-sold').classList.add('d-none')"></i>
-        </div>
-        <div class="mt-3">
-          Apologies, but this vehicle has been bought by another customer.
-          However, we have some similar vehicles listed below that may catch
-          your interest.
-        </div>
+  <body>
+    <!-- Loader -->
+    <div id="page-loader">
+      <div>
+        <img src="/loader.gif" alt="loading" title="loading" />
       </div>
     </div>
-  </div>
 
-  <!-- Top Sticky Header -->
-  <div id="sticky-banner" class="car-fixed-header stcky-fixed animateTopbar">
-    <div class="car-contain align-items-center" id="sticky-top">
-      <!-- Car Detail Shows Here -->
-      <div class="car-fixed-btn hide-in-mobile">
-        <button type="button" data-bs-toggle="modal" data-bs-target="#scheduleModal" id="myBtn">
-          Get Started
-        </button>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="container text-center">
-      <div class="row justify-content-between">
-        <div class="col-auto container ms-0">
-          <div class="row align-items-center">
-            <a href="https://goo.gl/maps/VQthjXqXhzoynYw16" class="col-auto d-flex align-items-center">
-              <i class="fa-solid fa-location-dot"></i>
-              <div class="ms-2 d-none d-lg-block">
-                1703 Capital Ave, Plano, TX 75074.
-              </div>
-            </a>
-
-            <div class="col-auto d-flex align-items-center">
-              <i class="fa-regular fa-clock"></i>
-              <div class="ms-2 d-none d-lg-block">9:00 AM To 6:00 PM</div>
-            </div>
+    <!-- Car Sold -->
+    <div id="car-sold" class="car-sold">
+      <div class="position-relative">
+        <div class="wrap">
+          <div class="title">
+            <i class="fa-solid fa-triangle-exclamation me-1 text-warning"></i>
+            <span>VEHICLE NO LONGER AVAILABLE</span>
+            <i
+              class="fa-solid fa-xmark close-btn"
+              onclick="document.getElementById('car-sold').classList.add('d-none')"
+            ></i>
           </div>
-        </div>
-
-        <div class="col-auto container me-0">
-          <div class="row">
-            <a href="tel:(469)%20286-6875" class="col-auto d-flex align-items-center">
-              <i class="fa-solid fa-phone"></i>
-              <div class="ms-2 d-none d-lg-block">(469) 286-6875</div>
-            </a>
-
-            <a href="mailto:info@lctautollc.com" class="col-auto d-flex align-items-center">
-              <i class="fa-regular fa-envelope"></i>
-              <div class="ms-2 d-none d-lg-block">info@lctautollc.com</div>
-            </a>
-
-            <div class="col-auto d-flex align-items-center">
-              <a href="http://www.facebook.com/lctautollc" target="_blank" class="mx-2">
-                <i class="fa-brands fa-facebook-f"></i>
-              </a>
-              <a href="http://www.twitter.com/lctautollc" target="_blank" class="mx-2">
-                <i class="fa-brands fa-twitter"></i>
-              </a>
-              <a href="http://www.Instagram.com/lctautollc" target="_blank" class="mx-2">
-                <i class="fa-brands fa-instagram"></i>
-              </a>
-              <a href="http://www.YouTube.com/lctautollc" target="_blank" class="mx-2">
-                <i class="fa-brands fa-youtube"></i>
-              </a>
-            </div>
+          <div class="mt-3">
+            Apologies, but this vehicle has been bought by another customer.
+            However, we have some similar vehicles listed below that may catch
+            your interest.
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Nav Bar -->
-  <div class="nav-bar">
-    <div class="container">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <div class="d-flex">
-            <img src="/car_logo.png" style="padding: 33px 0" width="80%" class="d-block d-lg-none" />
-            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
-              aria-label="Toggle navigation">
-              <i class="fa-solid fa-bars navbar-toggler-icon"></i>
-            </button>
-          </div>
+    <!-- Top Sticky Header -->
+    <div id="sticky-banner" class="car-fixed-header stcky-fixed animateTopbar">
+      <div class="car-contain align-items-center" id="sticky-top">
+        <!-- Car Detail Shows Here -->
+        <div class="car-fixed-btn hide-in-mobile">
+          <button
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#scheduleModal"
+            id="myBtn"
+          >
+            Get Started
+          </button>
+        </div>
+      </div>
+    </div>
 
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a class="navbar-brand d-none d-lg-block" href="/">
-              <img src="/car_logo.png" style="padding: 33px 0; max-width: 345px" width="100%" />
-            </a>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item px-1">
-                <a class="nav-link" aria-current="page" href="/">Home</a>
-              </li>
-              <li class="nav-item px-1">
-                <a class="nav-link active active-link" href="/inventory.html">Inventory</a>
-              </li>
-              <!-- <li class="nav-item px-1">
-                  <a class="nav-link" href="#">Who we are</a>
-                </li>
-                <li class="nav-item px-1">
-                  <a class="nav-link" href="#">Our team</a>
-                </li>
-                <li class="nav-item px-1">
-                  <a class="nav-link" href="#">Contact us</a>
-                </li>
-                <li class="nav-item px-1">
-                  <a class="nav-link" href="#">FAQ</a>
-                </li>
-                <li class="nav-item px-1">
-                  <a class="nav-link" href="#">Blog</a>
-                </li> -->
-            </ul>
-
-            <div class="dropdown ms-2">
-              <div type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside"
-                data-bs-offset="10,20">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </div>
-              <form class="dropdown-menu rounded-0 dropdown-menu-end p-3" style="min-width: 200px">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search" required />
-                  <span class="input-group-text bg-white border-start-0">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                  </span>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container text-center">
+        <div class="row justify-content-between">
+          <div class="col-auto container ms-0">
+            <div class="row align-items-center">
+              <a
+                href="https://goo.gl/maps/VQthjXqXhzoynYw16"
+                class="col-auto d-flex align-items-center"
+              >
+                <i class="fa-solid fa-location-dot"></i>
+                <div class="ms-2 d-none d-lg-block">
+                  1703 Capital Ave, Plano, TX 75074.
                 </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </div>
+              </a>
 
-  <div class="max-container">
-    <div class="vdp-wrap">
-      <!-- Section A -->
-      <div class="breadcrumb-content mb-3 p-3 pl-5">
-        <a href="/" class="breadcrumb-link">Home</a> &nbsp; / &nbsp;
-        <a href="/inventory.html" class="breadcrumb-link">Inventory</a> &nbsp;/&nbsp;
-        <span id="active_car_title" class="active"></span>
-      </div>
-      <div id="car-details" class="section-a">
-        <!-- Vehicle Details Appeare here -->
-      </div>
-      <!-- Section B -->
-      <div class="container tab-width section-b">
-        <div class="divider"></div>
-        <!-- TABS -->
-        <ul class="nav nav-tabs justify-content-center d-none d-lg-flex" id="myTab" role="tablist">
-          <!-- HEADER Tabs   -->
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="vehicle-tab" data-bs-toggle="tab" data-bs-target="#vehicle"
-              type="button" role="tab" aria-controls="vehicle" aria-selected="true">
-              <i class="fa fa-exclamation-circle me-1"></i>
-              VEHICLE DETAILS
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
-              role="tab" aria-controls="profile" aria-selected="false">
-              <i class="fa-solid fa-list me-1"></i>
-              FEATURES & OPTIONS
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="technical-tab" data-bs-toggle="tab" data-bs-target="#technical" type="button"
-              role="tab" aria-controls="technical" aria-selected="false">
-              <i class="fa fa-cogs me-1" aria-hidden="true"></i>
-              TECHNICAL SPECIFICATIONS
-            </button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="location-tab" data-bs-toggle="tab" data-bs-target="#location" type="button"
-              role="tab" aria-controls="location" aria-selected="false">
-              <i class="fa-solid fa-location-dot me-1" aria-hidden="true"></i>
-              LOCATION
-            </button>
-          </li>
-        </ul>
-        <div class="tab-content d-none d-lg-block" id="myTabContent">
-          <!-- 1st tab -->
-          <div class="tab-pane fade show active" id="vehicle" role="tabpanel" aria-labelledby="vehicle-tab">
-            <div id="vehicle-tab-details" class="mt-5">
-              <!-- Details Appeare here -->
-            </div>
-          </div>
-          <!-- 2nd tab -->
-          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div id="profile-tab-details" class="mt-5">
-              <!-- Features and options appeare here -->
-            </div>
-          </div>
-          <!-- 3rd tab -->
-          <div class="tab-pane fade" id="technical" role="tabpanel" aria-labelledby="technical-tab">
-            <div class="mt-5">
-              <div class="masonry-main cd-vehicle-features">
-                <ul class="list-style-1 list-col-3">
-                  <li><i class="fas fa-check"></i>Tires: 245/70R16</li>
-                  <li>
-                    <i class="fas fa-check"></i>Overall Length:177.50 in.
-                  </li>
-                  <li>
-                    <i class="fas fa-check"></i>Curb Weight-automatic: 3947
-                    lbs
-                  </li>
-                  <li>
-                    <i class="fas fa-check"></i>Rear Headroom: 38.30 in.
-                  </li>
-                  <li>
-                    <i class="fas fa-check"></i>Front Shoulder Room:56.30 in.
-                  </li>
-                  <li><i class="fas fa-check"></i>Rear Hip Room:52.80 in.</li>
-                  <li><i class="fas fa-check"></i>Standard Seating: 5</li>
-                  <li>
-                    <i class="fas fa-check"></i>Overall Width: 70.40 in.
-                  </li>
-                  <li>
-                    <i class="fas fa-check"></i>Cargo Volume: 33.00 cu.ft.
-                  </li>
-                  <li><i class="fas fa-check"></i>Front Legroom: 42.10 in</li>
-                  <li>
-                    <i class="fas fa-check"></i>Rear Shoulder Room: 56.30 in.
-                  </li>
-                  <li><i class="fas fa-check"></i>Wheelbase:106.40 in.</li>
-                  <li>
-                    <i class="fas fa-check"></i>Overall Height: 69.40 in.
-                  </li>
-                  <li>
-                    <i class="fas fa-check"></i>Front Headroom: 38.90 in.
-                  </li>
-                  <li><i class="fas fa-check"></i>Rear Legroom: 35.00 in.</li>
-                  <li>
-                    <i class="fas fa-check"></i>Front Hip Room: 52.20 in.
-                  </li>
-                </ul>
+              <div class="col-auto d-flex align-items-center">
+                <i class="fa-regular fa-clock"></i>
+                <div class="ms-2 d-none d-lg-block">9:00 AM To 6:00 PM</div>
               </div>
             </div>
           </div>
-          <!-- 4th tab -->
-          <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab">
-            <div class="map mapouter mt-5">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d26765.73200389331!2d-96.688507!3d33.011249!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19c917f62ab3%3A0x10e5b3aaa7acc030!2sLCT%20AUTO%20LLC!5e0!3m2!1sen!2sus!4v1688911019174!5m2!1sen!2sus"
-                width="100%" height="450" style="border: 0" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+          <div class="col-auto container me-0">
+            <div class="row">
+              <a
+                href="tel:(469)%20286-6875"
+                class="col-auto d-flex align-items-center"
+              >
+                <i class="fa-solid fa-phone"></i>
+                <div class="ms-2 d-none d-lg-block">(469) 286-6875</div>
+              </a>
+
+              <a
+                href="mailto:info@lctautollc.com"
+                class="col-auto d-flex align-items-center"
+              >
+                <i class="fa-regular fa-envelope"></i>
+                <div class="ms-2 d-none d-lg-block">info@lctautollc.com</div>
+              </a>
+
+              <div class="col-auto d-flex align-items-center">
+                <a
+                  href="http://www.facebook.com/lctautollc"
+                  target="_blank"
+                  class="mx-2"
+                >
+                  <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a
+                  href="http://www.twitter.com/lctautollc"
+                  target="_blank"
+                  class="mx-2"
+                >
+                  <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a
+                  href="http://www.Instagram.com/lctautollc"
+                  target="_blank"
+                  class="mx-2"
+                >
+                  <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a
+                  href="http://www.YouTube.com/lctautollc"
+                  target="_blank"
+                  class="mx-2"
+                >
+                  <i class="fa-brands fa-youtube"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <!-- Accordion -->
-        <div class="accordion d-block d-lg-none" id="accordionExample">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                aria-expanded="true" aria-controls="collapseOne">
+    <!-- Nav Bar -->
+    <div class="nav-bar">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <div class="d-flex">
+              <img src="/car_logo.png" width="60%" class="d-block d-lg-none" />
+              <button
+                class="navbar-toggler ms-auto"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarToggler"
+                aria-controls="navbarToggler"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <i class="fa-solid fa-bars navbar-toggler-icon"></i>
+              </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarToggler">
+              <a class="navbar-brand d-none d-lg-block" href="/">
+                <img
+                  src="/car_logo.png"
+                  style="padding: 33px 0; max-width: 345px"
+                  width="100%"
+                />
+              </a>
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0 p-3">
+                <li class="nav-item px-1">
+                  <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item px-1">
+                  <a class="nav-link active active-link" href="/inventory.html"
+                    >Inventory</a
+                  >
+                </li>
+                <!-- <li class="nav-item px-1">
+                <a class="nav-link" href="#">Who we are</a>
+              </li>
+              <li class="nav-item px-1">
+                <a class="nav-link" href="#">Our team</a>
+              </li>
+              <li class="nav-item px-1">
+                <a class="nav-link" href="#">Contact us</a>
+              </li>
+              <li class="nav-item px-1">
+                <a class="nav-link" href="#">FAQ</a>
+              </li>
+              <li class="nav-item px-1">
+                <a class="nav-link" href="#">Blog</a>
+              </li> -->
+              </ul>
+
+              <div class="dropdown ms-2">
+                <div
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                  data-bs-auto-close="outside"
+                  data-bs-offset="10,20"
+                >
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <form
+                  class="dropdown-menu rounded-0 dropdown-menu-end p-3"
+                  style="min-width: 300px"
+                >
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control custom-input"
+                      placeholder="Search By Brand, Model and More"
+                      required
+                      oninput="HandleSearch(event)"
+                      autofocus="true"
+                    />
+                    <span class="input-group-text bg-white border-start-0">
+                      <i
+                        id="nav-search"
+                        class="fa-solid fa-magnifying-glass"
+                      ></i>
+                      <!-- <i
+                      id="nav-loader"
+                      class="fa-solid fa-spinner fa-spin d-none"
+                    ></i> -->
+                      <img
+                        src="/cd_loader.svg"
+                        id="nav-loader"
+                        class="d-none"
+                      />
+                    </span>
+                  </div>
+
+                  <div
+                    id="vehicle-list"
+                    style="max-height: 300px; overflow: auto"
+                  >
+                    <!-- Vehicle Item Shows Here -->
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="max-container">
+      <div class="vdp-wrap">
+        <!-- Section A -->
+        <div class="breadcrumb-content mb-3 p-3 pl-5">
+          <a href="/" class="breadcrumb-link">Home</a> &nbsp; / &nbsp;
+          <a href="/inventory.html" class="breadcrumb-link">Inventory</a>
+          &nbsp;/&nbsp;
+          <span id="active_car_title" class="active"></span>
+        </div>
+
+        <div id="car-details" class="section-a">
+          <!-- Vehicle Details Appeare here -->
+        </div>
+
+        <!-- Section B -->
+        <div class="container tab-width section-b">
+          <div class="divider"></div>
+          <!-- TABS -->
+          <ul
+            class="nav nav-tabs justify-content-center d-none d-lg-flex"
+            id="myTab"
+            role="tablist"
+          >
+            <!-- HEADER Tabs   -->
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="vehicle-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#vehicle"
+                type="button"
+                role="tab"
+                aria-controls="vehicle"
+                aria-selected="true"
+              >
                 <i class="fa fa-exclamation-circle me-1"></i>
                 VEHICLE DETAILS
               </button>
-            </h2>
-          </div>
-          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-            data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <div id="vehicle-accordion-details"></div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="profile-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#profile"
+                type="button"
+                role="tab"
+                aria-controls="profile"
+                aria-selected="false"
+              >
                 <i class="fa-solid fa-list me-1"></i>
                 FEATURES & OPTIONS
               </button>
-            </h2>
-          </div>
-
-          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-            data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <div id="profile-accordion-details"></div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="technical-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#technical"
+                type="button"
+                role="tab"
+                aria-controls="technical"
+                aria-selected="false"
+              >
                 <i class="fa fa-cogs me-1" aria-hidden="true"></i>
                 TECHNICAL SPECIFICATIONS
               </button>
-            </h2>
-          </div>
-          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-            data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <div class="">
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="location-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#location"
+                type="button"
+                role="tab"
+                aria-controls="location"
+                aria-selected="false"
+              >
+                <i class="fa-solid fa-location-dot me-1" aria-hidden="true"></i>
+                LOCATION
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content d-none d-lg-block" id="myTabContent">
+            <!-- 1st tab -->
+            <div
+              class="tab-pane fade show active"
+              id="vehicle"
+              role="tabpanel"
+              aria-labelledby="vehicle-tab"
+            >
+              <div id="vehicle-tab-details" class="mt-5">
+                <!-- Details Appeare here -->
+              </div>
+            </div>
+            <!-- 2nd tab -->
+            <div
+              class="tab-pane fade"
+              id="profile"
+              role="tabpanel"
+              aria-labelledby="profile-tab"
+            >
+              <div id="profile-tab-details" class="mt-5">
+                <!-- Features and options appeare here -->
+              </div>
+            </div>
+            <!-- 3rd tab -->
+            <div
+              class="tab-pane fade"
+              id="technical"
+              role="tabpanel"
+              aria-labelledby="technical-tab"
+            >
+              <div class="mt-5">
                 <div class="masonry-main cd-vehicle-features">
                   <ul class="list-style-1 list-col-3">
                     <li><i class="fas fa-check"></i>Tires: 245/70R16</li>
@@ -370,12 +420,9 @@
                       <i class="fas fa-check"></i>Rear Headroom: 38.30 in.
                     </li>
                     <li>
-                      <i class="fas fa-check"></i>Front Shoulder Room:56.30
-                      in.
+                      <i class="fas fa-check"></i>Front Shoulder Room:56.30 in.
                     </li>
-                    <li>
-                      <i class="fas fa-check"></i>Rear Hip Room:52.80 in.
-                    </li>
+                    <li><i class="fas fa-check"></i>Rear Hip Room:52.80 in.</li>
                     <li><i class="fas fa-check"></i>Standard Seating: 5</li>
                     <li>
                       <i class="fas fa-check"></i>Overall Width: 70.40 in.
@@ -383,12 +430,9 @@
                     <li>
                       <i class="fas fa-check"></i>Cargo Volume: 33.00 cu.ft.
                     </li>
+                    <li><i class="fas fa-check"></i>Front Legroom: 42.10 in</li>
                     <li>
-                      <i class="fas fa-check"></i>Front Legroom: 42.10 in
-                    </li>
-                    <li>
-                      <i class="fas fa-check"></i>Rear Shoulder Room: 56.30
-                      in.
+                      <i class="fas fa-check"></i>Rear Shoulder Room: 56.30 in.
                     </li>
                     <li><i class="fas fa-check"></i>Wheelbase:106.40 in.</li>
                     <li>
@@ -397,9 +441,7 @@
                     <li>
                       <i class="fas fa-check"></i>Front Headroom: 38.90 in.
                     </li>
-                    <li>
-                      <i class="fas fa-check"></i>Rear Legroom: 35.00 in.
-                    </li>
+                    <li><i class="fas fa-check"></i>Rear Legroom: 35.00 in.</li>
                     <li>
                       <i class="fas fa-check"></i>Front Hip Room: 52.20 in.
                     </li>
@@ -407,123 +449,537 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFourth">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
-                <i class="fa-solid fa-location-dot me-1" aria-hidden="true"></i>
-                LOCATION
-              </button>
-            </h2>
-          </div>
-          <div id="collapseFourth" class="accordion-collapse collapse" aria-labelledby="headingFourth"
-            data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              <div class="map mapouter">
+            <!-- 4th tab -->
+            <div
+              class="tab-pane fade"
+              id="location"
+              role="tabpanel"
+              aria-labelledby="location-tab"
+            >
+              <div class="map mapouter mt-5">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d26765.73200389331!2d-96.688507!3d33.011249!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19c917f62ab3%3A0x10e5b3aaa7acc030!2sLCT%20AUTO%20LLC!5e0!3m2!1sen!2sus!4v1688911019174!5m2!1sen!2sus"
-                  width="100%" height="450" style="border: 0" allowfullscreen="" loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  width="100%"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion -->
+          <div class="accordion d-block d-lg-none" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  <i class="fa fa-exclamation-circle me-1"></i>
+                  VEHICLE DETAILS
+                </button>
+              </h2>
+            </div>
+            <div
+              id="collapseOne"
+              class="accordion-collapse collapse show"
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div id="vehicle-accordion-details"></div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="collapseTwo"
+                >
+                  <i class="fa-solid fa-list me-1"></i>
+                  FEATURES & OPTIONS
+                </button>
+              </h2>
+            </div>
+
+            <div
+              id="collapseTwo"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingTwo"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div id="profile-accordion-details"></div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseThree"
+                  aria-expanded="false"
+                  aria-controls="collapseThree"
+                >
+                  <i class="fa fa-cogs me-1" aria-hidden="true"></i>
+                  TECHNICAL SPECIFICATIONS
+                </button>
+              </h2>
+            </div>
+            <div
+              id="collapseThree"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingThree"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div class="">
+                  <div class="masonry-main cd-vehicle-features">
+                    <ul class="list-style-1 list-col-3">
+                      <li><i class="fas fa-check"></i>Tires: 245/70R16</li>
+                      <li>
+                        <i class="fas fa-check"></i>Overall Length:177.50 in.
+                      </li>
+                      <li>
+                        <i class="fas fa-check"></i>Curb Weight-automatic: 3947
+                        lbs
+                      </li>
+                      <li>
+                        <i class="fas fa-check"></i>Rear Headroom: 38.30 in.
+                      </li>
+                      <li>
+                        <i class="fas fa-check"></i>Front Shoulder Room:56.30
+                        in.
+                      </li>
+                      <li>
+                        <i class="fas fa-check"></i>Rear Hip Room:52.80 in.
+                      </li>
+                      <li><i class="fas fa-check"></i>Standard Seating: 5</li>
+                      <li>
+                        <i class="fas fa-check"></i>Overall Width: 70.40 in.
+                      </li>
+                      <li>
+                        <i class="fas fa-check"></i>Cargo Volume: 33.00 cu.ft.
+                      </li>
+                      <li>
+                        <i class="fas fa-check"></i>Front Legroom: 42.10 in
+                      </li>
+                      <li>
+                        <i class="fas fa-check"></i>Rear Shoulder Room: 56.30
+                        in.
+                      </li>
+                      <li><i class="fas fa-check"></i>Wheelbase:106.40 in.</li>
+                      <li>
+                        <i class="fas fa-check"></i>Overall Height: 69.40 in.
+                      </li>
+                      <li>
+                        <i class="fas fa-check"></i>Front Headroom: 38.90 in.
+                      </li>
+                      <li>
+                        <i class="fas fa-check"></i>Rear Legroom: 35.00 in.
+                      </li>
+                      <li>
+                        <i class="fas fa-check"></i>Front Hip Room: 52.20 in.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingFourth">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseFourth"
+                  aria-expanded="false"
+                  aria-controls="collapseFourth"
+                >
+                  <i
+                    class="fa-solid fa-location-dot me-1"
+                    aria-hidden="true"
+                  ></i>
+                  LOCATION
+                </button>
+              </h2>
+            </div>
+            <div
+              id="collapseFourth"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingFourth"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <div class="map mapouter">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d26765.73200389331!2d-96.688507!3d33.011249!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c19c917f62ab3%3A0x10e5b3aaa7acc030!2sLCT%20AUTO%20LLC!5e0!3m2!1sen!2sus!4v1688911019174!5m2!1sen!2sus"
+                    width="100%"
+                    height="450"
+                    style="border: 0"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Section C -->
-      <div class="section-c div-container vehicles-price-details">
-        <div class="vehicles-price-inner">
-          <div class="i-car-heading">
-            <div class="divider"></div>
-            <h3 class="element-title">PRICE DETAILS</h3>
-          </div>
-          <div class="col-outside">
-            <div class="vehicles-price-first">
-              <h3 class="price-detail-heading">Trade-In Value Estimate</h3>
-              <div id="pay-once" class="table-outer">
-                <div class="table-price">
-                  <i class="bi bi-car"></i>
-                  <p class="table-price-p">We Want Your Car</p>
+        <!-- Section C -->
+        <div class="section-c div-container vehicles-price-details">
+          <div class="vehicles-price-inner">
+            <div class="i-car-heading">
+              <div class="divider"></div>
+              <h3 class="element-title">PRICE DETAILS</h3>
+            </div>
+            <div class="col-outside">
+              <div class="vehicles-price-first">
+                <h3 class="price-detail-heading">Trade-In Value Estimate</h3>
+                <div id="pay-once" class="table-outer">
+                  <div class="table-price">
+                    <i class="bi bi-car"></i>
+                    <p class="table-price-p">We Want Your Car</p>
+                  </div>
+                  <ul class="price-list-table">
+                    <li class="taxable-list">
+                      <span>Instant Estimate Available</span><span>&nbsp;</span>
+                    </li>
+                    <li class="taxable-list">
+                      <span>No Impact on Your Credit Score</span
+                      ><span>&nbsp;</span>
+                    </li>
+                    <li class="taxable-list">
+                      <span>Easy and Secure Process</span><span>&nbsp;</span>
+                    </li>
+                  </ul>
+                  <p
+                    class="p-details-module module-fire"
+                    style="
+                      display: flex;
+                      align-items: center;
+                      white-space: nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis;
+                    "
+                  >
+                    <i
+                      class="fas fa-shield-alt"
+                      style="
+                        color: #e03131;
+                        background-color: transparent;
+                        margin-right: 8px;
+                        font-size: 25px;
+                        align-self: center;
+                      "
+                    ></i>
+                    Trusted by Thousands for Accurate Trade-In Estimates
+                  </p>
+                  <div class="price-button price-first-btn">
+                    <button type="button">
+                      <i class="bi bi-calculator"></i> START YOUR VALUATION
+                    </button>
+                  </div>
                 </div>
-                <ul class="price-list-table">
-                  <li class="taxable-list">
-                    <span>Instant Estimate Available</span><span>&nbsp;</span>
-                  </li>
-                  <li class="taxable-list">
-                    <span>No Impact on Your Credit Score</span><span>&nbsp;</span>
-                  </li>
-                  <li class="taxable-list">
-                    <span>Easy and Secure Process</span><span>&nbsp;</span>
-                  </li>
-                </ul>
-                <p class="p-details-module module-fire"
-                  style="display: flex; align-items: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                  <i class="fas fa-shield-alt"
-                    style="color: #e03131; background-color: transparent; margin-right: 8px; font-size: 25px; align-self: center;"></i>
-                  Trusted by Thousands for Accurate Trade-In Estimates
-                </p>
-                <div class="price-button price-first-btn">
-                  <button type="button"><i class="bi bi-calculator"></i> START YOUR VALUATION</button>
+              </div>
+              <div class="vehicles-price-second">
+                <h3 class="price-detail-heading">Pay Monthly</h3>
+                <div class="table-outer">
+                  <div class="table-price">
+                    <p class="table-price-p" id="pay-monthly">
+                      <!-- Show Pay Monthly here -->
+                    </p>
+                    <div class="t-body-m">
+                      This is an estimate
+                      <div
+                        class="sighif"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="bottom"
+                        data-bs-title="customTooltipTemplate"
+                      >
+                        <!-- Define a custom template for the tooltip -->
+                        <div id="customTooltipTemplate" style="display: none">
+                          <div class="tooltip-custom-content">
+                            <div>
+                              <strong>This range is base on:</strong>
+                            </div>
+                            <ul class="mb-0 mt-12" style="list-style: initial">
+                              <li class="pt-2">$0 Cash Down</li>
+                              <li class="pt-2">69 Month Loan</li>
+                              <li class="pt-2">18.98%-27.54% APR</li>
+                              <li class="pt-2">
+                                Average–Excellent Credit Score
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          class="fill-current text-grey-5 q1ovw1rt"
+                        >
+                          <path
+                            d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm1.25 17c0 .69-.559 1.25-1.25 1.25-.689 0-1.25-.56-1.25-1.25s.561-1.25 1.25-1.25c.691 0 1.25.56 1.25 1.25zm1.393-9.998c-.608-.616-1.515-.955-2.551-.955-2.18 0-3.59 1.55-3.59 3.95h2.011c0-1.486.829-2.013 1.538-2.013.634 0 1.307.421 1.364 1.226.062.847-.39 1.277-.962 1.821-1.412 1.343-1.438 1.993-1.432 3.468h2.005c-.013-.664.03-1.203.935-2.178.677-.73 1.519-1.638 1.536-3.022.011-.924-.284-1.719-.854-2.297z"
+                          ></path>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="below-emi-p">
+                    <p class="p-details-module">
+                      Get personalized down/monthly payments within 2 minutes,
+                      and no impact to your credit score.
+                    </p>
+                    <p class="p-details-module module-fire">
+                      <svg viewBox="0 0 12 13" fill="none" class="mr-8">
+                        <g fill="currentColor">
+                          <path
+                            d="M3.38 13a3.16 3.16 0 0 1 .27-3.81 5.87 5.87 0 0 0 1-2.12A2.35 2.35 0 0 1 5 9a4.62 4.62 0 0 0 1.11-3.63A6 6 0 0 1 8.18 13c7.45-4 1.82-9.91.88-10.57a2.09 2.09 0 0 1-.27 2.35C7.68.81 4.93 0 4.93 0c.33 2-1.18 4.28-2.62 6a4.28 4.28 0 0 0-.56-2.16C1.64 5.27.44 6.48.12 8c-.45 2 .33 3.44 3.26 5z"
+                          ></path>
+                        </g>
+                      </svg>
+                      Roughly 80% of customers finance with us
+                    </p>
+                  </div>
+                  <div class="price-button">
+                    <button
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#financeModal"
+                    >
+                      GET YOUR TERMS
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="vehicles-price-second">
-              <h3 class="price-detail-heading">Pay Monthly</h3>
-              <div class="table-outer">
-                <div class="table-price">
-                  <p class="table-price-p" id="pay-monthly">
-                    <!-- Show Pay Monthly here -->
-                  </p>
-                  <div class="t-body-m">
-                    This is an estimate
-                    <div class="sighif" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                      data-bs-title="customTooltipTemplate">
-                      <!-- Define a custom template for the tooltip -->
-                      <div id="customTooltipTemplate" style="display: none">
-                        <div class="tooltip-custom-content">
-                          <div>
-                            <strong>This range is base on:</strong>
-                          </div>
-                          <ul class="mb-0 mt-12" style="list-style: initial">
-                            <li class="pt-2">$0 Cash Down</li>
-                            <li class="pt-2">69 Month Loan</li>
-                            <li class="pt-2">18.98%-27.54% APR</li>
-                            <li class="pt-2">
-                              Average–Excellent Credit Score
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
+          </div>
+        </div>
 
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                        class="fill-current text-grey-5 q1ovw1rt">
-                        <path
-                          d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm1.25 17c0 .69-.559 1.25-1.25 1.25-.689 0-1.25-.56-1.25-1.25s.561-1.25 1.25-1.25c.691 0 1.25.56 1.25 1.25zm1.393-9.998c-.608-.616-1.515-.955-2.551-.955-2.18 0-3.59 1.55-3.59 3.95h2.011c0-1.486.829-2.013 1.538-2.013.634 0 1.307.421 1.364 1.226.062.847-.39 1.277-.962 1.821-1.412 1.343-1.438 1.993-1.432 3.468h2.005c-.013-.664.03-1.203.935-2.178.677-.73 1.519-1.638 1.536-3.022.011-.924-.284-1.719-.854-2.297z">
-                        </path>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <div class="below-emi-p">
-                  <p class="p-details-module">
-                    Get personalized down/monthly payments within 2 minutes,
-                    and no impact to your credit score.
+        <!-- Section B -->
+        <div class="section-d div-container related-vehicles-sec">
+          <div class="divider"></div>
+          <div class="cd-related-vehicles">
+            <div class="i-car-heading">
+              <h3 class="element-title">RECOMMENDED FOR YOU</h3>
+            </div>
+            <div class="container" style="max-width: 990px">
+              <div class="row justify-content-center" id="car-list-box">
+                <div class="col-md-6 col-lg-4"></div>
+              </div>
+            </div>
+            <div id="view-more-btn" class="text-center my-5">
+              <button
+                onclick="viewMore()"
+                class="custom-btn-primary custom-btn-primary-2"
+              >
+                Load More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section M Footer -->
+    <footer class="section-m footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <a href="http://www.facebook.com/lctautollc" class="social-link">
+              <div
+                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap fb"
+              >
+                <div class="d-none d-md-block social-app">Facebook</div>
+                <i class="fa-brands fa-facebook social-app-icon"></i>
+              </div>
+            </a>
+          </div>
+          <div class="col-3">
+            <a href="http://www.Instagram.com/lctautollc" class="social-link">
+              <div
+                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap insta"
+              >
+                <div class="d-none d-md-block social-app">Instagram</div>
+                <i class="fa-brands fa-instagram social-app-icon"></i>
+              </div>
+            </a>
+          </div>
+          <div class="col-3">
+            <a href="http://www.YouTube.com/lctautollc" class="social-link">
+              <div
+                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap youtube"
+              >
+                <div class="d-none d-md-block social-app">Youtube</div>
+                <i class="fa-brands fa-youtube social-app-icon"></i>
+              </div>
+            </a>
+          </div>
+          <div class="col-3">
+            <a href="http://www.twitter.com/lctautollc" class="social-link">
+              <div
+                class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap twitter"
+              >
+                <div class="d-none d-md-block social-app">twitter</div>
+                <i class="fa-brands fa-twitter social-app-icon"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div class="row mt-5">
+          <div class="col-md-3">
+            <p>
+              LCT auto LLC offers multiple options to get you behind the wheel
+              of your dream car. We work with a variety of vehicles to get you
+              the best one possible. So come on down and drive off in your new
+              car today!
+            </p>
+            <div class="d-flex align-items-center my-4">
+              <i class="fa-solid fa-location-dot contact-icon"></i>
+              <p class="m-0 ms-2">1703 Capital Ave, Plano, TX 75074</p>
+            </div>
+            <div class="d-flex align-items-center my-4">
+              <i class="fa-solid fa-phone-flip contact-icon"></i>
+              <p class="m-0 ms-2">(469) 286 - 6875</p>
+            </div>
+            <div class="d-flex align-items-center my-4">
+              <i class="fa-solid fa-envelope contact-icon"></i>
+              <p class="m-0 ms-2">info@lctautollc.com</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="heading">Usefull links</div>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Change Oil and Filter</p>
+              </div>
+            </a>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Brake Pads Replacement</p>
+              </div>
+            </a>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Timing Belt Replacement</p>
+              </div>
+            </a>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Pre-purchase Car Inspection</p>
+              </div>
+            </a>
+            <a href="#" class="usefull-link">
+              <div class="d-flex align-items-center my-2">
+                <i class="fa-solid fa-angles-right"></i>
+                <p class="m-0 ms-2">Starter Replacement</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-3">
+            <div class="heading">Recent Posts</div>
+            <div class="d-flex align-items-center">
+              <img src="/footer_car_post.png" class="me-4" />
+              <div>
+                <p class="m-0 mb-1">Buy your dream car</p>
+                <p class="m-0">
+                  <i class="fa-solid fa-calendar-days" style="color: red"></i>
+                  January 17, 2022
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="heading">SUBSCRIBE OUR NEWS LETTER</div>
+            <form>
+              <p>
+                Keep up on our always evolving products features and technology.
+                Enter your e-mail and subscribe to our newsletter.
+              </p>
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter Your Email"
+                  id="subscriber_email"
+                  required
+                />
+              </div>
+              <button
+                onclick="Subscribe(event)"
+                class="mt-3 custom-btn-primary custom-btn-primary-2"
+              >
+                <span id="subscriber-text">Subscriber</span>
+                <img
+                  src="/cd_loader.svg"
+                  id="subscriber-loader"
+                  class="d-none"
+                />
+              </button>
+              <div id="subscriber-error" style="color: #db2e2d">
+                <!-- Error message shows here -->
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="row question-row pb-5">
+          <div class="col-md-6">
+            <div class="container">
+              <div
+                class="question row justify-content-between align-items-center"
+              >
+                <div class="col-md-8">
+                  <div class="heading">ARE YOU LOOKING FOR A CAR?</div>
+                  <p>
+                    Search Our Inventory With Thousands Of Cars And More Cars
+                    Are Adding On Daily Basis
                   </p>
-                  <p class="p-details-module module-fire">
-                    <svg viewBox="0 0 12 13" fill="none" class="mr-8">
-                      <g fill="currentColor">
-                        <path
-                          d="M3.38 13a3.16 3.16 0 0 1 .27-3.81 5.87 5.87 0 0 0 1-2.12A2.35 2.35 0 0 1 5 9a4.62 4.62 0 0 0 1.11-3.63A6 6 0 0 1 8.18 13c7.45-4 1.82-9.91.88-10.57a2.09 2.09 0 0 1-.27 2.35C7.68.81 4.93 0 4.93 0c.33 2-1.18 4.28-2.62 6a4.28 4.28 0 0 0-.56-2.16C1.64 5.27.44 6.48.12 8c-.45 2 .33 3.44 3.26 5z">
-                        </path>
-                      </g>
-                    </svg>
-                    Roughly 80% of customers finance with us
+                </div>
+                <div class="col-md-4">
+                  <button class="mt-3 custom-btn-primary custom-btn-primary-2">
+                    Read More
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="container">
+              <div
+                class="question row justify-content-between align-items-center"
+              >
+                <div class="col-md-8">
+                  <div class="heading">DO YOU WANT TO SELL A CAR?</div>
+                  <p>
+                    Search Our Inventory With Thousands Of Cars And More Cars
+                    Are Adding On Daily Basis
                   </p>
                 </div>
-                <div class="price-button">
-                  <button type="button" data-bs-toggle="modal" data-bs-target="#financeModal">
-                    GET YOUR TERMS
+                <div class="col-md-4">
+                  <button class="mt-3 custom-btn-primary custom-btn-primary-2">
+                    Read More
                   </button>
                 </div>
               </div>
@@ -531,391 +987,373 @@
           </div>
         </div>
       </div>
-
-      <!-- Section B -->
-      <div class="section-d div-container related-vehicles-sec">
-        <div class="divider"></div>
-        <div class="cd-related-vehicles">
-          <div class="i-car-heading">
-            <h3 class="element-title">RECOMMENDED FOR YOU</h3>
-          </div>
-          <div class="container">
-            <div class="row" id="car-list-box">
-              <div class="col-md-6 col-lg-4">
-              </div>
-              <div class="text-center my-5">
-                <button class="custom-btn-primary custom-btn-primary-2">
-                  Load More
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <hr class="mb-4" />
+      <div class="container">
+        <div class="pb-4">©Copyright 2023 LCT Auto LLC</div>
       </div>
-    </div>
-  </div>
+    </footer>
 
-  <!-- Section M Footer -->
-  <footer class="section-m footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-3">
-          <a href="http://www.facebook.com/lctautollc" class="social-link">
-            <div
-              class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap fb">
-              <div class="d-none d-md-block social-app">Facebook</div>
-              <i class="fa-brands fa-facebook social-app-icon"></i>
-            </div>
-          </a>
-        </div>
-        <div class="col-3">
-          <a href="http://www.Instagram.com/lctautollc" class="social-link">
-            <div
-              class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap insta">
-              <div class="d-none d-md-block social-app">Instagram</div>
-              <i class="fa-brands fa-instagram social-app-icon"></i>
-            </div>
-          </a>
-        </div>
-        <div class="col-3">
-          <a href="http://www.YouTube.com/lctautollc" class="social-link">
-            <div
-              class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap youtube">
-              <div class="d-none d-md-block social-app">Youtube</div>
-              <i class="fa-brands fa-youtube social-app-icon"></i>
-            </div>
-          </a>
-        </div>
-        <div class="col-3">
-          <a href="http://www.twitter.com/lctautollc" class="social-link">
-            <div
-              class="d-flex justify-content-center justify-content-md-between align-items-center social-link-wrap twitter">
-              <div class="d-none d-md-block social-app">twitter</div>
-              <i class="fa-brands fa-twitter social-app-icon"></i>
-            </div>
-          </a>
-        </div>
-      </div>
+    <!-- Finance Modal -->
+    <div
+      class="modal fade"
+      id="financeModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header d-flex align-items-center">
+            <h1 class="modal-title" id="exampleModalLabel">
+              FINANICNG CALCULATOR
+            </h1>
 
-      <div class="row mt-5">
-        <div class="col-md-3">
-          <p>
-            LCT auto LLC offers multiple options to get you behind the wheel
-            of your dream car. We work with a variety of vehicles to get you
-            the best one possible. So come on down and drive off in your new
-            car today!
-          </p>
-          <div class="d-flex align-items-center my-4">
-            <i class="fa-solid fa-location-dot contact-icon"></i>
-            <p class="m-0 ms-2">1703 Capital Ave, Plano, TX 75074</p>
+            <span data-bs-dismiss="modal" aria-label="Close" class="close"
+              >&times;</span
+            >
           </div>
-          <div class="d-flex align-items-center my-4">
-            <i class="fa-solid fa-phone-flip contact-icon"></i>
-            <p class="m-0 ms-2">(469) 286 - 6875</p>
-          </div>
-          <div class="d-flex align-items-center my-4">
-            <i class="fa-solid fa-envelope contact-icon"></i>
-            <p class="m-0 ms-2">info@lctautollc.com</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="heading">Usefull links</div>
-          <a href="#" class="usefull-link">
-            <div class="d-flex align-items-center my-2">
-              <i class="fa-solid fa-angles-right"></i>
-              <p class="m-0 ms-2">Change Oil and Filter</p>
-            </div>
-          </a>
-          <a href="#" class="usefull-link">
-            <div class="d-flex align-items-center my-2">
-              <i class="fa-solid fa-angles-right"></i>
-              <p class="m-0 ms-2">Brake Pads Replacement</p>
-            </div>
-          </a>
-          <a href="#" class="usefull-link">
-            <div class="d-flex align-items-center my-2">
-              <i class="fa-solid fa-angles-right"></i>
-              <p class="m-0 ms-2">Timing Belt Replacement</p>
-            </div>
-          </a>
-          <a href="#" class="usefull-link">
-            <div class="d-flex align-items-center my-2">
-              <i class="fa-solid fa-angles-right"></i>
-              <p class="m-0 ms-2">Pre-purchase Car Inspection</p>
-            </div>
-          </a>
-          <a href="#" class="usefull-link">
-            <div class="d-flex align-items-center my-2">
-              <i class="fa-solid fa-angles-right"></i>
-              <p class="m-0 ms-2">Starter Replacement</p>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-3">
-          <div class="heading">Recent Posts</div>
-          <div class="d-flex align-items-center">
-            <img src="/footer_car_post.png" class="me-4" />
-            <div>
-              <p class="m-0 mb-1">Buy your dream car</p>
-              <p class="m-0">
-                <i class="fa-solid fa-calendar-days" style="color: red"></i>
-                January 17, 2022
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="heading">SUBSCRIBE OUR NEWS LETTER</div>
-          <form>
-            <p>
-              Keep up on our always evolving products features and technology.
-              Enter your e-mail and subscribe to our newsletter.
-            </p>
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Enter Your Email" id="subscriber_email" required />
-            </div>
-            <button onclick="Subscribe(event)" class="mt-3 custom-btn-primary custom-btn-primary-2">
-              <span id="subscriber-text">Subscriber</span>
-              <img src="/cd_loader.svg" id="subscriber-loader" class="d-none" />
-            </button>
-            <div id="subscriber-error" style="color: #db2e2d">
-              <!-- Error message shows here -->
-            </div>
-          </form>
-        </div>
-      </div>
-
-      <div class="row question-row pb-5">
-        <div class="col-md-6">
-          <div class="container">
-            <div class="question row justify-content-between align-items-center">
-              <div class="col-md-8">
-                <div class="heading">ARE YOU LOOKING FOR A CAR?</div>
-                <p>
-                  Search Our Inventory With Thousands Of Cars And More Cars
-                  Are Adding On Daily Basis
-                </p>
+          <div class="modal-body px-4">
+            <form
+              id="finance_form"
+              onsubmit="calculateMonthlyPayment(event)"
+              class=""
+            >
+              <div class="mb-3">
+                <label
+                  for="formGroupExampleInput"
+                  class="form-label text-uppercase"
+                  >Loan Amount*</label
+                >
+                <input
+                  class="custom-input"
+                  type="text"
+                  name="loanAmount"
+                  oninput="HandleInputValues(event)"
+                  required
+                />
               </div>
-              <div class="col-md-4">
-                <button class="mt-3 custom-btn-primary custom-btn-primary-2">
-                  Read More
-                </button>
+
+              <div class="mb-3">
+                <label
+                  for="formGroupExampleInput"
+                  class="form-label text-uppercase"
+                  >Down Payment*</label
+                >
+                <input
+                  class="custom-input"
+                  name="downPayment"
+                  oninput="HandleInputValues(event)"
+                  type="text"
+                  required
+                />
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="container">
-            <div class="question row justify-content-between align-items-center">
-              <div class="col-md-8">
-                <div class="heading">DO YOU WANT TO SELL A CAR?</div>
-                <p>
-                  Search Our Inventory With Thousands Of Cars And More Cars
-                  Are Adding On Daily Basis
-                </p>
+
+              <div class="mb-3">
+                <label
+                  for="formGroupExampleInput"
+                  class="form-label text-uppercase"
+                  >Interest Rate(%)*</label
+                >
+                <input
+                  class="custom-input"
+                  name="interestRate"
+                  oninput="HandleInputValues(event)"
+                  type="text"
+                  required
+                />
               </div>
-              <div class="col-md-4">
-                <button class="mt-3 custom-btn-primary custom-btn-primary-2">
-                  Read More
-                </button>
+
+              <div class="mb-3">
+                <label
+                  for="formGroupExampleInput"
+                  class="form-label text-uppercase"
+                  >Period (Month)*</label
+                >
+                <input
+                  class="custom-input"
+                  name="periodInMonths"
+                  oninput="HandleInputValues(event)"
+                  type="text"
+                  required
+                />
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <hr class="mb-4" />
-    <div class="container">
-      <div class="pb-4">©Copyright 2023 LCT Auto LLC</div>
-    </div>
-  </footer>
 
-  <!-- Finance Modal -->
-  <div class="modal fade" id="financeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header d-flex align-items-center">
-          <h1 class="modal-title" id="exampleModalLabel">
-            FINANICNG CALCULATOR
-          </h1>
-
-          <span data-bs-dismiss="modal" aria-label="Close" class="close">&times;</span>
-        </div>
-        <div class="modal-body px-4">
-          <form id="finance_form" onsubmit="calculateMonthlyPayment(event)" class="">
-            <div class="mb-3">
-              <label for="formGroupExampleInput" class="form-label text-uppercase">Loan Amount*</label>
-              <input class="custom-input" type="text" name="loanAmount" oninput="HandleInputValues(event)" required />
-            </div>
-
-            <div class="mb-3">
-              <label for="formGroupExampleInput" class="form-label text-uppercase">Down Payment*</label>
-              <input class="custom-input" name="downPayment" oninput="HandleInputValues(event)" type="text" required />
-            </div>
-
-            <div class="mb-3">
-              <label for="formGroupExampleInput" class="form-label text-uppercase">Interest Rate(%)*</label>
-              <input class="custom-input" name="interestRate" oninput="HandleInputValues(event)" type="text" required />
-            </div>
-
-            <div class="mb-3">
-              <label for="formGroupExampleInput" class="form-label text-uppercase">Period (Month)*</label>
-              <input class="custom-input" name="periodInMonths" oninput="HandleInputValues(event)" type="text"
-                required />
-            </div>
-
-            <div class="my-3">
-              <label for="formGroupExampleInput" class="form-label text-uppercase">Payment</label>
-              <div class="d-flex align-items-center">
-                <div id="payment_result">
-                  <!-- Payment Result shows here -->
+              <div class="my-3">
+                <label
+                  for="formGroupExampleInput"
+                  class="form-label text-uppercase"
+                  >Payment</label
+                >
+                <div class="d-flex align-items-center">
+                  <div id="payment_result">
+                    <!-- Payment Result shows here -->
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="d-flex">
-              <a type="submit" href="javascript:void(0);"><button class="custom-btn-primary custom-btn-primary-2 me-2">
-                  Estimate Payment
-                </button></a>
-              <a onclick="ResetForm(event)" href="javascript:void(0);"><button
-                  class="custom-btn-primary custom-btn-primary-2">
-                  Reset
-                </button></a>
-            </div>
-          </form>
+              <div class="d-flex">
+                <a type="submit" href="javascript:void(0);"
+                  ><button class="custom-btn-primary custom-btn-primary-2 me-2">
+                    Estimate Payment
+                  </button></a
+                >
+                <a onclick="ResetForm(event)" href="javascript:void(0);"
+                  ><button class="custom-btn-primary custom-btn-primary-2">
+                    Reset
+                  </button></a
+                >
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Request More Info Modal -->
-  <div class="modal fade" id="scheduleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header d-flex align-items-center">
-          <h1 class="modal-title" id="exampleModalLabel">
-            Request More Info
-          </h1>
-          <span data-bs-dismiss="modal" aria-label="Close" class="close">&times;</span>
-        </div>
-        <div class="modal-body">
-          <form id="schedule_form" onsubmit="scheduleTestDrive(event)" class="row g-3 px-0">
-            <div>
-              <span class="ms-0">Hello my name is</span>
-              <input class="custom-input" type="text" name="firstName" placeholder="First name"
-                oninput="handleInputChange(event)" required pattern="[A-Za-z]{2,}"
-                title="Please enter a valid first name" />
-              <input class="custom-input" type="text" name="lastName" placeholder="Last name"
-                oninput="handleInputChange(event)" required pattern="[A-Za-z]{2,}"
-                title="Please enter a valid last name" />
-              <span>and I'd like to request more details for
-                <b id="vehicle-title"></b>. I'm in the
-              </span>
-              <input class="custom-input" type="text" name="zip" placeholder="ZIP Code" oninput="formatZIPCode(event)"
-                onfocusout="validateZIPCode(event)" required />
-              <span>area. You can reach me by email at</span>
-              <input class="custom-input" type="email" name="email" placeholder="Email Address"
-                onfocusout="validateEmail(event)" required />
-              <span class="text-danger" id="email_error"></span>
-              <span>or by phone at</span>
-              <input class="custom-input" type="text" name="phone" placeholder="123-456-7890(optional)"
-                oninput="formatPhoneNumber(event)" onfocusout="validatePhoneNumber(event)" />
-              <br>
-              <br>
-              <span>Thank you!</span>
-            </div>
+    <!-- Request More Info Modal -->
+    <div
+      class="modal fade"
+      id="scheduleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header d-flex align-items-center">
+            <h1 class="modal-title" id="exampleModalLabel">
+              Request More Info
+            </h1>
+            <span data-bs-dismiss="modal" aria-label="Close" class="close"
+              >&times;</span
+            >
+          </div>
+          <div class="modal-body">
+            <form
+              id="schedule_form"
+              onsubmit="scheduleTestDrive(event)"
+              class="row g-3 px-0"
+            >
+              <div>
+                <span class="ms-0">Hello my name is</span>
+                <input
+                  class="custom-input"
+                  type="text"
+                  name="firstName"
+                  placeholder="First name"
+                  oninput="handleInputChange(event)"
+                  required
+                  pattern="[A-Za-z]{2,}"
+                  title="Please enter a valid first name"
+                />
+                <input
+                  class="custom-input"
+                  type="text"
+                  name="lastName"
+                  placeholder="Last name"
+                  oninput="handleInputChange(event)"
+                  required
+                  pattern="[A-Za-z]{2,}"
+                  title="Please enter a valid last name"
+                />
+                <span
+                  >and I'd like to request more details for
+                  <b id="vehicle-title"></b>. I'm in the
+                </span>
+                <input
+                  class="custom-input"
+                  type="text"
+                  name="zip"
+                  placeholder="ZIP Code"
+                  oninput="formatZIPCode(event)"
+                  onfocusout="validateZIPCode(event)"
+                  required
+                />
+                <span>area. You can reach me by email at</span>
+                <input
+                  class="custom-input"
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  onfocusout="validateEmail(event)"
+                  required
+                />
+                <span class="text-danger" id="email_error"></span>
+                <span>or by phone at</span>
+                <input
+                  class="custom-input"
+                  type="text"
+                  name="phone"
+                  placeholder="123-456-7890(optional)"
+                  oninput="formatPhoneNumber(event)"
+                  onfocusout="validatePhoneNumber(event)"
+                />
+                <br />
+                <br />
+                <span>Thank you!</span>
+              </div>
 
-            <div onclick="ToggleComment(event)" style="cursor: pointer" class="mt-5 text-end">
-              <i class="fa-solid"></i>
-              <span>Add Comment</span>
-            </div>
+              <div
+                onclick="ToggleComment(event)"
+                style="cursor: pointer"
+                class="mt-5 text-end"
+              >
+                <i class="fa-solid"></i>
+                <span>Add Comment</span>
+              </div>
 
-            <div class="d-none">
-              <textarea class="custom-input" name="comment" placeholder=""
-                oninput="handleInputChange(event)"></textarea>
-            </div>
+              <div class="d-none">
+                <textarea
+                  class="custom-input"
+                  name="comment"
+                  placeholder=""
+                  oninput="handleInputChange(event)"
+                ></textarea>
+              </div>
 
-            <div>
-              <input class="form-check-input" type="checkbox" value="" id="emailConsent"
-                oninput="handleEmailConsentToggle(event)" />
-              <label class="form-check-label" for="emailConsent">
-                Email me new listings for my search
-              </label>
-            </div>
+              <div>
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="emailConsent"
+                  oninput="handleEmailConsentToggle(event)"
+                />
+                <label class="form-check-label" for="emailConsent">
+                  Email me new listings for my search
+                </label>
+              </div>
 
-            <div class="d-flex">
-              <button type="submit" class="custom-btn-primary custom-btn-primary-2 w-100">
-                <img src="/cd_loader.svg" id="message-loader" class="d-none" />
-                Send Message
-              </button>
-            </div>
-            <div class="text-success" id="schedule_form_success"></div>
-            <div class="text-danger" id="schedule_form_error"></div>
-          </form>
+              <div class="d-flex">
+                <button
+                  type="submit"
+                  class="custom-btn-primary custom-btn-primary-2 w-100"
+                >
+                  <img
+                    src="/cd_loader.svg"
+                    id="message-loader"
+                    class="d-none"
+                  />
+                  Send Message
+                </button>
+              </div>
+              <div class="text-success" id="schedule_form_success"></div>
+              <div class="text-danger" id="schedule_form_error"></div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Get Free Report Modal -->
-  <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header d-flex align-items-center">
-          <h1 class="modal-title" id="reportModalLabel">Get My Free Report</h1>
-          <span data-bs-dismiss="modal" aria-label="Close" class="close">&times;</span>
-        </div>
-        <div class="modal-body">
-          <form id="reportForm" class="row g-3 px-0">
-            <!-- First Name -->
-            <input class="custom-input" type="text" name="firstName" placeholder="First Name"
-              oninput="handleInputChange(event)" required pattern="[A-Za-z]{2,}"
-              title="Please enter a valid first name" />
+    <!-- Get Free Report Modal -->
+    <div
+      class="modal fade"
+      id="reportModal"
+      tabindex="-1"
+      aria-labelledby="reportModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header d-flex align-items-center">
+            <h1 class="modal-title" id="reportModalLabel">
+              Get My Free Report
+            </h1>
+            <span data-bs-dismiss="modal" aria-label="Close" class="close"
+              >&times;</span
+            >
+          </div>
+          <div class="modal-body">
+            <form id="reportForm" class="row g-3 px-0">
+              <!-- First Name -->
+              <input
+                class="custom-input"
+                type="text"
+                name="firstName"
+                placeholder="First Name"
+                oninput="handleInputChange(event)"
+                required
+                pattern="[A-Za-z]{2,}"
+                title="Please enter a valid first name"
+              />
 
-            <!-- Last Name -->
-            <input class="custom-input" type="text" name="lastName" placeholder="Last Name"
-              oninput="handleInputChange(event)" required pattern="[A-Za-z]{2,}"
-              title="Please enter a valid last name" />
+              <!-- Last Name -->
+              <input
+                class="custom-input"
+                type="text"
+                name="lastName"
+                placeholder="Last Name"
+                oninput="handleInputChange(event)"
+                required
+                pattern="[A-Za-z]{2,}"
+                title="Please enter a valid last name"
+              />
 
-            <!-- Email Address -->
-            <input class="custom-input" type="email" name="email" placeholder="Email Address"
-              onfocusout="validateEmail(event)" required />
+              <!-- Email Address -->
+              <input
+                class="custom-input"
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                onfocusout="validateEmail(event)"
+                required
+              />
 
-            <!-- Phone Number -->
-            <input class="custom-input" type="text" name="phone" placeholder="123-456-7890 (optional)"
-              oninput="formatPhoneNumber(event)" onfocusout="validatePhoneNumber(event)" />
+              <!-- Phone Number -->
+              <input
+                class="custom-input"
+                type="text"
+                name="phone"
+                placeholder="123-456-7890 (optional)"
+                oninput="formatPhoneNumber(event)"
+                onfocusout="validatePhoneNumber(event)"
+              />
 
-            <!-- Consent Checkbox -->
-            <div class="form-check custom-form-check">
-              <input class="form-check-input custom-form-check-input" type="checkbox" value="" id="consentCheckbox" checked>
-              <label class="form-check-label custom-form-check-label" for="consentCheckbox">
-                By clicking "View Report", I agree to be contacted by the dealer and its software provider. I consent to
-                receive communications via text message, autodialer, or prerecorded message. I have read and agree to
-                the site's Terms and Conditions and Privacy Policy.
-              </label>
-            </div>                     
+              <!-- Consent Checkbox -->
+              <div class="form-check custom-form-check">
+                <input
+                  class="form-check-input custom-form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="consentCheckbox"
+                  checked
+                />
+                <label
+                  class="form-check-label custom-form-check-label"
+                  for="consentCheckbox"
+                >
+                  By clicking "View Report", I agree to be contacted by the
+                  dealer and its software provider. I consent to receive
+                  communications via text message, autodialer, or prerecorded
+                  message. I have read and agree to the site's Terms and
+                  Conditions and Privacy Policy.
+                </label>
+              </div>
 
-            <!-- Submit Button -->
-            <div class="d-flex">
-              <button id="submitReportForm" type="submit" class="custom-btn-primary custom-btn-primary-2 w-100" disabled>View Report</button>
-            </div>
-          </form>
+              <!-- Submit Button -->
+              <div class="d-flex">
+                <button
+                  id="submitReportForm"
+                  type="submit"
+                  class="custom-btn-primary custom-btn-primary-2 w-100"
+                  disabled
+                >
+                  View Report
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
+    <div onclick="scrollToTop()" class="maincardiv reveal">
+      <div>
+        <img class="imgcar1" src="/car.png" alt="" />
 
-
-  <div onclick="scrollToTop()" class="maincardiv reveal">
-    <div>
-      <img class="imgcar1" src="/car.png" alt="" />
-
-      <img class="imgcarlight" src="/car-focus.png" alt="" />
+        <img class="imgcarlight" src="/car-focus.png" alt="" />
+      </div>
     </div>
-  </div>
 
-  <script src="/common.js"></script>
-  <script src="/vdp.js"></script>
-</body>
-
+    <script src="/common.js"></script>
+    <script src="/vdp.js"></script>
+  </body>
 </html>
